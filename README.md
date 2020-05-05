@@ -1,6 +1,6 @@
-## PhotoPoints: a Collaboration Between Friends of North Creek Forest and Cascadia College
+## PhotoPoints
 
-## App Purpose
+### App Purpose
 Encourage users of all ages to help track phenology and health of key biotic or abiotic components of a client-overseen biome.
 
 ### Stakeholders
