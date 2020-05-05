@@ -20,7 +20,7 @@ David Bain - Friends of North Creek Forest
   - Allow users to view Photopoints of critically low geospatial distance from one another in a collection marker
 
 
-### User stories
+### User Stories
 * Laura takes a picture and uploads it to the citizen’s science project so they can keep a record of phenology.
 * Laura uses the Photo Points glossary to learn more about a certain type of fauna.
 * James takes a picture of a nearby river to help monitor the water levels and bank erosion.
