@@ -9,114 +9,120 @@
 import UIKit
 import AVFoundation
 
-class ScannerView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+// code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
+class ScannerView: UIViewController {
     
-    // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
+    // MARK: - Properties
     
-    // variable that contains the video being shown to the user
-    var video = AVCaptureVideoPreviewLayer()
-    let session = AVCaptureSession()
+    // video session: optional because we won't have it in our emulator
+    var session: AVCaptureSession! = nil
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // create video session
-        // empty capture session for now
-        let session = AVCaptureSession()
-        
-        // define capture device
-        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else { fatalError() }
-        
-        // now we want to take output from our camera device and put it in our session
-        do {
-            // taking result from capture device and storing in input constant
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            session.addInput(input)
-        } catch {
-           print("ERROR")
-        }
-        
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
-        
-        // process on main thread: best performance results
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        
-        // can also specify to look for faces or barcodes, but only selecting qr here
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-        
-        // now we need to show the user
-        video = AVCaptureVideoPreviewLayer(session: session)
-        video.frame = view.layer.bounds
-        view.layer.addSublayer(video)
-        
-        session.startRunning()
+        setUpScanner()
     }
     
     // terminate the session if we navigate off this view
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        session.stopRunning()
+        session?.stopRunning()
     }
     
-    // bring the session up again if we switch back to the scanner view
+    // bring the session up again if we switch back to this view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        session.startRunning()
+        session?.startRunning()
     }
     
+    // MARK: - Scanner
+    
+    func setUpScanner() {
+         // if a default capture device exists, hook up input, config output, and display
+        if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
+            session = AVCaptureSession()
+            addAVInput(from: captureDevice)
+            configureAVOutput(for: .qr)
+            addVideoLayer()
+            session.startRunning()
+        } else {
+            addNoAVDLabel()
+        }
+    }
+    
+    // take input from our camera device and put it in our session
+    func addAVInput(from device: AVCaptureDevice) {
+        do {
+            let input = try AVCaptureDeviceInput(device: device)
+            session.addInput(input)
+        } catch {
+           print("ERROR")
+        }
+    }
+    
+    func configureAVOutput(for objectType: AVMetadataObject.ObjectType) {
+        let output = AVCaptureMetadataOutput()
+        session.addOutput(output)
+        
+        // process output on main thread: best performance results
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.metadataObjectTypes = [objectType]
+    }
+    
+    func addVideoLayer() {
+        let video = AVCaptureVideoPreviewLayer(session: session)
+        video.frame = view.layer.bounds
+        view.layer.addSublayer(video)
+    }
+
+    func addNoAVDLabel() {
+        let noAVDLabel = UILabel()
+        noAVDLabel.text = "No AV Device"
+        noAVDLabel.textColor = .white
+        noAVDLabel.sizeToFit()
+        
+        // this needs to happen before setting constraints :)
+        view.addSubview(noAVDLabel)
+        noAVDLabel.translatesAutoresizingMaskIntoConstraints = false
+        noAVDLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        noAVDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+}
+
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
+
+extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     // called by system when we get metadataoutputs
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
         if  metadataObjects.count != 0 {
-        
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 
-                // get our list of possible URLS
                 let plantURLs = MockDatabase.getURlStrings()
-                
-                // Potentially a url from QR code
                 let objectString = object.stringValue ?? ""
                 
-                // see if the url is in the list of urls in our database
-                if object.type == AVMetadataObject.ObjectType.qr && plantURLs.contains(objectString){
-                
-                    // plant is identified
+                if plantURLs.contains(objectString) {
                     let thisPlant = MockDatabase.getPlantFromURLString(urlString: objectString)
-                    
-                    // declare alert popups
-                    let scannedAlert = UIAlertController(title: thisPlant.commonName, message: thisPlant.botanicalName, preferredStyle: .alert)
-                    let surveyedAlert = UIAlertController(title: "Thank you!", message: "survey complete", preferredStyle: .alert)
-                    
-                    // add perform survey button and what to do if it's tapped
-                    scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-                        
-                        // mock completion of survey, update value in MockDatabase
-                        thisPlant.surveyStatus = .surveyed
-                        
-                        // update status based on commonName string as this is something we can search for in annotation array
-                        mapVC.didUpdateSurveyStatus(commonName: thisPlant.commonName)
-                        
-                        // congradulate the user for surveying
-                        self.present(surveyedAlert, animated: true, completion: nil)
-                        
-                    }))
-                    
-                    // add learn more button and what to do if it's tapped
-                    scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
-                        
-                        // show plant detail page for this plant
-                        self.present(PlantDetailView(plantItem: thisPlant), animated: true, completion: nil)
-                        
-                    }))
-                    
-                    // dismiss button that just gets rid of the alert
-                    surveyedAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-                    
-                    // show scanned alert
-                    present(scannedAlert, animated: true, completion: nil)
+                    setUpAlerts(for: thisPlant)
                 }
             }
         }
     }
+    
+    func setUpAlerts(for plantItem: PlantItem) {
+        let surveyedAlert = UIAlertController(title: "Thank you!", message: "survey complete", preferredStyle: .alert)
+        surveyedAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        
+        let scannedAlert = UIAlertController(title: plantItem.commonName, message: plantItem.botanicalName, preferredStyle: .alert)
+        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
+            plantItem.surveyStatus = .surveyed
+            mapVC.didUpdateSurveyStatus(commonName: plantItem.commonName)
+            self.present(surveyedAlert, animated: true, completion: nil)
+        }))
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
+            self.present(PlantDetailView(plantItem: plantItem), animated: true, completion: nil)
+        }))
+        present(scannedAlert, animated: true, completion: nil)
+    }
+    
 }

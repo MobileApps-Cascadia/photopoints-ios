@@ -17,7 +17,6 @@
 		F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */; };
 		F30CA27F2460A3D800CEA2A6 /* PlantsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24B2460A3D700CEA2A6 /* PlantsCollectionCell.swift */; };
 		F30CA2802460A3D800CEA2A6 /* PlantsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24C2460A3D700CEA2A6 /* PlantsCollectionView.swift */; };
-		F30CA2812460A3D800CEA2A6 /* PlantsNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24D2460A3D700CEA2A6 /* PlantsNavigation.swift */; };
 		F30CA2822460A3D800CEA2A6 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* PlantDetailView.swift */; };
 		F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2502460A3D700CEA2A6 /* PlantItem.swift */; };
 		F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */; };
@@ -74,7 +73,6 @@
 		F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		F30CA24B2460A3D700CEA2A6 /* PlantsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantsCollectionCell.swift; sourceTree = "<group>"; };
 		F30CA24C2460A3D700CEA2A6 /* PlantsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantsCollectionView.swift; sourceTree = "<group>"; };
-		F30CA24D2460A3D700CEA2A6 /* PlantsNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantsNavigation.swift; sourceTree = "<group>"; };
 		F30CA24E2460A3D700CEA2A6 /* PlantDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
 		F30CA2502460A3D700CEA2A6 /* PlantItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantItem.swift; sourceTree = "<group>"; };
 		F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		F30CA24A2460A3D700CEA2A6 /* Plant Library */ = {
 			isa = PBXGroup;
 			children = (
-				F30CA24D2460A3D700CEA2A6 /* PlantsNavigation.swift */,
 				F30CA24C2460A3D700CEA2A6 /* PlantsCollectionView.swift */,
 				F30CA24B2460A3D700CEA2A6 /* PlantsCollectionCell.swift */,
 				F30CA24E2460A3D700CEA2A6 /* PlantDetailView.swift */,
@@ -399,7 +396,6 @@
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* PlantsCollectionCell.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
-				F30CA2812460A3D800CEA2A6 /* PlantsNavigation.swift in Sources */,
 				F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */,
 				F30CA20D2460A2F800CEA2A6 /* PhotoPoints.xcdatamodeld in Sources */,
 			);

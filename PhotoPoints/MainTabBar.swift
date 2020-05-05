@@ -23,7 +23,7 @@ class MainTabBar: UITabBarController {
         
         // set up plant library
         let plantsCollectionView = PlantsCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
-        let plantsNavigation = PlantsNavigation(rootViewController: plantsCollectionView)
+        let plantsNavigation = UINavigationController(rootViewController: plantsCollectionView)
         plantsNavigation.navigationBar.topItem?.title = "Plant Library"
         plantsNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf.arrow.circlepath"), tag: 1)
         
