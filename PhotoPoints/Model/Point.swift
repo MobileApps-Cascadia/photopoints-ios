@@ -7,3 +7,27 @@
 //
 
 import Foundation
+
+class Point {
+    
+    let id: Int
+    let location: Coordinate
+    let type: PointItemType
+    var enabled: Bool
+    
+    init(id: Int, location: Coordinate, type: PointItemType, enabled: Bool) {
+        self.id = id
+        self.location = location
+        self.type = type
+        self.enabled = enabled
+    }
+    
+    func enable() {
+        enabled = true
+    }
+    
+    func disable() {
+        enabled = false
+    }
+
+}
