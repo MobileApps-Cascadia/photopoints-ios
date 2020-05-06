@@ -8,4 +8,16 @@
 
 import Foundation
 
-class PointDetail
+class PointDetail {
+    
+    let nameString: String
+    let description: String
+    let qrCode: String
+    
+    init(nameString: String, description: String, qrCode: String) {
+        self.nameString = nameString
+        self.description = description
+        self.qrCode = qrCode
+    }
+    
+}
