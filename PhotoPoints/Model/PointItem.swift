@@ -19,4 +19,16 @@ enum PointItemType: String {
 
 class PointItem {
     
+    let id: Int
+    let point: Point
+    var detail: PointDetail
+    var images: [PointImage]
+    
+    init(id: Int, point: Point, detail: PointDetail, images: [PointImage]) {
+        self.id = id
+        self.point = point
+        self.detail = detail
+        self.images = images
+    }
+    
 }
