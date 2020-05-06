@@ -41,6 +41,7 @@
 		F399B0402463152C00BEF013 /* PointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B03F2463152C00BEF013 /* PointItem.swift */; };
 		F399B0422463257800BEF013 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B0412463257800BEF013 /* Coordinate.swift */; };
 		F3E66AAE2463514B009650B2 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AAD2463514B009650B2 /* Point.swift */; };
+		F3E66AB0246357AF009650B2 /* PointDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AAF246357AF009650B2 /* PointDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		F399B03F2463152C00BEF013 /* PointItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointItem.swift; sourceTree = "<group>"; };
 		F399B0412463257800BEF013 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		F3E66AAD2463514B009650B2 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		F3E66AAF246357AF009650B2 /* PointDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				F3E66AAD2463514B009650B2 /* Point.swift */,
 				F30CA2502460A3D700CEA2A6 /* PlantItem.swift */,
 				F399B0412463257800BEF013 /* Coordinate.swift */,
+				F3E66AAF246357AF009650B2 /* PointDetail.swift */,
 				F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */,
 				F3E66AB124635B92009650B2 /* PointImage.swift */,
 				F30CA2522460A3D700CEA2A6 /* Stories */,
@@ -406,6 +409,7 @@
 				F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* PlantDetailView.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
+				F3E66AB0246357AF009650B2 /* PointDetail.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* PlantsCollectionCell.swift in Sources */,
