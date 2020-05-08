@@ -15,6 +15,8 @@ enum PointItemType: String {
     case birdhouse
     case kiosk
     case restroom
+    case spring
+    case other
 }
 
 class PointItem {
