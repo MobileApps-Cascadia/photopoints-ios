@@ -37,6 +37,7 @@
 		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */; };
+		F3E66AB224635B92009650B2 /* PointImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AB124635B92009650B2 /* PointImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
+		F3E66AB124635B92009650B2 /* PointImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			children = (
 				F30CA2502460A3D700CEA2A6 /* PlantItem.swift */,
 				F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */,
+				F3E66AB124635B92009650B2 /* PointImage.swift */,
 				F30CA2522460A3D700CEA2A6 /* Stories */,
 			);
 			path = Model;
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
+				F3E66AB224635B92009650B2 /* PointImage.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* PlantsCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */,
