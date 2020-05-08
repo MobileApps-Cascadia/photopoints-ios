@@ -11,28 +11,25 @@ import CoreLocation
 
 class Coordinate {
     
-    var latitude: CLLocationDegrees {
-        didSet {
-            flat.latitude = latitude
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
+    let altitude: CLLocationDistance
+    
+    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance) {
+        // in na all long neg, all lat pos
+        if latitude < 0 || longitude > 0 {
+            self.latitude = longitude
+            self.longitude = latitude
+        } else {
+            self.latitude = latitude
+            self.longitude = longitude
         }
-    }
-    
-    var longitude: CLLocationDegrees {
-        didSet {
-            flat.longitude = longitude
-        }
-    }
-    
-    var altitude: CLLocationDistance
-    
-    // current map annotations require a 2D coordinate
-    var flat: CLLocationCoordinate2D
-    
-    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance){
-        self.latitude = latitude
-        self.longitude = longitude
+        
         self.altitude = altitude
-        self.flat = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    func twoDimensional() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
     
 }
