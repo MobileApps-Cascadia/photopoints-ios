@@ -21,8 +21,8 @@
       },
       "plant_details":
       {
-        "commonName": "Douglas Fir",
-        "botanicalName": "Pseudotsuga menziesii",
+        "common_name": "Douglas Fir",
+        "botanical_name": "Pseudotsuga menziesii",
         "site": 1,
         "category": "Conifer, Evergreen, Perennial, Tree",
         "family": "Pinaceae",
@@ -73,8 +73,8 @@
       },
       "plant_details":
       {
-        "commonName": "Pacific Willow",
-        "botanicalName": "Salix Lasiandra",
+        "common_name": "Pacific Willow",
+        "botanical_name": "Salix Lasiandra",
         "site": 2,
         "category": "Deciduous, Tree",
         "family": "???",
@@ -98,7 +98,7 @@
         "resolution": "medium",
         "heading": "Pacific Willow",
         "description": "Early leaf nodes of a Pacific Willow branch"
-        "imagesource": "plantsmap",
+        "source": "plantsmap",
         "license": "unknown"
       }
     }
