@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainTabBar: UITabBarController {
     
@@ -16,6 +17,14 @@ class MainTabBar: UITabBarController {
     }
     
     func setUpTabBarChildren() {
+        
+        // set up repo
+        
+        let repo = Repository.instance
+        repo.test()
+        repo.testSync()
+        repo.testDB()
+        
         
         // set up scanner
         let scannerView = ScannerView()

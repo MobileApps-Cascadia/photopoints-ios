@@ -12,6 +12,7 @@
 		DC3FDF91246750A100DD613A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF90246750A100DD613A /* data.json */; };
 		DC3FDF94246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF92246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png */; };
 		DC3FDF95246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF93246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png */; };
+		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
 		EF8692A96D666AC1494ED3E9 /* Pods_PhotoPoints_PhotoPointsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE240D7F11F94592BE1E49F4 /* Pods_PhotoPoints_PhotoPointsUITests.framework */; };
 		F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */; };
 		F30CA20F2460A2FC00CEA2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */; };
@@ -42,7 +43,7 @@
 		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */; };
-		F399B0402463152C00BEF013 /* PointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B03F2463152C00BEF013 /* PointItem.swift */; };
+		F399B0402463152C00BEF013 /* PointItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B03F2463152C00BEF013 /* PointItemType.swift */; };
 		F399B0422463257800BEF013 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B0412463257800BEF013 /* Coordinate.swift */; };
 		F3E66AAE2463514B009650B2 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AAD2463514B009650B2 /* Point.swift */; };
 		F3E66AB224635B92009650B2 /* PointImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AB124635B92009650B2 /* PointImage.swift */; };
@@ -76,6 +77,7 @@
 		DC3FDF90246750A100DD613A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		DC3FDF92246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cecc9ccdea496978e3f7694aacebd355.png; sourceTree = "<group>"; };
 		DC3FDF93246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0de693ef54a38b1224975fad7cac4e39.png; sourceTree = "<group>"; };
+		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		E7E43C512D6103CE7770BD69 /* Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8E612F7BED0C05DF12FB99 /* Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +115,7 @@
 		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
-		F399B03F2463152C00BEF013 /* PointItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointItem.swift; sourceTree = "<group>"; };
+		F399B03F2463152C00BEF013 /* PointItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointItemType.swift; sourceTree = "<group>"; };
 		F399B0412463257800BEF013 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		F3E66AAD2463514B009650B2 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		F3E66AB124635B92009650B2 /* PointImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointImage.swift; sourceTree = "<group>"; };
@@ -260,7 +262,8 @@
 		F30CA24F2460A3D700CEA2A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F399B03F2463152C00BEF013 /* PointItem.swift */,
+				DC3FDF982467A2D100DD613A /* Repository.swift */,
+				F399B03F2463152C00BEF013 /* PointItemType.swift */,
 				F3E66AAD2463514B009650B2 /* Point.swift */,
 				F30CA2502460A3D700CEA2A6 /* PlantItem.swift */,
 				F399B0412463257800BEF013 /* Coordinate.swift */,
@@ -565,7 +568,7 @@
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
 				F3E66AB224635B92009650B2 /* PointImage.swift in Sources */,
-				F399B0402463152C00BEF013 /* PointItem.swift in Sources */,
+				F399B0402463152C00BEF013 /* PointItemType.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* PlantsCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */,
@@ -574,6 +577,7 @@
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* PlantsCollectionCell.swift in Sources */,
+				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F399B0422463257800BEF013 /* Coordinate.swift in Sources */,
 				F3E66AAE2463514B009650B2 /* Point.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
