@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8E0E450850881E1F98D8D9B8 /* Pods_PhotoPointsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE853105DB2DAF1E21DA9336 /* Pods_PhotoPointsTests.framework */; };
 		C4BF198F1BEA4BABB64853ED /* Pods_PhotoPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06298BF8E3B4A61FB4FCB1F /* Pods_PhotoPoints.framework */; };
+		DC3FDF91246750A100DD613A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF90246750A100DD613A /* data.json */; };
+		DC3FDF94246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF92246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png */; };
+		DC3FDF95246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF93246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png */; };
 		EF8692A96D666AC1494ED3E9 /* Pods_PhotoPoints_PhotoPointsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE240D7F11F94592BE1E49F4 /* Pods_PhotoPoints_PhotoPointsUITests.framework */; };
 		F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */; };
 		F30CA20F2460A2FC00CEA2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		B06298BF8E3B4A61FB4FCB1F /* Pods_PhotoPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE240D7F11F94592BE1E49F4 /* Pods_PhotoPoints_PhotoPointsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPoints_PhotoPointsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE853105DB2DAF1E21DA9336 /* Pods_PhotoPointsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPointsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC3FDF90246750A100DD613A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		DC3FDF92246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cecc9ccdea496978e3f7694aacebd355.png; sourceTree = "<group>"; };
+		DC3FDF93246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0de693ef54a38b1224975fad7cac4e39.png; sourceTree = "<group>"; };
 		E7E43C512D6103CE7770BD69 /* Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8E612F7BED0C05DF12FB99 /* Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +170,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DC3FDF8F24674FC700DD613A /* Initial Data */ = {
+			isa = PBXGroup;
+			children = (
+				DC3FDF93246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png */,
+				DC3FDF92246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png */,
+				DC3FDF90246750A100DD613A /* data.json */,
+			);
+			path = "Initial Data";
+			sourceTree = "<group>";
+		};
 		F30CA1F62460A2F800CEA2A6 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +205,7 @@
 		F30CA2012460A2F800CEA2A6 /* PhotoPoints */ = {
 			isa = PBXGroup;
 			children = (
+				DC3FDF8F24674FC700DD613A /* Initial Data */,
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
 				F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */,
@@ -409,8 +426,11 @@
 				F30CA2852460A3D800CEA2A6 /* 28092_story.txt in Resources */,
 				F30CA28F2460A3D800CEA2A6 /* 28074_story.txt in Resources */,
 				F30CA28B2460A3D800CEA2A6 /* 28070_story.txt in Resources */,
+				DC3FDF95246750DA00DD613A /* 0de693ef54a38b1224975fad7cac4e39.png in Resources */,
 				F30CA2922460A3D800CEA2A6 /* 28066_story.txt in Resources */,
+				DC3FDF91246750A100DD613A /* data.json in Resources */,
 				F30CA2122460A2FC00CEA2A6 /* LaunchScreen.storyboard in Resources */,
+				DC3FDF94246750DA00DD613A /* cecc9ccdea496978e3f7694aacebd355.png in Resources */,
 				F30CA2912460A3D800CEA2A6 /* 28072_story.txt in Resources */,
 				F30CA28C2460A3D800CEA2A6 /* 28098_story.txt in Resources */,
 				F30CA28E2460A3D800CEA2A6 /* 28075_story.txt in Resources */,
