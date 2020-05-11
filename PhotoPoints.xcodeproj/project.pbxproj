@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F61228F24691B50001F770F /* AnnotationDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61228E24691B50001F770F /* AnnotationDisplay.swift */; };
 		8E0E450850881E1F98D8D9B8 /* Pods_PhotoPointsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE853105DB2DAF1E21DA9336 /* Pods_PhotoPointsTests.framework */; };
 		C4BF198F1BEA4BABB64853ED /* Pods_PhotoPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06298BF8E3B4A61FB4FCB1F /* Pods_PhotoPoints.framework */; };
 		DC3FDF91246750A100DD613A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = DC3FDF90246750A100DD613A /* data.json */; };
@@ -68,6 +69,11 @@
 
 /* Begin PBXFileReference section */
 		399A51B04817A992486F0AEE /* Pods-PhotoPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPoints/Pods-PhotoPoints.debug.xcconfig"; sourceTree = "<group>"; };
+		3F211FF22468F25D004DEF16 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Downloads/realm-swift-4.4.1/ios/swift-11.4.1/RealmSwift.framework"; sourceTree = "<group>"; };
+		3F211FF62468F25F004DEF16 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Downloads/realm-swift-4.4.1/ios/swift-11.4.1/Realm.framework"; sourceTree = "<group>"; };
+		3F6122812468F53D001F770F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Desktop/RealmSwift.framework; sourceTree = "<group>"; };
+		3F6122822468F53D001F770F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Desktop/Realm.framework; sourceTree = "<group>"; };
+		3F61228E24691B50001F770F /* AnnotationDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationDisplay.swift; sourceTree = "<group>"; };
 		661D6C9688966E9BF2B700F4 /* Pods-PhotoPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPoints.release.xcconfig"; path = "Target Support Files/Pods-PhotoPoints/Pods-PhotoPoints.release.xcconfig"; sourceTree = "<group>"; };
 		75964B0E7615EE779A3D3D96 /* Pods-PhotoPointsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPointsTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPointsTests/Pods-PhotoPointsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		861A756ABB8921D0626A8AB6 /* Pods-PhotoPointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPointsTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoPointsTests/Pods-PhotoPointsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +158,10 @@
 		0C6AE3192183112EC8E4928D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F211FF62468F25F004DEF16 /* Realm.framework */,
+				3F6122822468F53D001F770F /* Realm.framework */,
+				3F211FF22468F25D004DEF16 /* RealmSwift.framework */,
+				3F6122812468F53D001F770F /* RealmSwift.framework */,
 				B06298BF8E3B4A61FB4FCB1F /* Pods_PhotoPoints.framework */,
 				BE240D7F11F94592BE1E49F4 /* Pods_PhotoPoints_PhotoPointsUITests.framework */,
 				CE853105DB2DAF1E21DA9336 /* Pods_PhotoPointsTests.framework */,
@@ -207,10 +217,10 @@
 		F30CA2012460A2F800CEA2A6 /* PhotoPoints */ = {
 			isa = PBXGroup;
 			children = (
-				DC3FDF8F24674FC700DD613A /* Initial Data */,
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
 				F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */,
+				DC3FDF8F24674FC700DD613A /* Initial Data */,
 				F30CA2352460A3D700CEA2A6 /* Scanner */,
 				F30CA24A2460A3D700CEA2A6 /* Plant Library */,
 				F30CA2642460A3D700CEA2A6 /* Map */,
@@ -299,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
+				3F61228E24691B50001F770F /* AnnotationDisplay.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -578,6 +589,7 @@
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* PlantsCollectionCell.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
+				3F61228F24691B50001F770F /* AnnotationDisplay.swift in Sources */,
 				F399B0422463257800BEF013 /* Coordinate.swift in Sources */,
 				F3E66AAE2463514B009650B2 /* Point.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
@@ -750,6 +762,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFVB576FM8;
 				INFOPLIST_FILE = PhotoPoints/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -769,6 +782,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFVB576FM8;
 				INFOPLIST_FILE = PhotoPoints/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
