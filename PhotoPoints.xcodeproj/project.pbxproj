@@ -192,6 +192,17 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		F3095932246BA5900088FB19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */,
+				F30CA2352460A3D700CEA2A6 /* Scanner */,
+				F30CA24A2460A3D700CEA2A6 /* Plant Library */,
+				F30CA2642460A3D700CEA2A6 /* Map */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F30CA1F62460A2F800CEA2A6 = {
 			isa = PBXGroup;
 			children = (
@@ -219,11 +230,8 @@
 			children = (
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
-				F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */,
-				F30CA2352460A3D700CEA2A6 /* Scanner */,
-				F30CA24A2460A3D700CEA2A6 /* Plant Library */,
-				F30CA2642460A3D700CEA2A6 /* Map */,
 				F30CA24F2460A3D700CEA2A6 /* Models */,
+				F3095932246BA5900088FB19 /* Views */,
 				F309592F246BA1690088FB19 /* Controllers */,
 				F30CA2672460A3D700CEA2A6 /* Helpers */,
 				F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */,
