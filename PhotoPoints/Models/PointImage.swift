@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum ImageType {
-    case raw
+    case full
     case detail
     case collection
     case thumbnail
