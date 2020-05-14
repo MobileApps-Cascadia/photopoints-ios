@@ -18,7 +18,3 @@ enum PointItemType: String {
     case spring
     case other
 }
-
-class PointItem {
-    
-}
