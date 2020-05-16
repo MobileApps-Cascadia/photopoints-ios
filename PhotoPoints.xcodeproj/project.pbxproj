@@ -309,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
-				3F61228E24691B50001F770F /* AnnotationDisplay.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -317,6 +316,7 @@
 		F30CA2672460A3D700CEA2A6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3F61228E24691B50001F770F /* AnnotationDisplay.swift */,
 				F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */,
 			);
 			path = Helpers;
