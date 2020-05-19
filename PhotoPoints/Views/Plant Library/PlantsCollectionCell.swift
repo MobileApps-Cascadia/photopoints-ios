@@ -62,7 +62,7 @@ class PlantsCollectionCell: UICollectionViewCell {
         imageView.addSubview(cardFooter)
         cardFooter.anchor(top: imageView.bottomAnchor, left: imageView.leftAnchor, bottom: imageView.bottomAnchor, right: imageView.rightAnchor, paddingTop: -50)
         
-        addSubview(imageView)
+        contentView.addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         imageView.layer.cornerRadius = 20
     }
