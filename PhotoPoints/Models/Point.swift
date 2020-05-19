@@ -12,13 +12,11 @@ class Point {
     
     let id: Int
     let location: Coordinate
-    let type: PointItemType
     var enabled: Bool
     
-    init(id: Int, location: Coordinate, type: PointItemType, enabled: Bool) {
+    init(id: Int, location: Coordinate, enabled: Bool) {
         self.id = id
         self.location = location
-        self.type = type
         self.enabled = enabled
     }
     

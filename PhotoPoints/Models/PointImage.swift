@@ -7,23 +7,28 @@
 //
 
 import Foundation
+import UIKit
+
+enum ImageType {
+    case full
+    case detail
+    case collection
+    case thumbnail
+}
 
 class PointImage {
-    
+
     let id: Int
     let fileName: String
-    let imageType: String
+    let imageType: ImageType
     let imageHeading: String
-    let imageSource: String
     let imageLicense: String
     
-    init(id: Int, fileName: String, imageType: String, imageHeading: String, imageSource: String, imageLicense: String) {
+    init(id: Int, fileName: String, imageType: ImageType, imageHeading: String, imageLicense: String) {
         self.id = id
         self.fileName = fileName
         self.imageType = imageType
         self.imageHeading = imageHeading
-        self.imageSource = imageSource
         self.imageLicense = imageLicense
     }
-    
 }
