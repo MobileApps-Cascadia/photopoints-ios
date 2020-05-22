@@ -1,105 +1,105 @@
 {
-  "commands":
-  [
+  "commands": [
     {
-      "command":
-      {
+      "command": {
         "sequence": 1,
-        "operation": "create_point"
-      },
-      "point":
-      {
-        "id": 28092,
-        "type": "plant",
-        "location":
-        {
-          "lat": 47.774827,
-          "long": -122.191787,
-          "alt": 0
-        },
-        "enabled": true
-      },
-      "plant_details":
-      {
-        "common_name": "Douglas Fir",
-        "botanical_name": "Pseudotsuga menziesii",
-        "site": 1,
-        "category": "Conifer, Evergreen, Perennial, Tree",
-        "family": "Pinaceae",
-        "description": "\"Douglas-fir wood and bark was thought by most of the coastal groups to be an excellent fuel, but it had the reputation of throwing sparks and giving splinters to those handling it. The wood was also used to make items such as spear handles, harpoon shafts, spoons, dip-net poles, harpoon barbs, fire tongs, salmon weirs, caskets and halibut and cod hooks. Its pitch was used for sealing joints of implements such as harpoon heads, gaffs and fishhooks, and for caulking canoes and water vessels. The pitch, like that of many coniferous trees, was used to make a medicinal salve for wounds and skin irritations. The Nuxalk, Quinault and others made torches from the pitchy heartwood.\r\n\r\nThe Comox prepared dogfish by stuffing it with rotten, powdered Douglas-fir and burying the fish in a pit lined with the same material\" (Pojar and MacKinnon 2004).\r\n\r\nFrom USDA:\r\n\r\nDouglas-fir needles were made into tea and drank by Isleta Puebloans in New Mexico to cure rheumatism.The Sinkyone of California made Douglas-fir bark tea which eased colds and stomach ailments. Douglas-fir roots were used in California Indian basketry.(USDA)\r\n\r\n\r\nWildlife Value:\r\n\r\nFrom USDA: \r\n\r\nSmall mammals: Western squirrels, red tree mouse, dusky-foot woodrat eat winged seeds\r\n\r\nBig mammals: Antelope, mule, and white-tailed deer, elk, and mountain sheep eat foliage and twigs. \r\n\r\nThe staminate cones and needles of Douglas-fir provide a significant winter food of the blue grouse. \r\n\r\n\r\nRestoration application\r\n\r\n\u201CBirds that eat the seeds include grouse, crossbills, siskins, and many others. Chickadees,nuthatches, brown creepers, and woodpeckers find insects in the trunk,branches, and twigs. Foliage is eaten by pine white butterfly larvae,silver-spotted tiger moth larvae, and numerous other moths. Squirrels and chipmunks eat the seeds.\u201D (WNPS)\r\n\r\n\r\nAssociations\r\n\r\nThese are usually found in rocky slopes and gullies, forests and woods, open forests, coniferous forests, old growth forests, mixed forests and burned areas. (WNPS)\r\n\"Douglas-fir wood and bark was thought by most of the coastal groups to be an excellent fuel, but it had the reputation of throwing sparks and giving splinters to those handling it. The wood was also used to make items such as spear handles, harpoon shafts, spoons, dip-net poles, harpoon barbs, fire tongs, salmon weirs, caskets and halibut and cod hooks. Its pitch was used for sealing joints of implements such as harpoon heads, gaffs and fishhooks, and for caulking canoes and water vessels. The pitch, like that of many coniferous trees, was used to make a medicinal salve for wounds and skin irritations. The Nuxalk, Quinault and others made torches from the pitchy heartwood.\r\n\r\nThe Comox prepared dogfish by stuffing it with rotten, powdered Douglas-fir and burying the fish in a pit lined with the same material\" (Pojar and MacKinnon 2004).\r\n\r\nFrom USDA:\r\n\r\nDouglas-fir needles were made into tea and drank by Isleta Puebloans in New Mexico to cure rheumatism.The Sinkyone of California made Douglas-fir bark tea which eased colds and stomach ailments. Douglas-fir roots were used in California Indian basketry.(USDA)\r\n\r\n\r\nWildlife Value:\r\n\r\nFrom USDA: \r\n\r\nSmall mammals: Western squirrels, red tree mouse, dusky-foot woodrat eat winged seeds\r\n\r\nBig mammals: Antelope, mule, and white-tailed deer, elk, and mountain sheep eat foliage and twigs. \r\n\r\nThe staminate cones and needles of Douglas-fir provide a significant winter food of the blue grouse. \r\n\r\n\r\nRestoration application\r\n\r\n\u201CBirds that eat the seeds include grouse, crossbills, siskins, and many others. Chickadees,nuthatches, brown creepers, and woodpeckers find insects in the trunk,branches, and twigs. Foliage is eaten by pine white butterfly larvae,silver-spotted tiger moth larvae, and numerous other moths. Squirrels and chipmunks eat the seeds.\u201D (WNPS)\r\n\r\n\r\nAssociations\r\n\r\nThese are usually found in rocky slopes and gullies, forests and woods, open forests, coniferous forests, old growth forests, mixed forests and burned areas. (WNPS)\r\n\r\n\r\n\u201CInner bark was dried, ground into a powder, and then added to flour for making bread. The stems and bark were used in basket making (Moerman 1998). The native Americans used the stems for bow making and the bark for fabric making and tea.\u201D (USDA Plant guide).\r\n\r\nMedicinal: Willows produce salicin, which is closely related to acetylsalicyclic acid, commonly known as aspirin. Various preparations from willows are used to treat stomachache, sore throats, colds, diarrhea, and dandruff. The inner bark is haemostatic and has been applied externally to bleeding cuts (Moerman 1998)\r\n\r\n\r\nRestoration application: Willows grow rapidly and quickly provide part-shade. This creates poorer conditions for weeds by over-shading, and better conditions for fish by cooling streams. Willow's roots also grow swiftly which controls soil erosion. This tree is easily grown from cuttings, making a cost effective plant source. (Fryer).\r\n\r\nWildlife value: Pacific willow contributes to wildlife cover for species such as deer, mice, voles, beavers, and birds. Beavers use this willow in the construction of their dams (Fryer)\r\n\r\n\r\nAssociations: \"Despite having preference for damp soils, succeeds in most soils and is often found in riverbanks, floodplains, lakeshores, and wet meadows often standing in quiet river backwaters\" (Pojar). \r\n"
+        "operation": "add_types",
+        "types": [
+          "unknown",
+          "plant",
+          "creek",
+          "kiosk",
+          "birdhouse",
+          "special"
+        ]
       }
     },
-    
-    
     {
-      "command":
-      {
+      "command": {
         "sequence": 2,
-        "operation": "create_image"
-      },
-
-      "image":
-      {
-        "id": 28092,
-        "filename": "cecc9ccdea496978e3f7694aacebd355.png",
-        "type": "default; primary",	
-        "orientation": "landscape",
-        "resolution": "medium",
-        "heading": "Young Douglas Fir cone",
-        "description": "A Douglas Fir cone is beginning to form in Spring",
-        "source": "plantsmap",
-        "license": "unknown"
+        "operation": "create_photopoint",
+        "photopoint": {
+          "point": {
+            "id": 28092,
+            "type": "plant",
+            "location": {
+              "lat": 47.774827,
+              "long": -122.191787,
+              "alt": 0
+            },
+            "label": "Douglas Fir",
+            "qr_code": "XXXXXXXXXX",
+            "enabled": true
+          },
+          "details": {
+            "common_names": "Douglas Fir",
+            "botanical_name": "Pseudotsuga menziesii",
+            "site": 1,
+            "category": "Conifer, Evergreen, Perennial, Tree",
+            "family": "Pinaceae",
+            "description": "\"Douglas-fir wood and bark was thought by most of the coastal groups to be an excellent fuel, but it had the reputation of throwing sparks and giving splinters to those handling it. The wood was also used to make items such as spear handles, harpoon shafts, spoons, dip-net poles, harpoon barbs, fire tongs, salmon weirs, caskets and halibut and cod hooks. Its pitch was used for sealing joints of implements such as harpoon heads, gaffs and fishhooks, and for caulking canoes and water vessels. The pitch, like that of many coniferous trees, was used to make a medicinal salve for wounds and skin irritations. The Nuxalk, Quinault and others made torches from the pitchy heartwood.\r\n\r\nThe Comox prepared dogfish by stuffing it with rotten, powdered Douglas-fir and burying the fish in a pit lined with the same material\" (Pojar and MacKinnon 2004).\r\n\r\nFrom USDA:\r\n\r\nDouglas-fir needles were made into tea and drank by Isleta Puebloans in New Mexico to cure rheumatism.The Sinkyone of California made Douglas-fir bark tea which eased colds and stomach ailments. Douglas-fir roots were used in California Indian basketry.(USDA)\r\n\r\n\r\nWildlife Value:\r\n\r\nFrom USDA: \r\n\r\nSmall mammals: Western squirrels, red tree mouse, dusky-foot woodrat eat winged seeds\r\n\r\nBig mammals: Antelope, mule, and white-tailed deer, elk, and mountain sheep eat foliage and twigs. \r\n\r\nThe staminate cones and needles of Douglas-fir provide a significant winter food of the blue grouse. \r\n\r\n\r\nRestoration application\r\n\r\n“Birds that eat the seeds include grouse, crossbills, siskins, and many others. Chickadees,nuthatches, brown creepers, and woodpeckers find insects in the trunk,branches, and twigs. Foliage is eaten by pine white butterfly larvae,silver-spotted tiger moth larvae, and numerous other moths. Squirrels and chipmunks eat the seeds.” (WNPS)\r\n\r\n\r\nAssociations\r\n\r\nThese are usually found in rocky slopes and gullies, forests and woods, open forests, coniferous forests, old growth forests, mixed forests and burned areas. (WNPS)\r\n\"Douglas-fir wood and bark was thought by most of the coastal groups to be an excellent fuel, but it had the reputation of throwing sparks and giving splinters to those handling it. The wood was also used to make items such as spear handles, harpoon shafts, spoons, dip-net poles, harpoon barbs, fire tongs, salmon weirs, caskets and halibut and cod hooks. Its pitch was used for sealing joints of implements such as harpoon heads, gaffs and fishhooks, and for caulking canoes and water vessels. The pitch, like that of many coniferous trees, was used to make a medicinal salve for wounds and skin irritations. The Nuxalk, Quinault and others made torches from the pitchy heartwood.\r\n\r\nThe Comox prepared dogfish by stuffing it with rotten, powdered Douglas-fir and burying the fish in a pit lined with the same material\" (Pojar and MacKinnon 2004).\r\n\r\nFrom USDA:\r\n\r\nDouglas-fir needles were made into tea and drank by Isleta Puebloans in New Mexico to cure rheumatism.The Sinkyone of California made Douglas-fir bark tea which eased colds and stomach ailments. Douglas-fir roots were used in California Indian basketry.(USDA)\r\n\r\n\r\nWildlife Value:\r\n\r\nFrom USDA: \r\n\r\nSmall mammals: Western squirrels, red tree mouse, dusky-foot woodrat eat winged seeds\r\n\r\nBig mammals: Antelope, mule, and white-tailed deer, elk, and mountain sheep eat foliage and twigs. \r\n\r\nThe staminate cones and needles of Douglas-fir provide a significant winter food of the blue grouse. \r\n\r\n\r\nRestoration application\r\n\r\n“Birds that eat the seeds include grouse, crossbills, siskins, and many others. Chickadees,nuthatches, brown creepers, and woodpeckers find insects in the trunk,branches, and twigs. Foliage is eaten by pine white butterfly larvae,silver-spotted tiger moth larvae, and numerous other moths. Squirrels and chipmunks eat the seeds.” (WNPS)\r\n\r\n\r\nAssociations\r\n\r\nThese are usually found in rocky slopes and gullies, forests and woods, open forests, coniferous forests, old growth forests, mixed forests and burned areas. (WNPS)\r\n\r\n\r\n“Inner bark was dried, ground into a powder, and then added to flour for making bread. The stems and bark were used in basket making (Moerman 1998). The native Americans used the stems for bow making and the bark for fabric making and tea.” (USDA Plant guide).\r\n\r\nMedicinal: Willows produce salicin, which is closely related to acetylsalicyclic acid, commonly known as aspirin. Various preparations from willows are used to treat stomachache, sore throats, colds, diarrhea, and dandruff. The inner bark is haemostatic and has been applied externally to bleeding cuts (Moerman 1998)\r\n\r\n\r\nRestoration application: Willows grow rapidly and quickly provide part-shade. This creates poorer conditions for weeds by over-shading, and better conditions for fish by cooling streams. Willow's roots also grow swiftly which controls soil erosion. This tree is easily grown from cuttings, making a cost effective plant source. (Fryer).\r\n\r\nWildlife value: Pacific willow contributes to wildlife cover for species such as deer, mice, voles, beavers, and birds. Beavers use this willow in the construction of their dams (Fryer)\r\n\r\n\r\nAssociations: \"Despite having preference for damp soils, succeeds in most soils and is often found in riverbanks, floodplains, lakeshores, and wet meadows often standing in quiet river backwaters\" (Pojar). \r\n"
+          },
+          "images": [
+            {
+              "id": 28092,
+              "filename": "cecc9ccdea496978e3f7694aacebd355",
+              "type": "default; primary",
+              "orientation": "landscape",
+              "resolution": "medium",
+              "heading": "Young Douglas Fir cone",
+              "description": "A Douglas Fir cone is beginning to form in Spring",
+              "source": "plantsmap",
+              "license": "unknown"
+            }
+          ]
+        }
       }
     },
-    
-    
     {
-      "command":
-      {
+      "command": {
         "sequence": 3,
-        "operation": "create_point"
-      },
-      "point":
-      {
-        "id": 28097,
-        "type": "plant",
-        "location":
-        {
-          "lat": 47.775036,
-          "long": -122.191449,
-          "alt": 0
-        },
-        "enabled": true
-      },
-      "plant_details":
-      {
-        "common_name": "Pacific Willow",
-        "botanical_name": "Salix Lasiandra",
-        "site": 2,
-        "category": "Deciduous, Tree",
-        "family": "???",
-        "description": "\"The Straits Salish and the Halq'emeylem peeled the bark of [native willow species] in May or June, removed the outer part, split the inner tissue into thin strands, and twisted these into long ropes. This rope was used to make fishing lines and various types of nets, including gill-nets, reef-nets, purse-nets, bag-nets, and duck-nets.\r\n\r\n(Pojar and MacKinnon 2004; reproduced with permission).\r\n\r\n\u201CInner bark was dried, ground into a powder, and then added to flour for making bread. The stems and bark were used in basket making (Moerman 1998). The native Americans used the stems for bow making and the bark for fabric making and tea.\u201D (USDA Plant guide).\r\n\r\nMedicinal: Willows produce salicin, which is closely related to acetylsalicyclic acid, commonly known as aspirin. Various preparations from willows are used to treat stomachache, sore throats, colds, diarrhea, and dandruff. The inner bark is haemostatic and has been applied externally to bleeding cuts (Moerman 1998)\r\n\r\n\r\nRestoration application: Willows grow rapidly and quickly provide part-shade. This creates poorer conditions for weeds by over-shading, and better conditions for fish by cooling streams. Willow's roots also grow swiftly which controls soil erosion. This tree is easily grown from cuttings, making a cost effective plant source. (Fryer).\r\n\r\nWildlife value: Pacific willow contributes to wildlife cover for species such as deer, mice, voles, beavers, and birds. Beavers use this willow in the construction of their dams (Fryer)\r\n\r\n\r\nAssociations: \"Despite having preference for damp soils, succeeds in most soils and is often found in riverbanks, floodplains, lakeshores, and wet meadows often standing in quiet river backwaters\" (Pojar). \r\n"
+        "operation": "create_photopoint",
+        "photopoint": {
+          "point": {
+            "id": 28097,
+            "type": "plant",
+            "location": {
+              "lat": 47.775036,
+              "long": -122.191449,
+              "alt": 0
+            },
+            "label": "Pacific Willow",
+            "qr_code": "YYYYYYYY",
+            "enabled": true
+          },
+          "details": {
+            "common_name": "Pacific Willow",
+            "botanical_name": "Salix Lasiandra",
+            "site": 2,
+            "category": "Deciduous, Tree",
+            "family": "???",
+            "description": "\"The Straits Salish and the Halq'emeylem peeled the bark of [native willow species] in May or June, removed the outer part, split the inner tissue into thin strands, and twisted these into long ropes. This rope was used to make fishing lines and various types of nets, including gill-nets, reef-nets, purse-nets, bag-nets, and duck-nets.\r\n\r\n(Pojar and MacKinnon 2004; reproduced with permission).\r\n\r\n“Inner bark was dried, ground into a powder, and then added to flour for making bread. The stems and bark were used in basket making (Moerman 1998). The native Americans used the stems for bow making and the bark for fabric making and tea.” (USDA Plant guide).\r\n\r\nMedicinal: Willows produce salicin, which is closely related to acetylsalicyclic acid, commonly known as aspirin. Various preparations from willows are used to treat stomachache, sore throats, colds, diarrhea, and dandruff. The inner bark is haemostatic and has been applied externally to bleeding cuts (Moerman 1998)\r\n\r\n\r\nRestoration application: Willows grow rapidly and quickly provide part-shade. This creates poorer conditions for weeds by over-shading, and better conditions for fish by cooling streams. Willow's roots also grow swiftly which controls soil erosion. This tree is easily grown from cuttings, making a cost effective plant source. (Fryer).\r\n\r\nWildlife value: Pacific willow contributes to wildlife cover for species such as deer, mice, voles, beavers, and birds. Beavers use this willow in the construction of their dams (Fryer)\r\n\r\n\r\nAssociations: \"Despite having preference for damp soils, succeeds in most soils and is often found in riverbanks, floodplains, lakeshores, and wet meadows often standing in quiet river backwaters\" (Pojar). \r\n"
+          }
+        }
       }
     },
-
     {
-      "command":
-      {
+      "command": {
         "sequence": 4,
-        "operation": "create_image"
-      },
-
-      "image":
-      {
-        "id": 28097,
-        "filename": "0de693ef54a38b1224975fad7cac4e39.png",
-        "type": "default; primary",
-        "orientation": "landscape",
-        "resolution": "medium",
-        "heading": "Pacific Willow",
-        "description": "Early leaf nodes of a Pacific Willow branch"
-        "source": "plantsmap",
-        "license": "unknown"
+        "operation": "add_images",
+        "images": [
+          {
+            "id": 28097,
+            "filename": "0de693ef54a38b1224975fad7cac4e39",
+            "type": "default; primary",
+            "orientation": "landscape",
+            "resolution": "medium",
+            "heading": "Pacific Willow",
+            "description": "Early leaf nodes of a Pacific Willow branch",
+            "source": "plantsmap",
+            "license": "unknown"
+          }
+        ]
       }
     }
   ]
