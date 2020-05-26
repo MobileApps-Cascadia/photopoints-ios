@@ -7,17 +7,27 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
-class Item {
-    let id: Int
-    let point: Point
-    let detail: [String: String]
-    let images: [PointImage]
-    
-    init(id: Int, point: Point, detail: [String: String], images: [PointImage]) {
+class Item: Object {
+    @objc dynamic var id = -1
+    @objc dynamic var point: Point? = nil
+    let details = List<Detail>()
+    let images = List<Image>()
+
+    required init() {}
+    required init(id: Int, point: Point, detail: [String: String], images: [Image]) {
         self.id = id
         self.point = point
-        self.detail = detail
-        self.images = images
+        for (k, v) in detail {
+            let detail = Detail(id: self.id, property: k, value: v)
+            if detail.id >= 0 {
+                details.append(detail)
+            }
+        }
+        for image in images {
+            self.images.append(image)
+        }
     }
 }
