@@ -14,16 +14,18 @@ import RealmSwift
 
 class Coordinate: Object {
     
-    @objc dynamic var latitude: CLLocationDegrees = 0.0
-    @objc dynamic var longitude: CLLocationDegrees = 0.0
-    @objc dynamic var altitude: CLLocationDistance = 0.0
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude: Double = 0.0
+    @objc dynamic var altitude: Double = 0.0
     
-    convenience init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance) {
+    convenience init(latitude: Double, longitude: Double, altitude: Double) {
         self.init()
         self.latitude = latitude
         self.longitude = longitude
         self.altitude = altitude
     }
+    
+    let parent = LinkingObjects(fromType: Point.self, property: "location")
 }
 
 extension Coordinate {
