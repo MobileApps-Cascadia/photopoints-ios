@@ -24,9 +24,10 @@ class Coordinate: Object {
         self.longitude = longitude
         self.altitude = altitude
     }
-    
+}
+
+extension Coordinate {
     func twoDimensional() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
-    
 }
