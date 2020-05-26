@@ -16,9 +16,10 @@ class Point: Object {
     @objc dynamic var location: Coordinate? = nil
     @objc dynamic var enabled: Bool = false
     
-    convenience init(id: Int, location: Coordinate, enabled: Bool) {
+    convenience init(id: Int, location: Coordinate, label:String, enabled: Bool) {
         self.init()
         self.id = id
+        //self.label = label      TODO:  CLEAR REALM ON RUN TO ALLOW MODEL CHANGE
         self.location = location
         self.enabled = enabled
     }
