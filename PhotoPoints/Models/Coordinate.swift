@@ -9,11 +9,11 @@
 import Foundation
 import CoreLocation
 
-class Coordinate {
+@objcMembers class Coordinate {
     
-    let latitude: CLLocationDegrees
-    let longitude: CLLocationDegrees
-    let altitude: CLLocationDistance
+    dynamic var latitude: CLLocationDegrees
+    dynamic var longitude: CLLocationDegrees
+    dynamic var altitude: CLLocationDistance
     
     init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance) {
         // in na all long neg, all lat pos
