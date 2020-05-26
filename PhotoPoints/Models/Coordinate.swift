@@ -8,23 +8,20 @@
 
 import Foundation
 import CoreLocation
+import Realm
+import RealmSwift
 
-@objcMembers class Coordinate {
+
+class Coordinate: Object {
     
-    dynamic var latitude: CLLocationDegrees
-    dynamic var longitude: CLLocationDegrees
-    dynamic var altitude: CLLocationDistance
+    @objc dynamic var latitude: CLLocationDegrees = 0.0
+    @objc dynamic var longitude: CLLocationDegrees = 0.0
+    @objc dynamic var altitude: CLLocationDistance = 0.0
     
-    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance) {
-        // in na all long neg, all lat pos
-        if latitude < 0 || longitude > 0 {
-            self.latitude = longitude
-            self.longitude = latitude
-        } else {
-            self.latitude = latitude
-            self.longitude = longitude
-        }
-        
+    convenience init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance) {
+        self.init()
+        self.latitude = latitude
+        self.longitude = longitude
         self.altitude = altitude
     }
     
