@@ -7,19 +7,30 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
-class Point {
+class Point: Object {
+
+    @objc dynamic var id = -1
+    @objc dynamic var location: Coordinate? = nil
+    @objc dynamic var enabled: Bool = false
     
-    let id: Int
-    let location: Coordinate
-    var enabled: Bool
-    
-    init(id: Int, location: Coordinate, enabled: Bool) {
+    convenience init(id: Int, location: Coordinate, enabled: Bool) {
+        self.init()
         self.id = id
         self.location = location
         self.enabled = enabled
     }
     
+    let parent = LinkingObjects(fromType: Item.self, property: "point")
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+extension Point {
     func enable() {
         enabled = true
     }
@@ -27,5 +38,4 @@ class Point {
     func disable() {
         enabled = false
     }
-
 }
