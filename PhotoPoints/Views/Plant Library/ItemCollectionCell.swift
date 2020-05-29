@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class PlantsCollectionCell: UICollectionViewCell {
+class ItemCollectionCell: UICollectionViewCell {
+    
+    let repository = Repository.instance
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -67,10 +69,10 @@ class PlantsCollectionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 20
     }
     
-    func configureFor(plantItem: PlantItem) {
-        imageView.image = plantItem.image
-        titleLabel.text = plantItem.commonName
-        subTitleLabel.text = plantItem.botanicalName
+    func configureFor(item: Item) {
+        imageView.image = repository.getImage(item: item)
+        titleLabel.text = repository.getDetailValue(item: item, property: "common_name")
+        subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
     }
     
 }

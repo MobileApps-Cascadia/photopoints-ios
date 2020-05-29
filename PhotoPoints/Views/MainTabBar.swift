@@ -20,10 +20,10 @@ class MainTabBar: UITabBarController {
         
         // set up repo
         
-        let repo = Repository.instance
-        repo.test()
-        repo.testSync()
-        repo.testDB()
+//        let repo = Repository.instance
+//        repo.test()
+//        repo.testSync()
+//        repo.testDB()
         
         
         // set up scanner
@@ -31,7 +31,7 @@ class MainTabBar: UITabBarController {
         scannerView.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
         
         // set up plant library
-        let plantsCollectionView = PlantsCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+        let plantsCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let plantsNavigation = UINavigationController(rootViewController: plantsCollectionView)
         plantsNavigation.navigationBar.topItem?.title = "Plant Library"
         plantsNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf.arrow.circlepath"), tag: 1)

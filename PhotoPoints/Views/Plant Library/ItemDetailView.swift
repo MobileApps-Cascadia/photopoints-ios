@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-class PlantDetailView: UIViewController {
+class ItemDetailView: UIViewController {
     
     // MARK: - Properties
     
-    var thisPlant: PlantItem
+    let repository = Repository.instance
+    var thisItem: Item
     
     lazy var imageView: UIImageView = {
-        let imageView = UIImageView(image: thisPlant.image)
+        let imageView = UIImageView(image: repository.getImage(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -31,22 +32,25 @@ class PlantDetailView: UIViewController {
         infoStack.spacing = 25
         
         // my plant's story label
-        let mps = PlantDetailLabel(string: "My Plant's Story")
+        let mps = ItemDetailLabel(string: "My Plant's Story")
         mps.font = UIFont.preferredFont(forTextStyle: .title1)
         infoStack.addArrangedSubview(mps)
         
         // site and enthnobotanic info label
-        let siteLabel = PlantDetailLabel(string: "Site \(thisPlant.site)\nEthnobotanic Information")
-        siteLabel.font = UIFont.preferredFont(forTextStyle: .title2)
-        infoStack.addArrangedSubview(siteLabel)
+        if let site = repository.getDetailValue(item: thisItem, property: "site") {
+            let siteLabel = ItemDetailLabel(string: "Site \(site)\nEthnobotanic Information")
+            siteLabel.font = UIFont.preferredFont(forTextStyle: .title2)
+            infoStack.addArrangedSubview(siteLabel)
+        }
+        
         
         // PNW label
-        let pnwLabel = PlantDetailLabel(string: "From Plants of the Pacific Northwest Coast:")
+        let pnwLabel = ItemDetailLabel(string: "From Plants of the Pacific Northwest Coast:")
         pnwLabel.font = UIFont.italicSystemFont(ofSize: 20)
         infoStack.addArrangedSubview(pnwLabel)
         
         // story
-        let path = Bundle.main.path(forResource: "\(thisPlant.id)_story", ofType: "txt")
+        let path = Bundle.main.path(forResource: "\(thisItem.id)_story", ofType: "txt")
         
         do {
             let story = try String(contentsOfFile: path!, encoding: .utf8)
@@ -60,40 +64,37 @@ class PlantDetailView: UIViewController {
         } catch { print("file not found") }
         
         // botanical name
-        let categoryBotanical = PlantDetailLabel(string: "Botanical Name")
-        let dataBotanical = PlantDetailLabel(string: thisPlant.botanicalName)
-        let botanicalStack = PlantDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
-        infoStack.addArrangedSubview(botanicalStack)
+        if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
+            let categoryBotanical = ItemDetailLabel(string: "Botanical Name")
+            let dataBotanical = ItemDetailLabel(string: botanicalName)
+            let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
+            infoStack.addArrangedSubview(botanicalStack)
+        }
+        
         
         // category (optional)
-        if let category = thisPlant.category {
-            let categoryCategory = PlantDetailLabel(string: "Category")
-            let dataCategory = PlantDetailLabel(string: category)
-            let categoryStack = PlantDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
+        if let category = repository.getDetailValue(item: thisItem, property: "category") {
+            let categoryCategory = ItemDetailLabel(string: "Category")
+            let dataCategory = ItemDetailLabel(string: category)
+            let categoryStack = ItemDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
             infoStack.addArrangedSubview(categoryStack)
         }
         
         // family (optional)
-        if let family = thisPlant.family {
-            let categoryFamily = PlantDetailLabel(string: "Family")
-            let dataFamily = PlantDetailLabel(string: family)
-            let familyStack = PlantDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
+        if let family = repository.getDetailValue(item: thisItem, property: "family") {
+            let categoryFamily = ItemDetailLabel(string: "Family")
+            let dataFamily = ItemDetailLabel(string: family)
+            let familyStack = ItemDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
             infoStack.addArrangedSubview(familyStack)
         }
-        
-        // status
-        let categoryStatus = PlantDetailLabel(string: "Status")
-        let dataStatus = PlantDetailLabel(string: thisPlant.status)
-        let statusStack = PlantDetailStack(arrangedSubviews: [categoryStatus, dataStatus])
-        infoStack.addArrangedSubview(statusStack)
         
         return infoStack
     }()
     
     // MARK: - Init
     
-    init(plantItem: PlantItem) {
-        self.thisPlant = plantItem
+    init(item: Item) {
+        self.thisItem = item
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -106,7 +107,7 @@ class PlantDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "pp-background")
-        title = thisPlant.commonName
+        title = repository.getDetailValue(item: thisItem, property: "common_name")
         setUpScrollView()
     }
     
@@ -133,7 +134,7 @@ class PlantDetailView: UIViewController {
 
 // saves us some repitition above by allowing us to set the properties
 // seen in our custom init below
-class PlantDetailLabel: UILabel {
+class ItemDetailLabel: UILabel {
     
     init(string: String){
         
@@ -158,7 +159,7 @@ class PlantDetailLabel: UILabel {
 
 // saves us some repitition above by allowing us to set the properties
 // seen in the overriden init below
-class PlantDetailStack: UIStackView {
+class ItemDetailStack: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,8 +8,11 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 class Repository {
+    
+    // MARK: - Definition / Init
     
     // Repository is a singleton, access using Repository.instance
     public static let instance = Repository()
@@ -19,14 +22,39 @@ class Repository {
     private let serialQueue = DispatchQueue(label: "repoQueue")
 
     // instantiate the database. Creates a new one if none exists
-    private let realm:Realm = try! Realm()
+    private let realm: Realm = try! Realm()
+    
+    
 
+    // MARK: - Data Retrieval
+    
+    func getItems() -> Results<Item> {
+        return realm.objects(Item.self)
+    }
+    
+    func getImage(item: Item) -> UIImage? {
+        if let image = realm.objects(Image.self).filter("id == \(item.id)").first {
+            return UIImage(named: image.fileName)
+        }
+        return nil
+    }
+    
+    func getDetailValue(item: Item, property: String) -> String? {
+        let detail = realm.objects(Detail.self).filter("id == \(item.id) AND property == \(property)").first
+        return detail?.value
+    }
+    
+    func getItemFromQrCode(qrCode: String) -> Item? {
+        if let id = realm.objects(QrLookup.self).filter("qrCode == \(qrCode)").first {
+            if let item = realm.objects(Item.self).filter("id == \(id)").first {
+                return item
+            }
+        }
+        return nil
+    }
+    
+    // MARK: - TESTS
 
-    
-    // TESTS
-    
-    
-    
     // TODO:  REMOVE TEST CODE
     // Repository Realm Test - A read/write test of Realm Database
     // returns true of write, read, and delete of a test object succeeds

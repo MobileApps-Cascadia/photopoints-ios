@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-private let cellIdentifier = "PlantsCollectionCell"
+private let cellIdentifier = "ItemCollectionCell"
 
-class PlantsCollectionView: UICollectionViewController {
+class ItemCollectionView: UICollectionViewController {
+    
+    let repository = Repository.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class PlantsCollectionView: UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = UIColor(named: "pp-background")
-        collectionView.register(PlantsCollectionCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(ItemCollectionCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
     
@@ -42,25 +44,25 @@ class PlantsCollectionView: UICollectionViewController {
 // MARK: - UICollectionViewDelegate/DataSource
 
 // our class by default conforms to the UICollectionViewDelegate protocol
-extension PlantsCollectionView {
+extension ItemCollectionView {
     
     // number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return MockDatabase.plants.count
+        return repository.getItems().count
     }
     
     // configure cells
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PlantsCollectionCell
-        let thisPlant = MockDatabase.plants[indexPath.row]
-        cell.configureFor(plantItem: thisPlant)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ItemCollectionCell
+        let thisItem = repository.getItems()[indexPath.row]
+        cell.configureFor(item: thisItem)
         return cell
     }
     
     // navigate to detail view when cell selected
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let thisPlant = MockDatabase.plants[indexPath.row]
-        navigationController?.pushViewController(PlantDetailView(plantItem: thisPlant), animated: true)
+        let thisItem = repository.getItems()[indexPath.row]
+        navigationController?.pushViewController(ItemDetailView(item: thisItem), animated: true)
     }
     
 }
@@ -68,7 +70,7 @@ extension PlantsCollectionView {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 // we need to adopt the flow layout protocol to obtain the classic scrollable grid appearance
-extension PlantsCollectionView: UICollectionViewDelegateFlowLayout {
+extension ItemCollectionView: UICollectionViewDelegateFlowLayout {
     
     // header size (account for nav bar)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

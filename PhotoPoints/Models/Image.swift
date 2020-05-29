@@ -36,8 +36,7 @@ class Image: Object {
         self.imageLicense = imageLicense
     }
     
-    override static func primaryKey() -> String?
-    {
+    override static func primaryKey() -> String? {
         return "fileName"
     }
 }

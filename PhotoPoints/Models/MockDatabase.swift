@@ -12,22 +12,7 @@ import MapKit
 
 class MockDatabase {
     
-//    static let plants: [PlantItem] = [
-//        PlantItem(id: 28097, coords: CLLocationCoordinate2DMake(47.775036, -122.191449), commonName: "Pacific Willow", botanicalName: "Salix Lasiandra", site: 2, category: "Deciduous, Tree"),
-//        PlantItem(id: 28069, coords: CLLocationCoordinate2DMake(47.774845, -122.191508),commonName: "Black Twinberry", botanicalName: "Lonicera Involucrata", site: 2, category: "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", family: "Caprifoliaceae"),
-//        PlantItem(id: 28092, coords: CLLocationCoordinate2DMake(47.774827 , -122.191787),commonName: "Douglas Fir", botanicalName: "Pseudotsuga Menziesii", site: 1, category: "Conifer, Evergreen, Perennial, Tree", family: "Pinaceae"),
-//        PlantItem(id: 28061, coords: CLLocationCoordinate2DMake(47.774964 , -122.191792),commonName: "Mock Orange", botanicalName: "Philadelphus Lewisii", site: 1, category: "Deciduous, Perennial, Shrub, Woody Ornamental"),
-//        PlantItem(id: 28074, coords: CLLocationCoordinate2DMake(47.775134 , -122.191787),commonName: "Western Redcedar", botanicalName: "Thuja Plicata", site: 3, category: "Conifer, Evergreen, Perennial, Tree", family: "Cupressaceae"),
-//        PlantItem(id: 28070, coords: CLLocationCoordinate2DMake(47.774845 , -122.191540),commonName: "Clustered Wild Rose", botanicalName: "Rosa Pisocarpa", site: 2, category: "Deciduous, Fruit, Perennial, Shrub, Woody Ornamental", family: "Rosaceae"),
-//        PlantItem(id: 28068, coords: CLLocationCoordinate2DMake(47.774787 , -122.191583),commonName: "Snowberry", botanicalName: "Symphoricarpos Albus", site: 2, category: "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", family: "Caprifoliaceae"),
-//        PlantItem(id: 28094, coords: CLLocationCoordinate2DMake(47.774797 , -122.191787),commonName: "Low Oregon Grape", botanicalName: "Mahonia Nervosa", site: 1),
-//        PlantItem(id: 28063, coords: CLLocationCoordinate2DMake(47.774865 , -122.191717),commonName: "Pacific Ninebark", botanicalName: "Physocarpus capitatus", site: 1, category: "Deciduous, Perennial, Shrub, Woody Ornamental"),
-//        PlantItem(id: 28075, coords: CLLocationCoordinate2DMake(47.774897 , -122.191910),commonName: "Cascara", botanicalName: "Frangula purshiana", site: 3, category: "Berry, Deciduous, Tree"),
-//        PlantItem(id: 28072, coords: CLLocationCoordinate2DMake(47.775095 , -122.191776),commonName: "Red Alder", botanicalName: "Alnus rubra", site: 3, category: "Deciduous, Perennial, Tree", family: "Betulaceae"),
-//        PlantItem(id: 28066, coords: CLLocationCoordinate2DMake(47.774947 , -122.191508),commonName: "Paper Birch", botanicalName: "Betula papyrifera", site: 2, category: "Deciduous, Tree"),
-//        PlantItem(id: 28098, coords: CLLocationCoordinate2DMake(47.774851 , -122.191779),commonName: "Red Elderberry", botanicalName: "Sambucus pubens", site: 1, category: "Deciduous, Fruit, Shrub, Woody Ornamental"),
-//        PlantItem(id: 28086, coords: CLLocationCoordinate2DMake(47.774872 , -122.191876),commonName: "Black Cottonwood", botanicalName: "Populus trichocarpa", site: 1, category: "Deciduous, Native to North America, Tree", family: "Salicaceae")
-//    ]
+    // MARK: - New Model
     
     let items: [Item] = [
         Item(id: 28097, point: Point(id: 28097, location: Coordinate(latitude: 47.75036, longitude: -122.191449, altitude: 0), label: "Pacific Willow", enabled: true), detail: ["common_names" : "Pacific Willow, Yellow Willow, Waxy Willow", "botanical_name" : "Salix lucida ssp. Lasiandra", "site" : "2", "category" : "Deciduous, Tree", "family" : ""], images: [Image(id: 28097, fileName: "0de693ef54a38b1224975fad7cac4e39", imageType: .full, imageHeading: "", imageLicense: "")]),
@@ -47,22 +32,40 @@ class MockDatabase {
     ]
     
     let qrlookups: [QrLookup] = [
-        QrLookup(28097, "https://www.plantsmap.com/plants/28097"),
-        QrLookup(28069, "https://www.plantsmap.com/plants/28069"),
-        QrLookup(28092, "https://www.plantsmap.com/plants/28092"),
-        QrLookup(28061, "https://www.plantsmap.com/plants/28061"),
-        QrLookup(28074, "https://www.plantsmap.com/plants/28074"),
-        QrLookup(28070, "https://www.plantsmap.com/plants/28070"),
-        QrLookup(28068, "https://www.plantsmap.com/plants/28068"),
-        QrLookup(28094, "https://www.plantsmap.com/plants/28094"),
-        QrLookup(28063, "https://www.plantsmap.com/plants/28063"),
-        QrLookup(28075, "https://www.plantsmap.com/plants/28075"),
-        QrLookup(28066, "https://www.plantsmap.com/plants/28066"),
-        QrLookup(28072, "https://www.plantsmap.com/plants/28072"),
-        QrLookup(28098, "https://www.plantsmap.com/plants/28098"),
-        QrLookup(28086, "https://www.plantsmap.com/plants/28086")
+        QrLookup(id: 28097, qrCode: "https://www.plantsmap.com/plants/28097"),
+        QrLookup(id: 28069, qrCode: "https://www.plantsmap.com/plants/28069"),
+        QrLookup(id: 28092, qrCode: "https://www.plantsmap.com/plants/28092"),
+        QrLookup(id: 28061, qrCode: "https://www.plantsmap.com/plants/28061"),
+        QrLookup(id: 28074, qrCode: "https://www.plantsmap.com/plants/28074"),
+        QrLookup(id: 28070, qrCode: "https://www.plantsmap.com/plants/28070"),
+        QrLookup(id: 28068, qrCode: "https://www.plantsmap.com/plants/28068"),
+        QrLookup(id: 28094, qrCode: "https://www.plantsmap.com/plants/28094"),
+        QrLookup(id: 28063, qrCode: "https://www.plantsmap.com/plants/28063"),
+        QrLookup(id: 28075, qrCode: "https://www.plantsmap.com/plants/28075"),
+        QrLookup(id: 28066, qrCode: "https://www.plantsmap.com/plants/28066"),
+        QrLookup(id: 28072, qrCode: "https://www.plantsmap.com/plants/28072"),
+        QrLookup(id: 28098, qrCode: "https://www.plantsmap.com/plants/28098"),
+        QrLookup(id: 28086, qrCode: "https://www.plantsmap.com/plants/28086")
     ]
     
+    // MARK: - Old Model
+    
+    static let plants: [PlantItem] = [
+        PlantItem(id: 28097, coords: CLLocationCoordinate2DMake(47.775036, -122.191449), commonName: "Pacific Willow", botanicalName: "Salix Lasiandra", site: 2, category: "Deciduous, Tree"),
+        PlantItem(id: 28069, coords: CLLocationCoordinate2DMake(47.774845, -122.191508),commonName: "Black Twinberry", botanicalName: "Lonicera Involucrata", site: 2, category: "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", family: "Caprifoliaceae"),
+        PlantItem(id: 28092, coords: CLLocationCoordinate2DMake(47.774827 , -122.191787),commonName: "Douglas Fir", botanicalName: "Pseudotsuga Menziesii", site: 1, category: "Conifer, Evergreen, Perennial, Tree", family: "Pinaceae"),
+        PlantItem(id: 28061, coords: CLLocationCoordinate2DMake(47.774964 , -122.191792),commonName: "Mock Orange", botanicalName: "Philadelphus Lewisii", site: 1, category: "Deciduous, Perennial, Shrub, Woody Ornamental"),
+        PlantItem(id: 28074, coords: CLLocationCoordinate2DMake(47.775134 , -122.191787),commonName: "Western Redcedar", botanicalName: "Thuja Plicata", site: 3, category: "Conifer, Evergreen, Perennial, Tree", family: "Cupressaceae"),
+        PlantItem(id: 28070, coords: CLLocationCoordinate2DMake(47.774845 , -122.191540),commonName: "Clustered Wild Rose", botanicalName: "Rosa Pisocarpa", site: 2, category: "Deciduous, Fruit, Perennial, Shrub, Woody Ornamental", family: "Rosaceae"),
+        PlantItem(id: 28068, coords: CLLocationCoordinate2DMake(47.774787 , -122.191583),commonName: "Snowberry", botanicalName: "Symphoricarpos Albus", site: 2, category: "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", family: "Caprifoliaceae"),
+        PlantItem(id: 28094, coords: CLLocationCoordinate2DMake(47.774797 , -122.191787),commonName: "Low Oregon Grape", botanicalName: "Mahonia Nervosa", site: 1),
+        PlantItem(id: 28063, coords: CLLocationCoordinate2DMake(47.774865 , -122.191717),commonName: "Pacific Ninebark", botanicalName: "Physocarpus capitatus", site: 1, category: "Deciduous, Perennial, Shrub, Woody Ornamental"),
+        PlantItem(id: 28075, coords: CLLocationCoordinate2DMake(47.774897 , -122.191910),commonName: "Cascara", botanicalName: "Frangula purshiana", site: 3, category: "Berry, Deciduous, Tree"),
+        PlantItem(id: 28072, coords: CLLocationCoordinate2DMake(47.775095 , -122.191776),commonName: "Red Alder", botanicalName: "Alnus rubra", site: 3, category: "Deciduous, Perennial, Tree", family: "Betulaceae"),
+        PlantItem(id: 28066, coords: CLLocationCoordinate2DMake(47.774947 , -122.191508),commonName: "Paper Birch", botanicalName: "Betula papyrifera", site: 2, category: "Deciduous, Tree"),
+        PlantItem(id: 28098, coords: CLLocationCoordinate2DMake(47.774851 , -122.191779),commonName: "Red Elderberry", botanicalName: "Sambucus pubens", site: 1, category: "Deciduous, Fruit, Shrub, Woody Ornamental"),
+        PlantItem(id: 28086, coords: CLLocationCoordinate2DMake(47.774872 , -122.191876),commonName: "Black Cottonwood", botanicalName: "Populus trichocarpa", site: 1, category: "Deciduous, Native to North America, Tree", family: "Salicaceae")
+    ]
     
     static func getImages() -> [UIImage] {
         var images: [UIImage] = []
