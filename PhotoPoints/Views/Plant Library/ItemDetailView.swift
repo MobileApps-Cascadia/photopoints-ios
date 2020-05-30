@@ -12,7 +12,6 @@ import UIKit
 class ItemDetailView: UIViewController {
     
     // MARK: - Properties
-    
     let repository = Repository.instance
     var thisItem: Item
     

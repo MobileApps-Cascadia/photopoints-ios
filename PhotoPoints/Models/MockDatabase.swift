@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 import MapKit
+import Realm
 
 class MockDatabase {
     
     // MARK: - New Model
     
-    let items: [Item] = [
+    static let items: [Item] = [
         Item(id: 28097, point: Point(id: 28097, location: Coordinate(latitude: 47.75036, longitude: -122.191449, altitude: 0), label: "Pacific Willow", enabled: true), detail: ["common_names" : "Pacific Willow, Yellow Willow, Waxy Willow", "botanical_name" : "Salix lucida ssp. Lasiandra", "site" : "2", "category" : "Deciduous, Tree", "family" : ""], images: [Image(id: 28097, fileName: "0de693ef54a38b1224975fad7cac4e39", imageType: .full, imageHeading: "", imageLicense: "")]),
         Item(id: 28069, point: Point(id: 28069, location: Coordinate(latitude: 47.774845, longitude: -122.191508, altitude: 0), label: "Black Twinberry", enabled: true), detail: ["common_names" : "Black Twinberry, Bearberry Honeysuckle, Twinberry, Bush Honeysuckle", "botanical_name" : "Lonicera Involucrata", "site" : "2", "category" : "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", "family" : "Caprifoliaceae"], images: [Image(id: 28069, fileName: "2d68e05603faeb2f249b62358f9c9495", imageType: .full, imageHeading: "", imageLicense: "")]),
         Item(id: 28092, point: Point(id: 28092, location: Coordinate(latitude: 47.774827, longitude: -122.191787, altitude: 0), label: "Douglas-Fir", enabled: true), detail: ["common_names" : "Douglas-Fir", "botanical_name" : "Pseudotsuga Menziesii", "site" : "1", "category" : "Conifer, Evergreen, Perennial, Tree", "family" : "Pinaceae"], images: [Image(id: 28092, fileName: "cecc9ccdea496978e3f7694aacebd355", imageType: .full, imageHeading: "", imageLicense: "")]),
@@ -31,7 +32,7 @@ class MockDatabase {
         Item(id: 28086, point: Point(id: 28086, location: Coordinate(latitude: 47.774872, longitude: -122.191876, altitude: 0), label: "Black Cottonwood", enabled: true), detail: ["common_names" : "Black Cottonwood", "botanical_name" : "Populus trichocarpa", "site" : "1", "category" : "Deciduous, Native to North America, Tree", "family" : "Salicaceae"], images: [Image(id: 28086, fileName: "2ea9fcb1daf6f46b1357875c986ce4d4", imageType: .full, imageHeading: "", imageLicense: "")])
     ]
     
-    let qrlookups: [QrLookup] = [
+    static let qrlookups: [QrLookup] = [
         QrLookup(id: 28097, qrCode: "https://www.plantsmap.com/plants/28097"),
         QrLookup(id: 28069, qrCode: "https://www.plantsmap.com/plants/28069"),
         QrLookup(id: 28092, qrCode: "https://www.plantsmap.com/plants/28092"),

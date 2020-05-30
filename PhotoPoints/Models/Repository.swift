@@ -24,7 +24,13 @@ class Repository {
     // instantiate the database. Creates a new one if none exists
     private let realm: Realm = try! Realm()
     
-    
+    func loadInitData() {
+        try! realm.write {
+            realm.deleteAll()
+            realm.add(MockDatabase.items)
+            realm.add(MockDatabase.qrlookups)
+        }
+    }
 
     // MARK: - Data Retrieval
     
@@ -34,23 +40,27 @@ class Repository {
     
     func getImage(item: Item) -> UIImage? {
         if let image = realm.objects(Image.self).filter("id == \(item.id)").first {
-            return UIImage(named: image.fileName)
+            return UIImage(named: "\(image.fileName).png")
         }
         return nil
     }
     
     func getDetailValue(item: Item, property: String) -> String? {
-        let detail = realm.objects(Detail.self).filter("id == \(item.id) AND property == \(property)").first
+        let detail = realm.objects(Detail.self).filter("id == \(item.id) AND property == '\(property)'").first
         return detail?.value
     }
     
     func getItemFromQrCode(qrCode: String) -> Item? {
-        if let id = realm.objects(QrLookup.self).filter("qrCode == \(qrCode)").first {
+        if let id = realm.objects(QrLookup.self).filter("qrCode == '\(qrCode)'").first {
             if let item = realm.objects(Item.self).filter("id == \(id)").first {
                 return item
             }
         }
         return nil
+    }
+    
+    func printContents() {
+        
     }
     
     // MARK: - TESTS
