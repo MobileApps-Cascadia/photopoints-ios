@@ -8,12 +8,17 @@
 
 import UIKit
 import MapKit
+import Realm
+import RealmSwift
 
 // fake singleton
 let mapVC = MapView()
 
 class MapView: UIViewController, MKMapViewDelegate {
 
+    let realm = try! Realm()
+    let repository = Repository.instance
+    
     // empty annotations array
     // instance variable so it can be referenced in didUpdateSurveyStatus()
     var annotations = [MKPointAnnotation]()
@@ -40,29 +45,33 @@ class MapView: UIViewController, MKMapViewDelegate {
 
     func fillAnnotations() {
         
-        let plants = MockDatabase.plants
-
-        for plant in plants {
-            let annotation = MKPointAnnotation()
-            annotation.title = plant.commonName
-            annotation.subtitle = plant.surveyStatus.rawValue
-            annotation.coordinate = plant.coords
-            annotations.append(annotation)
+        let items = realm.objects(Item.self)
+        
+        for item in items {
+            if let location = item.point?.location {
+                let annotation = MKPointAnnotation()
+                annotation.title = repository.getDetailValue(item: item, property: "common_names")
+                annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                annotations.append(annotation)
+            }
         }
 
     }
     
     // called in scannerView when we "survey" a plant
     // surveyStatus has already been updated, but we want to reflect this on the map
-    func didUpdateSurveyStatus(commonName: String) {
-        
-        // find the first annotation matching the commonName string passed in
-        let thisAnnotation = annotations.first(where: { (annotation) -> Bool in
-            return annotation.title == commonName
-        })
-        
-        thisAnnotation?.subtitle = SurveyStatus.surveyed.rawValue
-    }
+    
+    // TODO: figure out how to update survey status in map with new model
+    
+//    func didUpdateSurveyStatus(commonName: String) {
+//
+//        // find the first annotation matching the commonName string passed in
+//        let thisAnnotation = annotations.first(where: { (annotation) -> Bool in
+//            return annotation.title == commonName
+//        })
+//
+//        thisAnnotation?.subtitle = SurveyStatus.surveyed.rawValue
+//    }
     
 }
 
