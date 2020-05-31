@@ -14,6 +14,8 @@ class ScannerView: UIViewController {
     
     // MARK: - Properties
     
+    let repository = Repository.instance
+    
     // video session: optional because we won't have it in our emulator
     var session: AVCaptureSession! = nil
     
@@ -98,29 +100,34 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         if  metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 
-                let plantURLs = MockDatabase.getURlStrings()
+                let qrCodes = repository.getQrCodes()
+                print(qrCodes)
+                
                 let objectString = object.stringValue ?? ""
                 
-                if plantURLs.contains(objectString) {
-                    let thisPlant = MockDatabase.getPlantFromURLString(urlString: objectString)
-                    setUpAlerts(for: thisPlant)
+                if qrCodes.contains(objectString) {
+                    if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
+                        setUpAlerts(for: thisItem)
+                    }
                 }
             }
         }
     }
     
-    func setUpAlerts(for plantItem: PlantItem) {
+    func setUpAlerts(for item: Item) {
         let surveyedAlert = UIAlertController(title: "Thank you!", message: "survey complete", preferredStyle: .alert)
         surveyedAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         
-        let scannedAlert = UIAlertController(title: plantItem.commonName, message: plantItem.botanicalName, preferredStyle: .alert)
+        let commonName = repository.getDetailValue(item: item, property: "common_name")
+        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
+        
+        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            plantItem.surveyStatus = .surveyed
-            mapVC.didUpdateSurveyStatus(commonName: plantItem.commonName)
+            // TODO: update survey status
             self.present(surveyedAlert, animated: true, completion: nil)
         }))
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
-            self.present(PlantDetailView(plantItem: plantItem), animated: true, completion: nil)
+            self.present(ItemDetailView(item: item), animated: true, completion: nil)
         }))
         present(scannedAlert, animated: true, completion: nil)
     }

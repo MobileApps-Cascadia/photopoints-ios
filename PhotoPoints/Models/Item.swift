@@ -17,6 +17,7 @@ class Item: Object {
     let images = List<Image>()
 
     required init() {}
+    
     required init(id: Int, point: Point, detail: [String: String], images: [Image]) {
         self.id = id
         self.point = point

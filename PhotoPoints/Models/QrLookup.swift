@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
-class QrLookup {
-    let id: Int
-    let qrCode: String
+class QrLookup: Object {
+    @objc dynamic var id: Int = -1
+    @objc dynamic var qrCode: String = ""
     
-    init(id: Int, qrCode: String) {
+    required init() {}
+    
+    required init(id: Int, qrCode: String) {
         self.id = id
         self.qrCode = qrCode
     }

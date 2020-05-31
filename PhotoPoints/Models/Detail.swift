@@ -16,6 +16,7 @@ class Detail: Object {
     @objc dynamic var value: String = ""
     
     required init() {}
+    
     required init(id: Int, property: String, value: String?) {
         if property.count > 0 {
             self.id = id
