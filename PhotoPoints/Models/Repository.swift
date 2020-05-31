@@ -50,8 +50,17 @@ class Repository {
         return detail?.value
     }
     
+    func getQrCodes() -> [String] {
+        let qrLookups = realm.objects(QrLookup.self)
+        var qrCodes = [String]()
+        for qrLookup in qrLookups {
+            qrCodes.append(qrLookup.qrCode)
+        }
+        return qrCodes
+    }
+    
     func getItemFromQrCode(qrCode: String) -> Item? {
-        if let id = realm.objects(QrLookup.self).filter("qrCode == '\(qrCode)'").first {
+        if let id = realm.objects(QrLookup.self).filter("qrCode == '\(qrCode)'").first?.id {
             if let item = realm.objects(Item.self).filter("id == \(id)").first {
                 return item
             }

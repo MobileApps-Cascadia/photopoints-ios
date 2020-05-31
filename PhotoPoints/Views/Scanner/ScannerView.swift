@@ -100,10 +100,12 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         if  metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 
-                let plantURLs = MockDatabase.getURlStrings()
+                let qrCodes = repository.getQrCodes()
+                print(qrCodes)
+                
                 let objectString = object.stringValue ?? ""
                 
-                if plantURLs.contains(objectString) {
+                if qrCodes.contains(objectString) {
                     if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
                         setUpAlerts(for: thisItem)
                     }
