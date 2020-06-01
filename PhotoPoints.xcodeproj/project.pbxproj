@@ -23,7 +23,6 @@
 		F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */; };
 		F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24C2460A3D700CEA2A6 /* ItemCollectionView.swift */; };
 		F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* ItemDetailView.swift */; };
-		F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2502460A3D700CEA2A6 /* PlantItem.swift */; };
 		F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */; };
 		F30CA2852460A3D800CEA2A6 /* 28092_story.txt in Resources */ = {isa = PBXBuildFile; fileRef = F30CA2532460A3D700CEA2A6 /* 28092_story.txt */; };
 		F30CA2862460A3D800CEA2A6 /* 28086_story.txt in Resources */ = {isa = PBXBuildFile; fileRef = F30CA2542460A3D700CEA2A6 /* 28086_story.txt */; };
@@ -96,7 +95,6 @@
 		F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
 		F30CA24C2460A3D700CEA2A6 /* ItemCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionView.swift; sourceTree = "<group>"; };
 		F30CA24E2460A3D700CEA2A6 /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
-		F30CA2502460A3D700CEA2A6 /* PlantItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantItem.swift; sourceTree = "<group>"; };
 		F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
 		F30CA2532460A3D700CEA2A6 /* 28092_story.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 28092_story.txt; sourceTree = "<group>"; };
 		F30CA2542460A3D700CEA2A6 /* 28086_story.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 28086_story.txt; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 				F336EFD7246CE26F0035B12E /* Item.swift */,
 				F336EFD9246CE7F00035B12E /* QrLookup.swift */,
 				F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */,
-				F30CA2502460A3D700CEA2A6 /* PlantItem.swift */,
 				F30CA2522460A3D700CEA2A6 /* Stories */,
 			);
 			path = Models;
@@ -578,7 +575,6 @@
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
-				F30CA2832460A3D800CEA2A6 /* PlantItem.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
 				F3BA1BFA247DB7FD00F279D1 /* Detail.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
