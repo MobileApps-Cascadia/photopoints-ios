@@ -17,15 +17,7 @@ class MainTabBar: UITabBarController {
     }
     
     func setUpTabBarChildren() {
-        
-        // set up repo
-        
-//        let repo = Repository.instance
-//        repo.test()
-//        repo.testSync()
-//        repo.testDB()
-        
-        
+
         // set up scanner
         let scannerView = ScannerView()
         scannerView.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
