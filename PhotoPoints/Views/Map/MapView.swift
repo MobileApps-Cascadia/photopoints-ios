@@ -28,7 +28,7 @@ private var allAnnotations: [MKAnnotation]?
     // instance variable so it can be referenced in didUpdateSurveyStatus()
     var annotations = [MKPointAnnotation]()
     
-    private var allAnnotations: [MKAnnotation]?
+    
     
     var displayedAnnotations: [MKAnnotation]? {
         willSet {
