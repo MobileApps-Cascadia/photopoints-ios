@@ -23,7 +23,7 @@ class ScannerView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpScanner()
+        setUpVideo()
     }
     
     // terminate the session if we navigate off this view
@@ -40,13 +40,14 @@ class ScannerView: UIViewController {
     
     // MARK: - Scanner
     
-    func setUpScanner() {
+    func setUpVideo() {
          // if a default capture device exists, hook up input, config output, and display
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             session = AVCaptureSession()
             addAVInput(from: captureDevice)
             configureAVOutput(for: .qr)
             addVideoLayer()
+            addScannerSquare()
             session.startRunning()
         } else {
             addNoAVDLabel()
@@ -78,6 +79,34 @@ class ScannerView: UIViewController {
         view.layer.addSublayer(video)
     }
 
+    // MARK: - Switch Modes
+    
+    func setCameraMode() {
+        addCameraButton()
+    }
+    
+    func setScannerMode() {
+        
+    }
+    
+    // MARK: - View Setup
+    
+    func addScannerSquare() {
+        let width = view.frame.width - 32
+        let size = CGSize(width: width, height: width)
+        let y = (view.frame.height / 2) - (width / 2)
+        let origin = CGPoint(x: 16, y: y)
+        let rect = CGRect(origin: origin, size: size)
+        let scannerSquare = UIView(frame: rect)
+        scannerSquare.layer.borderWidth = 3
+        scannerSquare.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+        view.addSubview(scannerSquare)
+    }
+    
+    func addCameraButton() {
+        
+    }
+    
     func addNoAVDLabel() {
         let noAVDLabel = UILabel()
         noAVDLabel.text = "No AV Device"
@@ -90,6 +119,7 @@ class ScannerView: UIViewController {
         noAVDLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         noAVDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+
 }
 
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
@@ -115,8 +145,8 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func setUpAlerts(for item: Item) {
-        let surveyedAlert = UIAlertController(title: "Thank you!", message: "survey complete", preferredStyle: .alert)
-        surveyedAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+//        let surveyedAlert = UIAlertController(title: "Thank you!", message: "survey complete", preferredStyle: .alert)
+//        surveyedAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         
         let commonName = repository.getDetailValue(item: item, property: "common_name")
         let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
@@ -124,7 +154,7 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
             // TODO: update survey status
-            self.present(surveyedAlert, animated: true, completion: nil)
+            self.setCameraMode()
         }))
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
             self.present(ItemDetailView(item: item), animated: true, completion: nil)

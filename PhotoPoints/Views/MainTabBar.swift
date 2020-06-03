@@ -20,7 +20,9 @@ class MainTabBar: UITabBarController {
 
         // set up scanner
         let scannerView = ScannerView()
-        scannerView.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
+        let scannerNavigation = UINavigationController(rootViewController: scannerView)
+        scannerNavigation.navigationBar.topItem?.title = "Scanner"
+        scannerNavigation.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
         
         // set up plant library
         let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
@@ -34,7 +36,7 @@ class MainTabBar: UITabBarController {
         mapVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 2)
         
         // add these to our main tab bar
-        self.addChild(scannerView)
+        self.addChild(scannerNavigation)
         self.addChild(itemNavigation)
         self.addChild(mapVC)
         

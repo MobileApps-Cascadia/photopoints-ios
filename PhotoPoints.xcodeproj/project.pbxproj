@@ -47,7 +47,6 @@
 		F3BA1BF8247DB75700F279D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BA1BF7247DB75700F279D1 /* Image.swift */; };
 		F3BA1BFA247DB7FD00F279D1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BA1BF9247DB7FD00F279D1 /* Detail.swift */; };
 		F3E66AAE2463514B009650B2 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AAD2463514B009650B2 /* Point.swift */; };
-		F3EE2DB02485F440003D70FB /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE2DAF2485F440003D70FB /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,7 +119,6 @@
 		F3BA1BF7247DB75700F279D1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		F3BA1BF9247DB7FD00F279D1 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		F3E66AAD2463514B009650B2 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		F3EE2DAF2485F440003D70FB /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2362460A3D700CEA2A6 /* ScannerView.swift */,
-				F3EE2DAF2485F440003D70FB /* CameraView.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -577,7 +574,6 @@
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
-				F3EE2DB02485F440003D70FB /* CameraView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
 				F3BA1BFA247DB7FD00F279D1 /* Detail.swift in Sources */,
