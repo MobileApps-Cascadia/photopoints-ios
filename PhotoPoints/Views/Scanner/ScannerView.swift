@@ -19,11 +19,27 @@ class ScannerView: UIViewController {
     // video session: optional because we won't have it in our emulator
     var session: AVCaptureSession! = nil
     
+    let scannerSquare: UIView = {
+        let square = UIView()
+        square.layer.borderWidth = 3
+        square.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+        return square
+    }()
+    
+    let cameraButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 3
+        button.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+        button.layer.cornerRadius = button.frame.height / 2
+        button.addTarget(self, action: #selector(didTapCameraButton), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpVideo()
+        setupVideo()
     }
     
     // terminate the session if we navigate off this view
@@ -40,14 +56,16 @@ class ScannerView: UIViewController {
     
     // MARK: - Scanner
     
-    func setUpVideo() {
+    func setupVideo() {
          // if a default capture device exists, hook up input, config output, and display
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             session = AVCaptureSession()
             addAVInput(from: captureDevice)
             configureAVOutput(for: .qr)
             addVideoLayer()
-            addScannerSquare()
+            setupCameraButton()
+            setupScannerSquare()
+            setScannerMode()
             session.startRunning()
         } else {
             addNoAVDLabel()
@@ -79,32 +97,65 @@ class ScannerView: UIViewController {
         view.layer.addSublayer(video)
     }
 
+    func flashScreen() {
+        let flash = CALayer()
+        flash.frame = view.bounds
+        flash.backgroundColor = UIColor.white.cgColor
+        view.layer.addSublayer(flash)
+        flash.opacity = 0
+
+        let anim = CABasicAnimation(keyPath: "opacity")
+        anim.fromValue = 0
+        anim.toValue = 1
+        anim.duration = 0.1
+        anim.autoreverses = true
+        anim.isRemovedOnCompletion = true
+
+        flash.add(anim, forKey: "flashAnimation")
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func didTapCameraButton() {
+        AudioServicesPlaySystemSound(1108)
+        flashScreen()
+        setScannerMode()
+    }
+    
     // MARK: - Switch Modes
     
     func setCameraMode() {
-        addCameraButton()
+        cameraButton.isEnabled = true
+        cameraButton.isHidden = false
+        scannerSquare.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
     
     func setScannerMode() {
-        
+        cameraButton.isEnabled = false
+        cameraButton.isHidden = true
+        scannerSquare.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - View Setup
     
-    func addScannerSquare() {
-        let width = view.frame.width - 32
-        let size = CGSize(width: width, height: width)
-        let y = (view.frame.height / 2) - (width / 2)
-        let origin = CGPoint(x: 16, y: y)
-        let rect = CGRect(origin: origin, size: size)
-        let scannerSquare = UIView(frame: rect)
-        scannerSquare.layer.borderWidth = 3
-        scannerSquare.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+    func setupScannerSquare() {
         view.addSubview(scannerSquare)
+        let width = view.frame.width - 64
+        scannerSquare.anchor(width: width, height: width)
+        scannerSquare.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        scannerSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    func addCameraButton() {
-        
+    func setupCameraButton() {
+        view.addSubview(cameraButton)
+        let width: CGFloat = 64
+        cameraButton.anchor(bottom: view.bottomAnchor, paddingBottom: 32, width: width, height: width)
+        cameraButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cameraButton.layer.cornerRadius = 32
     }
     
     func addNoAVDLabel() {
@@ -119,7 +170,7 @@ class ScannerView: UIViewController {
         noAVDLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         noAVDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
-
+    
 }
 
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
