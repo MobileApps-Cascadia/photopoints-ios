@@ -10,6 +10,11 @@
 import Foundation
 import UIKit
 
+enum ImageDirectory {
+    case submission
+    case application
+}
+
 class ImageManager {
     
     // optional output - could enter a bad name
@@ -17,9 +22,10 @@ class ImageManager {
         
         // get the document directory URL
         guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        
+                
         // tack on the photo hash + png to get the full URL
         return documentURL.appendingPathComponent(fileName + ".png")
+        
     }
 
     // optional output - could enter a bad name
