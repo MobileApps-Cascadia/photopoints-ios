@@ -126,9 +126,8 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // placeholder string "submission" - we might want to update this storeImage method with more identifying information
-            // so we can pass in the image, the md5 hash as it's string/name, and the item ID it represents, etc
-            ImageManager.storeImage(image: image, with: "submission")
+            let hashString = String(image.hashValue)
+            ImageManager.storeImage(image: image, with: hashString)
             self.dismiss(animated: true, completion: nil)
         } else {
             print("error")
@@ -165,7 +164,6 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            // TODO: update survey status
             self.openCamera()
         }))
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
@@ -175,3 +173,4 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     }
     
 }
+
