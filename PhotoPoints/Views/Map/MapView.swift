@@ -14,7 +14,7 @@ import RealmSwift
 // fake singleton
 let mapVC = MapView()
 
-class MapView: UIViewController, MKMapViewDelegate {
+class MapView: UIViewController {
 
 private var allAnnotations: [MKAnnotation]?
 
@@ -22,7 +22,7 @@ private var allAnnotations: [MKAnnotation]?
     let realm = try! Realm()
     let repository = Repository.instance
     
-    var mapView = MKMapView()
+    var mapView : MKMapView!
     
     // empty annotations array
     // instance variable so it can be referenced in didUpdateSurveyStatus()
@@ -46,7 +46,7 @@ private var allAnnotations: [MKAnnotation]?
     
     func registerAnnotations(){
         
-        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier:("SimpleAnnotation"))
+        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(SimpleAnnotation.self))
     }
     
     
@@ -60,15 +60,12 @@ private var allAnnotations: [MKAnnotation]?
         
         allAnnotations = [SimpleAnnotation()]
         
-        
-        
          
         
         showAllAnnotations(self)
     }
     
     private func showAllAnnotations(_ sender: Any) {
-        // User tapped "All" button in the bottom toolbar
         displayedAnnotations = allAnnotations
     }
     
@@ -84,7 +81,6 @@ private var allAnnotations: [MKAnnotation]?
         // fill and add annotations
         fillAnnotations()
         mapView.addAnnotations(annotations)
-        //mapView.addAnnotations(allAnnotations!)
         view.addSubview(mapView)
     }
     
@@ -117,25 +113,40 @@ private var allAnnotations: [MKAnnotation]?
 //        thisAnnotation?.subtitle = SurveyStatus.surveyed.rawValue
 //    }
     
+}
+extension MapView: MKMapViewDelegate {
+    
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
           
-          guard !annotation.isKind(of: MKUserLocation.self) else {
+        guard !annotation.isKind(of: MKUserLocation.self) else {
               // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
-              return nil
-          }
+            return nil
+        }
           
+        var annotationView: MKAnnotationView?
           
-          
-          let reuseIdentifier = "SimpleAnnotation"
-          let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-          annotationView.image = UIImage(named: "flag")
-          annotationView.canShowCallout = true
-          /*if let annotation = annotation as? SimpleAnnotation {
-              annotationView = setupSimpleAnnotationView(for: annotation, on: mapView)
-          }*/
-          
+        if let annotation = annotation as? SimpleAnnotation{ annotationView = setUpSimpleAnnotationView(for: annotation, on: mapView)
+            
+        }
+        
           return annotationView
       }
+    
+    private func setUpSimpleAnnotationView(for annotation: SimpleAnnotation, on mapView: MKMapView) -> MKAnnotationView{
+        
+        let reuseIdentifier = NSStringFromClass(SimpleAnnotation.self)
+        let simpleAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+        
+        simpleAnnotationView.canShowCallout = true
+        
+        let image = #imageLiteral(resourceName: "flag-1")
+        simpleAnnotationView.image = image
+        
+        simpleAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "flag"))
+        
+        return simpleAnnotationView
+    }
     
 }
 
