@@ -140,7 +140,13 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
 
 // MARK: - Meta Data Output
 
-extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
+extension ScannerView: AVCaptureMetadataOutputObjectsDelegate, AlertDelegate {
+    
+    func turnOffAlert() {
+        self.alertActive = false
+        print("alert inactive")
+    }
+    
     // called by system when we get metadataoutputs
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if  metadataObjects.count != 0 && !alertActive {
@@ -150,6 +156,8 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
                 
                 if qrCodes.contains(objectString) {
                     if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
+                        alertActive = true
+                        print("alert active")
                         setUpAlerts(for: thisItem)
                     }
                 }
@@ -161,7 +169,8 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         let commonName = repository.getDetailValue(item: item, property: "common_name")
         let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
         
-        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
+        let scannedAlert = Alert(title: commonName, message: botanicalName, preferredStyle: .alert)
+        scannedAlert.delegate = self
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
             self.openCamera()
         }))
@@ -174,3 +183,16 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     
 }
 
+protocol AlertDelegate {
+    func turnOffAlert()
+}
+
+class Alert: UIAlertController {
+    
+    var delegate: AlertDelegate! = nil
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        delegate.turnOffAlert()
+    }
+    
+}
