@@ -16,6 +16,8 @@ class ScannerView: UIViewController {
     
     let repository = Repository.instance
     
+    var alertActive = false
+    
     // video session: optional because we won't have it in our emulator
     var session: AVCaptureSession! = nil
     
@@ -141,12 +143,9 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
 extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     // called by system when we get metadataoutputs
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if  metadataObjects.count != 0 {
+        if  metadataObjects.count != 0 && !alertActive {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                
                 let qrCodes = repository.getQrCodes()
-                print(qrCodes)
-                
                 let objectString = object.stringValue ?? ""
                 
                 if qrCodes.contains(objectString) {
@@ -166,9 +165,10 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
             self.openCamera()
         }))
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
             self.present(ItemDetailView(item: item), animated: true, completion: nil)
         }))
+        
         present(scannedAlert, animated: true, completion: nil)
     }
     
