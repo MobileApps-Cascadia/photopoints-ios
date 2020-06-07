@@ -16,6 +16,9 @@ class ScannerView: UIViewController {
     
     let repository = Repository.instance
     
+    // keeps track of whether or not an alert should be allowed to present when scanning
+    var alertActive = false
+    
     // video session: optional because we won't have it in our emulator
     var session: AVCaptureSession! = nil
     
@@ -111,13 +114,76 @@ class ScannerView: UIViewController {
     
 }
 
+// MARK: - Meta Data Output
+
+extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
+
+    // called by system when we get metadataoutputs
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if  metadataObjects.count != 0 && !alertActive {
+            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
+                let qrCodes = repository.getQrCodes()
+                let objectString = object.stringValue ?? ""
+                
+                if qrCodes.contains(objectString) {
+                    if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
+                        alertActive = true
+                        print("alert active")
+                        setUpAlerts(for: thisItem)
+                    }
+                }
+            }
+        }
+    }
+    
+    func setUpAlerts(for item: Item) {
+        let commonName = repository.getDetailValue(item: item, property: "common_name")
+        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
+        let detailView = ItemDetailView(item: item)
+        detailView.alertDelegate = self
+        
+        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
+        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
+            self.openCamera()
+        }))
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
+            self.present(detailView, animated: true, completion: nil)
+        }))
+        
+        present(scannedAlert, animated: true, completion: nil)
+    }
+    
+}
+
 // MARK: - Image Picker
 
-extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+protocol AlertDelegate {
+    func turnOffAlert()
+}
+
+class ImagePickerWithAlertDelegate: UIImagePickerController {
+    
+    // initialized to nil so we don't have to write a custom init
+    var alertDelegate: AlertDelegate! = nil
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        alertDelegate.turnOffAlert()
+    }
+    
+}
+
+extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
+    
+    func turnOffAlert() {
+        self.alertActive = false
+        print("alert inactive")
+    }
     
     func openCamera() {
-        let imagePicker = UIImagePickerController()
+        let imagePicker = ImagePickerWithAlertDelegate()
         imagePicker.delegate = self
+        imagePicker.alertDelegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
@@ -135,42 +201,3 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
 }
-
-// MARK: - Meta Data Output
-
-extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
-    // called by system when we get metadataoutputs
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if  metadataObjects.count != 0 {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                
-                let qrCodes = repository.getQrCodes()
-                print(qrCodes)
-                
-                let objectString = object.stringValue ?? ""
-                
-                if qrCodes.contains(objectString) {
-                    if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
-                        setUpAlerts(for: thisItem)
-                    }
-                }
-            }
-        }
-    }
-    
-    func setUpAlerts(for item: Item) {
-        let commonName = repository.getDetailValue(item: item, property: "common_name")
-        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
-        
-        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
-        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            self.openCamera()
-        }))
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler:  { (nil) in
-            self.present(ItemDetailView(item: item), animated: true, completion: nil)
-        }))
-        present(scannedAlert, animated: true, completion: nil)
-    }
-    
-}
-

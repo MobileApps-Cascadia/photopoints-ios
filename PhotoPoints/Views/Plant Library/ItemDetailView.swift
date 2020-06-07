@@ -14,6 +14,7 @@ class ItemDetailView: UIViewController {
     // MARK: - Properties
     let repository = Repository.instance
     var thisItem: Item
+    var alertDelegate: AlertDelegate!
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImage(item: thisItem))
@@ -108,6 +109,15 @@ class ItemDetailView: UIViewController {
         view.backgroundColor = UIColor(named: "pp-background")
         title = repository.getDetailValue(item: thisItem, property: "common_name")
         setUpScrollView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // using alertDelegate for scanner preview of this view but not in the library
+        if let alertDelegate = alertDelegate {
+            alertDelegate.turnOffAlert()
+        }
     }
     
     func setUpScrollView() {
