@@ -14,10 +14,12 @@ class Detail: Object {
     @objc dynamic var id: Int = -1
     @objc dynamic var property: String = ""
     @objc dynamic var value: String = ""
-    
-    required init() {}
-    
-    required init(id: Int, property: String, value: String?) {
+}
+
+// Convenience initializer(s) - allows fields to be set upon instantiation
+extension Detail {
+    convenience init(id: Int, property: String, value: String?) {
+        self.init()
         if property.count > 0 {
             self.id = id
             self.property = property
