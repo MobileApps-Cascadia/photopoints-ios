@@ -17,13 +17,20 @@ class Repository {
     // Repository is a singleton, access using Repository.instance
     public static let instance = Repository()
     
-    private init() {}
-    
+
     // create a queue for operations requiring thread safety
     private let serialQueue = DispatchQueue(label: "repoQueue")
 
     // instantiate the database. Creates a new one if none exists
-    private let realm: Realm = try! Realm()
+    private let realm: Realm
+    
+    private init() {
+        // instantiate the database, creating a new one if required
+        let config = Realm.Configuration( deleteRealmIfMigrationNeeded: true )
+        Realm.Configuration.defaultConfiguration = config
+        self.realm = try! Realm()
+    }
+    
     
     func loadInitData() {
         try! realm.write {
