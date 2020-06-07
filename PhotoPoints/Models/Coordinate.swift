@@ -18,6 +18,12 @@ class Coordinate: Object {
     @objc dynamic var longitude: Double = 0.0
     @objc dynamic var altitude: Double = 0.0
     
+    let parent = LinkingObjects(fromType: Point.self, property: "location")
+}
+
+// add initializers to set initial data at instantiation
+extension Coordinate {
+    
     convenience init(latitude: Double, longitude: Double, altitude: Double) {
         self.init()
         self.latitude = latitude
@@ -25,11 +31,12 @@ class Coordinate: Object {
         self.altitude = altitude
     }
     
-    let parent = LinkingObjects(fromType: Point.self, property: "location")
 }
+
 
 extension Coordinate {
     func twoDimensional() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
+    
 }
