@@ -37,14 +37,22 @@ class Point: Object {
 
 // Convenience initializer(s) - allows fields to be set upon instantiation
 extension Point {
-    convenience init(id: Int, location: Coordinate, label: String, enabled: Bool) {
+    convenience init(id: Int, location: Coordinate, label: String?, enabled: Bool?) {
         self.init()
+        
+        // set primary key and location (required)
         self.id = id
-        self.label = label
         self.location = location
-        self.enabled = enabled
+        
+        // set label, or use app default if not provided
+        self.label = label ?? UserDefaults.standard.string(forKey: "Label")
+
+        // automatically enable unless otherwise specified
+        self.enabled = enabled ?? true
     }
 }
+
+
 
 // functions to enable or disable this point (disables the parent item)
 // not persistent until written to database
