@@ -9,7 +9,6 @@
 //  the application using the Item.
 
 import Foundation
-import Realm
 import RealmSwift
 
 class Point: Object {
