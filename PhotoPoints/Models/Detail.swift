@@ -23,16 +23,21 @@ class Detail: Object {
     @objc dynamic var property: String = "error"  // must be set to be valid
     @objc dynamic var value: String?
     
+    // establishes parent object relationship
+    let parent = LinkingObjects(fromType: Item.self, property: "details")
+    
 }
 
 // Convenience initializer(s) - allows fields to be set upon instantiation
 extension Detail {
-    convenience init(id: Int, property: String, value: String?) {
+    convenience init(id: Int?, property: String, value: String?) {
         self.init()
         if property.count > 0 {
-            self.id = id
-            self.property = property
-            if let val=value {self.value = val}
+            if let providedId = id {self.id = providedId}
+            if property.count > 0 {
+                self.property = property
+                self.value = value
+            }
         }
     }
 }
