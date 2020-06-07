@@ -2,9 +2,16 @@
 //  Detail.swift
 //  PhotoPoints
 //
-//  Created by Stephen Gomez-Fox on 5/25/20.
-//  Copyright © 2020 Cascadia College. All rights reserved.
+//  Whereas Item is the primary object in the data model, it is a composition of several
+//  different objects.  Detail objects are part of a list of details about an Item.  Each
+//  Detail is a KVP and regardless of its type of usage, all Detail are stored internally
+//  using a string key ("property") and an optional string "value"
 //
+//  Realm data fields
+//  id:        this is the primary key matching tha of "Item"; -1 represents invalid or unwritten object
+//  property:  the key in the key/value pair
+//  value:     the value in the key value pair
+
 
 import Foundation
 import RealmSwift
