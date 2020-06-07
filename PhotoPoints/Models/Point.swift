@@ -13,6 +13,7 @@
 //  location:  the coordinates of the Item
 //  enabled:   boolean which determines if this point (and thus parent "Item" is returned in queries
 
+
 import Foundation
 import RealmSwift
 
@@ -35,9 +36,10 @@ class Point: Object {
 
 }
 
+
 // Convenience initializer(s) - allows fields to be set upon instantiation
 extension Point {
-    convenience init(id: Int, location: Coordinate, label: String?, enabled: Bool?) {
+    convenience init(id: Int, location: Coordinate, label: String? = nil, enabled: Bool = true) {
         self.init()
         
         // set primary key and location (required)
@@ -45,10 +47,10 @@ extension Point {
         self.location = location
         
         // set label, or use app default if not provided
-        self.label = label ?? UserDefaults.standard.string(forKey: "Label")
+        self.label = label ?? UserDefaults.standard.string(forKey: "Label") ?? ""
 
         // automatically enable unless otherwise specified
-        self.enabled = enabled ?? true
+        self.enabled = enabled
     }
 }
 
