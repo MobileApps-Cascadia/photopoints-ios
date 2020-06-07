@@ -7,13 +7,15 @@
 //
 
 import Foundation
-import Realm
 import RealmSwift
 
 class Detail: Object {
-    @objc dynamic var id: Int = -1
-    @objc dynamic var property: String = ""
-    @objc dynamic var value: String = ""
+    
+    // Realm object fields
+    @objc dynamic var id: Int = -1                // must be set to be valid
+    @objc dynamic var property: String = "error"  // must be set to be valid
+    @objc dynamic var value: String?
+    
 }
 
 // Convenience initializer(s) - allows fields to be set upon instantiation
@@ -27,3 +29,4 @@ extension Detail {
         }
     }
 }
+
