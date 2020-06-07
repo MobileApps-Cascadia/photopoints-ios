@@ -8,22 +8,25 @@
 //
 //  Realm data fields:
 //  qrCode:   The lookup string
-//  id:       The id of the associated item
+//  id:       The integer id of the associated item
 
 
 import Foundation
 import RealmSwift
 
 class QrLookup: Object {
-    @objc dynamic var id: Int = -1                // must be set to be valid
-    @objc dynamic var qrCode: String = "error"    // must be set to be valid
     
+    // Realm object fields
+    @objc dynamic var id: Int = -1                // must be set to be valid
+    @objc dynamic var qrCode: String? = nil       // must be set to be valid
+
 }
 
+// add initializer(s) to set initial data at instantiation
 extension QrLookup {
-    convenience init(id: Int, qrCode: String) {
+    convenience init(qrCode: String, id: Int) {
         self.init()
-        self.id = id
+        if id >= 0 { self.id = id } else { self.id = -1 }
         self.qrCode = qrCode
     }
 }
