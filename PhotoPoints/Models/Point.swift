@@ -13,14 +13,15 @@ import Realm
 import RealmSwift
 
 class Point: Object {
-
+    
     // Realm object fields
     @objc dynamic var id = -1
     @objc dynamic var label: String? = nil
     @objc dynamic var location: Coordinate? = nil
     @objc dynamic var enabled: Bool = false
     
-    // established "id" as primary key for this object
+    // establishes "id" as primary key for this point (and its parent "Item")
+    // should never be modified once written to database
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -28,7 +29,10 @@ class Point: Object {
     // establishes parent object relationship
     let parent = LinkingObjects(fromType: Item.self, property: "point")
 
-    // Standard initializer - use this during normal instantiation
+}
+
+// Standard initializer - use this during normal instantiation
+extension Point {
     convenience init(id: Int, location: Coordinate, label: String, enabled: Bool) {
         self.init()
         self.id = id
