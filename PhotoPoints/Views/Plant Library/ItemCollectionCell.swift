@@ -71,7 +71,7 @@ class ItemCollectionCell: UICollectionViewCell {
     
     func configureFor(item: Item) {
         imageView.image = repository.getImage(item: item)
-        titleLabel.text = repository.getDetailValue(item: item, property: "common_names")
+        titleLabel.text = item.point?.label 
         subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
     }
     
