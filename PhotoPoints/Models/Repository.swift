@@ -2,9 +2,8 @@
 //  Repository.swift
 //  PhotoPoints
 //
-//  Created by Stephen Gomez-Fox on 5/9/20.
-//  Copyright © 2020 Cascadia College. All rights reserved.
-//
+//  Description:
+//  An interface layer between the UI, the local database, and the API
 
 import Foundation
 import RealmSwift
@@ -47,28 +46,28 @@ class Repository {
     }
     
     func getImage(item: Item) -> UIImage? {
-        if let image = realm.objects(Image.self).filter("id == \(item.id)").first {
-            return UIImage(named: "\(image.fileName).png")
+        if let image = realm.objects(Image.self).filter("id == \(String(describing: item.id))").first {
+            return UIImage(named: "\(String(describing: image.fileName)).png")
         }
         return nil
     }
     
     func getDetailValue(item: Item, property: String) -> String? {
-        let detail = realm.objects(Detail.self).filter("id == \(item.id) AND property == '\(property)'").first
+        let detail = realm.objects(Detail.self).filter("id == \(String(describing: item.id)) AND property == '\(property)'").first
         return detail?.value
     }
     
     func getQrCodes() -> [String] {
-        let qrLookups = realm.objects(QrLookup.self)
-        var qrCodes = [String]()
+        let qrLookups = realm.objects(Lookup.self)
+        var qrCodes: [String] = [String]()
         for qrLookup in qrLookups {
-            qrCodes.append(qrLookup.qrCode)
+            qrCodes.append(qrLookup.search )
         }
         return qrCodes
     }
     
     func getItemFromQrCode(qrCode: String) -> Item? {
-        if let id = realm.objects(QrLookup.self).filter("qrCode == '\(qrCode)'").first?.id {
+        if let id = realm.objects(Lookup.self).filter("qrCode == '\(qrCode)'").first?.id {
             if let item = realm.objects(Item.self).filter("id == \(id)").first {
                 return item
             }
