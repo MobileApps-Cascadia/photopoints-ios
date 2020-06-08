@@ -32,10 +32,16 @@ class Repository {
     
     
     func loadInitData() {
+        // clear existing database data
+        try! realm.write{ realm.deleteAll() }
+        
+        // build mock database
+        MockDatabase.build()
+        
+        // write to realm
         try! realm.write {
-            realm.deleteAll()
-            realm.add(MockDatabase.items)
-            realm.add(MockDatabase.qrlookups)
+            realm.add(MockDatabase.mockdb)
+            realm.add(MockDatabase.qrLookups)
         }
     }
 
@@ -46,15 +52,26 @@ class Repository {
     }
     
     func getImage(item: Item) -> UIImage? {
-        if let image = realm.objects(Image.self).filter("id == \(String(describing: item.id))").first {
-            return UIImage(named: "\(String(describing: image.fileName)).png")
+        if item.id == nil { print ("NULL ID") }
+        if let id: String = item.id {
+            print("getting item \(id)")
+                
+            if let results = realm.objects(Image.self).filter("id == '\(id)'").first {
+                if let filename: String = results.filename {
+                    print(filename)
+                    return UIImage(named: "\(filename).png")
+                }
+            }
         }
         return nil
     }
     
     func getDetailValue(item: Item, property: String) -> String? {
-        let detail = realm.objects(Detail.self).filter("id == \(String(describing: item.id)) AND property == '\(property)'").first
-        return detail?.value
+        if let id = item.id {
+            let detail = realm.objects(Detail.self).filter("id == '\(id)' AND property == '\(property)'").first
+            return detail?.value
+        }
+        return nil
     }
     
     func getQrCodes() -> [String] {
