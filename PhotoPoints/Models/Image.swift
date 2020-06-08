@@ -11,7 +11,7 @@ import UIKit
 import Realm
 import RealmSwift
 
-@objc enum ImageType: Int, RealmEnum {
+@objc enum ImageCategory: Int, RealmEnum {
     case unknown = 0
     case full = 100
     case detail = 200
@@ -21,19 +21,24 @@ import RealmSwift
 
 class Image: Object {
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var fileName: String = ""
-    @objc dynamic var imageType: ImageType = .unknown
-    @objc dynamic var imageHeading: String = ""
-    @objc dynamic var imageLicense: String = ""
+    @objc dynamic var fileName: String?
+    @objc dynamic var baseFileName: String? = nil
+    @objc dynamic var id: String? = nil
+    @objc dynamic var category: ImageCategory = .unknown
+    @objc dynamic var title: String?
+    @objc dynamic var desc: String?
+    @objc dynamic var license: String?
     
-    convenience init(id: Int, fileName: String, imageType: ImageType, imageHeading: String, imageLicense: String) {
+    convenience init(filename: String, baseFileName: String? = nil, id: String? = nil, category: ImageCategory = .unknown,
+                     title: String? = nil, description: String? = nil, license: String? = nil) {
         self.init()
-        self.id = id
         self.fileName = fileName
-        self.imageType = imageType
-        self.imageHeading = imageHeading
-        self.imageLicense = imageLicense
+        self.baseFileName = baseFileName
+        self.id = id
+        self.category = category
+        self.title = title
+        self.desc = description
+        self.license = license
     }
     
     override static func primaryKey() -> String? {
