@@ -2,7 +2,7 @@
 //  CustomAnnotation.swift
 //  PhotoPoints
 //
-//  Created by Student Account on 5/26/20.
+//  Created by Grant Buchanan on 5/26/20.
 //  Copyright © 2020 Cascadia College. All rights reserved.
 //
 
@@ -14,6 +14,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
     // This property must be key-value observable, which the `@objc dynamic` attributes provide.
     @objc dynamic var coordinate: CLLocationCoordinate2D
     
+    // Empty callout variables for use later
     var title: String?
     
     var subtitle: String?
