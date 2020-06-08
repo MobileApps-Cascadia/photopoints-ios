@@ -20,7 +20,7 @@ import RealmSwift
 class Point: Object {
     
     // Realm object fields
-    @objc dynamic var id = -1
+    @objc dynamic var id: String? = nil
     @objc dynamic var label: String? = nil
     @objc dynamic var location: Coordinate? = nil
     @objc dynamic var enabled: Bool = false
@@ -39,15 +39,15 @@ class Point: Object {
 
 // Convenience initializer(s) - allows fields to be set upon instantiation
 extension Point {
-    convenience init(id: Int, location: Coordinate, label: String? = nil, enabled: Bool = true) {
+    convenience init(id: String? = nil, location: Coordinate, label: String? = nil, enabled: Bool = true) {
         self.init()
         
-        // set primary key and location (required)
+        // set primary key and location
         self.id = id
         self.location = location
         
         // set label, or use app default if not provided
-        self.label = label ?? UserDefaults.standard.string(forKey: "Label") ?? ""
+        self.label = label ?? UserDefaults.standard.string(forKey: "Label")
 
         // automatically enable unless otherwise specified
         self.enabled = enabled
