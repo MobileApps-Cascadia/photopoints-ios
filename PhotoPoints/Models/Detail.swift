@@ -19,9 +19,9 @@ import RealmSwift
 class Detail: Object {
     
     // Realm object fields
-    @objc dynamic var id: Int = -1                // must be set to be valid
-    @objc dynamic var property: String = ""       // must be set to be valid
-    @objc dynamic var value: String?
+    @objc dynamic var id: String? = nil               // must be set to be valid
+    @objc dynamic var property: String? = nil         // must be set to be valid
+    @objc dynamic var value: String? = nil
     
     // establishes parent object relationship
     let parent = LinkingObjects(fromType: Item.self, property: "details")
@@ -32,11 +32,11 @@ class Detail: Object {
 extension Detail {
     
     // create a property from any type, converting to string. Default id is -1
-    convenience init(id: Int?, property: String, value: Any?) {
+    convenience init(id: String? = nil, property: String, value: Any?) {
         self.init()
         // ignores all if property is an empty string
         if property.count > 0 {
-            if let providedId = id { self.id = providedId } else { self.id = -1 }
+            if let providedId = id { self.id = providedId }
             if property.count > 0 {
                 self.property = property
                 self.value = value as? String
