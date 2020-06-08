@@ -20,7 +20,7 @@ class Detail: Object {
     
     // Realm object fields
     @objc dynamic var id: Int = -1                // must be set to be valid
-    @objc dynamic var property: String = "error"  // must be set to be valid
+    @objc dynamic var property: String = ""       // must be set to be valid
     @objc dynamic var value: String?
     
     // establishes parent object relationship
@@ -30,15 +30,23 @@ class Detail: Object {
 
 // Convenience initializer(s) - allows fields to be set upon instantiation
 extension Detail {
-    convenience init(id: Int?, property: String, value: String?) {
+    
+    // create a property from any type, converting to string. Default id is -1
+    convenience init(id: Int?, property: String, value: Any?) {
         self.init()
+        // ignores all if property is an empty string
         if property.count > 0 {
-            if let providedId = id {self.id = providedId}
+            if let providedId = id { self.id = providedId } else { self.id = -1 }
             if property.count > 0 {
                 self.property = property
-                self.value = value
+                self.value = value as? String
             }
         }
     }
+    
 }
+
+
+
+
 
