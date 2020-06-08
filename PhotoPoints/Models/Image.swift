@@ -21,22 +21,24 @@ import RealmSwift
 
 class Image: Object {
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var fileName: String = ""
-    @objc dynamic var imageType: ImageType = .unknown
-    @objc dynamic var imageHeading: String = ""
-    @objc dynamic var imageLicense: String = ""
+    @objc dynamic var filename: String = ""
+    @objc dynamic var baseFilename: String? = nil
+    @objc dynamic var id: String? = nil
+    @objc dynamic var type: ImageType = .unknown
+    @objc dynamic var title: String?
+    @objc dynamic var desc: String?
+    @objc dynamic var license: String?
     
-    convenience init(id: Int, fileName: String, imageType: ImageType, imageHeading: String, imageLicense: String) {
+    convenience init(filename: String, baseFilename: String? = nil, id: String? = nil, type: ImageType = .unknown,
+                     title: String? = nil, desc: String? = nil, license: String? = nil) {
         self.init()
-        self.id = id
-        self.fileName = fileName
-        self.imageType = imageType
-        self.imageHeading = imageHeading
-        self.imageLicense = imageLicense
+        self.type = type
+        self.filename = filename
+        if let bfn = baseFilename { self.baseFilename = bfn }
+        if let itemId = id { self.id = itemId }
+        if let ttl = title { self.title = ttl }
+        if let dsc = desc { self.desc = dsc }
+        
     }
     
-    override static func primaryKey() -> String? {
-        return "fileName"
-    }
 }

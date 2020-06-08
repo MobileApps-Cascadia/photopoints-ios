@@ -2,33 +2,50 @@
 //  PointItem.swift
 //  PhotoPoints
 //
-//  Created by Clay Suttner on 5/13/20.
-//  Copyright © 2020 Cascadia College. All rights reserved.
+//  Description:
+//  Item is the fundamental data object of the application.  It is a composition of several
+//  other Realm Object classes and the primary means with which the underlying Object classes
+//  are created and modified.  Generally, its properties are accessed using a string subscript.
 //
+//  Realm data fields:
+//  id:        The id of the item.  This is the primary key which associates item with other objects
+//  point:     The item's fundamental properties
+//  details:   List of key/value properties associated with the item, stored as strings
+//  images:    List of records for selecting and accessing image files related to the item
 
 import Foundation
 import Realm
 import RealmSwift
 
+
 class Item: Object {
-    @objc dynamic var id = -1
+    
+    // Realm data fields
+    @objc dynamic var id: String? = nil
     @objc dynamic var point: Point? = nil
     let details = List<Detail>()
     let images = List<Image>()
 
-    required init() {}
+}
+
+// Convenience initializer(s) - allows fields to be set upon instantiation
+
+extension Item {
     
-    required init(id: Int, point: Point, detail: [String: String], images: [Image]) {
+    convenience init(id: String, point: Point, details: [String: String] = [:], images: [Image] = []) {
+        self.init()
         self.id = id
+        point.id = id
         self.point = point
-        for (k, v) in detail {
-            let detail = Detail(id: self.id, property: k, value: v)
-            if detail.id >= 0 {
-                details.append(detail)
-            }
+        for (key, value) in details {
+            let detail = Detail(id: id, property: key, value: value)
+            self.details.append(detail)
         }
         for image in images {
+            image.id = id
             self.images.append(image)
         }
     }
+    
 }
+
