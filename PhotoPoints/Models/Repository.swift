@@ -52,15 +52,9 @@ class Repository {
     }
     
     func getImage(item: Item) -> UIImage? {
-        if item.id == nil { print ("NULL ID") }
-        if let id: String = item.id {
-            print("getting item \(id)")
-                
+        if let id = item.id {
             if let results = realm.objects(Image.self).filter("id == '\(id)'").first {
-                if let filename: String = results.filename {
-                    print(filename)
-                    return UIImage(named: "\(filename).png")
-                }
+                return UIImage(named: "\(results.filename).png")
             }
         }
         return nil

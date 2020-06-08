@@ -32,7 +32,7 @@ class Item: Object {
 
 extension Item {
     
-    convenience init(id: String? = nil, point: Point, details: [String: String] = [:], images: [Image] = []) {
+    convenience init(id: String, point: Point, details: [String: String] = [:], images: [Image] = []) {
         self.init()
         self.id = id
         point.id = id
