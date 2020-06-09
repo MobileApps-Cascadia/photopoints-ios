@@ -16,7 +16,7 @@ let mapVC = MapView()
 
 class MapView: UIViewController {
 
-private var allAnnotations: [MKAnnotation]?
+private var allAnnotations: [CustomAnnotation]?
 
 
     let realm = try! Realm()
@@ -28,11 +28,11 @@ private var allAnnotations: [MKAnnotation]?
     // instance variable so it can be referenced in didUpdateSurveyStatus() edit: I seem to have misplaced this comment at some point; not sure what this refers to - Grant
     
     // Empty annotations array
-    var annotations = [MKPointAnnotation]()
+    var annotations = [CustomAnnotation]()
     
     
     // Contains logic for setting and resetting currently displayed annotations.
-    var displayedAnnotations: [MKAnnotation]? {
+    var displayedAnnotations: [CustomAnnotation]? {
         willSet {
             if let currentAnnotations = displayedAnnotations {
                 mapView.removeAnnotations(currentAnnotations)
@@ -49,7 +49,7 @@ private var allAnnotations: [MKAnnotation]?
     // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
     func registerAnnotations(){
         
-        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(SimpleAnnotation.self))
+        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
     }
     
     
@@ -62,7 +62,7 @@ private var allAnnotations: [MKAnnotation]?
         registerAnnotations()
         
        // Creates simple annotation to test custom map marker displays. Temporary, included only to show progress.
-        allAnnotations = [SimpleAnnotation()]
+        //allAnnotations = [SimpleAnnotation()]
         
         showAllAnnotations(self)
     }
@@ -96,9 +96,8 @@ private var allAnnotations: [MKAnnotation]?
         
         for item in items {
             if let location = item.point?.location {
-                let annotation = MKPointAnnotation()
+                let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
                 annotation.title = repository.getDetailValue(item: item, property: "common_names")
-                annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
                 annotations.append(annotation)
             }
         }
@@ -132,7 +131,7 @@ extension MapView: MKMapViewDelegate {
           
         var annotationView: MKAnnotationView?
           
-        if let annotation = annotation as? SimpleAnnotation{ annotationView = setUpSimpleAnnotationView(for: annotation, on: mapView)
+        if let annotation = annotation as? CustomAnnotation{ annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
             
         }
         
@@ -140,23 +139,23 @@ extension MapView: MKMapViewDelegate {
       }
     
     // Sets up annotationViews for 'simpleAnnotation'
-    private func setUpSimpleAnnotationView(for annotation: SimpleAnnotation, on mapView: MKMapView) -> MKAnnotationView{
+    private func setUpCustomAnnotationView(for annotation: CustomAnnotation, on mapView: MKMapView) -> MKAnnotationView{
         
         // Creates indentifiers for reusal in order to efficiently allocate resources
-        let reuseIdentifier = NSStringFromClass(SimpleAnnotation.self)
-        let simpleAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+        let reuseIdentifier = NSStringFromClass(CustomAnnotation.self)
+        let customAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
         
         // Enables callouts
-        simpleAnnotationView.canShowCallout = true
+        customAnnotationView.canShowCallout = true
         
         // Set map marker
         let image = #imageLiteral(resourceName: "flag-1")
-        simpleAnnotationView.image = image
+        customAnnotationView.image = image
         
         // Callout image. Likely wont keep this.
-        simpleAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "flag"))
+        customAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "flag"))
         
-        return simpleAnnotationView
+        return customAnnotationView
     }
     
 }
