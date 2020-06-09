@@ -61,9 +61,6 @@ private var allAnnotations: [CustomAnnotation]?
         
         registerAnnotations()
         
-       // Creates simple annotation to test custom map marker displays. Temporary, included only to show progress.
-        //allAnnotations = [SimpleAnnotation()]
-        
         showAllAnnotations(self)
     }
     
@@ -149,11 +146,11 @@ extension MapView: MKMapViewDelegate {
         customAnnotationView.canShowCallout = true
         
         // Set map marker
-        let image = #imageLiteral(resourceName: "flag-1")
+        let image = #imageLiteral(resourceName: "marker-surveyed")
         customAnnotationView.image = image
         
         // Callout image. Likely wont keep this.
-        customAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "flag"))
+        customAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "marker-surveyed"))
         
         return customAnnotationView
     }
