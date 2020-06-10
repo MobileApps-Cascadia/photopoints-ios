@@ -79,7 +79,7 @@ private var allAnnotations: [CustomAnnotation]?
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 2500)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200)
         
         // fill and add annotations
         fillAnnotations()
