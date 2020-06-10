@@ -82,7 +82,7 @@ private var allAnnotations: [MKAnnotation]?
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 2500)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200)
         
         // fill and add annotations
         fillAnnotations()
@@ -161,17 +161,17 @@ extension MapView: MKMapViewDelegate {
     
 }
 
-// add forestCenter as a static constant of the CLLocationCoordinate2D class
+// add forestCenter as a static constant of the CLLocationCoordinate2D class. Previous forest center lat:47.778836, long -122.194417. Adusted for purpose of zooming map to photopoints.
 extension CLLocationCoordinate2D {
 
-    static let forestCenter = CLLocationCoordinate2D(latitude: 47.778836, longitude: -122.194417)
+    static let forestCenter = CLLocationCoordinate2D(latitude: 47.774836, longitude: -122.191695)
     
 }
 
 // add forest as a static constant of the MKCoordinateRegion class
 extension MKCoordinateRegion {
     
-    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 1200, longitudinalMeters: 500)
+    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 60, longitudinalMeters: 60)
     
 }
 
