@@ -122,11 +122,11 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if  metadataObjects.count != 0 && !alertActive {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                let qrCodes = repository.getQrCodes()
+                let qrCodes = repository.getSearches()
                 let objectString = object.stringValue ?? ""
                 
                 if qrCodes.contains(objectString) {
-                    if let thisItem = repository.getItemFromQrCode(qrCode: objectString) {
+                    if let thisItem = repository.getItemFrom(search: objectString) {
                         alertActive = true
                         print("alert active")
                         setUpAlerts(for: thisItem)
