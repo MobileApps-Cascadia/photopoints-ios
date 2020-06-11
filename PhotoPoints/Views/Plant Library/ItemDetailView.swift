@@ -50,19 +50,21 @@ class ItemDetailView: UIViewController {
         infoStack.addArrangedSubview(pnwLabel)
         
         // story
-        let path = Bundle.main.path(forResource: "\(thisItem.id)_story", ofType: "txt")
-        
-        do {
-            let story = try String(contentsOfFile: path!, encoding: .utf8)
-            let storyLabel = UILabel()
-            storyLabel.text = story
-            storyLabel.textColor = UIColor(named: "pp-text-color")
+        if let id = thisItem.id {
+            let path = Bundle.main.path(forResource: "\(id)_story", ofType: "txt")
             
-            // wrap text
-            storyLabel.numberOfLines = 0
-            infoStack.addArrangedSubview(storyLabel)
-        } catch { print("file not found") }
-        
+            do {
+                let story = try String(contentsOfFile: path!, encoding: .utf8)
+                let storyLabel = UILabel()
+                storyLabel.text = story
+                storyLabel.textColor = UIColor(named: "pp-text-color")
+                
+                // wrap text
+                storyLabel.numberOfLines = 0
+                infoStack.addArrangedSubview(storyLabel)
+            } catch { print("file not found") }
+        }
+
         // botanical name
         if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
             let categoryBotanical = ItemDetailLabel(string: "Botanical Name")
