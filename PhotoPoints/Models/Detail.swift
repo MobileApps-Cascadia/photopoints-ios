@@ -14,14 +14,13 @@
 
 
 import Foundation
-import RealmSwift
 
-class Detail: Object {
+class Detail {
     
-    // Realm object fields
-    @objc dynamic var id: String? = nil               // must be set to be valid
-    @objc dynamic var property: String? = nil         // must be set to be valid
-    @objc dynamic var value: String? = nil
+    // object fields
+    var id: String? = nil               // must be set to be valid
+    var property: String? = nil         // must be set to be valid
+    var value: String? = nil
     
     // establishes parent object relationship
     let parent = LinkingObjects(fromType: Item.self, property: "details")

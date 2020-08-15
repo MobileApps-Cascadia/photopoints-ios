@@ -14,15 +14,14 @@
 
 import Foundation
 import CoreLocation
-import RealmSwift
 
 
-class Coordinate: Object {
+class Coordinate {
     
-    // Realm object fields
-    @objc dynamic var latitude: Double = 0.0
-    @objc dynamic var longitude: Double = 0.0
-    @objc dynamic var altitude: Double = 0.0
+    // object fields
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var altitude: Double = 0.0
     
     // establishes parent object relationship
     let parent = LinkingObjects(fromType: Point.self, property: "location")

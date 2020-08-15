@@ -6,7 +6,6 @@
 //  An interface layer between the UI, the local database, and the API
 
 import Foundation
-import RealmSwift
 import UIKit
 
 class Repository {
@@ -19,30 +18,16 @@ class Repository {
 
     // create a queue for operations requiring thread safety
     private let serialQueue = DispatchQueue(label: "repoQueue")
-
-    // instantiate the database. Creates a new one if none exists
-    private let realm: Realm
-    
-    private init() {
-        // instantiate the database, creating a new one if required
-        let config = Realm.Configuration( deleteRealmIfMigrationNeeded: true )
-        Realm.Configuration.defaultConfiguration = config
-        self.realm = try! Realm()
-    }
     
     
     func loadInitData() {
         // clear existing database data
-        try! realm.write{ realm.deleteAll() }
         
         // build mock database
         MockDatabase.build()
         
-        // write to realm
-        try! realm.write {
-            realm.add(MockDatabase.mockdb)
-            realm.add(MockDatabase.qrLookups)
-        }
+        // write to core data
+
     }
 
     // MARK: - Data Retrieval

@@ -8,8 +8,6 @@
 
 import UIKit
 import MapKit
-import Realm
-import RealmSwift
 
 // fake singleton
 let mapVC = MapView()

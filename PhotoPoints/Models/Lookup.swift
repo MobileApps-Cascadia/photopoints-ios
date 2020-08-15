@@ -12,13 +12,12 @@
 
 
 import Foundation
-import RealmSwift
 
-class Lookup: Object {
+class Lookup {
     
     // Realm object fields
-    @objc dynamic var search: String = ""                     // must be set to be valid
-    @objc dynamic var id: String?                             // must be set to be valid
+    var search: String = ""                     // must be set to be valid
+    var id: String?                             // must be set to be valid
 
     // establish primary key for this object
     override static func primaryKey() -> String? {

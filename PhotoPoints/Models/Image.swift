@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import Realm
-import RealmSwift
 
 @objc enum ImageType: Int, RealmEnum {
     case unknown = 0
@@ -19,15 +17,15 @@ import RealmSwift
     case thumbnail = 400
 }
 
-class Image: Object {
+class Image {
 
-    @objc dynamic var filename: String = ""
-    @objc dynamic var baseFilename: String? = nil
-    @objc dynamic var id: String? = nil
-    @objc dynamic var type: ImageType = .unknown
-    @objc dynamic var title: String?
-    @objc dynamic var desc: String?
-    @objc dynamic var license: String?
+    var filename: String = ""
+    var baseFilename: String? = nil
+    var id: String? = nil
+    var type: ImageType = .unknown
+    var title: String?
+    var desc: String?
+    var license: String?
     
     convenience init(filename: String, baseFilename: String? = nil, id: String? = nil, type: ImageType = .unknown,
                      title: String? = nil, desc: String? = nil, license: String? = nil) {

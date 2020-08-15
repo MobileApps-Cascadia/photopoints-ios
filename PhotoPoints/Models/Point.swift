@@ -15,15 +15,14 @@
 
 
 import Foundation
-import RealmSwift
 
-class Point: Object {
+class Point {
     
-    // Realm object fields
-    @objc dynamic var id: String? = nil
-    @objc dynamic var label: String? = nil
-    @objc dynamic var location: Coordinate? = nil
-    @objc dynamic var enabled: Bool = false
+    // object fields
+    var id: String? = nil
+    var label: String? = nil
+    var location: Coordinate? = nil
+    var enabled: Bool = false
     
     // establishes "id" as primary key for this point (and its parent "Item")
     // should never be modified once written to database

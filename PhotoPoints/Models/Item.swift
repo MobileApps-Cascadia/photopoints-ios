@@ -14,15 +14,12 @@
 //  images:    List of records for selecting and accessing image files related to the item
 
 import Foundation
-import Realm
-import RealmSwift
 
-
-class Item: Object {
+class Item {
     
     // Realm data fields
-    @objc dynamic var id: String? = nil
-    @objc dynamic var point: Point? = nil
+    var id: String? = nil
+    var point: Point? = nil
     let details = List<Detail>()
     let images = List<Image>()
 
