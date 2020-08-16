@@ -46,23 +46,6 @@
 		F3E66AAE2463514B009650B2 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E66AAD2463514B009650B2 /* Point.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F30CA2192460A2FC00CEA2A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F30CA1F72460A2F800CEA2A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F30CA1FE2460A2F800CEA2A6;
-			remoteInfo = PhotoPoints;
-		};
-		F30CA2242460A2FC00CEA2A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F30CA1F72460A2F800CEA2A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F30CA1FE2460A2F800CEA2A6;
-			remoteInfo = PhotoPoints;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3F33389E247E454D00F89653 /* SimpleAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnnotation.swift; sourceTree = "<group>"; };
 		3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -73,8 +56,6 @@
 		F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F30CA2112460A2FC00CEA2A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F30CA2132460A2FC00CEA2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F30CA2182460A2FC00CEA2A6 /* PhotoPointsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoPointsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30CA2232460A2FC00CEA2A6 /* PhotoPointsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoPointsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30CA2362460A3D700CEA2A6 /* ScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
@@ -109,20 +90,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		F30CA1FC2460A2F800CEA2A6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F30CA2152460A2FC00CEA2A6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F30CA2202460A2FC00CEA2A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -164,8 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */,
-				F30CA2182460A2FC00CEA2A6 /* PhotoPointsTests.xctest */,
-				F30CA2232460A2FC00CEA2A6 /* PhotoPointsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,45 +246,6 @@
 			productReference = F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F30CA2172460A2FC00CEA2A6 /* PhotoPointsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F30CA22F2460A2FC00CEA2A6 /* Build configuration list for PBXNativeTarget "PhotoPointsTests" */;
-			buildPhases = (
-				7C5ECA72C5FAF0B997978DD7 /* [CP] Check Pods Manifest.lock */,
-				F30CA2142460A2FC00CEA2A6 /* Sources */,
-				F30CA2152460A2FC00CEA2A6 /* Frameworks */,
-				F30CA2162460A2FC00CEA2A6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F30CA21A2460A2FC00CEA2A6 /* PBXTargetDependency */,
-			);
-			name = PhotoPointsTests;
-			productName = PhotoPointsTests;
-			productReference = F30CA2182460A2FC00CEA2A6 /* PhotoPointsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F30CA2222460A2FC00CEA2A6 /* PhotoPointsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F30CA2322460A2FC00CEA2A6 /* Build configuration list for PBXNativeTarget "PhotoPointsUITests" */;
-			buildPhases = (
-				53E80AAA50CE9C67F08D4AF6 /* [CP] Check Pods Manifest.lock */,
-				F30CA21F2460A2FC00CEA2A6 /* Sources */,
-				F30CA2202460A2FC00CEA2A6 /* Frameworks */,
-				F30CA2212460A2FC00CEA2A6 /* Resources */,
-				C90DC4DD2EF5BFB0C1A6F3B6 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F30CA2252460A2FC00CEA2A6 /* PBXTargetDependency */,
-			);
-			name = PhotoPointsUITests;
-			productName = PhotoPointsUITests;
-			productReference = F30CA2232460A2FC00CEA2A6 /* PhotoPointsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -332,14 +258,6 @@
 				TargetAttributes = {
 					F30CA1FE2460A2F800CEA2A6 = {
 						CreatedOnToolsVersion = 11.4;
-					};
-					F30CA2172460A2FC00CEA2A6 = {
-						CreatedOnToolsVersion = 11.4;
-						TestTargetID = F30CA1FE2460A2F800CEA2A6;
-					};
-					F30CA2222460A2FC00CEA2A6 = {
-						CreatedOnToolsVersion = 11.4;
-						TestTargetID = F30CA1FE2460A2F800CEA2A6;
 					};
 				};
 			};
@@ -357,8 +275,6 @@
 			projectRoot = "";
 			targets = (
 				F30CA1FE2460A2F800CEA2A6 /* PhotoPoints */,
-				F30CA2172460A2FC00CEA2A6 /* PhotoPointsTests */,
-				F30CA2222460A2FC00CEA2A6 /* PhotoPointsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -387,67 +303,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F30CA2162460A2FC00CEA2A6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F30CA2212460A2FC00CEA2A6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		53E80AAA50CE9C67F08D4AF6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PhotoPoints-PhotoPointsUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C5ECA72C5FAF0B997978DD7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PhotoPointsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B87700BD01DF786E05B24DCC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,23 +326,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C90DC4DD2EF5BFB0C1A6F3B6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoPoints-PhotoPointsUITests/Pods-PhotoPoints-PhotoPointsUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7931CF1E6FFAA6775BE339E /* [CP] Embed Pods Frameworks */ = {
@@ -536,34 +377,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F30CA2142460A2FC00CEA2A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F30CA21F2460A2FC00CEA2A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F30CA21A2460A2FC00CEA2A6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F30CA1FE2460A2F800CEA2A6 /* PhotoPoints */;
-			targetProxy = F30CA2192460A2FC00CEA2A6 /* PBXContainerItemProxy */;
-		};
-		F30CA2252460A2FC00CEA2A6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F30CA1FE2460A2F800CEA2A6 /* PhotoPoints */;
-			targetProxy = F30CA2242460A2FC00CEA2A6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F30CA2102460A2FC00CEA2A6 /* LaunchScreen.storyboard */ = {
@@ -729,88 +543,6 @@
 			};
 			name = Release;
 		};
-		F30CA2302460A2FC00CEA2A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFVB576FM8;
-				INFOPLIST_FILE = PhotoPointsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.mobas.PhotoPointsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoPoints.app/PhotoPoints";
-			};
-			name = Debug;
-		};
-		F30CA2312460A2FC00CEA2A6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFVB576FM8;
-				INFOPLIST_FILE = PhotoPointsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.mobas.PhotoPointsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoPoints.app/PhotoPoints";
-			};
-			name = Release;
-		};
-		F30CA2332460A2FC00CEA2A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFVB576FM8;
-				INFOPLIST_FILE = PhotoPointsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.mobas.PhotoPointsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PhotoPoints;
-			};
-			name = Debug;
-		};
-		F30CA2342460A2FC00CEA2A6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFVB576FM8;
-				INFOPLIST_FILE = PhotoPointsUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.mobas.PhotoPointsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PhotoPoints;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -828,24 +560,6 @@
 			buildConfigurations = (
 				F30CA22D2460A2FC00CEA2A6 /* Debug */,
 				F30CA22E2460A2FC00CEA2A6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F30CA22F2460A2FC00CEA2A6 /* Build configuration list for PBXNativeTarget "PhotoPointsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F30CA2302460A2FC00CEA2A6 /* Debug */,
-				F30CA2312460A2FC00CEA2A6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F30CA2322460A2FC00CEA2A6 /* Build configuration list for PBXNativeTarget "PhotoPointsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F30CA2332460A2FC00CEA2A6 /* Debug */,
-				F30CA2342460A2FC00CEA2A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
