@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc enum ImageType: Int, RealmEnum {
+enum ImageType: Int {
     case unknown = 0
     case full = 100
     case detail = 200
