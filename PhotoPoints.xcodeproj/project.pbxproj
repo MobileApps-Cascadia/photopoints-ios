@@ -14,8 +14,6 @@
 		F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */; };
 		F30CA20F2460A2FC00CEA2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */; };
 		F30CA2122460A2FC00CEA2A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F30CA2102460A2FC00CEA2A6 /* LaunchScreen.storyboard */; };
-		F30CA21D2460A2FC00CEA2A6 /* PhotoPointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA21C2460A2FC00CEA2A6 /* PhotoPointsTests.swift */; };
-		F30CA2282460A2FC00CEA2A6 /* PhotoPointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2272460A2FC00CEA2A6 /* PhotoPointsUITests.swift */; };
 		F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2362460A3D700CEA2A6 /* ScannerView.swift */; };
 		F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */; };
 		F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */; };
@@ -41,6 +39,7 @@
 		F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */; };
 		F336EFD8246CE26F0035B12E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336EFD7246CE26F0035B12E /* Item.swift */; };
 		F336EFDA246CE7F00035B12E /* Lookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336EFD9246CE7F00035B12E /* Lookup.swift */; };
+		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
 		F399B0422463257800BEF013 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399B0412463257800BEF013 /* Coordinate.swift */; };
 		F3BA1BF8247DB75700F279D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BA1BF7247DB75700F279D1 /* Image.swift */; };
 		F3BA1BFA247DB7FD00F279D1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BA1BF9247DB7FD00F279D1 /* Detail.swift */; };
@@ -75,11 +74,7 @@
 		F30CA2112460A2FC00CEA2A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F30CA2132460A2FC00CEA2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30CA2182460A2FC00CEA2A6 /* PhotoPointsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoPointsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30CA21C2460A2FC00CEA2A6 /* PhotoPointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPointsTests.swift; sourceTree = "<group>"; };
-		F30CA21E2460A2FC00CEA2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30CA2232460A2FC00CEA2A6 /* PhotoPointsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoPointsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30CA2272460A2FC00CEA2A6 /* PhotoPointsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPointsUITests.swift; sourceTree = "<group>"; };
-		F30CA2292460A2FC00CEA2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30CA2362460A3D700CEA2A6 /* ScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
@@ -105,6 +100,7 @@
 		F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
 		F336EFD7246CE26F0035B12E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F336EFD9246CE7F00035B12E /* Lookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lookup.swift; sourceTree = "<group>"; };
+		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F399B0412463257800BEF013 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		F3BA1BF7247DB75700F279D1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		F3BA1BF9247DB7FD00F279D1 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
@@ -158,9 +154,8 @@
 		F30CA1F62460A2F800CEA2A6 = {
 			isa = PBXGroup;
 			children = (
+				F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */,
 				F30CA2012460A2F800CEA2A6 /* PhotoPoints */,
-				F30CA21B2460A2FC00CEA2A6 /* PhotoPointsTests */,
-				F30CA2262460A2FC00CEA2A6 /* PhotoPointsUITests */,
 				F30CA2002460A2F800CEA2A6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,24 +184,6 @@
 				F30CA2132460A2FC00CEA2A6 /* Info.plist */,
 			);
 			path = PhotoPoints;
-			sourceTree = "<group>";
-		};
-		F30CA21B2460A2FC00CEA2A6 /* PhotoPointsTests */ = {
-			isa = PBXGroup;
-			children = (
-				F30CA21C2460A2FC00CEA2A6 /* PhotoPointsTests.swift */,
-				F30CA21E2460A2FC00CEA2A6 /* Info.plist */,
-			);
-			path = PhotoPointsTests;
-			sourceTree = "<group>";
-		};
-		F30CA2262460A2FC00CEA2A6 /* PhotoPointsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F30CA2272460A2FC00CEA2A6 /* PhotoPointsUITests.swift */,
-				F30CA2292460A2FC00CEA2A6 /* Info.plist */,
-			);
-			path = PhotoPointsUITests;
 			sourceTree = "<group>";
 		};
 		F30CA2352460A3D700CEA2A6 /* Scanner */ = {
@@ -543,6 +520,7 @@
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* CustomAnnotation.swift in Sources */,
 				3F33389F247E454D00F89653 /* SimpleAnnotation.swift in Sources */,
+				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
@@ -562,7 +540,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30CA21D2460A2FC00CEA2A6 /* PhotoPointsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +547,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30CA2282460A2FC00CEA2A6 /* PhotoPointsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +851,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F347B06324E8D1A700E76E3B /* Model.xcdatamodel */,
+			);
+			currentVersion = F347B06324E8D1A700E76E3B /* Model.xcdatamodel */;
+			path = PhotoPoints.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F30CA1F72460A2F800CEA2A6 /* Project object */;
 }
