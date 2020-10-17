@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,10 +46,6 @@
 		F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */; };
 		F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */; };
 		F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */; };
-		F38F505324EC81B700016F8C /* Lookup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504724EC81B700016F8C /* Lookup+CoreDataClass.swift */; };
-		F38F505424EC81B700016F8C /* Lookup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504824EC81B700016F8C /* Lookup+CoreDataProperties.swift */; };
-		F38F505524EC81B700016F8C /* Point+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504924EC81B700016F8C /* Point+CoreDataClass.swift */; };
-		F38F505624EC81B700016F8C /* Point+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504A24EC81B700016F8C /* Point+CoreDataProperties.swift */; };
 		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,10 +91,6 @@
 		F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F38F504724EC81B700016F8C /* Lookup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lookup+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F38F504824EC81B700016F8C /* Lookup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lookup+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F38F504924EC81B700016F8C /* Point+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F38F504A24EC81B700016F8C /* Point+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,18 +179,14 @@
 			children = (
 				F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */,
 				F38F505724EC82F100016F8C /* ImageType.swift */,
-				F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */,
-				F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */,
 				F38F504124EC81B700016F8C /* Coordinate+CoreDataClass.swift */,
 				F38F504224EC81B700016F8C /* Coordinate+CoreDataProperties.swift */,
 				F38F504324EC81B700016F8C /* Detail+CoreDataClass.swift */,
 				F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */,
+				F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */,
+				F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */,
 				F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */,
 				F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */,
-				F38F504724EC81B700016F8C /* Lookup+CoreDataClass.swift */,
-				F38F504824EC81B700016F8C /* Lookup+CoreDataProperties.swift */,
-				F38F504924EC81B700016F8C /* Point+CoreDataClass.swift */,
-				F38F504A24EC81B700016F8C /* Point+CoreDataProperties.swift */,
 				DC3FDF982467A2D100DD613A /* Repository.swift */,
 				F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */,
 				F30CA2522460A3D700CEA2A6 /* Stories */,
@@ -330,7 +318,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
-				F38F505424EC81B700016F8C /* Lookup+CoreDataProperties.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
@@ -348,10 +335,7 @@
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
-				F38F505524EC81B700016F8C /* Point+CoreDataClass.swift in Sources */,
 				F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */,
-				F38F505324EC81B700016F8C /* Lookup+CoreDataClass.swift in Sources */,
-				F38F505624EC81B700016F8C /* Point+CoreDataProperties.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
