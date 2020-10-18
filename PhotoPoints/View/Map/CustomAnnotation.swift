@@ -27,7 +27,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
     }
     
     //Enum for changing map marker states
-       enum SurveyState{
+       enum SurveyState {
            case unsurveyed
            case surveyed
            case visited
@@ -37,7 +37,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
        var mapState = SurveyState.unvisted
        
        //Switch statement for changing the survey state of a photopoint. currently contains test code.
-       func switchState(){
+       func switchState() {
            switch mapState {
            case .unsurveyed:
                print("Unsurveyed")
@@ -47,6 +47,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
                print("Visted")
            case .unvisted:
                print("Unvisted")
-                  }
+            
+           }
        }
 }

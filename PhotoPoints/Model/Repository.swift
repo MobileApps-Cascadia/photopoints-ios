@@ -24,21 +24,40 @@ class Repository {
     
     func loadInitData() {
         
+        // clear data
+        clearData(entityNames: ["Coordinate", "Detail", "Image", "Item"])
+        
         // build mock database
         MockDatabase.build()
         
         // write to core data
         do {
             try context.save()
-        } catch {
+        } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
+    
+    }
+    
+    func clearData(entityNames: [String]) {
+        for entity in entityNames {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+            let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
+            do {
+                try context.execute(deleteReq)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    // utility function to get the number of records for a given entity
+    func printCount(entityName: String) {
         // test to see how many rows are in each entity
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
             let count = try context.count(for: fetchRequest)
-            print("Item rows: \(count)")
+            print("\(entityName) rows: \(count)")
         } catch {
             print(error.localizedDescription)
         }
