@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F33389F247E454D00F89653 /* SimpleAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33389E247E454D00F89653 /* SimpleAnnotation.swift */; };
-		3F5B661D2562657300AC19DA /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B661C2562657300AC19DA /* MapOverlayView.swift */; };
 		3F5B66202568E7AF00AC19DA /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */; };
 		3FB5AA4E247E2CD100DF2966 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */; };
 		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
@@ -53,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		3F33389E247E454D00F89653 /* SimpleAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnnotation.swift; sourceTree = "<group>"; };
-		3F5B661C2562657300AC19DA /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
 		3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
-				3F5B661C2562657300AC19DA /* MapOverlayView.swift */,
 				3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */,
 				3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */,
 				3F33389E247E454D00F89653 /* SimpleAnnotation.swift */,
@@ -335,7 +332,6 @@
 				3F33389F247E454D00F89653 /* SimpleAnnotation.swift in Sources */,
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
 				F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */,
-				3F5B661D2562657300AC19DA /* MapOverlayView.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
