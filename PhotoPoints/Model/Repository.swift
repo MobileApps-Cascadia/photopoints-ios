@@ -36,6 +36,9 @@ class Repository {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        
+        // load images to filesystem
+        loadInitImages()
     
     }
     
@@ -51,12 +54,24 @@ class Repository {
         }
     }
     
+    // load initial images from xcassets to filesystem to allow us to test getting images
+    // from filesystem, as this is what we'll do for images retrieved from API.
+    func loadInitImages() {
+        if let items = getItems() {
+            for item in items {
+                if let image = getImageFromXcAssets(item: item), let fileName = getImageNameFromXcAssets(item: item) {
+                    ImageManager.storeImage(image: image, with: fileName)
+                }
+            }
+        }
+    }
+    
     // utility function to get the number of records for a given entity
     func printCount(entityName: String) {
         // test to see how many rows are in each entity
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
-            let count = try context.count(for: fetchRequest)
+            let count = try context.count(for: request)
             print("\(entityName) rows: \(count)")
         } catch {
             print(error.localizedDescription)
@@ -73,13 +88,36 @@ class Repository {
         }
     }
     
-    func getImage(item: Item) -> UIImage? {
+    func getImageFromXcAssets(item: Item) -> UIImage? {
         let request = Image.fetchRequest() as NSFetchRequest<Image>
         let predicate = NSPredicate(format: "item == %@", item)
         request.predicate = predicate
         
         if let image = try? context.fetch(request).first {
             return UIImage(named: "\(image.filename).png")
+        }
+        
+        return nil
+    }
+    
+    func getImageNameFromXcAssets(item: Item) -> String? {
+        let request = Image.fetchRequest() as NSFetchRequest<Image>
+        let predicate = NSPredicate(format: "item == %@", item)
+        request.predicate = predicate
+        
+        if let image = try? context.fetch(request).first {
+            return image.filename
+        }
+        
+        return nil
+    }
+    
+    func getImageFromFilesystem(item: Item) -> UIImage? {
+        
+        if let firstImage = item.images?.allObjects.first as? Image {
+            let fileName = firstImage.filename
+            print(ImageManager.getPath(for: fileName))
+            return ImageManager.getImage(from: fileName)
         }
         
         return nil

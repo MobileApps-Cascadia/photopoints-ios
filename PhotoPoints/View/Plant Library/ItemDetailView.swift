@@ -17,7 +17,7 @@ class ItemDetailView: UIViewController {
     var alertDelegate: AlertDelegate!
     
     lazy var imageView: UIImageView = {
-        let imageView = UIImageView(image: repository.getImage(item: thisItem))
+        let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
