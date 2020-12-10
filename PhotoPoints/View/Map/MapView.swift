@@ -14,6 +14,8 @@ let mapVC = MapView()
 
 class MapView: UIViewController {
 
+var tileRenderer : MKTileOverlayRenderer!
+    
 private var allAnnotations: [CustomAnnotation]?
 
     let repository = Repository.instance
@@ -48,7 +50,21 @@ private var allAnnotations: [CustomAnnotation]?
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
     }
     
-    
+    private func setupTileRenderer() {
+        
+        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        
+        let overlay = MKTileOverlay(urlTemplate: template)
+
+        overlay.canReplaceMapContent = true
+        
+        mapView.addOverlay(overlay, level: .aboveLabels)
+        
+        tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
+
+        overlay.minimumZ = 13
+        overlay.maximumZ = 16
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +74,7 @@ private var allAnnotations: [CustomAnnotation]?
         registerAnnotations()
         
         showAllAnnotations(self)
+        
     }
     
        // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
@@ -68,6 +85,10 @@ private var allAnnotations: [CustomAnnotation]?
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
         mapView.mapType = .hybrid
+        
+        
+        //calls method to set up overlay
+        setupTileRenderer()
         
         // sets delegate
         mapView.delegate = self
@@ -81,6 +102,7 @@ private var allAnnotations: [CustomAnnotation]?
         fillAnnotations()
         mapView.addAnnotations(annotations)
         view.addSubview(mapView)
+        
     }
     
     func fillAnnotations() {
@@ -112,7 +134,10 @@ private var allAnnotations: [CustomAnnotation]?
 //    }
     
 }
-extension MapView: MKMapViewDelegate {
+extension MapView : MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{ return tileRenderer}
+
     
     // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -150,6 +175,8 @@ extension MapView: MKMapViewDelegate {
         
         return customAnnotationView
     }
+    
+   
     
 }
 
