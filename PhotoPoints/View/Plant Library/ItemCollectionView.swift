@@ -19,7 +19,7 @@ class ItemCollectionView: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureNavBar()
-        repository.loadInitData()
+//        repository.loadInitData()
     }
     
     func configureCollectionView() {
