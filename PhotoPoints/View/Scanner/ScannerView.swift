@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CryptoKit
 
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
 class ScannerView: UIViewController {
@@ -188,13 +189,15 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let hashString = String(image.hashValue)
+        if let pngRepresentation = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)?.pngData() {
+            let hashString = Insecure.MD5.hash(data: pngRepresentation).map {
+                String(format: "%02hhx", $0)
+            }.joined()
+            
             print("image stored with filename \(hashString)")
-            ImageManager.storeImage(image: image, with: hashString, to: .submission)
             self.dismiss(animated: true, completion: nil)
         } else {
-            print("error")
+            print("error storing user submission")
         }
     }
     
