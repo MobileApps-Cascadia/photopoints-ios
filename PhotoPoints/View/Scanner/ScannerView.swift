@@ -190,7 +190,8 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let hashString = String(image.hashValue)
-            ImageManager.storeImage(image: image, with: hashString)
+            print("image stored with filename \(hashString)")
+            ImageManager.storeImage(image: image, with: hashString, to: .submission)
             self.dismiss(animated: true, completion: nil)
         } else {
             print("error")
