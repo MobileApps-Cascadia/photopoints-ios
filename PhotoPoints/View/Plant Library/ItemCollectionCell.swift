@@ -70,7 +70,7 @@ class ItemCollectionCell: UICollectionViewCell {
     }
     
     func configureFor(item: Item) {
-        imageView.image = repository.getImage(item: item)
+        imageView.image = repository.getImageFromFilesystem(item: item)
         titleLabel.text = item.label 
         subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
     }

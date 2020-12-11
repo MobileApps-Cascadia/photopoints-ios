@@ -17,22 +17,35 @@ enum ImageDirectory {
 
 class ImageManager {
     
+    static let fm = FileManager.default
+    
     // optional output - could enter a bad name
     static func getPath(for fileName: String) -> URL? {
         
         // get the document directory URL
-        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-                
+        guard let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        
+        //
+        let imagesURL = documentURL.appendingPathComponent("/images/")
+        
+        if (try? imagesURL.checkResourceIsReachable()) == nil {
+            do {
+                try fm.createDirectory(at: imagesURL, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                print("error in creating images directory: \(error.localizedDescription)")
+            }
+        }
+        
         // tack on the photo hash + png to get the full URL
-        return documentURL.appendingPathComponent(fileName + ".png")
+        return imagesURL.appendingPathComponent(fileName + ".png")
         
     }
 
     // optional output - could enter a bad name
     static func getImage(from fileName: String) -> UIImage? {
         
-        // file name -> path -> contents at path -> UIImage with those contents returned
-        if let imagePath = getPath(for: fileName), let fileData = FileManager.default.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
+        // file name > path > contents at path > UIImage with those contents returned
+        if let imagePath = getPath(for: fileName), let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
             return image
         }
         
