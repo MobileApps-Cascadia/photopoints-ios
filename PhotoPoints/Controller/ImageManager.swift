@@ -10,18 +10,23 @@
 import Foundation
 import UIKit
 
+enum SubDirectory: String {
+    case images = "images"
+    case photos = "photos"
+}
+
 class ImageManager {
     
     static let fm = FileManager.default
     
     // optional output - could enter a bad name
-    static func getPath(for fileName: String) -> URL? {
+    static func getPath(for fileName: String, in subDirectory: SubDirectory) -> URL? {
         
         // get the document directory URL
         guard let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         
         // navigate to images subdirectory
-        let imageURL = documentURL.appendingPathComponent("images/")
+        let imageURL = documentURL.appendingPathComponent("\(subDirectory)/")
         
         // create the subdirectory if it does not exist
         if (try? imageURL.checkResourceIsReachable()) == nil {
@@ -38,23 +43,23 @@ class ImageManager {
     }
 
     // optional output - could enter a bad name
-    static func getImage(from fileName: String) -> UIImage? {
+    static func getImage(from fileName: String, in subDirectory: SubDirectory) -> UIImage? {
         
         // file name > path > contents at path > UIImage with those contents returned
-        if let imagePath = getPath(for: fileName), let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
+        if let imagePath = getPath(for: fileName, in: subDirectory), let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
             return image
         }
         
         return nil
     }
     
-    static func storeImage(image: UIImage, with fileName: String) {
+    static func storeImage(image: UIImage, with fileName: String, to subDirectory: SubDirectory) {
         
         // UIImage has pngData method
         if let pngRepresentation = image.pngData() {
             // save to disk
             // filePath returns optional URL
-            if let filePath = getPath(for: fileName){
+            if let filePath = getPath(for: fileName, in: subDirectory){
                 do {
                     // Data has a write method
                     try pngRepresentation.write(to: filePath, options: .atomic)
