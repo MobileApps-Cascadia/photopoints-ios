@@ -116,7 +116,7 @@ class Repository {
         
         if let firstImage = item.images?.allObjects.first as? Image {
             let fileName = firstImage.filename
-            print(ImageManager.getPath(for: fileName))
+            print(ImageManager.getPath(for: fileName) ?? "no path found for \(firstImage.item.label ?? "unknown item")")
             return ImageManager.getImage(from: fileName)
         }
         
