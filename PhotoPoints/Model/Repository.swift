@@ -60,7 +60,7 @@ class Repository {
         if let items = getItems() {
             for item in items {
                 if let image = getImageFromXcAssets(item: item), let fileName = getImageNameFromXcAssets(item: item) {
-                    ImageManager.storeImage(image: image, with: fileName)
+                    ImageManager.storeImage(image: image, with: fileName, to: .images)
                 }
             }
         }
@@ -116,8 +116,8 @@ class Repository {
         
         if let firstImage = item.images?.allObjects.first as? Image {
             let fileName = firstImage.filename
-            print(ImageManager.getPath(for: fileName) ?? "no path found for \(firstImage.item.label ?? "unknown item")")
-            return ImageManager.getImage(from: fileName)
+            print(ImageManager.getPath(for: fileName, in: .images) ?? "no path found for \(firstImage.item.label ?? "unknown item")")
+            return ImageManager.getImage(from: fileName, in: .images)
         }
         
         return nil
