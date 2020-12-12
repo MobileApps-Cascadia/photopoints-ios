@@ -107,7 +107,7 @@ class ItemDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "pp-background")
-        title = repository.getDetailValue(item: thisItem, property: "common_name")
+        title = thisItem.label
         setUpScrollView()
     }
     
