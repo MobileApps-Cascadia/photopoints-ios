@@ -33,7 +33,7 @@ class StartupManager {
     
     static func storeAppConfigData(){
         let defaults = UserDefaults.standard
-        defaults.set(nil, forKey: "LastUpdated")
+        defaults.set(Date(), forKey: "LastUpdated")
         
         // future keys to be added:
         
