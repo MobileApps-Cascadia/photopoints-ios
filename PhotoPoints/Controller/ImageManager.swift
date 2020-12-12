@@ -25,17 +25,8 @@ class ImageManager {
         // get the document directory URL
         guard let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         
-        // navigate to images subdirectory
+        // navigate to specified subdirectory
         let imageURL = documentURL.appendingPathComponent("\(subDirectory)/")
-        
-        // create the subdirectory if it does not exist
-        if (try? imageURL.checkResourceIsReachable()) == nil {
-            do {
-                try fm.createDirectory(at: imageURL, withIntermediateDirectories: true, attributes: nil)
-            } catch let error {
-                print("error in creating images directory: \(error.localizedDescription)")
-            }
-        }
         
         // tack on the photo hash + png to get the full URL
         return imageURL.appendingPathComponent(fileName + ".png")
@@ -63,8 +54,8 @@ class ImageManager {
                 do {
                     // Data has a write method
                     try pngRepresentation.write(to: filePath, options: .atomic)
-                } catch let err {
-                    print("Saving file resulted in error: ", err)
+                } catch {
+                    print("Saving file resulted in error: ", error)
                 }
             }
         }

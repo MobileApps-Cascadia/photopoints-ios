@@ -49,6 +49,7 @@
 		F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */; };
 		F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */; };
 		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
+		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
+				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
 				F30CA24F2460A3D700CEA2A6 /* Model */,
 				F3095932246BA5900088FB19 /* View */,
 				F309592F246BA1690088FB19 /* Controller */,
@@ -346,6 +349,7 @@
 				F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
+				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */,
