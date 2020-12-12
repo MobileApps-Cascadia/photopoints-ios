@@ -11,6 +11,7 @@ import Foundation
 class StartupManager {
     
     static func run(){
+        storeAppConfigData()
         createImageAndPhotoDirectories()
         Repository.instance.loadInitData()
     }
@@ -29,5 +30,20 @@ class StartupManager {
             }
         }
     }
+    
+    static func storeAppConfigData(){
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: "LastUpdated")
+        
+        // future keys to be added:
+        
+        // only upload on wifi
+        // API database version
+        
+    }
+    
+    
+    
+    
     
 }
