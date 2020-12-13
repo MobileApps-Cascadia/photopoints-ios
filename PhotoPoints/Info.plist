@@ -19,9 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow PhotoPoints to access the camera?</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow PhotoPoints to access the microphone?</string>
+	<string>Allow PhotoPoints to access camera?</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

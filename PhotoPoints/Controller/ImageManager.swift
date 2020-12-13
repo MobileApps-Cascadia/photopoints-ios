@@ -54,6 +54,7 @@ class ImageManager {
                 do {
                     // Data has a write method
                     try pngRepresentation.write(to: filePath, options: .atomic)
+                    
                 } catch {
                     print("Saving file resulted in error: ", error)
                 }

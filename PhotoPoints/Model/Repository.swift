@@ -22,51 +22,7 @@ class Repository {
     // get managed context so we can save to core data persistent container
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func loadInitData() {
-        
-        // clear data
-        clearData(entityNames: ["Coordinate", "Detail", "Image", "Item"])
-        
-        // build mock database
-        MockDatabase.build()
-        
-        // write to core data
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        // load images to filesystem
-        loadInitImages()
-    
-    }
-    
-    func clearData(entityNames: [String]) {
-        for entity in entityNames {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
-            do {
-                try context.execute(deleteReq)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    // load initial images from xcassets to filesystem to allow us to test getting images
-    // from filesystem, as this is what we'll do for images retrieved from API.
-    func loadInitImages() {
-        if let items = getItems() {
-            for item in items {
-                if let image = getImageFromXcAssets(item: item), let fileName = getImageNameFromXcAssets(item: item) {
-                    ImageManager.storeImage(image: image, with: fileName, to: .images)
-                }
-            }
-        }
-    }
-    
-    // utility function to get the number of records for a given entity
+    // utility / debugging function to get the number of records for a given entity
     func printCount(entityName: String) {
         // test to see how many rows are in each entity
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -116,8 +72,9 @@ class Repository {
         
         if let firstImage = item.images?.allObjects.first as? Image {
             let fileName = firstImage.filename
-            print(ImageManager.getPath(for: fileName, in: .images) ?? "no path found for \(firstImage.item.label ?? "unknown item")")
             return ImageManager.getImage(from: fileName, in: .images)
+        } else {
+            print("no path found for \(item.label ?? "unknown item")")
         }
         
         return nil
