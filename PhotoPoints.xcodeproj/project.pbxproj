@@ -10,6 +10,8 @@
 		3F33389F247E454D00F89653 /* SimpleAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33389E247E454D00F89653 /* SimpleAnnotation.swift */; };
 		3F5B66202568E7AF00AC19DA /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */; };
 		3F6A4CCA25852D0E006F38D0 /* initial_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A4CC925852D0E006F38D0 /* initial_data.json */; };
+		3F5B66292585956000AC19DA /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B66282585956000AC19DA /* MapOverlay.swift */; };
+		3F5B662C25859A9D00AC19DA /* tiles in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B662B25859A9D00AC19DA /* tiles */; };
 		3FB5AA4E247E2CD100DF2966 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */; };
 		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
 		F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3095930246BA1A40088FB19 /* ImageManager.swift */; };
@@ -56,6 +58,8 @@
 		3F33389E247E454D00F89653 /* SimpleAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnnotation.swift; sourceTree = "<group>"; };
 		3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		3F6A4CC925852D0E006F38D0 /* initial_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = initial_data.json; sourceTree = "<group>"; };
+		3F5B66282585956000AC19DA /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
+		3F5B662B25859A9D00AC19DA /* tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tiles; sourceTree = "<group>"; };
 		3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F3095930246BA1A40088FB19 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		F30CA2012460A2F800CEA2A6 /* PhotoPoints */ = {
 			isa = PBXGroup;
 			children = (
+				3F5B662B25859A9D00AC19DA /* tiles */,
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
 				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
@@ -231,6 +236,7 @@
 				3F5B661F2568E7AF00AC19DA /* MapOverlay.swift */,
 				3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */,
 				3F33389E247E454D00F89653 /* SimpleAnnotation.swift */,
+				3F5B66282585956000AC19DA /* MapOverlay.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				F30CA2852460A3D800CEA2A6 /* 28092_story.txt in Resources */,
 				F30CA28F2460A3D800CEA2A6 /* 28074_story.txt in Resources */,
 				F30CA28B2460A3D800CEA2A6 /* 28070_story.txt in Resources */,
+				3F5B662C25859A9D00AC19DA /* tiles in Resources */,
 				F30CA2922460A3D800CEA2A6 /* 28066_story.txt in Resources */,
 				F30CA2122460A2FC00CEA2A6 /* LaunchScreen.storyboard in Resources */,
 				F30CA2912460A3D800CEA2A6 /* 28072_story.txt in Resources */,
@@ -330,6 +337,7 @@
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
+				3F5B66292585956000AC19DA /* MapOverlay.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
@@ -353,7 +361,6 @@
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */,
-				3F5B66202568E7AF00AC19DA /* MapOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
