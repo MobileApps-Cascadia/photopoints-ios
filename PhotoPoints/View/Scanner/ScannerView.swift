@@ -194,7 +194,7 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
                 String(format: "%02hhx", $0)
             }.joined()
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
-            print("image stored with filename \(hashString)")
+            print("photo stored with filename \(hashString)")
             self.dismiss(animated: true, completion: nil)
         } else {
             print("error storing user submission")
