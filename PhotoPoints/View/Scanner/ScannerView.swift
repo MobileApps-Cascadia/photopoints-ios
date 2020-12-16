@@ -30,16 +30,18 @@ class ScannerView: UIViewController {
         return square
     }()
     
-    let loadingScreen: UIView = {
-        let screen = UIView()
-        screen.backgroundColor = UIColor(named: "pp-trans-gray")
-        
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.startAnimating()
-        screen.addSubview(indicator)
-        indicator.anchor(top: screen.topAnchor, left: screen.leftAnchor, bottom: screen.bottomAnchor, right: screen.rightAnchor)
-        
-        return screen
+    let loadingScreen = LoadView(frame: UIScreen.main.bounds)
+    
+    // photo capture view
+    lazy var imagePicker: ImagePickerWithAlertDelegate = {
+        let ip = ImagePickerWithAlertDelegate()
+        ip.delegate = self
+        ip.alertDelegate = self
+        ip.sourceType = .camera
+        ip.cameraDevice = .rear
+        ip.allowsEditing = false
+        ip.showsCameraControls = true
+        return ip
     }()
     
     // MARK: - Lifecycle
@@ -58,13 +60,11 @@ class ScannerView: UIViewController {
     // bring the session up again if we switch back to this view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showLoadScreen()
         session?.startRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadingScreen.removeFromSuperview()
     }
     
     // MARK: - Scanner
@@ -120,7 +120,6 @@ class ScannerView: UIViewController {
     
     func showLoadScreen() {
         view.addSubview(loadingScreen)
-        loadingScreen.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
     }
     
     func addNoAVDLabel() {
@@ -163,11 +162,27 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         detailView.alertDelegate = self
         
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
-        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            self.openCamera()
+        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { _ in
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                
+                self.openCamera()
+            }
+            
+            
         }))
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            self.present(detailView, animated: true, completion: nil)
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { _ in
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                self.present(detailView, animated: true) { [weak self] in
+                    self?.loadingScreen.removeFromSuperview()
+                }
+            }
+            
         }))
         
         present(scannedAlert, animated: true, completion: nil)
@@ -201,22 +216,8 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func openCamera() {
-        showLoadScreen()
-        let imagePicker = ImagePickerWithAlertDelegate()
-        imagePicker.delegate = self
-        imagePicker.alertDelegate = self
-        imagePicker.sourceType = .camera
-        imagePicker.cameraDevice = .rear
-        imagePicker.allowsEditing = false
-        imagePicker.showsCameraControls = true
         self.present(imagePicker, animated: true) { [weak self] in
-            if let loadingScreen = self?.loadingScreen {
-                
-                // check to make sure this is actually removing the load screen
-                loadingScreen.removeFromSuperview()
-                
-                print("completion called")
-            }
+            self?.loadingScreen.removeFromSuperview()
         }
     }
     
