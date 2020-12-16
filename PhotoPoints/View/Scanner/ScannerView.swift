@@ -30,6 +30,18 @@ class ScannerView: UIViewController {
         return square
     }()
     
+    let loadingScreen: UIView = {
+        let screen = UIView()
+        screen.backgroundColor = UIColor(named: "pp-trans-gray")
+        
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.startAnimating()
+        screen.addSubview(indicator)
+        indicator.anchor(top: screen.topAnchor, left: screen.leftAnchor, bottom: screen.bottomAnchor, right: screen.rightAnchor)
+        
+        return screen
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -46,7 +58,13 @@ class ScannerView: UIViewController {
     // bring the session up again if we switch back to this view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showLoadScreen()
         session?.startRunning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadingScreen.removeFromSuperview()
     }
     
     // MARK: - Scanner
@@ -98,6 +116,11 @@ class ScannerView: UIViewController {
         scannerSquare.anchor(width: width, height: width)
         scannerSquare.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         scannerSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func showLoadScreen() {
+        view.addSubview(loadingScreen)
+        loadingScreen.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
     }
     
     func addNoAVDLabel() {
@@ -178,6 +201,7 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func openCamera() {
+        showLoadScreen()
         let imagePicker = ImagePickerWithAlertDelegate()
         imagePicker.delegate = self
         imagePicker.alertDelegate = self
@@ -185,7 +209,15 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true) { [weak self] in
+            if let loadingScreen = self?.loadingScreen {
+                
+                // check to make sure this is actually removing the load screen
+                loadingScreen.removeFromSuperview()
+                
+                print("completion called")
+            }
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
