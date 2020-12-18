@@ -33,14 +33,7 @@ class ScannerView: UIViewController {
     let loadingScreen = LoadView()
     
     // photo capture view
-    let imagePicker: ImagePickerWithAlertDelegate = {
-        let ip = ImagePickerWithAlertDelegate()
-        ip.sourceType = .camera
-        ip.cameraDevice = .rear
-        ip.allowsEditing = false
-        ip.showsCameraControls = true
-        return ip
-    }()
+    let imagePicker = ImagePickerWithAlertDelegate()
     
     // MARK: - Lifecycle
     
@@ -220,6 +213,10 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func openCamera() {
+        imagePicker.sourceType = .camera
+        imagePicker.cameraDevice = .rear
+        imagePicker.allowsEditing = false
+        imagePicker.showsCameraControls = true
         self.present(imagePicker, animated: true) { [weak self] in
             self?.loadingScreen.removeFromSuperview()
         }
