@@ -30,13 +30,11 @@ class ScannerView: UIViewController {
         return square
     }()
     
-    let loadingScreen = LoadView(frame: UIScreen.main.bounds)
+    let loadingScreen = LoadView()
     
     // photo capture view
-    lazy var imagePicker: ImagePickerWithAlertDelegate = {
+    let imagePicker: ImagePickerWithAlertDelegate = {
         let ip = ImagePickerWithAlertDelegate()
-        ip.delegate = self
-        ip.alertDelegate = self
         ip.sourceType = .camera
         ip.cameraDevice = .rear
         ip.allowsEditing = false
@@ -49,6 +47,7 @@ class ScannerView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
+        addDelegates()
     }
     
     // terminate the session if we navigate off this view
@@ -119,6 +118,8 @@ class ScannerView: UIViewController {
     }
     
     func showLoadScreen() {
+        loadingScreen.frame = view.frame
+        loadingScreen.setUpIndicator()
         view.addSubview(loadingScreen)
     }
     
@@ -162,18 +163,16 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         detailView.alertDelegate = self
         
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
-        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { _ in
+        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
             
             self.showLoadScreen()
             
             DispatchQueue.main.async {
-                
                 self.openCamera()
             }
             
-            
         }))
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { _ in
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
             
             self.showLoadScreen()
             
@@ -213,6 +212,11 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func turnOffAlert() {
         self.alertActive = false
         print("alert inactive")
+    }
+    
+    func addDelegates() {
+        imagePicker.delegate = self
+        imagePicker.alertDelegate = self
     }
     
     func openCamera() {
