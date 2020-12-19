@@ -30,11 +30,24 @@ class ScannerView: UIViewController {
         return square
     }()
     
+    let loadingScreen = LoadView()
+    
+    // photo capture view
+    let imagePicker: ImagePickerWithAlertDelegate = {
+        let ip = ImagePickerWithAlertDelegate()
+        ip.sourceType = .camera
+        ip.cameraDevice = .rear
+        ip.allowsEditing = false
+        ip.showsCameraControls = true
+        return ip
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
+        addDelegates()
     }
     
     // terminate the session if we navigate off this view
@@ -47,6 +60,10 @@ class ScannerView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         session?.startRunning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     // MARK: - Scanner
@@ -100,6 +117,12 @@ class ScannerView: UIViewController {
         scannerSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
+    func showLoadScreen() {
+        loadingScreen.frame = view.frame
+        loadingScreen.setUpIndicator()
+        view.addSubview(loadingScreen)
+    }
+    
     func addNoAVDLabel() {
         let noAVDLabel = UILabel()
         noAVDLabel.text = "No AV Device"
@@ -141,10 +164,24 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            self.openCamera()
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                self.openCamera()
+            }
+            
         }))
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            self.present(detailView, animated: true, completion: nil)
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                self.present(detailView, animated: true) { [weak self] in
+                    self?.loadingScreen.removeFromSuperview()
+                }
+            }
+            
         }))
         
         present(scannedAlert, animated: true, completion: nil)
@@ -177,15 +214,15 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         print("alert inactive")
     }
     
-    func openCamera() {
-        let imagePicker = ImagePickerWithAlertDelegate()
+    func addDelegates() {
         imagePicker.delegate = self
         imagePicker.alertDelegate = self
-        imagePicker.sourceType = .camera
-        imagePicker.cameraDevice = .rear
-        imagePicker.allowsEditing = false
-        imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func openCamera() {
+        self.present(imagePicker, animated: true) { [weak self] in
+            self?.loadingScreen.removeFromSuperview()
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
