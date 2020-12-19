@@ -28,6 +28,7 @@
         <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Detail" inverseName="item" inverseEntity="Detail"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="item" inverseEntity="Image"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="item" inverseEntity="Coordinate"/>
+        <relationship name="submissions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission"/>
     </entity>
     <entity name="Submission" representedClassName="Submission" syncable="YES" codeGenerationType="class">
         <attribute name="answers" optional="YES" attributeType="String"/>
@@ -36,12 +37,13 @@
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String"/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="item" inverseEntity="Submission"/>
     </entity>
     <elements>
         <element name="Coordinate" positionX="713.10546875" positionY="60.0546875" width="128" height="103"/>
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="88"/>
         <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
-        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="134"/>
-        <element name="Submission" positionX="342" positionY="90" width="128" height="119"/>
+        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
+        <element name="Submission" positionX="342" positionY="90" width="128" height="134"/>
     </elements>
 </model>
