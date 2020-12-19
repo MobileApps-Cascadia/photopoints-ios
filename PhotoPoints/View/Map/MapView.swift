@@ -51,20 +51,13 @@ private var allAnnotations: [CustomAnnotation]?
     }
     
     private func setupTileRenderer() {
-        
-        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        
-        let overlay = MKTileOverlay(urlTemplate: template)
-
+        let overlay = MapOverlay()
         overlay.canReplaceMapContent = true
-        
         mapView.addOverlay(overlay, level: .aboveLabels)
-        
         tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
-
-        overlay.minimumZ = 13
-        overlay.maximumZ = 16
     }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +77,7 @@ private var allAnnotations: [CustomAnnotation]?
     
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
-        mapView.mapType = .hybrid
+        mapView.mapType = .standard
         
         
         //calls method to set up overlay
@@ -96,7 +89,7 @@ private var allAnnotations: [CustomAnnotation]?
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200000)
         
         // fill and add annotations
         fillAnnotations()
@@ -136,7 +129,13 @@ private var allAnnotations: [CustomAnnotation]?
 }
 extension MapView : MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{ return tileRenderer}
+    func mapView(
+      _ mapView: MKMapView,
+      rendererFor overlay: MKOverlay
+    ) -> MKOverlayRenderer {
+      return tileRenderer
+    }
+
 
     
     // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
