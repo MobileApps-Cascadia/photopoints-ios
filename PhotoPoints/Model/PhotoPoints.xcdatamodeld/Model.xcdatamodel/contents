@@ -38,21 +38,23 @@
         <attribute name="status" attributeType="String"/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="item" inverseEntity="Submission"/>
+        <relationship name="userPhoto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>
     </entity>
     <entity name="UserPhoto" representedClassName="UserPhoto" syncable="YES" codeGenerationType="class">
         <attribute name="photoHash" attributeType="String"/>
         <attribute name="photoSize" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="photoUrl" attributeType="URI"/>
+        <attribute name="photoUrl" optional="YES" attributeType="URI"/>
         <attribute name="result" attributeType="String" defaultValueString="(unset)"/>
         <attribute name="submitToUrl" optional="YES" attributeType="URI"/>
-        <attribute name="uploaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="userPhoto" inverseEntity="Submission"/>
     </entity>
     <elements>
         <element name="Coordinate" positionX="713.10546875" positionY="60.0546875" width="128" height="103"/>
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="88"/>
         <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
         <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
-        <element name="Submission" positionX="342" positionY="90" width="128" height="134"/>
-        <element name="UserPhoto" positionX="351" positionY="108" width="128" height="119"/>
+        <element name="Submission" positionX="342" positionY="90" width="128" height="149"/>
+        <element name="UserPhoto" positionX="351" positionY="108" width="128" height="134"/>
     </elements>
 </model>
