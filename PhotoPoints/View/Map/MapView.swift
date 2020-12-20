@@ -13,10 +13,8 @@ import MapKit
 let mapVC = MapView()
 
 class MapView: UIViewController {
-
-var tileRenderer : MKTileOverlayRenderer!
     
-private var allAnnotations: [CustomAnnotation]?
+    private var allAnnotations: [CustomAnnotation]?
 
     let repository = Repository.instance
     
@@ -46,31 +44,17 @@ private var allAnnotations: [CustomAnnotation]?
     
     // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
     func registerAnnotations(){
-        
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
     }
     
-    private func setupTileRenderer() {
-        let overlay = MapOverlay()
-        overlay.canReplaceMapContent = true
-        mapView.addOverlay(overlay, level: .aboveLabels)
-        tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
-    }
-
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpMap()
-        
         registerAnnotations()
-        
         showAllAnnotations(self)
-        
     }
     
-       // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
+    // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
     private func showAllAnnotations(_ sender: Any) {
         displayedAnnotations = allAnnotations
     }
@@ -78,10 +62,6 @@ private var allAnnotations: [CustomAnnotation]?
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
         mapView.mapType = .standard
-        
-        
-        //calls method to set up overlay
-        setupTileRenderer()
         
         // sets delegate
         mapView.delegate = self
@@ -99,7 +79,6 @@ private var allAnnotations: [CustomAnnotation]?
     }
     
     func fillAnnotations() {
-        
         let items = repository.getItems()!
         
         for item in items {
@@ -111,38 +90,14 @@ private var allAnnotations: [CustomAnnotation]?
         }
     }
     
-    // called in scannerView when we "survey" a plant
-    // surveyStatus has already been updated, but we want to reflect this on the map
-    
-    // TODO: figure out how to update survey status in map with new model
-    
-//    func didUpdateSurveyStatus(commonName: String) {
-//
-//        // find the first annotation matching the commonName string passed in
-//        let thisAnnotation = annotations.first(where: { (annotation) -> Bool in
-//            return annotation.title == commonName
-//        })
-//
-//        thisAnnotation?.subtitle = SurveyStatus.surveyed.rawValue
-//    }
-    
 }
 extension MapView : MKMapViewDelegate {
-    
-    func mapView(
-      _ mapView: MKMapView,
-      rendererFor overlay: MKOverlay
-    ) -> MKOverlayRenderer {
-      return tileRenderer
-    }
 
-
-    
     // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
           
         guard !annotation.isKind(of: MKUserLocation.self) else {
-              // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
+            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
             return nil
         }
           
@@ -152,8 +107,8 @@ extension MapView : MKMapViewDelegate {
             
         }
         
-          return annotationView
-      }
+        return annotationView
+    }
     
     // Sets up annotationViews for 'simpleAnnotation'
     private func setUpCustomAnnotationView(for annotation: CustomAnnotation, on mapView: MKMapView) -> MKAnnotationView{
