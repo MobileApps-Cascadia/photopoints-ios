@@ -17,7 +17,7 @@ class MockDatabase {
     
     static func build() {
         
-        mockdb.append(Item(id: "28097", label: "Pacific Willow", coordinate: Coordinate(latitude: 47.75036, longitude: -122.191449), details: ["common_names" : "Pacific Willow, Yellow Willow, Waxy Willow", "botanical_name" : "Salix lucida ssp. Lasiandra", "site" : "2", "category" : "Deciduous, Tree", "family" : ""], image: Image(filename: "0de693ef54a38b1224975fad7cac4e39")))
+        mockdb.append(Item(id: "28097", label: "Pacific Willow", coordinate: Coordinate(latitude: 47.775036, longitude: -122.191449), details: ["common_names" : "Pacific Willow, Yellow Willow, Waxy Willow", "botanical_name" : "Salix lucida ssp. Lasiandra", "site" : "2", "category" : "Deciduous, Tree", "family" : ""], image: Image(filename: "0de693ef54a38b1224975fad7cac4e39")))
         
         mockdb.append(Item(id: "28069", label: "Black Twinberry", coordinate: Coordinate(latitude: 47.774845, longitude: -122.191508), details: ["common_names" : "Black Twinberry, Bearberry Honeysuckle, Twinberry, Bush Honeysuckle",            "botanical_name" : "Lonicera Involucrata", "site" : "2", "category" : "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", "family" : "Caprifoliaceae"], image: Image(filename: "2d68e05603faeb2f249b62358f9c9495")))
 

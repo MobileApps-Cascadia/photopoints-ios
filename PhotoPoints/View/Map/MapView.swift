@@ -19,9 +19,7 @@ class MapView: UIViewController {
     let repository = Repository.instance
     
     // Creates new MKMapView for reference later
-    var mapView : MKMapView!
-    
-    // instance variable so it can be referenced in didUpdateSurveyStatus() edit: I seem to have misplaced this comment at some point; not sure what this refers to - Grant
+    var mapView: MKMapView!
     
     // Empty annotations array
     var annotations = [ItemAnnotation]()
@@ -61,7 +59,7 @@ class MapView: UIViewController {
     
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
-        mapView.mapType = .standard
+        mapView.mapType = .satellite
         
         // sets delegate
         mapView.delegate = self
@@ -69,7 +67,7 @@ class MapView: UIViewController {
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200000)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 2000)
         
         // fill and add annotations
         fillAnnotations()
@@ -84,7 +82,7 @@ class MapView: UIViewController {
         for item in items {
             if let location = item.location {
                 let annotation = ItemAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-                annotation.title = repository.getDetailValue(item: item, property: "common_names")
+                annotation.title = item.label
                 annotations.append(annotation)
             }
         }
@@ -93,11 +91,11 @@ class MapView: UIViewController {
 }
 extension MapView : MKMapViewDelegate {
 
-    // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
+    // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
           
         guard !annotation.isKind(of: MKUserLocation.self) else {
-            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
+            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize
             return nil
         }
           
@@ -110,28 +108,23 @@ extension MapView : MKMapViewDelegate {
         return annotationView
     }
     
-    // Sets up annotationViews for 'simpleAnnotation'
+    // Sets up annotationViews for ItemAnnotation
     private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView{
         
         // Creates indentifiers for reusal in order to efficiently allocate resources
         let reuseIdentifier = NSStringFromClass(ItemAnnotation.self)
-        let customAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+        let itemAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
         
         // Enables callouts
-        customAnnotationView.canShowCallout = true
+        itemAnnotationView.canShowCallout = true
         
         // Set map marker
-        let image = #imageLiteral(resourceName: "marker-surveyed")
-        customAnnotationView.image = image
+        let image = UIImage(named: "item-marker-unsurveyed")
+        itemAnnotationView.image = image
         
-        // Callout image. Likely wont keep this.
-        customAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "marker-surveyed"))
-        
-        return customAnnotationView
+        return itemAnnotationView
     }
-    
-   
-    
+
 }
 
 // add forestCenter as a static constant of the CLLocationCoordinate2D class. Previous forest center lat:47.778836, long -122.194417. Adusted for purpose of zooming map to photopoints.
