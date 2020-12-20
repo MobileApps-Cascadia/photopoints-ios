@@ -14,7 +14,7 @@ let mapVC = MapView()
 
 class MapView: UIViewController {
     
-    private var allAnnotations: [CustomAnnotation]?
+    private var allAnnotations: [ItemAnnotation]?
 
     let repository = Repository.instance
     
@@ -24,11 +24,11 @@ class MapView: UIViewController {
     // instance variable so it can be referenced in didUpdateSurveyStatus() edit: I seem to have misplaced this comment at some point; not sure what this refers to - Grant
     
     // Empty annotations array
-    var annotations = [CustomAnnotation]()
+    var annotations = [ItemAnnotation]()
     
     
     // Contains logic for setting and resetting currently displayed annotations.
-    var displayedAnnotations: [CustomAnnotation]? {
+    var displayedAnnotations: [ItemAnnotation]? {
         willSet {
             if let currentAnnotations = displayedAnnotations {
                 mapView.removeAnnotations(currentAnnotations)
@@ -44,7 +44,7 @@ class MapView: UIViewController {
     
     // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
     func registerAnnotations(){
-        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
+        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(ItemAnnotation.self))
     }
     
     override func viewDidLoad() {
@@ -83,7 +83,7 @@ class MapView: UIViewController {
         
         for item in items {
             if let location = item.location {
-                let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+                let annotation = ItemAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
                 annotation.title = repository.getDetailValue(item: item, property: "common_names")
                 annotations.append(annotation)
             }
@@ -103,7 +103,7 @@ extension MapView : MKMapViewDelegate {
           
         var annotationView: MKAnnotationView?
           
-        if let annotation = annotation as? CustomAnnotation{ annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
+        if let annotation = annotation as? ItemAnnotation{ annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
             
         }
         
@@ -111,10 +111,10 @@ extension MapView : MKMapViewDelegate {
     }
     
     // Sets up annotationViews for 'simpleAnnotation'
-    private func setUpCustomAnnotationView(for annotation: CustomAnnotation, on mapView: MKMapView) -> MKAnnotationView{
+    private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView{
         
         // Creates indentifiers for reusal in order to efficiently allocate resources
-        let reuseIdentifier = NSStringFromClass(CustomAnnotation.self)
+        let reuseIdentifier = NSStringFromClass(ItemAnnotation.self)
         let customAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
         
         // Enables callouts

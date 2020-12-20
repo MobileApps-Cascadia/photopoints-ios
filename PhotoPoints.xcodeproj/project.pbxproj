@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F6A4CCA25852D0E006F38D0 /* initial_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A4CC925852D0E006F38D0 /* initial_data.json */; };
-		3FB5AA4E247E2CD100DF2966 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */; };
+		3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */; };
 		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
 		F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3095930246BA1A40088FB19 /* ImageManager.swift */; };
 		F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */; };
@@ -53,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		3F6A4CC925852D0E006F38D0 /* initial_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = initial_data.json; sourceTree = "<group>"; };
-		3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotation.swift; sourceTree = "<group>"; };
 		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F3095930246BA1A40088FB19 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
-				3FB5AA4D247E2CD100DF2966 /* CustomAnnotation.swift */,
+				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
 				F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */,
-				3FB5AA4E247E2CD100DF2966 /* CustomAnnotation.swift in Sources */,
+				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */,
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
 				F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */,
