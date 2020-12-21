@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CryptoKit
 
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
 class ScannerView: UIViewController {
@@ -29,11 +30,17 @@ class ScannerView: UIViewController {
         return square
     }()
     
+    let loadingScreen = LoadView()
+    
+    // photo capture view
+    let imagePicker = ImagePickerWithAlertDelegate()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
+        addDelegates()
     }
     
     // terminate the session if we navigate off this view
@@ -46,6 +53,10 @@ class ScannerView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         session?.startRunning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     // MARK: - Scanner
@@ -99,6 +110,12 @@ class ScannerView: UIViewController {
         scannerSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
+    func showLoadScreen() {
+        loadingScreen.frame = view.frame
+        loadingScreen.setUpIndicator()
+        view.addSubview(loadingScreen)
+    }
+    
     func addNoAVDLabel() {
         let noAVDLabel = UILabel()
         noAVDLabel.text = "No AV Device"
@@ -140,10 +157,24 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         
         let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
         scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            self.openCamera()
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                self.openCamera()
+            }
+            
         }))
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            self.present(detailView, animated: true, completion: nil)
+            
+            self.showLoadScreen()
+            
+            DispatchQueue.main.async {
+                self.present(detailView, animated: true) { [weak self] in
+                    self?.loadingScreen.removeFromSuperview()
+                }
+            }
+            
         }))
         
         present(scannedAlert, animated: true, completion: nil)
@@ -176,24 +207,31 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         print("alert inactive")
     }
     
-    func openCamera() {
-        let imagePicker = ImagePickerWithAlertDelegate()
+    func addDelegates() {
         imagePicker.delegate = self
         imagePicker.alertDelegate = self
+    }
+    
+    func openCamera() {
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true) { [weak self] in
+            self?.loadingScreen.removeFromSuperview()
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let hashString = String(image.hashValue)
-            ImageManager.storeImage(image: image, with: hashString)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() {
+            let hashString = Insecure.MD5.hash(data: data).map {
+                String(format: "%02hhx", $0)
+            }.joined()
+            ImageManager.storeImage(image: image, with: hashString, to: .photos)
+            print("photo stored with filename \(hashString)")
             self.dismiss(animated: true, completion: nil)
         } else {
-            print("error")
+            print("error storing user submission")
         }
     }
     

@@ -10,47 +10,53 @@
 import Foundation
 import UIKit
 
-enum ImageDirectory {
-    case submission
-    case application
+enum SubDirectory: String {
+    case images = "images"
+    case photos = "photos"
 }
 
 class ImageManager {
     
+    static let fm = FileManager.default
+    
     // optional output - could enter a bad name
-    static func getPath(for fileName: String) -> URL? {
+    static func getPath(for fileName: String, in subDirectory: SubDirectory) -> URL? {
         
         // get the document directory URL
-        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-                
+        guard let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        
+        // navigate to specified subdirectory
+        let imageURL = documentURL.appendingPathComponent("\(subDirectory)/")
+        
         // tack on the photo hash + png to get the full URL
-        return documentURL.appendingPathComponent(fileName + ".png")
+        return imageURL.appendingPathComponent(fileName + ".png")
         
     }
 
     // optional output - could enter a bad name
-    static func getImage(from fileName: String) -> UIImage? {
+    static func getImage(from fileName: String, in subDirectory: SubDirectory) -> UIImage? {
         
-        // file name -> path -> contents at path -> UIImage with those contents returned
-        if let imagePath = getPath(for: fileName), let fileData = FileManager.default.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
+        // file name > path > contents at path > UIImage with those contents returned
+        if let imagePath = getPath(for: fileName, in: subDirectory), let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
             return image
         }
         
         return nil
     }
     
-    static func storeImage(image: UIImage, with fileName: String) {
+    static func storeImage(image: UIImage, with fileName: String, to subDirectory: SubDirectory) {
         
         // UIImage has pngData method
         if let pngRepresentation = image.pngData() {
             // save to disk
             // filePath returns optional URL
-            if let filePath = getPath(for: fileName){
+            if let filePath = getPath(for: fileName, in: subDirectory){
                 do {
                     // Data has a write method
                     try pngRepresentation.write(to: filePath, options: .atomic)
-                } catch let err {
-                    print("Saving file resulted in error: ", err)
+                    
+                } catch {
+                    print("Saving file resulted in error: ", error)
                 }
             }
         }

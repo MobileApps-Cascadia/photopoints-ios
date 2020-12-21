@@ -17,7 +17,7 @@ class ItemDetailView: UIViewController {
     var alertDelegate: AlertDelegate!
     
     lazy var imageView: UIImageView = {
-        let imageView = UIImageView(image: repository.getImage(item: thisItem))
+        let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -107,7 +107,7 @@ class ItemDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "pp-background")
-        title = repository.getDetailValue(item: thisItem, property: "common_name")
+        title = thisItem.label
         setUpScrollView()
     }
     

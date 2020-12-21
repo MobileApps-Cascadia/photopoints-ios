@@ -22,41 +22,12 @@ class Repository {
     // get managed context so we can save to core data persistent container
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func loadInitData() {
-        
-        // clear data
-        clearData(entityNames: ["Coordinate", "Detail", "Image", "Item"])
-        
-        // build mock database
-        MockDatabase.build()
-        
-        // write to core data
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    
-    }
-    
-    func clearData(entityNames: [String]) {
-        for entity in entityNames {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
-            do {
-                try context.execute(deleteReq)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    // utility function to get the number of records for a given entity
+    // utility / debugging function to get the number of records for a given entity
     func printCount(entityName: String) {
         // test to see how many rows are in each entity
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
-            let count = try context.count(for: fetchRequest)
+            let count = try context.count(for: request)
             print("\(entityName) rows: \(count)")
         } catch {
             print(error.localizedDescription)
@@ -73,13 +44,37 @@ class Repository {
         }
     }
     
-    func getImage(item: Item) -> UIImage? {
+    func getImageFromXcAssets(item: Item) -> UIImage? {
         let request = Image.fetchRequest() as NSFetchRequest<Image>
         let predicate = NSPredicate(format: "item == %@", item)
         request.predicate = predicate
         
         if let image = try? context.fetch(request).first {
             return UIImage(named: "\(image.filename).png")
+        }
+        
+        return nil
+    }
+    
+    func getImageNameFromXcAssets(item: Item) -> String? {
+        let request = Image.fetchRequest() as NSFetchRequest<Image>
+        let predicate = NSPredicate(format: "item == %@", item)
+        request.predicate = predicate
+        
+        if let image = try? context.fetch(request).first {
+            return image.filename
+        }
+        
+        return nil
+    }
+    
+    func getImageFromFilesystem(item: Item) -> UIImage? {
+        
+        if let firstImage = item.images?.allObjects.first as? Image {
+            let fileName = firstImage.filename
+            return ImageManager.getImage(from: fileName, in: .images)
+        } else {
+            print("no path found for \(item.label ?? "unknown item")")
         }
         
         return nil

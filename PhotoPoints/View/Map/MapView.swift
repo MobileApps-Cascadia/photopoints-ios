@@ -14,6 +14,8 @@ let mapVC = MapView()
 
 class MapView: UIViewController {
 
+var tileRenderer : MKTileOverlayRenderer!
+    
 private var allAnnotations: [CustomAnnotation]?
 
     let repository = Repository.instance
@@ -48,7 +50,14 @@ private var allAnnotations: [CustomAnnotation]?
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
     }
     
-    
+    private func setupTileRenderer() {
+        let overlay = MapOverlay()
+        overlay.canReplaceMapContent = true
+        mapView.addOverlay(overlay, level: .aboveLabels)
+        tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +67,7 @@ private var allAnnotations: [CustomAnnotation]?
         registerAnnotations()
         
         showAllAnnotations(self)
+        
     }
     
        // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
@@ -67,7 +77,11 @@ private var allAnnotations: [CustomAnnotation]?
     
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
-        mapView.mapType = .hybrid
+        mapView.mapType = .standard
+        
+        
+        //calls method to set up overlay
+        setupTileRenderer()
         
         // sets delegate
         mapView.delegate = self
@@ -75,12 +89,13 @@ private var allAnnotations: [CustomAnnotation]?
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200000)
         
         // fill and add annotations
         fillAnnotations()
         mapView.addAnnotations(annotations)
         view.addSubview(mapView)
+        
     }
     
     func fillAnnotations() {
@@ -112,7 +127,16 @@ private var allAnnotations: [CustomAnnotation]?
 //    }
     
 }
-extension MapView: MKMapViewDelegate {
+extension MapView : MKMapViewDelegate {
+    
+    func mapView(
+      _ mapView: MKMapView,
+      rendererFor overlay: MKOverlay
+    ) -> MKOverlayRenderer {
+      return tileRenderer
+    }
+
+
     
     // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -150,6 +174,8 @@ extension MapView: MKMapViewDelegate {
         
         return customAnnotationView
     }
+    
+   
     
 }
 
