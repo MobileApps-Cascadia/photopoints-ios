@@ -9,21 +9,23 @@
 import UIKit
 import MapKit
 
-// fake singleton
+// globally accessible instance
 let mapVC = MapView()
 
 class MapView: UIViewController {
-    
-    private var allAnnotations: [ItemAnnotation]?
 
+    //MARK: - Properties
+    
     let repository = Repository.instance
     
     // Creates new MKMapView for reference later
     var mapView: MKMapView!
     
+    // Reuse id for item annotations
+    let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
+    
     // Empty annotations array
     var annotations = [ItemAnnotation]()
-    
     
     // Contains logic for setting and resetting currently displayed annotations.
     var displayedAnnotations: [ItemAnnotation]? {
@@ -40,26 +42,19 @@ class MapView: UIViewController {
         }
     }
     
-    // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
-    func registerAnnotations(){
-        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(ItemAnnotation.self))
-    }
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMap()
         registerAnnotations()
-        showAllAnnotations(self)
     }
     
-    // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
-    private func showAllAnnotations(_ sender: Any) {
-        displayedAnnotations = allAnnotations
-    }
+    //MARK: - Setup
     
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
-        mapView.mapType = .satellite
+        mapView.mapType = .standard
         
         // sets delegate
         mapView.delegate = self
@@ -67,13 +62,17 @@ class MapView: UIViewController {
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 2000)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 50, maxCenterCoordinateDistance: 2500)
         
         // fill and add annotations
         fillAnnotations()
         mapView.addAnnotations(annotations)
         view.addSubview(mapView)
-        
+    }
+    
+    // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
+    func registerAnnotations(){
+        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: itemIdentifier)
     }
     
     func fillAnnotations() {
@@ -81,7 +80,8 @@ class MapView: UIViewController {
         
         for item in items {
             if let location = item.location {
-                let annotation = ItemAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+                let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                let annotation = ItemAnnotation(coordinate: coordinate)
                 annotation.title = item.label
                 annotations.append(annotation)
             }
@@ -89,55 +89,52 @@ class MapView: UIViewController {
     }
     
 }
+
+//MARK: - MKMapViewDelegate
+
 extension MapView : MKMapViewDelegate {
 
     // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-          
-        guard !annotation.isKind(of: MKUserLocation.self) else {
-            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize
-            return nil
-        }
-          
-        var annotationView: MKAnnotationView?
-          
-        if let annotation = annotation as? ItemAnnotation{ annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
-            
-        }
+        
+        // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize
+        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        
+        guard let annotation = annotation as? ItemAnnotation else { return nil }
+        
+        let annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
         
         return annotationView
     }
     
     // Sets up annotationViews for ItemAnnotation
-    private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView{
-        
-        // Creates indentifiers for reusal in order to efficiently allocate resources
-        let reuseIdentifier = NSStringFromClass(ItemAnnotation.self)
-        let itemAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+    private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView {
+        let itemAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: itemIdentifier, for: annotation)
         
         // Enables callouts
         itemAnnotationView.canShowCallout = true
         
         // Set map marker
-        let image = UIImage(named: "item-marker-unsurveyed")
-        itemAnnotationView.image = image
+        itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
         
         return itemAnnotationView
     }
 
 }
 
-// add forestCenter as a static constant of the CLLocationCoordinate2D class. Previous forest center lat:47.778836, long -122.194417. Adusted for purpose of zooming map to photopoints.
+//MARK:- Static Constants
+
+// add forestCenter as a static constant of the CLLocationCoordinate2D class
 extension CLLocationCoordinate2D {
 
-    static let forestCenter = CLLocationCoordinate2D(latitude: 47.774836, longitude: -122.191695)
+    static let forestCenter = CLLocationCoordinate2D(latitude: 47.778836, longitude: -122.194417)
     
 }
 
 // add forest as a static constant of the MKCoordinateRegion class
 extension MKCoordinateRegion {
     
-    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 60, longitudinalMeters: 60)
+    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 900, longitudinalMeters: 500)
     
 }
 
