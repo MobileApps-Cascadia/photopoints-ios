@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="license" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="images" inverseEntity="Item"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="images" inverseEntity="Item"/>
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES">
         <attribute name="enabled" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -28,11 +28,22 @@
         <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Detail" inverseName="item" inverseEntity="Detail"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="item" inverseEntity="Image"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="item" inverseEntity="Coordinate"/>
+        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="item" inverseEntity="Submission"/>
+    </entity>
+    <entity name="Submission" representedClassName="Submission" syncable="YES" codeGenerationType="class">
+        <attribute name="answers" optional="YES" attributeType="String"/>
+        <attribute name="count" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="itemIId" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="submissions" inverseEntity="Item"/>
     </entity>
     <elements>
         <element name="Coordinate" positionX="713.10546875" positionY="60.0546875" width="128" height="103"/>
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="88"/>
-        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="148"/>
-        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="148"/>
+        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
+        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
+        <element name="Submission" positionX="342" positionY="90" width="128" height="134"/>
     </elements>
 </model>
