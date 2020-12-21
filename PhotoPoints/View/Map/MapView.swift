@@ -48,6 +48,7 @@ class MapView: UIViewController {
         super.viewDidLoad()
         setUpMap()
         registerAnnotations()
+        addOverlays()
     }
     
     //MARK: - Setup
@@ -88,6 +89,22 @@ class MapView: UIViewController {
         }
     }
     
+    func addOverlays() {
+        let coordinates = [CLLocationCoordinate2D(latitude: 47.774522, longitude: -122.196209),
+                           CLLocationCoordinate2D(latitude: 47.774514, longitude: -122.191098),
+                           CLLocationCoordinate2D(latitude: 47.774979, longitude: -122.191186),
+                           CLLocationCoordinate2D(latitude: 47.775426, longitude: -122.191302),
+                           CLLocationCoordinate2D(latitude: 47.776040, longitude: -122.191517),
+                           CLLocationCoordinate2D(latitude: 47.776081, longitude: -122.191358),
+                           CLLocationCoordinate2D(latitude: 47.776249, longitude: -122.191419),
+                           CLLocationCoordinate2D(latitude: 47.776814, longitude: -122.191702),
+                           CLLocationCoordinate2D(latitude: 47.783690, longitude: -122.196068),
+                           CLLocationCoordinate2D(latitude: 47.783536, longitude: -122.196771),
+                           CLLocationCoordinate2D(latitude: 47.777843, longitude: -122.196329),]
+        let boundary = MKPolygon(coordinates: coordinates, count: coordinates.count)
+        mapView.addOverlay(boundary)
+    }
+    
 }
 
 //MARK: - MKMapViewDelegate
@@ -118,6 +135,16 @@ extension MapView : MKMapViewDelegate {
         itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
         
         return itemAnnotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.strokeColor = .gray
+            polygonView.lineWidth = 3
+            return polygonView
+        }
+        return MKOverlayRenderer()
     }
 
 }
