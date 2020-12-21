@@ -9,28 +9,26 @@
 import UIKit
 import MapKit
 
-// fake singleton
+// globally accessible instance
 let mapVC = MapView()
 
 class MapView: UIViewController {
 
-var tileRenderer : MKTileOverlayRenderer!
+    //MARK: - Properties
     
-private var allAnnotations: [CustomAnnotation]?
-
     let repository = Repository.instance
     
     // Creates new MKMapView for reference later
-    var mapView : MKMapView!
+    var mapView: MKMapView!
     
-    // instance variable so it can be referenced in didUpdateSurveyStatus() edit: I seem to have misplaced this comment at some point; not sure what this refers to - Grant
+    // Reuse id for item annotations
+    let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
     
     // Empty annotations array
-    var annotations = [CustomAnnotation]()
-    
+    var annotations = [ItemAnnotation]()
     
     // Contains logic for setting and resetting currently displayed annotations.
-    var displayedAnnotations: [CustomAnnotation]? {
+    var displayedAnnotations: [ItemAnnotation]? {
         willSet {
             if let currentAnnotations = displayedAnnotations {
                 mapView.removeAnnotations(currentAnnotations)
@@ -44,44 +42,19 @@ private var allAnnotations: [CustomAnnotation]?
         }
     }
     
-    // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
-    func registerAnnotations(){
-        
-        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier:NSStringFromClass(CustomAnnotation.self))
-    }
-    
-    private func setupTileRenderer() {
-        let overlay = MapOverlay()
-        overlay.canReplaceMapContent = true
-        mapView.addOverlay(overlay, level: .aboveLabels)
-        tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
-    }
-
-
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpMap()
-        
         registerAnnotations()
-        
-        showAllAnnotations(self)
-        
     }
     
-       // Sets 'allAnnotations' to 'displayedAnnotations' in order to add them to the map
-    private func showAllAnnotations(_ sender: Any) {
-        displayedAnnotations = allAnnotations
-    }
+    //MARK: - Setup
     
     func setUpMap() {
         mapView = MKMapView(frame: view.frame)
         mapView.mapType = .standard
-        
-        
-        //calls method to set up overlay
-        setupTileRenderer()
         
         // sets delegate
         mapView.delegate = self
@@ -89,107 +62,79 @@ private var allAnnotations: [CustomAnnotation]?
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 200000)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 50, maxCenterCoordinateDistance: 2500)
         
         // fill and add annotations
         fillAnnotations()
         mapView.addAnnotations(annotations)
         view.addSubview(mapView)
-        
+    }
+    
+    // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
+    func registerAnnotations(){
+        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: itemIdentifier)
     }
     
     func fillAnnotations() {
-        
         let items = repository.getItems()!
         
         for item in items {
             if let location = item.location {
-                let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-                annotation.title = repository.getDetailValue(item: item, property: "common_names")
+                let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                let annotation = ItemAnnotation(coordinate: coordinate)
+                annotation.title = item.label
                 annotations.append(annotation)
             }
         }
     }
     
-    // called in scannerView when we "survey" a plant
-    // surveyStatus has already been updated, but we want to reflect this on the map
-    
-    // TODO: figure out how to update survey status in map with new model
-    
-//    func didUpdateSurveyStatus(commonName: String) {
-//
-//        // find the first annotation matching the commonName string passed in
-//        let thisAnnotation = annotations.first(where: { (annotation) -> Bool in
-//            return annotation.title == commonName
-//        })
-//
-//        thisAnnotation?.subtitle = SurveyStatus.surveyed.rawValue
-//    }
-    
 }
+
+//MARK: - MKMapViewDelegate
+
 extension MapView : MKMapViewDelegate {
-    
-    func mapView(
-      _ mapView: MKMapView,
-      rendererFor overlay: MKOverlay
-    ) -> MKOverlayRenderer {
-      return tileRenderer
-    }
 
-
-    
-    // Registers each annotationview added to the map depending on type. Currently only contains logic for 'simpleAnnotation' but can be expanded for other annotation types.
+    // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-          
-        guard !annotation.isKind(of: MKUserLocation.self) else {
-              // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
-            return nil
-        }
-          
-        var annotationView: MKAnnotationView?
-          
-        if let annotation = annotation as? CustomAnnotation{ annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
-            
-        }
         
-          return annotationView
-      }
+        // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize
+        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        
+        guard let annotation = annotation as? ItemAnnotation else { return nil }
+        
+        let annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
+        
+        return annotationView
+    }
     
-    // Sets up annotationViews for 'simpleAnnotation'
-    private func setUpCustomAnnotationView(for annotation: CustomAnnotation, on mapView: MKMapView) -> MKAnnotationView{
-        
-        // Creates indentifiers for reusal in order to efficiently allocate resources
-        let reuseIdentifier = NSStringFromClass(CustomAnnotation.self)
-        let customAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
+    // Sets up annotationViews for ItemAnnotation
+    private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView {
+        let itemAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: itemIdentifier, for: annotation)
         
         // Enables callouts
-        customAnnotationView.canShowCallout = true
+        itemAnnotationView.canShowCallout = true
         
         // Set map marker
-        let image = #imageLiteral(resourceName: "marker-surveyed")
-        customAnnotationView.image = image
+        itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
         
-        // Callout image. Likely wont keep this.
-        customAnnotationView.leftCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "marker-surveyed"))
-        
-        return customAnnotationView
+        return itemAnnotationView
     }
-    
-   
-    
+
 }
 
-// add forestCenter as a static constant of the CLLocationCoordinate2D class. Previous forest center lat:47.778836, long -122.194417. Adusted for purpose of zooming map to photopoints.
+//MARK:- Static Constants
+
+// add forestCenter as a static constant of the CLLocationCoordinate2D class
 extension CLLocationCoordinate2D {
 
-    static let forestCenter = CLLocationCoordinate2D(latitude: 47.774836, longitude: -122.191695)
+    static let forestCenter = CLLocationCoordinate2D(latitude: 47.778836, longitude: -122.194417)
     
 }
 
 // add forest as a static constant of the MKCoordinateRegion class
 extension MKCoordinateRegion {
     
-    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 60, longitudinalMeters: 60)
+    static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 900, longitudinalMeters: 500)
     
 }
 
