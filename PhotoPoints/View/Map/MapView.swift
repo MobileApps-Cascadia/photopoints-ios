@@ -144,6 +144,9 @@ extension MapView : MKMapViewDelegate {
         // Set map marker
         itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
         
+        itemAnnotationView.collisionMode = .circle
+        itemAnnotationView.collision
+        
         return itemAnnotationView
     }
     
