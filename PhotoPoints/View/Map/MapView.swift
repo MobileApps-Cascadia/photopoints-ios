@@ -90,19 +90,29 @@ class MapView: UIViewController {
     }
     
     func addOverlays() {
-        let coordinates = [CLLocationCoordinate2D(latitude: 47.774522, longitude: -122.196209),
-                           CLLocationCoordinate2D(latitude: 47.774514, longitude: -122.191098),
-                           CLLocationCoordinate2D(latitude: 47.774979, longitude: -122.191186),
-                           CLLocationCoordinate2D(latitude: 47.775426, longitude: -122.191302),
-                           CLLocationCoordinate2D(latitude: 47.776040, longitude: -122.191517),
-                           CLLocationCoordinate2D(latitude: 47.776081, longitude: -122.191358),
-                           CLLocationCoordinate2D(latitude: 47.776249, longitude: -122.191419),
-                           CLLocationCoordinate2D(latitude: 47.776814, longitude: -122.191702),
-                           CLLocationCoordinate2D(latitude: 47.783690, longitude: -122.196068),
-                           CLLocationCoordinate2D(latitude: 47.783536, longitude: -122.196771),
-                           CLLocationCoordinate2D(latitude: 47.777843, longitude: -122.196329),]
-        let boundary = MKPolygon(coordinates: coordinates, count: coordinates.count)
-        mapView.addOverlay(boundary)
+        
+        // forest boundary
+        let boundaryGon = BoundaryGon(coordinates: boundary, count: boundary.count)
+        mapView.addOverlay(boundaryGon)
+        
+        // streams
+        for stream in streams {
+            let streamLine = StreamLine(coordinates: stream, count: stream.count)
+            mapView.addOverlay(streamLine)
+        }
+        
+        // wetlands
+        for wetLand in WetLands {
+            let wetLandGon = WetLandGon(coordinates: wetLand, count: wetLand.count)
+            mapView.addOverlay(wetLandGon)
+        }
+        
+        // trails
+        for trail in trails {
+            let trailLine = TrailLine(coordinates: trail, count: trail.count)
+            mapView.addOverlay(trailLine)
+        }
+        
     }
     
 }
@@ -138,12 +148,36 @@ extension MapView : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolygon {
+        
+        if overlay is BoundaryGon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.strokeColor = .gray
             polygonView.lineWidth = 3
             return polygonView
         }
+        
+        if overlay is WetLandGon {
+            let wetLandView = MKPolygonRenderer(overlay: overlay)
+            wetLandView.strokeColor = .systemBlue
+            wetLandView.fillColor = .blue
+            wetLandView.lineWidth = 3
+            return wetLandView
+        }
+        
+        if overlay is TrailLine {
+            let traillineView = MKPolylineRenderer(overlay: overlay)
+            traillineView.strokeColor = .brown
+            traillineView.lineWidth = 3
+            return traillineView
+        }
+        
+        if overlay is StreamLine {
+            let streamLineView = MKPolylineRenderer(overlay: overlay)
+            streamLineView.strokeColor = .systemBlue
+            streamLineView.lineWidth = 3
+            return streamLineView
+        }
+        
         return MKOverlayRenderer()
     }
 
