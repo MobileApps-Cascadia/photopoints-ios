@@ -37,6 +37,9 @@
 		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */; };
+		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
+		F31986A02593C09F006E94AE /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869F2593C09F006E94AE /* Trails.swift */; };
+		F31986A32593C0A7006E94AE /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31986A22593C0A7006E94AE /* WetLands.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
 		F3605557258AB8DF00817995 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3605556258AB8DF00817995 /* LoadView.swift */; };
 		F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */; };
@@ -49,9 +52,6 @@
 		F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */; };
 		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
-		F3CEA1762592F1C3001A22CA /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA1732592F1C3001A22CA /* Trails.swift */; };
-		F3CEA1772592F1C3001A22CA /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA1742592F1C3001A22CA /* WetLands.swift */; };
-		F3CEA1782592F1C3001A22CA /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA1752592F1C3001A22CA /* Streams.swift */; };
 		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +88,9 @@
 		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
+		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
+		F319869F2593C09F006E94AE /* Trails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trails.swift; sourceTree = "<group>"; };
+		F31986A22593C0A7006E94AE /* WetLands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetLands.swift; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F3605556258AB8DF00817995 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
 		F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -100,9 +103,6 @@
 		F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
-		F3CEA1732592F1C3001A22CA /* Trails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trails.swift; path = ../../../CoordinateDrawer/CoordinateDrawer/Trails.swift; sourceTree = "<group>"; };
-		F3CEA1742592F1C3001A22CA /* WetLands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WetLands.swift; path = ../../../CoordinateDrawer/CoordinateDrawer/WetLands.swift; sourceTree = "<group>"; };
-		F3CEA1752592F1C3001A22CA /* Streams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Streams.swift; path = ../../../CoordinateDrawer/CoordinateDrawer/Streams.swift; sourceTree = "<group>"; };
 		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,9 +252,9 @@
 		F3CEA1722592E539001A22CA /* Map Data */ = {
 			isa = PBXGroup;
 			children = (
-				F3CEA1752592F1C3001A22CA /* Streams.swift */,
-				F3CEA1732592F1C3001A22CA /* Trails.swift */,
-				F3CEA1742592F1C3001A22CA /* WetLands.swift */,
+				F319869C2593C09A006E94AE /* Streams.swift */,
+				F319869F2593C09F006E94AE /* Trails.swift */,
+				F31986A22593C0A7006E94AE /* WetLands.swift */,
 				F3CEA17A2592F26B001A22CA /* Boundary.swift */,
 			);
 			path = "Map Data";
@@ -348,6 +348,7 @@
 				F30CA26C2460A3D800CEA2A6 /* ScannerView.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
+				F31986A02593C09F006E94AE /* Trails.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
@@ -355,22 +356,21 @@
 				F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */,
+				F31986A32593C0A7006E94AE /* WetLands.swift in Sources */,
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
 				F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
-				F3CEA1762592F1C3001A22CA /* Trails.swift in Sources */,
-				F3CEA1782592F1C3001A22CA /* Streams.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
+				F319869D2593C09A006E94AE /* Streams.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,
 				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
-				F3CEA1772592F1C3001A22CA /* WetLands.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */,

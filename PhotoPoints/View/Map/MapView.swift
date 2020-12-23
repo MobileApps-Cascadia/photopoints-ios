@@ -102,7 +102,7 @@ class MapView: UIViewController {
         }
         
         // wetlands
-        for wetLand in WetLands {
+        for wetLand in wetLands {
             let wetLandGon = WetLandGon(coordinates: wetLand, count: wetLand.count)
             mapView.addOverlay(wetLandGon)
         }
@@ -165,10 +165,11 @@ extension MapView : MKMapViewDelegate {
         }
         
         if overlay is TrailLine {
-            let traillineView = MKPolylineRenderer(overlay: overlay)
-            traillineView.strokeColor = .brown
-            traillineView.lineWidth = 3
-            return traillineView
+            let trailLineView = MKPolylineRenderer(overlay: overlay)
+            trailLineView.strokeColor = .brown
+            trailLineView.lineWidth = 5
+            trailLineView.lineDashPattern = [6]
+            return trailLineView
         }
         
         if overlay is StreamLine {
