@@ -120,11 +120,11 @@ extension MapView : MKMapViewDelegate {
         return itemAnnotationView
     }
     
-//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
-//        let clusterAnnotationView = mapView.
-//        
-//        
-//    }
+    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+        let clusterAnnotationView = mapView.dequ
+        
+        
+    }
 
 }
 
