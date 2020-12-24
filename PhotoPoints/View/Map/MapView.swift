@@ -48,6 +48,7 @@ class MapView: UIViewController {
         super.viewDidLoad()
         setUpMap()
         registerAnnotations()
+        addOverlays()
     }
     
     //MARK: - Setup
@@ -88,6 +89,32 @@ class MapView: UIViewController {
         }
     }
     
+    func addOverlays() {
+        
+        // forest boundary
+        let boundaryGon = BoundaryGon(coordinates: boundary, count: boundary.count)
+        mapView.addOverlay(boundaryGon)
+        
+        // streams
+        for stream in streams {
+            let streamLine = StreamLine(coordinates: stream, count: stream.count)
+            mapView.addOverlay(streamLine)
+        }
+        
+        // wetlands
+        for wetLand in wetLands {
+            let wetLandGon = WetLandGon(coordinates: wetLand, count: wetLand.count)
+            mapView.addOverlay(wetLandGon)
+        }
+        
+        // trails
+        for trail in trails {
+            let trailLine = TrailLine(coordinates: trail, count: trail.count)
+            mapView.addOverlay(trailLine)
+        }
+        
+    }
+    
 }
 
 //MARK: - MKMapViewDelegate
@@ -118,6 +145,41 @@ extension MapView : MKMapViewDelegate {
         itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
         
         return itemAnnotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if overlay is BoundaryGon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.strokeColor = .gray
+            polygonView.lineWidth = 3
+            return polygonView
+        }
+        
+        if overlay is WetLandGon {
+            let wetLandView = MKPolygonRenderer(overlay: overlay)
+            wetLandView.strokeColor = .systemBlue
+            wetLandView.fillColor = .blue
+            wetLandView.lineWidth = 3
+            return wetLandView
+        }
+        
+        if overlay is TrailLine {
+            let trailLineView = MKPolylineRenderer(overlay: overlay)
+            trailLineView.strokeColor = .brown
+            trailLineView.lineWidth = 5
+            trailLineView.lineDashPattern = [6]
+            return trailLineView
+        }
+        
+        if overlay is StreamLine {
+            let streamLineView = MKPolylineRenderer(overlay: overlay)
+            streamLineView.strokeColor = .systemBlue
+            streamLineView.lineWidth = 3
+            return streamLineView
+        }
+        
+        return MKOverlayRenderer()
     }
 
 }
