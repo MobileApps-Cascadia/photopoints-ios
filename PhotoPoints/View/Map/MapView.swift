@@ -21,9 +21,9 @@ class MapView: UIViewController {
     // Creates new MKMapView for reference later
     var mapView: MKMapView!
     
-    // Reuse id for item annotations
+    // Reuse ids for annotations
     let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
-    
+    let clusterIdentifier = NSStringFromClass(ClusterAnnotation.self)
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
@@ -119,6 +119,12 @@ extension MapView : MKMapViewDelegate {
         
         return itemAnnotationView
     }
+    
+//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+//        let clusterAnnotationView = mapView.
+//        
+//        
+//    }
 
 }
 
