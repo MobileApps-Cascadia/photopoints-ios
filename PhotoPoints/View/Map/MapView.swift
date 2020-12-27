@@ -21,9 +21,8 @@ class MapView: UIViewController {
     // Creates new MKMapView for reference later
     var mapView: MKMapView!
     
-    // Reuse id for item annotations
+    // Reuse ids for annotations
     let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
-    
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
@@ -63,7 +62,7 @@ class MapView: UIViewController {
         // bound map to forest
         mapView.region = .forest
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 50, maxCenterCoordinateDistance: 2500)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
         
         // fill and add annotations
         fillAnnotations()
@@ -124,27 +123,34 @@ extension MapView : MKMapViewDelegate {
     // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize
-        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: itemIdentifier)
         
-        guard let annotation = annotation as? ItemAnnotation else { return nil }
+        annotationView.clusteringIdentifier = "cluster"
+        annotationView.collisionMode = .circle
+        annotationView.canShowCallout = true
         
-        let annotationView = setUpCustomAnnotationView(for: annotation, on: mapView)
+        // to be adjusted based on survey status
+        annotationView.tintColor = .red
+        
+        let circleImage = UIImage(systemName: "circle.fill")!
+        var borderImage: UIImage
+        var fillImage: UIImage
+        
+        if annotation is MKClusterAnnotation {
+            let count = (annotation as! MKClusterAnnotation).memberAnnotations.count
+            let configuration = UIImage.SymbolConfiguration(font: fontSize(for: count))
+            borderImage = circleImage.withConfiguration(configuration)
+            fillImage = UIImage(systemName: "\(count).circle.fill", withConfiguration: configuration)!
+        } else {
+            let configuration = UIImage.SymbolConfiguration(font: fontSize(for: 1))
+            borderImage = circleImage.withConfiguration(configuration)
+            fillImage = borderImage
+        }
+        
+        annotationView.image = borderImage
+        annotationView.addSubview(UIImageView(image: fillImage))
         
         return annotationView
-    }
-    
-    // Sets up annotationViews for ItemAnnotation
-    private func setUpCustomAnnotationView(for annotation: ItemAnnotation, on mapView: MKMapView) -> MKAnnotationView {
-        let itemAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: itemIdentifier, for: annotation)
-        
-        // Enables callouts
-        itemAnnotationView.canShowCallout = true
-        
-        // Set map marker
-        itemAnnotationView.image = UIImage(named: "item-marker-unsurveyed")
-        
-        return itemAnnotationView
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -182,6 +188,11 @@ extension MapView : MKMapViewDelegate {
         return MKOverlayRenderer()
     }
 
+}
+
+func fontSize(for count: Int) -> UIFont {
+    let size = CGFloat(pow(Double(count), 1 / 3) * 25)
+    return UIFont.systemFont(ofSize: size)
 }
 
 //MARK:- Static Constants
