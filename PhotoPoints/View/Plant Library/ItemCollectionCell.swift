@@ -45,6 +45,20 @@ class ItemCollectionCell: UICollectionViewCell {
         return view
     }()
     
+    // indicate if an item has been surveyed
+    var statusCircle: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 9
+        return view
+    }()
+    
+    let circleBorder: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .black
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubViews()
@@ -55,6 +69,14 @@ class ItemCollectionCell: UICollectionViewCell {
     }
     
     func setUpSubViews() {
+        imageView.addSubview(circleBorder)
+        circleBorder.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 20, height: 20)
+        
+        circleBorder.addSubview(statusCircle)
+        statusCircle.anchor(width: 18, height: 18)
+        statusCircle.centerXAnchor.constraint(equalTo: circleBorder.centerXAnchor).isActive = true
+        statusCircle.centerYAnchor.constraint(equalTo: circleBorder.centerYAnchor).isActive = true
+        
         cardFooter.addSubview(titleLabel)
         titleLabel.anchor(top: cardFooter.topAnchor, left: cardFooter.leftAnchor, bottom: cardFooter.centerYAnchor, right: cardFooter.rightAnchor, paddingTop: 5)
         
@@ -67,12 +89,14 @@ class ItemCollectionCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         imageView.layer.cornerRadius = 20
+        
     }
     
     func configureFor(item: Item) {
         imageView.image = repository.getImageFromFilesystem(item: item)
         titleLabel.text = item.label 
         subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
+        statusCircle.backgroundColor = .red
     }
     
 }
