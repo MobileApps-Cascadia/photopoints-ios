@@ -116,4 +116,15 @@ class Repository {
         return nil
     }
     
+    func didSubmitToday(for item: Item) -> Bool {
+        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
+        let predicate = NSPredicate(format: "item == %@ AND date == %@", item, Date() as CVarArg)
+        request.predicate = predicate
+        
+        if (try? context.fetch(request)) != nil {
+            return true
+        }
+        
+        return false
+    }
 }
