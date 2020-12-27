@@ -13,6 +13,10 @@ class ItemAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
     
+    var title: String?
+    
+    var subtitle: String?
+    
     //Enum for changing map marker states
     enum SurveyState {
         case unsurveyed
