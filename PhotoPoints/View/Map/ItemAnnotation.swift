@@ -9,6 +9,12 @@
 import UIKit
 import MapKit
 
+//Enum for changing map marker states
+enum SurveyState {
+    case unsurveyed
+    case surveyed
+}
+
 class ItemAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
@@ -17,12 +23,6 @@ class ItemAnnotation: NSObject, MKAnnotation {
     
     var subtitle: String?
     
-    //Enum for changing map marker states
-    enum SurveyState {
-        case unsurveyed
-        case surveyed
-    }
-
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
         super.init()

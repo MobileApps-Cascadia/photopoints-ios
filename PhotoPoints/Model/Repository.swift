@@ -104,4 +104,16 @@ class Repository {
         return nil
     }
     
+    func getSubmissions(for item: Item) -> [Submission]? {
+        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
+        let predicate = NSPredicate(format: "item == %@", item)
+        request.predicate = predicate
+        
+        if let submissions = try? context.fetch(request) as [Submission] {
+            return submissions
+        }
+        
+        return nil
+    }
+    
 }
