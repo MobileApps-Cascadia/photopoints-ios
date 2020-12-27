@@ -35,6 +35,8 @@ class ScannerView: UIViewController {
     // photo capture view
     let imagePicker = ImagePickerWithAlertDelegate()
     
+    var scannedItem: Item?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -144,6 +146,7 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
                     alertActive = true
                     print("alert active")
                     setUpAlerts(for: thisItem)
+                    scannedItem = thisItem
                 }
             }
         }
@@ -223,17 +226,33 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        // handle the user photo in the background
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            
+            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
+                print("error getting png data")
+                return
+            }
+            
             let hashString = Insecure.MD5.hash(data: data).map {
                 String(format: "%02hhx", $0)
             }.joined()
+            
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
             print("photo stored with filename \(hashString)")
-            
-            
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            print("error storing user submission")
+
+            if let url = ImageManager.getPath(for: hashString, in: .photos) {
+                
+                // allowed to access managed object context on the main thread only
+                DispatchQueue.main.async {
+                    let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
+                    let submission = Submission(userPhoto: userPhoto, date: Date())
+                    self?.scannedItem?.addToSubmissions(submission)
+                }
+            }
         }
     }
     

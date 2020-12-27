@@ -19,11 +19,11 @@ extension Submission {
 
     @NSManaged public var answers: String?
     @NSManaged public var count: Int16
+    @NSManaged public var date: Date?
     @NSManaged public var itemIId: String?
     @NSManaged public var notes: String?
     @NSManaged public var status: String?
     @NSManaged public var uuid: UUID?
-    @NSManaged public var date: Date?
     @NSManaged public var item: Item?
     @NSManaged public var userPhoto: NSSet?
 

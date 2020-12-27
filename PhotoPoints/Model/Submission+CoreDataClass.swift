@@ -9,8 +9,19 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 @objc(Submission)
 public class Submission: NSManagedObject {
 
+    convenience init(userPhoto: UserPhoto, date: Date) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let context = appDelegate?.persistentContainer.viewContext
+        self.init(entity: Submission.entity(), insertInto: context)
+        
+        addToUserPhoto(userPhoto)
+        self.date = date
+        self.uuid = UUID()
+    }
+    
 }

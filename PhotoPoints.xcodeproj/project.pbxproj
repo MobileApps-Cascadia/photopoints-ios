@@ -40,10 +40,12 @@
 		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
 		F31986A02593C09F006E94AE /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869F2593C09F006E94AE /* Trails.swift */; };
 		F31986A32593C0A7006E94AE /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31986A22593C0A7006E94AE /* WetLands.swift */; };
-		F334D44B25992C7700C762A6 /* UserPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334D44725992C7700C762A6 /* UserPhoto+CoreDataClass.swift */; };
-		F334D44C25992C7700C762A6 /* UserPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334D44825992C7700C762A6 /* UserPhoto+CoreDataProperties.swift */; };
-		F334D44D25992C7700C762A6 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334D44925992C7700C762A6 /* Submission+CoreDataClass.swift */; };
-		F334D44E25992C7700C762A6 /* Submission+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334D44A25992C7700C762A6 /* Submission+CoreDataProperties.swift */; };
+		F33EDDDB25992FD700563422 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */; };
+		F33EDDDC25992FD700563422 /* Submission+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */; };
+		F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */; };
+		F33EDDDE25992FD700563422 /* UserPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */; };
+		F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */; };
+		F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
 		F3605557258AB8DF00817995 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3605556258AB8DF00817995 /* LoadView.swift */; };
 		F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */; };
@@ -52,8 +54,6 @@
 		F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504224EC81B700016F8C /* Coordinate+CoreDataProperties.swift */; };
 		F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504324EC81B700016F8C /* Detail+CoreDataClass.swift */; };
 		F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */; };
-		F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */; };
-		F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */; };
 		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
 		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
@@ -95,10 +95,12 @@
 		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
 		F319869F2593C09F006E94AE /* Trails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trails.swift; sourceTree = "<group>"; };
 		F31986A22593C0A7006E94AE /* WetLands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetLands.swift; sourceTree = "<group>"; };
-		F334D44725992C7700C762A6 /* UserPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F334D44825992C7700C762A6 /* UserPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F334D44925992C7700C762A6 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F334D44A25992C7700C762A6 /* Submission+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F3605556258AB8DF00817995 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
 		F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -107,8 +109,6 @@
 		F38F504224EC81B700016F8C /* Coordinate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F504324EC81B700016F8C /* Detail+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
@@ -210,12 +210,12 @@
 				F38F504424EC81B700016F8C /* Detail+CoreDataProperties.swift */,
 				F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */,
 				F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */,
-				F38F504524EC81B700016F8C /* Item+CoreDataClass.swift */,
-				F38F504624EC81B700016F8C /* Item+CoreDataProperties.swift */,
-				F334D44725992C7700C762A6 /* UserPhoto+CoreDataClass.swift */,
-				F334D44825992C7700C762A6 /* UserPhoto+CoreDataProperties.swift */,
-				F334D44925992C7700C762A6 /* Submission+CoreDataClass.swift */,
-				F334D44A25992C7700C762A6 /* Submission+CoreDataProperties.swift */,
+				F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */,
+				F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */,
+				F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */,
+				F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */,
+				F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */,
+				F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */,
 				DC3FDF982467A2D100DD613A /* Repository.swift */,
 				F30CA2512460A3D700CEA2A6 /* MockDatabase.swift */,
 				F30CA2522460A3D700CEA2A6 /* Stories */,
@@ -361,27 +361,28 @@
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
 				F31986A02593C09F006E94AE /* Trails.swift in Sources */,
+				F33EDDDE25992FD700563422 /* UserPhoto+CoreDataProperties.swift in Sources */,
 				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
+				F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */,
+				F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
+				F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */,
+				F33EDDDC25992FD700563422 /* Submission+CoreDataProperties.swift in Sources */,
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
-				F334D44E25992C7700C762A6 /* Submission+CoreDataProperties.swift in Sources */,
 				F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */,
-				F334D44D25992C7700C762A6 /* Submission+CoreDataClass.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */,
-				F334D44B25992C7700C762A6 /* UserPhoto+CoreDataClass.swift in Sources */,
 				F31986A32593C0A7006E94AE /* WetLands.swift in Sources */,
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
-				F38F505124EC81B700016F8C /* Item+CoreDataClass.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
+				F33EDDDB25992FD700563422 /* Submission+CoreDataClass.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
 				F319869D2593C09A006E94AE /* Streams.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
-				F38F505224EC81B700016F8C /* Item+CoreDataProperties.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,
@@ -389,7 +390,6 @@
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F30CA2842460A3D800CEA2A6 /* MockDatabase.swift in Sources */,
-				F334D44C25992C7700C762A6 /* UserPhoto+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

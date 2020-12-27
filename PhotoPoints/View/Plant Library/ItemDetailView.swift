@@ -50,7 +50,7 @@ class ItemDetailView: UIViewController {
         infoStack.addArrangedSubview(pnwLabel)
         
         // story
-        let path = Bundle.main.path(forResource: "\(thisItem.id)_story", ofType: "txt")
+        let path = Bundle.main.path(forResource: "\(thisItem.id ?? "")_story", ofType: "txt")
         
         do {
             let story = try String(contentsOfFile: path!, encoding: .utf8)
