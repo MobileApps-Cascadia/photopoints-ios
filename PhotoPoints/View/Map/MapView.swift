@@ -129,8 +129,7 @@ extension MapView : MKMapViewDelegate {
         annotationView.collisionMode = .circle
         annotationView.canShowCallout = true
         
-        // to be adjusted based on survey status
-        annotationView.tintColor = .red
+        
         
         let circleImage = UIImage(systemName: "circle.fill")!
         var borderImage: UIImage
@@ -146,6 +145,9 @@ extension MapView : MKMapViewDelegate {
             borderImage = circleImage.withConfiguration(configuration)
             fillImage = borderImage
         }
+        
+        // to be adjusted based on survey status
+        annotationView.tintColor = .red
         
         annotationView.image = borderImage
         annotationView.addSubview(UIImageView(image: fillImage))

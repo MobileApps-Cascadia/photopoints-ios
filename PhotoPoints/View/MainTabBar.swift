@@ -27,7 +27,7 @@ class MainTabBar: UITabBarController {
         let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
         itemNavigation.navigationBar.topItem?.title = "Plant Library"
-        itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf.arrow.circlepath"), tag: 1)
+        itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf"), tag: 1)
         
         // set up map:
         // this is a (fake) singleton so we can change the surveystatus in scannerView and have it be reflected in map markers
