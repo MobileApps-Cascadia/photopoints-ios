@@ -79,12 +79,8 @@ class MapView: UIViewController {
         let items = repository.getItems()!
         
         for item in items {
-            if let location = item.location {
-                let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-                let annotation = ItemAnnotation(coordinate: coordinate)
-                annotation.title = item.label
-                annotations.append(annotation)
-            }
+            let annotation = ItemAnnotation(item: item)
+            annotations.append(annotation)
         }
     }
     
@@ -128,26 +124,58 @@ extension MapView : MKMapViewDelegate {
         annotationView.clusteringIdentifier = "cluster"
         annotationView.collisionMode = .circle
         annotationView.canShowCallout = true
-        
-        
-        
+
         let circleImage = UIImage(systemName: "circle.fill")!
         var borderImage: UIImage
         var fillImage: UIImage
         
+        var state: SurveyState = .notSurveyed
+        
         if annotation is MKClusterAnnotation {
-            let count = (annotation as! MKClusterAnnotation).memberAnnotations.count
+            let memberAnnotations = (annotation as! MKClusterAnnotation).memberAnnotations
+            let count = memberAnnotations.count
             let configuration = UIImage.SymbolConfiguration(font: fontSize(for: count))
+            
             borderImage = circleImage.withConfiguration(configuration)
             fillImage = UIImage(systemName: "\(count).circle.fill", withConfiguration: configuration)!
+            
+            var didSubmit = [Bool]()
+            
+            for memberAnnotation in memberAnnotations {
+                let item = (memberAnnotation as! ItemAnnotation).item
+                didSubmit.append(repository.didSubmitToday(for: item))
+            }
+            
+            if didSubmit.contains(false) && didSubmit.contains(true) {
+                state = .mix
+            }
+            
+            if !didSubmit.contains(false) {
+                state = .surveyed
+            }
+            
         } else {
             let configuration = UIImage.SymbolConfiguration(font: fontSize(for: 1))
+            
             borderImage = circleImage.withConfiguration(configuration)
             fillImage = borderImage
+            
+            let item = (annotation as! ItemAnnotation).item
+    
+            if repository.didSubmitToday(for: item) {
+                state = .surveyed
+            }
+            
         }
         
-        // to be adjusted based on survey status
-        annotationView.tintColor = .red
+        switch state {
+        case .notSurveyed:
+            annotationView.tintColor = .systemRed
+        case .surveyed:
+            annotationView.tintColor = .systemGreen
+        case .mix:
+            annotationView.tintColor = .systemYellow
+        }
         
         annotationView.image = borderImage
         annotationView.addSubview(UIImageView(image: fillImage))

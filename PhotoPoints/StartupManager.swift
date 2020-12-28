@@ -17,12 +17,15 @@ class StartupManager {
     // get managed context so we can save to core data persistent container
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    static let isFirstRun = true
+    static var isFirstRun = true
     
     static func run(){
         if isFirstRun {
+            print("performing first run")
             firstRun()
+            isFirstRun = false
         }
+        print("performing startup")
         startup()
     }
     

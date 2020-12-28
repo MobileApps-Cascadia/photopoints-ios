@@ -24,8 +24,13 @@ class ItemAnnotation: NSObject, MKAnnotation {
     
     var subtitle: String?
     
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
+    let item: Item
+    
+    init(item: Item) {
+        self.item = item
+        let location = item.location!
+        self.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        self.title = item.label
         super.init()
     }
     

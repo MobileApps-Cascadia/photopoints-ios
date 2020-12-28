@@ -32,10 +32,10 @@
     </entity>
     <entity name="Submission" representedClassName="Submission" syncable="YES">
         <attribute name="answers" optional="YES" attributeType="String"/>
-        <attribute name="count" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="count" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="status" attributeType="String"/>
+        <attribute name="status" attributeType="String" defaultValueString=""/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="submissions" inverseEntity="Item"/>
         <relationship name="userPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>

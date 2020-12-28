@@ -17,6 +17,8 @@ class ScannerView: UIViewController {
     
     let repository = Repository.instance
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     // keeps track of whether or not an alert should be allowed to present when scanning
     var alertActive = false
     
@@ -230,31 +232,32 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         self.dismiss(animated: true, completion: nil)
         
         // handle the user photo in the background
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
-                print("error getting png data")
+                print("error getting png data for user photo")
                 return
             }
-            
+
             let hashString = Insecure.MD5.hash(data: data).map {
                 String(format: "%02hhx", $0)
             }.joined()
-            
+
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
             print("photo stored with filename \(hashString)")
 
             if let url = ImageManager.getPath(for: hashString, in: .photos) {
-                
+
                 // allowed to access managed object context on the main thread only
                 DispatchQueue.main.async {
                     let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
                     let submission = Submission(userPhoto: userPhoto, date: Date())
-                    self?.scannedItem?.addToSubmissions(submission)
+                    self.scannedItem?.addToSubmissions(submission)
                     do {
-                        try self?.repository.context.save()
+                        try self.context.save()
+                        print("context saved")
                     } catch {
-                        print(error)
+                        print("error saving context")
                     }
                 }
             }

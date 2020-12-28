@@ -49,13 +49,8 @@ class ItemCollectionCell: UICollectionViewCell {
     var statusCircle: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 9
-        return view
-    }()
-    
-    let circleBorder: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .black
+        view.layer.borderWidth = 1
+        view.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
         return view
     }()
     
@@ -69,13 +64,8 @@ class ItemCollectionCell: UICollectionViewCell {
     }
     
     func setUpSubViews() {
-        imageView.addSubview(circleBorder)
-        circleBorder.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 20, height: 20)
-        
-        circleBorder.addSubview(statusCircle)
-        statusCircle.anchor(width: 18, height: 18)
-        statusCircle.centerXAnchor.constraint(equalTo: circleBorder.centerXAnchor).isActive = true
-        statusCircle.centerYAnchor.constraint(equalTo: circleBorder.centerYAnchor).isActive = true
+        imageView.addSubview(statusCircle)
+        statusCircle.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 18, height: 18)
         
         cardFooter.addSubview(titleLabel)
         titleLabel.anchor(top: cardFooter.topAnchor, left: cardFooter.leftAnchor, bottom: cardFooter.centerYAnchor, right: cardFooter.rightAnchor, paddingTop: 5)
@@ -102,6 +92,9 @@ class ItemCollectionCell: UICollectionViewCell {
         } else {
             statusCircle.backgroundColor = .red
         }
+        
+        // debugging output
+        print(item.label!, repository.getSubmissions(for: item)!.count)
     }
     
 }

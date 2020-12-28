@@ -15,14 +15,17 @@ import UIKit
 public class Submission: NSManagedObject {
 
     convenience init(userPhoto: UserPhoto, date: Date) {
+        
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let context = appDelegate?.persistentContainer.viewContext
         self.init(entity: Submission.entity(), insertInto: context)
         
         addToUserPhoto(userPhoto)
-        self.count = 1
         self.date = date
         self.uuid = UUID()
+        
+        // the rest of the properties are either optional or have default values in the core data model
+
     }
     
 }

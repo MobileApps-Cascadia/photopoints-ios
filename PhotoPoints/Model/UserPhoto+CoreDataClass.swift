@@ -21,6 +21,8 @@ public class UserPhoto: NSManagedObject {
         
         self.photoHash = photoHash
         self.photoUrl = photoUrl
+        
+        // the rest of the properties are either optional or have default values in the core data model
     }
     
 }
