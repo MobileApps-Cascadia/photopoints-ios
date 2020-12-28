@@ -16,6 +16,8 @@ class Repository {
     // Repository is a singleton, access using Repository.instance
     public static let instance = Repository()
     
+    private init() {}
+    
     // create a queue for operations requiring thread safety
     private let serialQueue = DispatchQueue(label: "repoQueue")
     

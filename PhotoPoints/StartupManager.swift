@@ -15,13 +15,14 @@ class StartupManager {
     // access managed object context
     static let repository = Repository.instance
     
-    static var isFirstRun = true
+    static let defaults = UserDefaults.standard
     
     static func run(){
-        if isFirstRun {
+        
+        if defaults.object(forKey: "FirstRun") == nil {
             print("performing first run")
             firstRun()
-            isFirstRun = false
+            defaults.set(false, forKey: "FirstRun")
         }
         print("performing startup")
         startup()
@@ -37,7 +38,7 @@ class StartupManager {
     }
     
     static func storeAppConfigData(){
-        let defaults = UserDefaults.standard
+        
         defaults.set(Date(), forKey: "LastUpdated")
         
         // somewhere else in app we will have file that contains global constants - ClearOnStartup, DebugModeOn etc
@@ -66,8 +67,10 @@ class StartupManager {
     
     static func loadInitData(){
         
-        // clear item data from Core Data
-        clearData(entityNames: ["Coordinate", "Detail", "Image", "Item"])
+        print("loading initial data")
+        
+        // necessary to access context in some way before creating objects
+        repository.context.reset()
         
         // build mock database
         MockDatabase.build()
@@ -83,19 +86,6 @@ class StartupManager {
         loadInitImages()
     }
     
-    // clear all records of an entity from Core Data
-    static func clearData(entityNames: [String]) {
-        for entity in entityNames {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
-            do {
-                try repository.context.execute(deleteReq)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     // load initial images from xcassets to filesystem to allow us to test getting images
     // from filesystem, as this is what we'll do for images retrieved from API.
     static func loadInitImages() {
@@ -107,6 +97,5 @@ class StartupManager {
             }
         }
     }
-    
-    
+
 }

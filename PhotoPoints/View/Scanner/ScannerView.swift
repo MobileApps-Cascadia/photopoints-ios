@@ -246,18 +246,17 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
 
             if let url = ImageManager.getPath(for: hashString, in: .photos) {
 
-                // allowed to access managed object context on the main thread only
-                DispatchQueue.main.async {
-                    let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
-                    let submission = Submission(userPhoto: userPhoto, date: Date())
-                    self.scannedItem?.addToSubmissions(submission)
-                    do {
-                        try self.repository.context.save()
-                        print("context saved")
-                    } catch {
-                        print("error saving context")
-                    }
+                let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
+                let submission = Submission(userPhoto: userPhoto, date: Date())
+                self.scannedItem?.addToSubmissions(submission)
+                
+                do {
+                    try self.repository.context.save()
+                    print("context saved")
+                } catch {
+                    print("error saving context")
                 }
+                
             }
         }
     }
