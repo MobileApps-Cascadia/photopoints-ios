@@ -14,10 +14,8 @@ import CoreData
 public class Image: NSManagedObject {
 
     convenience init(filename: String, baseFilename: String? = nil, title: String? = nil, desc: String? = nil, license: String? = nil) {
-        
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext        
-        self.init(entity: Image.entity(), insertInto: context)
+              
+        self.init(entity: Image.entity(), insertInto: Repository.instance.context)
         
         self.filename = filename
         self.type = 100

@@ -13,14 +13,27 @@ class ItemDetailView: UIViewController {
     
     // MARK: - Properties
     let repository = Repository.instance
+    
     var thisItem: Item
+    
     var alertDelegate: AlertDelegate!
+    
+    var surveyState: SurveyState = .notSurveyed
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    let statusPill: UILabel = {
+        let label = UILabel()
+        label.layer.cornerRadius = 9
+        label.layer.borderWidth = 1
+        label.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
+//        label.textColor = .white
+        return label
     }()
     
     // all of the text underneath the image

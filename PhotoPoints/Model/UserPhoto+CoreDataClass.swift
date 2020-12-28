@@ -15,9 +15,8 @@ import UIKit
 public class UserPhoto: NSManagedObject {
     
     convenience init(photoHash: String, photoUrl: URL) {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
-        self.init(entity: UserPhoto.entity(), insertInto: context)
+
+        self.init(entity: UserPhoto.entity(), insertInto: Repository.instance.context)
         
         self.photoHash = photoHash
         self.photoUrl = photoUrl

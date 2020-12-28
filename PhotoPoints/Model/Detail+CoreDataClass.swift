@@ -16,9 +16,7 @@ public class Detail: NSManagedObject {
     // create a property from any type, converting to string. Default id is -1
     convenience init(property: String, value: Any?) {
         
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
-        self.init(entity: Detail.entity(), insertInto: context)
+        self.init(entity: Detail.entity(), insertInto: Repository.instance.context)
         
         self.property = property
         self.value = value as? String

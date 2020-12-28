@@ -15,10 +15,8 @@ import UIKit
 public class Item: NSManagedObject {
 
     convenience init(id: String, label: String, coordinate: Coordinate, details: [String: String], image: Image) {
-        
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
-        self.init(entity: Item.entity(), insertInto: context)
+
+        self.init(entity: Item.entity(), insertInto: Repository.instance.context)
         
         self.id = id
         self.label = label

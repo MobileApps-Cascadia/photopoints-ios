@@ -17,8 +17,6 @@ class ScannerView: UIViewController {
     
     let repository = Repository.instance
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     // keeps track of whether or not an alert should be allowed to present when scanning
     var alertActive = false
     
@@ -231,7 +229,7 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         
         self.dismiss(animated: true, completion: nil)
         
-        // handle the user photo in the background
+        // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async { [self] in
 
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
@@ -254,7 +252,7 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
                     let submission = Submission(userPhoto: userPhoto, date: Date())
                     self.scannedItem?.addToSubmissions(submission)
                     do {
-                        try self.context.save()
+                        try self.repository.context.save()
                         print("context saved")
                     } catch {
                         print("error saving context")

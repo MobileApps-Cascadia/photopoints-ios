@@ -16,9 +16,7 @@ public class Coordinate: NSManagedObject {
 
     convenience init(latitude: Double, longitude: Double) {
         
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
-        self.init(entity: Coordinate.entity(), insertInto: context)
+        self.init(entity: Coordinate.entity(), insertInto: Repository.instance.context)
         
         self.latitude = latitude
         self.longitude = longitude

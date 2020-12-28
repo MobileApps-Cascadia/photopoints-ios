@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 // globally accessible instance
-let mapVC = MapView()
+//let mapVC = MapView()
 
 class MapView: UIViewController {
 
@@ -23,23 +23,9 @@ class MapView: UIViewController {
     
     // Reuse ids for annotations
     let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
+    
     // Empty annotations array
     var annotations = [ItemAnnotation]()
-    
-    // Contains logic for setting and resetting currently displayed annotations.
-    var displayedAnnotations: [ItemAnnotation]? {
-        willSet {
-            if let currentAnnotations = displayedAnnotations {
-                mapView.removeAnnotations(currentAnnotations)
-            }
-        }
-        didSet {
-            if let newAnnotations = displayedAnnotations {
-                mapView.addAnnotations(newAnnotations)
-            }
-            
-        }
-    }
     
     //MARK: - Lifecycle
     
@@ -48,6 +34,13 @@ class MapView: UIViewController {
         setUpMap()
         registerAnnotations()
         addOverlays()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // refresh annotations each time we switch back to this view
+        // so we can update their color if they were surveyed
+        mapView.removeAnnotations(annotations)
+        mapView.addAnnotations(annotations)
     }
     
     //MARK: - Setup
@@ -64,9 +57,8 @@ class MapView: UIViewController {
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
         
-        // fill and add annotations
+        // fill annotations array
         fillAnnotations()
-        mapView.addAnnotations(annotations)
         view.addSubview(mapView)
     }
     
@@ -129,7 +121,7 @@ extension MapView : MKMapViewDelegate {
         var borderImage: UIImage
         var fillImage: UIImage
         
-        var state: SurveyState = .notSurveyed
+        var surveyState: SurveyState = .notSurveyed
         
         if annotation is MKClusterAnnotation {
             let memberAnnotations = (annotation as! MKClusterAnnotation).memberAnnotations
@@ -147,11 +139,11 @@ extension MapView : MKMapViewDelegate {
             }
             
             if didSubmit.contains(false) && didSubmit.contains(true) {
-                state = .mix
+                surveyState = .mix
             }
             
             if !didSubmit.contains(false) {
-                state = .surveyed
+                surveyState = .surveyed
             }
             
         } else {
@@ -163,12 +155,12 @@ extension MapView : MKMapViewDelegate {
             let item = (annotation as! ItemAnnotation).item
     
             if repository.didSubmitToday(for: item) {
-                state = .surveyed
+                surveyState = .surveyed
             }
             
         }
         
-        switch state {
+        switch surveyState {
         case .notSurveyed:
             annotationView.tintColor = .systemRed
         case .surveyed:

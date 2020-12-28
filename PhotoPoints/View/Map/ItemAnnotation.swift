@@ -33,18 +33,4 @@ class ItemAnnotation: NSObject, MKAnnotation {
         self.title = item.label
         super.init()
     }
-    
-    var mapState = SurveyState.notSurveyed
-
-    //Switch statement for changing the survey state of a photopoint. currently contains test code.
-    func printState() {
-        switch mapState {
-        case .notSurveyed:
-            print("Not surveyed")
-        case .surveyed:
-            print("Surveyed")
-        case .mix:
-            print("Mix")
-        }
-    }
 }

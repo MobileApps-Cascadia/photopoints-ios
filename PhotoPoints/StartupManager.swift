@@ -11,11 +11,9 @@ import UIKit
 
 class StartupManager {
     
-    // get repository instance for methods requiring data retreival etc
+    // get repository instance for methods requiring data retreival
+    // access managed object context
     static let repository = Repository.instance
-    
-    // get managed context so we can save to core data persistent container
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var isFirstRun = true
     
@@ -76,7 +74,7 @@ class StartupManager {
         
         // write to core data
         do {
-            try context.save()
+            try repository.context.save()
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -91,7 +89,7 @@ class StartupManager {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
             let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
             do {
-                try context.execute(deleteReq)
+                try repository.context.execute(deleteReq)
             } catch {
                 print(error)
             }
