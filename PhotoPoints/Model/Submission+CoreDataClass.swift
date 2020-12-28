@@ -20,6 +20,7 @@ public class Submission: NSManagedObject {
         self.init(entity: Submission.entity(), insertInto: context)
         
         addToUserPhoto(userPhoto)
+        self.count = 1
         self.date = date
         self.uuid = UUID()
     }

@@ -117,14 +117,23 @@ class Repository {
     }
     
     func didSubmitToday(for item: Item) -> Bool {
+        
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: Date())
+        let end = calendar.date(byAdding: .day, value: 1, to: start)!
+        
         let request = Submission.fetchRequest() as NSFetchRequest<Submission>
-        let predicate = NSPredicate(format: "item == %@ AND date == %@", item, Date() as CVarArg)
+        let predicate = NSPredicate(format: "item == %@ AND (date >= %@ AND date < %@)", item, start as CVarArg, end as CVarArg)
         request.predicate = predicate
         
-        if (try? context.fetch(request)) != nil {
-            return true
+        if let submissions = try? context.fetch(request) {
+            if submissions.count > 0 {
+                return true
+            }
         }
         
         return false
     }
 }
+
+

@@ -34,7 +34,6 @@
         <attribute name="answers" optional="YES" attributeType="String"/>
         <attribute name="count" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="itemIId" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String"/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
@@ -55,7 +54,7 @@
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="88"/>
         <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
         <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
-        <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="164"/>
+        <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="149"/>
         <element name="UserPhoto" positionX="480.17578125" positionY="-41.6953125" width="128" height="134"/>
     </elements>
 </model>

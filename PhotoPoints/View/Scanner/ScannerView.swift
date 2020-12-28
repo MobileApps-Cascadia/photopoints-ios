@@ -251,6 +251,11 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
                     let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
                     let submission = Submission(userPhoto: userPhoto, date: Date())
                     self?.scannedItem?.addToSubmissions(submission)
+                    do {
+                        try self?.repository.context.save()
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }

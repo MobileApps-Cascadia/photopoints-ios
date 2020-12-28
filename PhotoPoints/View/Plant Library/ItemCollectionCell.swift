@@ -96,7 +96,12 @@ class ItemCollectionCell: UICollectionViewCell {
         imageView.image = repository.getImageFromFilesystem(item: item)
         titleLabel.text = item.label 
         subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
-        statusCircle.backgroundColor = .red
+        
+        if repository.didSubmitToday(for: item) {
+            statusCircle.backgroundColor = .systemGreen
+        } else {
+            statusCircle.backgroundColor = .red
+        }
     }
     
 }

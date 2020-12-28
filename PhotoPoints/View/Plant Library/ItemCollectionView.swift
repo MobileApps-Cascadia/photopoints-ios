@@ -13,19 +13,17 @@ private let cellIdentifier = "ItemCollectionCell"
 
 class ItemCollectionView: UICollectionViewController {
     
-    let repository = Repository.instance
+    // MARK: - Properties
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureCollectionView()
-        configureNavBar()
-    }
+    let repository = Repository.instance
     
     func configureCollectionView() {
         collectionView.backgroundColor = UIColor(named: "pp-background")
         collectionView.register(ItemCollectionCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
+    
+    // MARK: - Setup
     
     func configureNavBar() {
         
@@ -37,6 +35,19 @@ class ItemCollectionView: UICollectionViewController {
         // for frosty appearance beneath the larger nav bar when scrolled to the top
         // can't see it in action right now as the image starts below the nav bar
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
+    }
+    
+    // MARK: - lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureCollectionView()
+        configureNavBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // reload data to update survey indicator circles
+        collectionView.reloadData()
     }
     
 }
