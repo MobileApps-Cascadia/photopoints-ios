@@ -123,12 +123,9 @@ class ScannerView: UIViewController {
         noAVDLabel.text = "No AV Device"
         noAVDLabel.textColor = .white
         noAVDLabel.sizeToFit()
-        
-        // this needs to happen before setting constraints :)
+        noAVDLabel.frame = view.frame
+        noAVDLabel.textAlignment = .center
         view.addSubview(noAVDLabel)
-        noAVDLabel.translatesAutoresizingMaskIntoConstraints = false
-        noAVDLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        noAVDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
 }
@@ -153,31 +150,21 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func setUpAlerts(for item: Item) {
-        let commonName = repository.getDetailValue(item: item, property: "common_name")
-        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
         let detailView = ItemDetailView(item: item)
         detailView.alertDelegate = self
+        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
+        let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
         
-        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
-        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            
+        scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
             self.showLoadScreen()
-            
-            DispatchQueue.main.async {
-                self.openCamera()
-            }
-            
+            self.openCamera()
         }))
+        
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            
             self.showLoadScreen()
-            
-            DispatchQueue.main.async {
-                self.present(detailView, animated: true) { [weak self] in
-                    self?.loadingScreen.removeFromSuperview()
-                }
+            self.present(detailView, animated: true) { [self] in
+                self.loadingScreen.removeFromSuperview()
             }
-            
         }))
         
         present(scannedAlert, animated: true, completion: nil)
@@ -220,8 +207,8 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true) { [weak self] in
-            self?.loadingScreen.removeFromSuperview()
+        self.present(imagePicker, animated: true) { [self] in
+            self.loadingScreen.removeFromSuperview()
         }
     }
     

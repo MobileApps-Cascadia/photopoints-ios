@@ -18,7 +18,6 @@ class StartupManager {
     static let defaults = UserDefaults.standard
     
     static func run(){
-        
         if defaults.object(forKey: "FirstRun") == nil {
             print("performing first run")
             firstRun()

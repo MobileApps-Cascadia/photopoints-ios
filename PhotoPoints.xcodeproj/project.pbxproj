@@ -170,7 +170,6 @@
 				F3095932246BA5900088FB19 /* View */,
 				F309592F246BA1690088FB19 /* Controller */,
 				F30CA2672460A3D700CEA2A6 /* Helpers */,
-				F3CEA1722592E539001A22CA /* Map Data */,
 				F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */,
 				F30CA2102460A2FC00CEA2A6 /* LaunchScreen.storyboard */,
 				F30CA2132460A2FC00CEA2A6 /* Info.plist */,
@@ -249,6 +248,7 @@
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
 				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
+				F3CEA1722592E539001A22CA /* Map Feature Data */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		F3CEA1722592E539001A22CA /* Map Data */ = {
+		F3CEA1722592E539001A22CA /* Map Feature Data */ = {
 			isa = PBXGroup;
 			children = (
 				F319869C2593C09A006E94AE /* Streams.swift */,
@@ -269,7 +269,7 @@
 				F31986A22593C0A7006E94AE /* WetLands.swift */,
 				F3CEA17A2592F26B001A22CA /* Boundary.swift */,
 			);
-			path = "Map Data";
+			path = "Map Feature Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

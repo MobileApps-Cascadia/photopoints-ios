@@ -90,7 +90,7 @@ class ItemCollectionCell: UICollectionViewCell {
         if repository.didSubmitToday(for: item) {
             statusCircle.backgroundColor = .systemGreen
         } else {
-            statusCircle.backgroundColor = .red
+            statusCircle.backgroundColor = .systemRed
         }
         
         // debugging output

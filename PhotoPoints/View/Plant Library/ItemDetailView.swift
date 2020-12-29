@@ -29,10 +29,12 @@ class ItemDetailView: UIViewController {
     
     let statusPill: UILabel = {
         let label = UILabel()
-        label.layer.cornerRadius = 9
+        label.layer.cornerRadius = 15
         label.layer.borderWidth = 1
+        label.clipsToBounds = true
         label.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
-//        label.textColor = .white
+        label.backgroundColor = .systemRed
+        label.text = "  no submission today  "
         return label
     }()
     
@@ -147,6 +149,13 @@ class ItemDetailView: UIViewController {
         
         scrollView.addSubview(imageView)
         imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: frame.height * 2 / 3)
+        imageView.addSubview(statusPill)
+        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, height: 30)
+        
+        if repository.didSubmitToday(for: thisItem) {
+            statusPill.backgroundColor = .systemGreen
+            statusPill.text = "  submission sent  "
+        }
         
         scrollView.addSubview(infoStack)
         infoStack.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
