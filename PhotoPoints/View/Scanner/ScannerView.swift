@@ -200,6 +200,7 @@ class ImagePickerWithAlertDelegate: UIImagePickerController {
     
 }
 
+//Delegates and controllers
 extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
     
     func turnOffAlert() {
