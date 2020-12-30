@@ -88,6 +88,7 @@ class MapView: UIViewController {
         }
     }
     
+    //Adds map annotations to aide the user when navigating the forest
     func addOverlays() {
         
         // forest boundary
@@ -153,6 +154,7 @@ extension MapView : MKMapViewDelegate {
         return annotationView
     }
     
+    //extension for drawing annotations on map based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is BoundaryGon {
@@ -190,6 +192,7 @@ extension MapView : MKMapViewDelegate {
 
 }
 
+//map maker font size
 func fontSize(for count: Int) -> UIFont {
     let size = CGFloat(pow(Double(count), 1 / 3) * 25)
     return UIFont.systemFont(ofSize: size)
