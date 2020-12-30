@@ -88,6 +88,7 @@ class MapView: UIViewController {
         }
     }
     
+    //Adds map annotations to aide the user when navigating the forest
     func addOverlays() {
         
         // forest boundary
