@@ -2,22 +2,21 @@
 //  Item+CoreDataClass.swift
 //  PhotoPoints
 //
-//  Created by Clay Suttner on 8/18/20.
+//  Created by Clay Suttner on 12/27/20.
 //  Copyright © 2020 Cascadia College. All rights reserved.
 //
 //
 
-import MapKit
+import Foundation
 import CoreData
+import UIKit
 
-@objc(Item)
+
 public class Item: NSManagedObject {
-    
+
     convenience init(id: String, label: String, coordinate: Coordinate, details: [String: String], image: Image) {
-        
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
-        self.init(entity: Item.entity(), insertInto: context)
+
+        self.init(entity: Item.entity(), insertInto: Repository.instance.context)
         
         self.id = id
         self.label = label

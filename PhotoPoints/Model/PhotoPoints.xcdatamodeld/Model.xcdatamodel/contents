@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -30,17 +30,17 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="item" inverseEntity="Coordinate"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="item" inverseEntity="Submission"/>
     </entity>
-    <entity name="Submission" representedClassName="Submission" syncable="YES" codeGenerationType="class">
+    <entity name="Submission" representedClassName=".Submission" syncable="YES">
         <attribute name="answers" optional="YES" attributeType="String"/>
-        <attribute name="count" attributeType="Integer 16" usesScalarValueType="YES"/>
-        <attribute name="itemIId" attributeType="String"/>
+        <attribute name="count" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="status" attributeType="String"/>
+        <attribute name="status" attributeType="String" defaultValueString=""/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="submissions" inverseEntity="Item"/>
         <relationship name="userPhoto" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>
     </entity>
-    <entity name="UserPhoto" representedClassName="UserPhoto" syncable="YES" codeGenerationType="class">
+    <entity name="UserPhoto" representedClassName=".UserPhoto" syncable="YES">
         <attribute name="photoHash" attributeType="String"/>
         <attribute name="photoSize" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="URI"/>
@@ -50,11 +50,11 @@
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="userPhoto" inverseEntity="Submission"/>
     </entity>
     <elements>
-        <element name="Coordinate" positionX="139.6640625" positionY="244.890625" width="128" height="103"/>
-        <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="88"/>
+        <element name="Coordinate" positionX="139.6640625" positionY="244.890625" width="128" height="89"/>
+        <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="74"/>
         <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
         <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
-        <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="163"/>
+        <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="149"/>
         <element name="UserPhoto" positionX="480.17578125" positionY="-41.6953125" width="128" height="134"/>
     </elements>
 </model>

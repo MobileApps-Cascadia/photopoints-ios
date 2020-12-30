@@ -19,7 +19,7 @@ class MockDatabase {
         
         mockdb.append(Item(id: "28097", label: "Pacific Willow", coordinate: Coordinate(latitude: 47.775036, longitude: -122.191449), details: ["common_names" : "Pacific Willow, Yellow Willow, Waxy Willow", "botanical_name" : "Salix lucida ssp. Lasiandra", "site" : "2", "category" : "Deciduous, Tree", "family" : ""], image: Image(filename: "0de693ef54a38b1224975fad7cac4e39")))
         
-        mockdb.append(Item(id: "28069", label: "Black Twinberry", coordinate: Coordinate(latitude: 47.774845, longitude: -122.191508), details: ["common_names" : "Black Twinberry, Bearberry Honeysuckle, Twinberry, Bush Honeysuckle",            "botanical_name" : "Lonicera Involucrata", "site" : "2", "category" : "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", "family" : "Caprifoliaceae"], image: Image(filename: "2d68e05603faeb2f249b62358f9c9495")))
+        mockdb.append(Item(id: "28069", label: "Black Twinberry", coordinate: Coordinate(latitude: 47.774845, longitude: -122.191508), details: ["common_names" : "Black Twinberry, Bearberry Honeysuckle, Twinberry, Bush Honeysuckle", "botanical_name" : "Lonicera Involucrata", "site" : "2", "category" : "Berry, Deciduous, Perennial, Shrub, Woody Ornamental", "family" : "Caprifoliaceae"], image: Image(filename: "2d68e05603faeb2f249b62358f9c9495")))
 
         mockdb.append(Item(id: "28092", label: "Douglas-Fir", coordinate: Coordinate(latitude: 47.774827, longitude: -122.191787), details: ["common_names" : "Douglas-Fir", "botanical_name" : "Pseudotsuga Menziesii", "site" : "1", "category" : "Conifer, Evergreen, Perennial, Tree", "family" : "Pinaceae"],
             image: Image(filename: "cecc9ccdea496978e3f7694aacebd355")))
@@ -39,9 +39,9 @@ class MockDatabase {
         
         mockdb.append(Item(id: "28075", label: "Cascara", coordinate: Coordinate(latitude: 47.774897, longitude: -122.19191), details: ["common_names" : "Cascara", "botanical_name" : "Frangula purshiana", "site" : "3", "category" : "Berry, Deciduous, Tree"], image: Image(filename: "70837bb2822ab2518965b970b4ea46aa")))
         
-        mockdb.append(Item(id: "28066", label: "Red Alder", coordinate: Coordinate(latitude: 47.774947, longitude: -122.191776), details: ["common_names" : "Red Alder", "botanical_name" : "Alnus rubra", "site" : "3", "category" : "Deciduous, Perennial, Tree", "family" : "Betulaceae"], image: Image(filename: "2d811c6d6634fc6eeafedde95435ef78")))
+        mockdb.append(Item(id: "28072", label: "Red Alder", coordinate: Coordinate(latitude: 47.774947, longitude: -122.191776), details: ["common_names" : "Red Alder", "botanical_name" : "Alnus rubra", "site" : "3", "category" : "Deciduous, Perennial, Tree", "family" : "Betulaceae"], image: Image(filename: "25b54587a8265a3c05ecab9f93a80782")))
         
-        mockdb.append(Item(id: "28072", label: "Paper Birch", coordinate: Coordinate(latitude: 47.774947, longitude: -122.191508), details: ["common_names" : "Paper Birch, White Birch, Canoe Birch", "botanical_name" : "Betula papyrifera", "site" : "2", "category" : "Deciduous, Tree"], image: Image(filename: "25b54587a8265a3c05ecab9f93a80782")))
+        mockdb.append(Item(id: "28066", label: "Paper Birch", coordinate: Coordinate(latitude: 47.774947, longitude: -122.191508), details: ["common_names" : "Paper Birch, White Birch, Canoe Birch", "botanical_name" : "Betula papyrifera", "site" : "2", "category" : "Deciduous, Tree"], image: Image(filename: "2d811c6d6634fc6eeafedde95435ef78")))
         
         mockdb.append(Item(id: "28098", label: "Red Elderberry", coordinate: Coordinate(latitude: 47.774851, longitude: -122.191779), details: ["common_names" : "Red Elderberry", "botanical_name" : "Sambucus racemosa ssp. pubens", "site" : "1", "category" : "Deciduous, Fruit, Shrub, Woody Ornamental"], image: Image(filename: "5e58b6ebfd27a0ab7b8d9253c5a57e76")))
         

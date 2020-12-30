@@ -9,6 +9,13 @@
 import UIKit
 import MapKit
 
+//Enum for changing map marker states
+enum SurveyState {
+    case notSurveyed
+    case surveyed
+    case mix
+}
+
 class ItemAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
@@ -17,26 +24,13 @@ class ItemAnnotation: NSObject, MKAnnotation {
     
     var subtitle: String?
     
-    //Enum for changing map marker states
-    enum SurveyState {
-        case unsurveyed
-        case surveyed
-    }
-
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
-        super.init()
-    }
+    let item: Item
     
-    var mapState = SurveyState.unsurveyed
-
-    //Switch statement for changing the survey state of a photopoint. currently contains test code.
-    func printState() {
-        switch mapState {
-        case .unsurveyed:
-           print("Unsurveyed")
-        case .surveyed:
-           print("Surveyed")
-        }
+    init(item: Item) {
+        self.item = item
+        let location = item.location!
+        self.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        self.title = item.label
+        super.init()
     }
 }

@@ -16,6 +16,8 @@ class Repository {
     // Repository is a singleton, access using Repository.instance
     public static let instance = Repository()
     
+    private init() {}
+    
     // create a queue for operations requiring thread safety
     private let serialQueue = DispatchQueue(label: "repoQueue")
     
@@ -104,4 +106,36 @@ class Repository {
         return nil
     }
     
+    func getSubmissions(for item: Item) -> [Submission]? {
+        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
+        let predicate = NSPredicate(format: "item == %@", item)
+        request.predicate = predicate
+        
+        if let submissions = try? context.fetch(request) as [Submission] {
+            return submissions
+        }
+        
+        return nil
+    }
+    
+    func didSubmitToday(for item: Item) -> Bool {
+        
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: Date())
+        let end = calendar.date(byAdding: .day, value: 1, to: start)!
+        
+        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
+        let predicate = NSPredicate(format: "item == %@ AND (date >= %@ AND date < %@)", item, start as CVarArg, end as CVarArg)
+        request.predicate = predicate
+        
+        if let submissions = try? context.fetch(request) {
+            if submissions.count > 0 {
+                return true
+            }
+        }
+        
+        return false
+    }
 }
+
+

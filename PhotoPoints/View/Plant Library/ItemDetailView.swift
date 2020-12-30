@@ -13,14 +13,28 @@ class ItemDetailView: UIViewController {
     
     // MARK: - Properties
     let repository = Repository.instance
+    
     var thisItem: Item
+    
     var alertDelegate: AlertDelegate!
+    
+    var surveyState: SurveyState = .notSurveyed
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    let statusPill: UILabel = {
+        let label = UILabel()
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        label.backgroundColor = .systemRed
+        label.textColor = .white
+        label.text = "  no submission today  "
+        return label
     }()
     
     // all of the text underneath the image
@@ -50,7 +64,7 @@ class ItemDetailView: UIViewController {
         infoStack.addArrangedSubview(pnwLabel)
         
         // story
-        let path = Bundle.main.path(forResource: "\(thisItem.id)_story", ofType: "txt")
+        let path = Bundle.main.path(forResource: "\(thisItem.id ?? "")_story", ofType: "txt")
         
         do {
             let story = try String(contentsOfFile: path!, encoding: .utf8)
@@ -134,6 +148,13 @@ class ItemDetailView: UIViewController {
         
         scrollView.addSubview(imageView)
         imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: frame.height * 2 / 3)
+        imageView.addSubview(statusPill)
+        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, height: 30)
+        
+        if repository.didSubmitToday(for: thisItem) {
+            statusPill.backgroundColor = .systemGreen
+            statusPill.text = "  submission sent  "
+        }
         
         scrollView.addSubview(infoStack)
         infoStack.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)

@@ -11,18 +11,19 @@ import UIKit
 
 class StartupManager {
     
-    // get repository instance for methods requiring data retreival etc
+    // get repository instance for methods requiring data retreival
+    // access managed object context
     static let repository = Repository.instance
     
-    // get managed context so we can save to core data persistent container
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    static let isFirstRun = true
+    static let defaults = UserDefaults.standard
     
     static func run(){
-        if isFirstRun {
+        if defaults.object(forKey: "FirstRun") == nil {
+            print("performing first run")
             firstRun()
+            defaults.set(false, forKey: "FirstRun")
         }
+        print("performing startup")
         startup()
     }
     
@@ -36,7 +37,7 @@ class StartupManager {
     }
     
     static func storeAppConfigData(){
-        let defaults = UserDefaults.standard
+        
         defaults.set(Date(), forKey: "LastUpdated")
         
         // somewhere else in app we will have file that contains global constants - ClearOnStartup, DebugModeOn etc
@@ -65,34 +66,23 @@ class StartupManager {
     
     static func loadInitData(){
         
-        // clear item data from Core Data
-        clearData(entityNames: ["Coordinate", "Detail", "Image", "Item"])
+        print("loading initial data")
+        
+        // necessary to access context in some way before creating objects
+        repository.context.reset()
         
         // build mock database
         MockDatabase.build()
         
         // write to core data
         do {
-            try context.save()
+            try repository.context.save()
         } catch let error as NSError {
             print(error.localizedDescription)
         }
         
         // load images to filesystem
         loadInitImages()
-    }
-    
-    // clear all records of an entity from Core Data
-    static func clearData(entityNames: [String]) {
-        for entity in entityNames {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteReq = NSBatchDeleteRequest(fetchRequest: request)
-            do {
-                try context.execute(deleteReq)
-            } catch {
-                print(error)
-            }
-        }
     }
     
     // load initial images from xcassets to filesystem to allow us to test getting images
@@ -106,6 +96,5 @@ class StartupManager {
             }
         }
     }
-    
-    
+
 }

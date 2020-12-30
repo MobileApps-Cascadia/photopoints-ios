@@ -35,6 +35,11 @@ class ScannerView: UIViewController {
     // photo capture view
     let imagePicker = ImagePickerWithAlertDelegate()
     
+    var scannedItem: Item?
+    
+    // for dismissing alerts with a tap outside
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -121,12 +126,15 @@ class ScannerView: UIViewController {
         noAVDLabel.text = "No AV Device"
         noAVDLabel.textColor = .white
         noAVDLabel.sizeToFit()
-        
-        // this needs to happen before setting constraints :)
+        noAVDLabel.frame = view.frame
+        noAVDLabel.textAlignment = .center
         view.addSubview(noAVDLabel)
-        noAVDLabel.translatesAutoresizingMaskIntoConstraints = false
-        noAVDLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        noAVDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    //MARK: - Selectors
+    
+    @objc func dismissOnTapOutside() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -144,39 +152,28 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
                     alertActive = true
                     print("alert active")
                     setUpAlerts(for: thisItem)
+                    scannedItem = thisItem
                 }
             }
         }
     }
     
     func setUpAlerts(for item: Item) {
-        let commonName = repository.getDetailValue(item: item, property: "common_name")
-        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
         let detailView = ItemDetailView(item: item)
         detailView.alertDelegate = self
         
-        let scannedAlert = UIAlertController(title: commonName, message: botanicalName, preferredStyle: .alert)
-        scannedAlert.addAction(UIAlertAction(title: "Perform Survey", style: .default, handler: { (nil) in
-            
-            self.showLoadScreen()
-            
-            DispatchQueue.main.async {
-                self.openCamera()
-            }
-            
-        }))
+        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
+        let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
+        
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            
-            self.showLoadScreen()
-            
-            DispatchQueue.main.async {
-                self.present(detailView, animated: true) { [weak self] in
-                    self?.loadingScreen.removeFromSuperview()
-                }
-            }
-            
+            self.navigationController?.pushViewController(detailView, animated: true)
         }))
         
+        scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
+            self.showLoadScreen()
+            self.openCamera()
+        }))
+
         present(scannedAlert, animated: true, completion: nil)
     }
     
@@ -218,21 +215,52 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true) { [weak self] in
-            self?.loadingScreen.removeFromSuperview()
+        self.present(imagePicker, animated: true) {
+            self.loadingScreen.removeFromSuperview()
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() {
+        
+        let thanksAlert = UIAlertController(title: "Thanks!", message: "Your submission has been sent", preferredStyle: .alert)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside))
+        
+        self.dismiss(animated: true) {
+            self.present(thanksAlert, animated: true) {
+                thanksAlert.view.superview?.isUserInteractionEnabled = true
+                thanksAlert.view.superview?.addGestureRecognizer(tapRecognizer)
+            }
+        }
+        
+        // handle the user photo in the background (this really helps speed up the UI here!)
+        DispatchQueue.global(qos: .userInitiated).async {
+
+            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
+                print("error getting png data for user photo")
+                return
+            }
+
             let hashString = Insecure.MD5.hash(data: data).map {
                 String(format: "%02hhx", $0)
             }.joined()
+
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
             print("photo stored with filename \(hashString)")
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            print("error storing user submission")
+
+            if let url = ImageManager.getPath(for: hashString, in: .photos) {
+
+                let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
+                let submission = Submission(userPhoto: userPhoto, date: Date())
+                self.scannedItem?.addToSubmissions(submission)
+                
+                do {
+                    try self.repository.context.save()
+                    print("context saved")
+                } catch {
+                    print("error saving context")
+                }
+                
+            }
         }
     }
     

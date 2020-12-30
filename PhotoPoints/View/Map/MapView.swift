@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 // globally accessible instance
-let mapVC = MapView()
+//let mapVC = MapView()
 
 class MapView: UIViewController {
 
@@ -23,23 +23,9 @@ class MapView: UIViewController {
     
     // Reuse ids for annotations
     let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
+    
     // Empty annotations array
     var annotations = [ItemAnnotation]()
-    
-    // Contains logic for setting and resetting currently displayed annotations.
-    var displayedAnnotations: [ItemAnnotation]? {
-        willSet {
-            if let currentAnnotations = displayedAnnotations {
-                mapView.removeAnnotations(currentAnnotations)
-            }
-        }
-        didSet {
-            if let newAnnotations = displayedAnnotations {
-                mapView.addAnnotations(newAnnotations)
-            }
-            
-        }
-    }
     
     //MARK: - Lifecycle
     
@@ -48,6 +34,13 @@ class MapView: UIViewController {
         setUpMap()
         registerAnnotations()
         addOverlays()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // refresh annotations each time we switch back to this view
+        // so we can update their color if they were surveyed
+        mapView.removeAnnotations(annotations)
+        mapView.addAnnotations(annotations)
     }
     
     //MARK: - Setup
@@ -64,9 +57,8 @@ class MapView: UIViewController {
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
         
-        // fill and add annotations
+        // fill annotations array
         fillAnnotations()
-        mapView.addAnnotations(annotations)
         view.addSubview(mapView)
     }
     
@@ -79,12 +71,8 @@ class MapView: UIViewController {
         let items = repository.getItems()!
         
         for item in items {
-            if let location = item.location {
-                let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-                let annotation = ItemAnnotation(coordinate: coordinate)
-                annotation.title = item.label
-                annotations.append(annotation)
-            }
+            let annotation = ItemAnnotation(item: item)
+            annotations.append(annotation)
         }
     }
     
@@ -129,28 +117,61 @@ extension MapView : MKMapViewDelegate {
         annotationView.clusteringIdentifier = "cluster"
         annotationView.collisionMode = .circle
         annotationView.canShowCallout = true
-        
-        // to be adjusted based on survey status
-        annotationView.tintColor = .red
-        
+
         let circleImage = UIImage(systemName: "circle.fill")!
         var borderImage: UIImage
         var fillImage: UIImage
         
+        var surveyState: SurveyState = .notSurveyed
+        
         if annotation is MKClusterAnnotation {
-            let count = (annotation as! MKClusterAnnotation).memberAnnotations.count
+            let memberAnnotations = (annotation as! MKClusterAnnotation).memberAnnotations
+            let count = memberAnnotations.count
             let configuration = UIImage.SymbolConfiguration(font: fontSize(for: count))
+            
             borderImage = circleImage.withConfiguration(configuration)
             fillImage = UIImage(systemName: "\(count).circle.fill", withConfiguration: configuration)!
+            
+            var didSubmit = [Bool]()
+            
+            for memberAnnotation in memberAnnotations {
+                let item = (memberAnnotation as! ItemAnnotation).item
+                didSubmit.append(repository.didSubmitToday(for: item))
+            }
+            
+            if didSubmit.contains(false) && didSubmit.contains(true) {
+                surveyState = .mix
+            }
+            
+            if !didSubmit.contains(false) {
+                surveyState = .surveyed
+            }
+            
         } else {
             let configuration = UIImage.SymbolConfiguration(font: fontSize(for: 1))
+            
             borderImage = circleImage.withConfiguration(configuration)
             fillImage = borderImage
+            
+            let item = (annotation as! ItemAnnotation).item
+    
+            if repository.didSubmitToday(for: item) {
+                surveyState = .surveyed
+            }
         }
         
-        annotationView.image = borderImage
-        annotationView.addSubview(UIImageView(image: fillImage))
+        switch surveyState {
+        case .notSurveyed:
+            annotationView.tintColor = .systemRed
+        case .surveyed:
+            annotationView.tintColor = .systemGreen
+        case .mix:
+            annotationView.tintColor = .systemYellow
+        }
         
+        annotationView.image = borderImage.withTintColor(.white)
+        annotationView.addSubview(UIImageView(image: fillImage))
+
         return annotationView
     }
     
@@ -215,7 +236,7 @@ extension MKCoordinateRegion {
 }
 
 
-  
+
     
 
 

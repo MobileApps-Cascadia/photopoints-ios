@@ -27,17 +27,18 @@ class MainTabBar: UITabBarController {
         let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
         itemNavigation.navigationBar.topItem?.title = "Plant Library"
-        itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf.arrow.circlepath"), tag: 1)
+        itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf"), tag: 1)
         
         // set up map:
-        // this is a (fake) singleton so we can change the surveystatus in scannerView and have it be reflected in map markers
-        // we should make it a real singleton, or determine a better alternative (observable objects?)
-        mapVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 2)
+        let mapView = MapView()
+        let mapNavigation = UINavigationController(rootViewController: mapView)
+        mapNavigation.navigationBar.topItem?.title = "Map"
+        mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 2)
         
         // add these to our main tab bar
         self.addChild(scannerNavigation)
         self.addChild(itemNavigation)
-        self.addChild(mapVC)
+        self.addChild(mapNavigation)
         
         // set library as default tab bar selection
         self.selectedIndex = 1
