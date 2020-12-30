@@ -157,7 +157,6 @@ extension MapView : MKMapViewDelegate {
             if repository.didSubmitToday(for: item) {
                 surveyState = .surveyed
             }
-            
         }
         
         switch surveyState {
@@ -169,9 +168,9 @@ extension MapView : MKMapViewDelegate {
             annotationView.tintColor = .systemYellow
         }
         
-        annotationView.image = borderImage
+        annotationView.image = borderImage.withTintColor(.white)
         annotationView.addSubview(UIImageView(image: fillImage))
-        
+
         return annotationView
     }
     
@@ -234,7 +233,7 @@ extension MKCoordinateRegion {
 }
 
 
-  
+
     
 
 

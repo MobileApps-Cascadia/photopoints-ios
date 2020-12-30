@@ -37,6 +37,9 @@ class ScannerView: UIViewController {
     
     var scannedItem: Item?
     
+    // for dismissing alerts with a tap outside
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -128,6 +131,12 @@ class ScannerView: UIViewController {
         view.addSubview(noAVDLabel)
     }
     
+    //MARK: - Selectors
+    
+    @objc func dismissOnTapOutside() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - Meta Data Output
@@ -152,21 +161,19 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     func setUpAlerts(for item: Item) {
         let detailView = ItemDetailView(item: item)
         detailView.alertDelegate = self
+        
         let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
         let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
+        
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
+            self.navigationController?.pushViewController(detailView, animated: true)
+        }))
         
         scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
             self.showLoadScreen()
             self.openCamera()
         }))
-        
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            self.showLoadScreen()
-            self.present(detailView, animated: true) { [self] in
-                self.loadingScreen.removeFromSuperview()
-            }
-        }))
-        
+
         present(scannedAlert, animated: true, completion: nil)
     }
     
@@ -207,17 +214,25 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true) { [self] in
+        self.present(imagePicker, animated: true) {
             self.loadingScreen.removeFromSuperview()
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        self.dismiss(animated: true, completion: nil)
+        let thanksAlert = UIAlertController(title: "Thanks!", message: "Your submission has been sent", preferredStyle: .alert)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside))
+        
+        self.dismiss(animated: true) {
+            self.present(thanksAlert, animated: true) {
+                thanksAlert.view.superview?.isUserInteractionEnabled = true
+                thanksAlert.view.superview?.addGestureRecognizer(tapRecognizer)
+            }
+        }
         
         // handle the user photo in the background (this really helps speed up the UI here!)
-        DispatchQueue.global(qos: .userInitiated).async { [self] in
+        DispatchQueue.global(qos: .userInitiated).async {
 
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
                 print("error getting png data for user photo")

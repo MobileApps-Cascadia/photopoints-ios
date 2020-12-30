@@ -30,10 +30,9 @@ class ItemDetailView: UIViewController {
     let statusPill: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 15
-        label.layer.borderWidth = 1
         label.clipsToBounds = true
-        label.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
         label.backgroundColor = .systemRed
+        label.textColor = .white
         label.text = "  no submission today  "
         return label
     }()

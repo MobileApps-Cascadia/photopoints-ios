@@ -49,8 +49,6 @@ class ItemCollectionCell: UICollectionViewCell {
     var statusCircle: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 9
-        view.layer.borderWidth = 1
-        view.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
         return view
     }()
     
@@ -78,7 +76,7 @@ class ItemCollectionCell: UICollectionViewCell {
         
         contentView.addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-        imageView.layer.cornerRadius = 20
+//        imageView.layer.cornerRadius = 20
         
     }
     
@@ -92,9 +90,6 @@ class ItemCollectionCell: UICollectionViewCell {
         } else {
             statusCircle.backgroundColor = .systemRed
         }
-        
-        // debugging output
-        print(item.label!, repository.getSubmissions(for: item)!.count)
     }
     
 }
