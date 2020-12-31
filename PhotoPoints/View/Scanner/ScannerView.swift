@@ -222,15 +222,18 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let thanksAlert = UIAlertController(title: "Thanks!", message: "Your submission has been sent", preferredStyle: .alert)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside))
-        
-        self.dismiss(animated: true) {
-            self.present(thanksAlert, animated: true) {
-                thanksAlert.view.superview?.isUserInteractionEnabled = true
-                thanksAlert.view.superview?.addGestureRecognizer(tapRecognizer)
-            }
+        let thanksAlert = UIAlertController(title: "Thanks!", message: "Would you like to add another photo to this submission?", preferredStyle: .alert)
+        let photoAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
+            <#code#>
         }
+        let cancelAction = UIAlertAction(title: "No", style: .default) { (nil) in
+            self.dismiss(animated: true) {}
+        }
+        
+        thanksAlert.addAction(photoAction)
+        thanksAlert.addAction(cancelAction)
+        
+        present(thanksAlert, animated: true) {}
         
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
@@ -253,12 +256,7 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
                 let submission = Submission(userPhoto: userPhoto, date: Date())
                 self.scannedItem?.addToSubmissions(submission)
                 
-                do {
-                    try self.repository.context.save()
-                    print("context saved")
-                } catch {
-                    print("error saving context")
-                }
+                self.repository.saveContext()
                 
             }
         }

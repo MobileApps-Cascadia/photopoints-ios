@@ -19,11 +19,11 @@ class ImageManager {
     
     static let fm = FileManager.default
     
-    // optional output - could enter a bad name
-    static func getPath(for fileName: String, in subDirectory: SubDirectory) -> URL? {
+    // output is not optional because we are just appending to a URL we know exists (document dir)
+    static func getPath(for fileName: String, in subDirectory: SubDirectory) -> URL {
         
-        // get the document directory URL
-        guard let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        // get the document directory URL, force unwrap as this will always exist
+        let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         // navigate to specified subdirectory
         let imageURL = documentURL.appendingPathComponent("\(subDirectory)/")
@@ -37,7 +37,8 @@ class ImageManager {
     static func getImage(from fileName: String, in subDirectory: SubDirectory) -> UIImage? {
         
         // file name > path > contents at path > UIImage with those contents returned
-        if let imagePath = getPath(for: fileName, in: subDirectory), let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
+        let imagePath = getPath(for: fileName, in: subDirectory)
+        if let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
             return image
         }
         
@@ -48,17 +49,17 @@ class ImageManager {
         
         // UIImage has pngData method
         if let pngRepresentation = image.pngData() {
+            
             // save to disk
-            // filePath returns optional URL
-            if let filePath = getPath(for: fileName, in: subDirectory){
-                do {
-                    // Data has a write method
-                    try pngRepresentation.write(to: filePath, options: .atomic)
-                    
-                } catch {
-                    print("Saving file resulted in error: ", error)
-                }
+            let filePath = getPath(for: fileName, in: subDirectory)
+            do {
+                // Data has a write method
+                try pngRepresentation.write(to: filePath, options: .atomic)
+                
+            } catch {
+                print("Saving file resulted in error: ", error)
             }
+            
         }
     }
     
