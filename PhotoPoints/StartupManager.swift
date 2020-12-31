@@ -75,11 +75,7 @@ class StartupManager {
         MockDatabase.build()
         
         // write to core data
-        do {
-            try repository.context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        repository.saveContext()
         
         // load images to filesystem
         loadInitImages()

@@ -17,31 +17,29 @@ class MainTabBar: UITabBarController {
     
     func setUpTabBarChildren() {
 
-        // set up scanner
-        let scannerView = ScannerView()
-        let scannerNavigation = UINavigationController(rootViewController: scannerView)
-        scannerNavigation.navigationBar.topItem?.title = "Scanner"
-        scannerNavigation.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
-        
         // set up plant library
         let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
-        itemNavigation.navigationBar.topItem?.title = "Plant Library"
+        itemNavigation.navigationBar.topItem?.title = "Plants"        
         itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf"), tag: 1)
         
         // set up map:
         let mapView = MapView()
         let mapNavigation = UINavigationController(rootViewController: mapView)
-        mapNavigation.navigationBar.topItem?.title = "Map"
+//        mapNavigation.navigationBar.isHidden = true
         mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 2)
         
+        // set up scanner
+        let scannerView = ScannerView()
+        let scannerNavigation = UINavigationController(rootViewController: scannerView)
+        scannerNavigation.navigationBar.isHidden = true
+        scannerNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 0)
+        
         // add these to our main tab bar
-        self.addChild(scannerNavigation)
         self.addChild(itemNavigation)
         self.addChild(mapNavigation)
-        
-        // set library as default tab bar selection
-        self.selectedIndex = 1
+        self.addChild(scannerNavigation)
+
     }
     
 }

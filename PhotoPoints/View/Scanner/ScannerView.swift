@@ -33,25 +33,28 @@ class ScannerView: UIViewController {
     let loadingScreen = LoadView()
     
     // photo capture view
-    let imagePicker = ImagePickerWithAlertDelegate()
+    let imagePicker = ImagePickerWithAlert()
     
-    var scannedItem: Item?
+    // this variable won't be referenced unless an item has been identified with the scanner
+    var scannedItem: Item!
     
-    // for dismissing alerts with a tap outside
-    
+    var workingSubmission: Submission!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
-        addDelegates()
+        setupImagePicker()
     }
     
     // terminate the session if we navigate off this view
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         session?.stopRunning()
+        
+        // commit submissions to core data once the user has left this screen
+        repository.saveContext()
     }
     
     // bring the session up again if we switch back to this view
@@ -110,9 +113,7 @@ class ScannerView: UIViewController {
     func setupScannerSquare() {
         view.addSubview(scannerSquare)
         let width = view.frame.width - 64
-        scannerSquare.anchor(width: width, height: width)
-        scannerSquare.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        scannerSquare.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
     }
     
     func showLoadScreen() {
@@ -131,10 +132,56 @@ class ScannerView: UIViewController {
         view.addSubview(noAVDLabel)
     }
     
-    //MARK: - Selectors
+    // MARK: - Alerts
     
-    @objc func dismissOnTapOutside() {
-        self.dismiss(animated: true, completion: nil)
+    func showScannedAlert(for item: Item) {
+        let detailView = ItemDetailView(item: item)
+        detailView.alertDelegate = self
+        
+        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
+        let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
+        
+        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
+            self.present(detailView, animated: true) {}
+        }))
+        
+        scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
+            self.workingSubmission = self.getWorkingSubmission(for: item)
+            self.openCamera()
+        }))
+
+        present(scannedAlert, animated: true) {}
+    }
+    
+    func showThanksAlert() {
+        let thanksAlert = UIAlertController(title: "Thanks!", message: "Would you like to add another photo to this submission?", preferredStyle: .alert)
+        
+        thanksAlert.addAction(UIAlertAction(title: "Yes", style: .default) { (nil) in
+            self.dismiss(animated: true) {}
+            self.openCamera()
+        })
+        
+        thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
+            self.dismiss(animated: true) {}
+        })
+        
+        present(thanksAlert, animated: true) {}
+    }
+    
+    // MARK: - Submissions
+    
+    func getWorkingSubmission(for item: Item) -> Submission {
+        
+        if repository.didSubmitToday(for: item) {
+            let submission = repository.getSubmissions(for: item)!.last!
+            print("adding to existing submission for \(item.label ?? "") with \(submission.userPhotos?.count ?? 0) photos")
+            return submission
+        }
+        
+        print("creating new submission for \(item.label ?? "")")
+        let submission = Submission(date: Date())
+        item.addToSubmissions(submission)
+        return submission
     }
     
 }
@@ -144,100 +191,51 @@ class ScannerView: UIViewController {
 extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
 
     // called by system when we get metadataoutputs
+    // load the scanned item into the class variable
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if  metadataObjects.count != 0 && !alertActive {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                let objectString = object.stringValue ?? ""
-                if let thisItem = repository.getItemFrom(url: objectString) {
-                    alertActive = true
-                    print("alert active")
-                    setUpAlerts(for: thisItem)
-                    scannedItem = thisItem
-                }
-            }
+            let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            guard let objectString = object?.stringValue else { return }
+            guard let item = repository.getItemFrom(url: objectString) else { return }
+            showScannedAlert(for: item)
+            scannedItem = item
+            alertActive = true
+            print("alert active")
         }
     }
     
-    func setUpAlerts(for item: Item) {
-        let detailView = ItemDetailView(item: item)
-        detailView.alertDelegate = self
-        
-        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
-        let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
-        
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
-            self.navigationController?.pushViewController(detailView, animated: true)
-        }))
-        
-        scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
-            self.showLoadScreen()
-            self.openCamera()
-        }))
-
-        present(scannedAlert, animated: true, completion: nil)
-    }
-    
 }
 
-// MARK: - Image Picker
+// MARK: - Image Picker Delegate
 
-protocol AlertDelegate {
-    func turnOffAlert()
-}
-
-class ImagePickerWithAlertDelegate: UIImagePickerController {
-    
-    // initialized to nil so we don't have to write a custom init
-    var alertDelegate: AlertDelegate! = nil
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        alertDelegate.turnOffAlert()
-    }
-    
-}
-
-//Delegates and controllers
+// Delegates and controllers
 extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
     
     func turnOffAlert() {
-        self.alertActive = false
+        alertActive = false
         print("alert inactive")
     }
     
-    func addDelegates() {
+    func setupImagePicker() {
         imagePicker.delegate = self
         imagePicker.alertDelegate = self
-    }
-    
-    func openCamera() {
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
         imagePicker.showsCameraControls = true
-        self.present(imagePicker, animated: true) {
+    }
+    
+    func openCamera() {
+        showLoadScreen()
+        present(imagePicker, animated: true) {
             self.loadingScreen.removeFromSuperview()
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let thanksAlert = UIAlertController(title: "Thanks!", message: "Would you like to add another photo to this submission?", preferredStyle: .alert)
-        let photoAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
-            <#code#>
-        }
-        let cancelAction = UIAlertAction(title: "No", style: .default) { (nil) in
-            self.dismiss(animated: true) {}
-        }
-        
-        thanksAlert.addAction(photoAction)
-        thanksAlert.addAction(cancelAction)
-        
-        present(thanksAlert, animated: true) {}
-        
+    func submitPhoto(using info: [UIImagePickerController.InfoKey : Any], for item: Item) {
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
-
+            
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
                 print("error getting png data for user photo")
                 return
@@ -250,16 +248,16 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
             print("photo stored with filename \(hashString)")
 
-            if let url = ImageManager.getPath(for: hashString, in: .photos) {
-
-                let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
-                let submission = Submission(userPhoto: userPhoto, date: Date())
-                self.scannedItem?.addToSubmissions(submission)
-                
-                self.repository.saveContext()
-                
-            }
+            let url = ImageManager.getPath(for: hashString, in: .photos)
+            let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
+            self.workingSubmission.addToUserPhotos(userPhoto)
         }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true) {}
+        showThanksAlert()
+        submitPhoto(using: info, for: scannedItem)
     }
     
 }

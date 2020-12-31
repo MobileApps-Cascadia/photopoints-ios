@@ -85,6 +85,9 @@ class ItemCollectionCell: UICollectionViewCell {
         titleLabel.text = item.label 
         subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
         
+        // debugging
+        print(item.label ?? "no item", String(repository.getSubmissions(for: item)?.count ?? 0))
+        
         if repository.didSubmitToday(for: item) {
             statusCircle.backgroundColor = .systemGreen
         } else {

@@ -125,8 +125,8 @@ class ItemDetailView: UIViewController {
         setUpScrollView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
         // using alertDelegate for scanner preview of this view but not in the library
         if let alertDelegate = alertDelegate {

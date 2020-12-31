@@ -36,12 +36,13 @@
 		F30CA2922460A3D800CEA2A6 /* 28066_story.txt in Resources */ = {isa = PBXBuildFile; fileRef = F30CA2602460A3D700CEA2A6 /* 28066_story.txt */; };
 		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
-		F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */; };
+		F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* Anchor.swift */; };
 		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
 		F31986A02593C09F006E94AE /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869F2593C09F006E94AE /* Trails.swift */; };
 		F31986A32593C0A7006E94AE /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31986A22593C0A7006E94AE /* WetLands.swift */; };
-		F33EDDDB25992FD700563422 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */; };
-		F33EDDDC25992FD700563422 /* Submission+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */; };
+		F31B0C20259E3E5D00144E96 /* ImagePickerWithAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B0C1F259E3E5D00144E96 /* ImagePickerWithAlert.swift */; };
+		F31B0C25259E42F000144E96 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B0C23259E42F000144E96 /* Submission+CoreDataClass.swift */; };
+		F31B0C26259E42F000144E96 /* Submission+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B0C24259E42F000144E96 /* Submission+CoreDataProperties.swift */; };
 		F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */; };
 		F33EDDDE25992FD700563422 /* UserPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */; };
 		F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */; };
@@ -91,12 +92,13 @@
 		F30CA2602460A3D700CEA2A6 /* 28066_story.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 28066_story.txt; sourceTree = "<group>"; };
 		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
+		F30CA2682460A3D700CEA2A6 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
 		F319869F2593C09F006E94AE /* Trails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trails.swift; sourceTree = "<group>"; };
 		F31986A22593C0A7006E94AE /* WetLands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetLands.swift; sourceTree = "<group>"; };
-		F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F31B0C1F259E3E5D00144E96 /* ImagePickerWithAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerWithAlert.swift; sourceTree = "<group>"; };
+		F31B0C23259E42F000144E96 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F31B0C24259E42F000144E96 /* Submission+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2362460A3D700CEA2A6 /* ScannerView.swift */,
+				F31B0C1F259E3E5D00144E96 /* ImagePickerWithAlert.swift */,
 				F3605556258AB8DF00817995 /* LoadView.swift */,
 			);
 			path = Scanner;
@@ -211,8 +214,8 @@
 				F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */,
 				F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */,
 				F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */,
-				F33EDDD725992FD700563422 /* Submission+CoreDataClass.swift */,
-				F33EDDD825992FD700563422 /* Submission+CoreDataProperties.swift */,
+				F31B0C23259E42F000144E96 /* Submission+CoreDataClass.swift */,
+				F31B0C24259E42F000144E96 /* Submission+CoreDataProperties.swift */,
 				F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */,
 				F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */,
 				DC3FDF982467A2D100DD613A /* Repository.swift */,
@@ -256,7 +259,7 @@
 		F30CA2672460A3D700CEA2A6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				F30CA2682460A3D700CEA2A6 /* AnchorExtension.swift */,
+				F30CA2682460A3D700CEA2A6 /* Anchor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -367,8 +370,8 @@
 				F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */,
-				F33EDDDC25992FD700563422 /* Submission+CoreDataProperties.swift in Sources */,
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
+				F31B0C20259E3E5D00144E96 /* ImagePickerWithAlert.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
 				F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
@@ -378,14 +381,15 @@
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
-				F33EDDDB25992FD700563422 /* Submission+CoreDataClass.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
-				F30CA2982460A3D800CEA2A6 /* AnchorExtension.swift in Sources */,
+				F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */,
 				F319869D2593C09A006E94AE /* Streams.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
+				F31B0C25259E42F000144E96 /* Submission+CoreDataClass.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,
+				F31B0C26259E42F000144E96 /* Submission+CoreDataProperties.swift in Sources */,
 				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,

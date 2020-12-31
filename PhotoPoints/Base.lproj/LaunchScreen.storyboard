@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,24 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-background" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-0r-Wws">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FONCF_TITLE" translatesAutoresizingMaskIntoConstraints="NO" id="3VB-Vi-CbL">
-                                <rect key="frame" x="0.0" y="453" width="414" height="409"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen-text" translatesAutoresizingMaskIntoConstraints="NO" id="RSL-j3-TAg">
+                                <rect key="frame" x="24" y="334.5" width="366" height="227"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="pp-background"/>
                         <constraints>
-                            <constraint firstItem="3VB-Vi-CbL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Qf-TM-i8x"/>
-                            <constraint firstItem="H9M-0r-Wws" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="LfM-5e-O7n"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3VB-Vi-CbL" secondAttribute="bottom" id="WKN-zH-dJd"/>
-                            <constraint firstAttribute="trailing" secondItem="H9M-0r-Wws" secondAttribute="trailing" id="dBq-O9-Bpy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3VB-Vi-CbL" secondAttribute="trailing" id="dHF-u8-28O"/>
-                            <constraint firstAttribute="bottom" secondItem="H9M-0r-Wws" secondAttribute="bottom" id="idQ-No-6l7"/>
-                            <constraint firstItem="H9M-0r-Wws" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="vc9-sF-bh4"/>
-                            <constraint firstItem="3VB-Vi-CbL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="xU6-4Q-N2N"/>
+                            <constraint firstItem="RSL-j3-TAg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="lnl-0V-TH1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RSL-j3-TAg" secondAttribute="trailing" constant="24" id="r4g-KY-Apf"/>
+                            <constraint firstItem="RSL-j3-TAg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="vDM-FF-9DR"/>
+                            <constraint firstItem="RSL-j3-TAg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zbF-Vz-p6W"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,10 +37,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FONCF_TITLE" width="1492" height="1028"/>
-        <image name="splash-background" width="1243" height="2208"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="launchscreen-text" width="1682" height="227"/>
+        <namedColor name="pp-background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
