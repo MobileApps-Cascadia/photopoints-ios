@@ -45,7 +45,6 @@ class ScannerView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
-        setupImagePicker()
     }
     
     // terminate the session if we navigate off this view
@@ -63,10 +62,6 @@ class ScannerView: UIViewController {
         session?.startRunning()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     // MARK: - Scanner
     
     func setupScanner() {
@@ -76,8 +71,9 @@ class ScannerView: UIViewController {
             addAVInput(from: captureDevice)
             configureAVOutput(for: .qr)
             addVideoLayer()
-            setupScannerSquare()
             session.startRunning()
+            addScannerSquare()
+            setupImagePicker()
         } else {
             addNoAVDLabel()
         }
@@ -110,7 +106,7 @@ class ScannerView: UIViewController {
     
     // MARK: - View Setup
     
-    func setupScannerSquare() {
+    func addScannerSquare() {
         view.addSubview(scannerSquare)
         let width = view.frame.width - 64
         scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
@@ -126,7 +122,6 @@ class ScannerView: UIViewController {
         let noAVDLabel = UILabel()
         noAVDLabel.text = "No AV Device"
         noAVDLabel.textColor = .white
-        noAVDLabel.sizeToFit()
         noAVDLabel.frame = view.frame
         noAVDLabel.textAlignment = .center
         view.addSubview(noAVDLabel)
@@ -232,6 +227,12 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true) {}
+        showThanksAlert()
+        submitPhoto(using: info, for: scannedItem)
+    }
+    
     func submitPhoto(using info: [UIImagePickerController.InfoKey : Any], for item: Item) {
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
@@ -253,11 +254,4 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
             self.workingSubmission.addToUserPhotos(userPhoto)
         }
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true) {}
-        showThanksAlert()
-        submitPhoto(using: info, for: scannedItem)
-    }
-    
 }
