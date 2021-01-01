@@ -21,7 +21,7 @@ class ScannerView: UIViewController {
     var alertActive = false
     
     // video session: optional because we won't have it in our emulator
-    var session: AVCaptureSession! = nil
+    var captureSession: AVCaptureSession! = nil
     
     let scannerSquare: UIView = {
         let square = UIView()
@@ -50,16 +50,13 @@ class ScannerView: UIViewController {
     // terminate the session if we navigate off this view
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        session?.stopRunning()
-        
-        // commit submissions to core data once the user has left this screen
-        repository.saveContext()
+        captureSession?.stopRunning()
     }
     
     // bring the session up again if we switch back to this view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        session?.startRunning()
+        captureSession?.startRunning()
     }
     
     // MARK: - Scanner
@@ -67,11 +64,11 @@ class ScannerView: UIViewController {
     func setupScanner() {
          // if a default capture device exists, hook up input, config output, and display
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
-            session = AVCaptureSession()
+            captureSession = AVCaptureSession()
             addAVInput(from: captureDevice)
             configureAVOutput(for: .qr)
             addVideoLayer()
-            session.startRunning()
+            captureSession.startRunning()
             addScannerSquare()
             setupImagePicker()
         } else {
@@ -83,7 +80,7 @@ class ScannerView: UIViewController {
     func addAVInput(from device: AVCaptureDevice) {
         do {
             let input = try AVCaptureDeviceInput(device: device)
-            session.addInput(input)
+            captureSession.addInput(input)
         } catch {
            print("ERROR")
         }
@@ -91,7 +88,7 @@ class ScannerView: UIViewController {
     
     func configureAVOutput(for objectType: AVMetadataObject.ObjectType) {
         let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
+        captureSession.addOutput(output)
         
         // process output on main thread: best performance results
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
@@ -99,7 +96,7 @@ class ScannerView: UIViewController {
     }
     
     func addVideoLayer() {
-        let video = AVCaptureVideoPreviewLayer(session: session)
+        let video = AVCaptureVideoPreviewLayer(session: captureSession)
         video.frame = view.layer.bounds
         view.layer.addSublayer(video)
     }
@@ -141,8 +138,7 @@ class ScannerView: UIViewController {
         }))
         
         scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
-            self.workingSubmission = self.getWorkingSubmission(for: item)
-            self.openCamera()
+            self.startSubmission()
         }))
 
         present(scannedAlert, animated: true) {}
@@ -153,14 +149,14 @@ class ScannerView: UIViewController {
         
         thanksAlert.addAction(UIAlertAction(title: "Yes", style: .default) { (nil) in
             self.dismiss(animated: true) {}
-            self.openCamera()
+            self.continueSubmission()
         })
         
         thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
             self.alertActive = false
             print("alert inactive")
-            
+            self.sendSubmission()
         })
         
         present(thanksAlert, animated: true) {}
@@ -168,18 +164,22 @@ class ScannerView: UIViewController {
     
     // MARK: - Submissions
     
-    func getWorkingSubmission(for item: Item) -> Submission {
-        
-        if repository.didSubmitToday(for: item) {
-            let submission = repository.getSubmissions(for: item)!.last!
-            print("adding to existing submission for \(item.label ?? "") with \(submission.userPhotos?.count ?? 0) photos")
-            return submission
-        }
-        
-        print("creating new submission for \(item.label ?? "")")
-        let submission = Submission(date: Date())
-        item.addToSubmissions(submission)
-        return submission
+    func startSubmission() {
+        print("creating new submission for \(scannedItem.label!)")
+        workingSubmission = Submission(date: Date())
+        scannedItem.addToSubmissions(workingSubmission)
+        openCamera()
+    }
+    
+    func continueSubmission() {
+        print("adding to existing submission for \(scannedItem.label!)")
+        openCamera()
+    }
+    
+    func sendSubmission() {
+        repository.saveContext()
+        print("sending submission for \(scannedItem.label!) with \(workingSubmission.userPhotos?.count ?? 0) photos")
+        // begin UrlSession to send submission to API
     }
     
 }
@@ -233,10 +233,10 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {}
         showThanksAlert()
-        submitPhoto(using: info, for: scannedItem)
+        savePhoto(using: info)
     }
     
-    func submitPhoto(using info: [UIImagePickerController.InfoKey : Any], for item: Item) {
+    func savePhoto(using info: [UIImagePickerController.InfoKey : Any]) {
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
             
@@ -250,11 +250,12 @@ extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDe
             }.joined()
 
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
-            print("photo stored with filename \(hashString)")
+            print("photo saved to documents with filename \(hashString)")
 
             let url = ImageManager.getPath(for: hashString, in: .photos)
             let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
             self.workingSubmission.addToUserPhotos(userPhoto)
+            print("photo added to \(self.scannedItem.label!) submission with \(self.workingSubmission.userPhotos?.count ?? 0) photos")
         }
     }
 }
