@@ -18,7 +18,7 @@ class ScannerView: UIViewController {
     let repository = Repository.instance
     
     // keeps track of whether or not an alert should be allowed to present when scanning
-    var alertActive = false
+    var scanningEnabled = true
     
     // video session: optional because we won't have it in our emulator
     var captureSession: AVCaptureSession! = nil
@@ -33,11 +33,10 @@ class ScannerView: UIViewController {
     let loadingScreen = LoadView()
     
     // photo capture view
-    let imagePicker = ImagePickerWithAlert()
+    let imagePicker = ImagePickerWithScanDelegate()
     
-    // this variable won't be referenced unless an item has been identified with the scanner
+    // these variables won't be referenced until they are assigned values
     var scannedItem: Item!
-    
     var workingSubmission: Submission!
     
     // MARK: - Lifecycle
@@ -126,12 +125,12 @@ class ScannerView: UIViewController {
     
     // MARK: - Alerts
     
-    func showScannedAlert(for item: Item) {
-        let detailView = ItemDetailView(item: item)
-        detailView.alertDelegate = self
+    func showScannedAlert() {
+        let detailView = ItemDetailView(item: scannedItem)
+        detailView.scanDelegate = self
         
-        let botanicalName = repository.getDetailValue(item: item, property: "botanical_name")
-        let scannedAlert = UIAlertController(title: item.label, message: botanicalName, preferredStyle: .alert)
+        let botanicalName = repository.getDetailValue(item: scannedItem, property: "botanical_name")
+        let scannedAlert = UIAlertController(title: scannedItem.label, message: botanicalName, preferredStyle: .alert)
         
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
             self.present(detailView, animated: true) {}
@@ -154,8 +153,7 @@ class ScannerView: UIViewController {
         
         thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
-            self.alertActive = false
-            print("alert inactive")
+            self.enableScanning()
             self.sendSubmission()
         })
         
@@ -184,6 +182,8 @@ class ScannerView: UIViewController {
     
 }
 
+
+
 // MARK: - Meta Data Output
 
 extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
@@ -191,14 +191,12 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
     // called by system when we get metadataoutputs
     // load the scanned item into the class variable
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if  metadataObjects.count != 0 && !alertActive {
+        if  metadataObjects.count != 0 && scanningEnabled {
             let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
             guard let objectString = object?.stringValue else { return }
-            guard let item = repository.getItemFrom(url: objectString) else { return }
-            showScannedAlert(for: item)
-            scannedItem = item
-            alertActive = true
-            print("alert active")
+            scannedItem = repository.getItemFrom(url: objectString)
+            showScannedAlert()
+            disableScanning()
         }
     }
     
@@ -207,16 +205,21 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
 // MARK: - Image Picker Delegate
 
 // Delegates and controllers
-extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AlertDelegate {
+extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScanDelegate {
     
-    func turnOffAlert() {
-        alertActive = false
-        print("alert inactive")
+    func enableScanning() {
+        scanningEnabled = true
+        print("scanning enabled")
+    }
+    
+    func disableScanning() {
+        scanningEnabled = false
+        print("scanning disabled")
     }
     
     func setupImagePicker() {
         imagePicker.delegate = self
-        imagePicker.alertDelegate = self
+        imagePicker.scanDelegate = self
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false

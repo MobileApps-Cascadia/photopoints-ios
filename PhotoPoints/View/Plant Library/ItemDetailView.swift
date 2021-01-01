@@ -16,7 +16,7 @@ class ItemDetailView: UIViewController {
     
     var thisItem: Item
     
-    var alertDelegate: AlertDelegate!
+    var scanDelegate: ScanDelegate!
     
     var surveyState: SurveyState = .notSurveyed
     
@@ -129,8 +129,8 @@ class ItemDetailView: UIViewController {
         super.viewWillDisappear(animated)
         
         // using alertDelegate for scanner preview of this view but not in the library
-        if let alertDelegate = alertDelegate {
-            alertDelegate.turnOffAlert()
+        if let scanDelegate = scanDelegate {
+            scanDelegate.enableScanning()
         }
     }
     
