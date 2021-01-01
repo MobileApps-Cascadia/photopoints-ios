@@ -158,6 +158,9 @@ class ScannerView: UIViewController {
         
         thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
+            self.alertActive = false
+            print("alert inactive")
+            
         })
         
         present(thanksAlert, animated: true) {}
