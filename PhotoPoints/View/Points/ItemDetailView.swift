@@ -33,7 +33,6 @@ class ItemDetailView: UIViewController {
         label.clipsToBounds = true
         label.backgroundColor = .systemRed
         label.textColor = .white
-        label.text = "  no submission today  "
         return label
     }()
     
@@ -153,7 +152,10 @@ class ItemDetailView: UIViewController {
         
         if repository.didSubmitToday(for: thisItem) {
             statusPill.backgroundColor = .systemGreen
-            statusPill.text = "  submission sent  "
+            let count = repository.getTodaysUserPhotos(for: thisItem).count
+            statusPill.text = "  \(count) photos sent today  "
+        } else {
+            statusPill.text = "  no photos sent today  "
         }
         
         scrollView.addSubview(infoStack)

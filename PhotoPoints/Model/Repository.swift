@@ -120,7 +120,7 @@ class Repository {
         return nil
     }
     
-    func getSubmissions(for item: Item) -> [Submission]? {
+    func getAllSubmissions(for item: Item) -> [Submission] {
         let request = Submission.fetchRequest() as NSFetchRequest<Submission>
         let predicate = NSPredicate(format: "item == %@", item)
         request.predicate = predicate
@@ -129,27 +129,61 @@ class Repository {
             return submissions
         }
         
-        return nil
+        return [Submission]()
+    }
+    
+    func getTodaysSubmissions(for item: Item) -> [Submission] {
+        let start = Date.start as CVarArg
+        let end = Date.end as CVarArg
+        
+        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
+        let predicate = NSPredicate(format: "item == %@ AND (date >= %@ AND date < %@)", item, start, end)
+        request.predicate = predicate
+        
+        if let submissions = try? context.fetch(request) {
+            return submissions
+        }
+        
+        return [Submission]()
     }
     
     func didSubmitToday(for item: Item) -> Bool {
         
-        let calendar = Calendar.current
-        let start = calendar.startOfDay(for: Date())
-        let end = calendar.date(byAdding: .day, value: 1, to: start)!
-        
-        let request = Submission.fetchRequest() as NSFetchRequest<Submission>
-        let predicate = NSPredicate(format: "item == %@ AND (date >= %@ AND date < %@)", item, start as CVarArg, end as CVarArg)
-        request.predicate = predicate
-        
-        if let submissions = try? context.fetch(request) {
-            if submissions.count > 0 {
-                return true
-            }
+        if getTodaysSubmissions(for: item).count > 0 {
+            return true
         }
         
         return false
     }
+    
+    func getAllUserPhotos(for item: Item) -> [UserPhoto] {
+        let request = UserPhoto.fetchRequest() as NSFetchRequest<UserPhoto>
+        let predicate = NSPredicate(format: "submission.item == %@", item)
+        request.predicate = predicate
+        
+        if let photos = try? context.fetch(request) {
+            return photos
+        }
+        
+        return [UserPhoto]()
+    }
+    
+    func getTodaysUserPhotos(for item: Item) -> [UserPhoto] {
+        let start = Date.start as CVarArg
+        let end = Date.end as CVarArg
+        let request = UserPhoto.fetchRequest() as NSFetchRequest<UserPhoto>
+        let predicate = NSPredicate(format: "submission.item == %@ AND (submission.date >= %@ AND submission.date < %@)", item, start, end)
+        request.predicate = predicate
+        
+        if let photos = try? context.fetch(request) {
+            return photos
+        }
+        
+        return [UserPhoto]()
+    }
 }
 
-
+extension Date {
+    static let start = Calendar.current.startOfDay(for: Date())
+    static let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
+}

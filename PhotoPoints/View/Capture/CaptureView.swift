@@ -11,7 +11,7 @@ import AVFoundation
 import CryptoKit
 
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
-class ScannerView: UIViewController {
+class CaptureView: UIViewController {
     
     // MARK: - Properties
     
@@ -182,11 +182,9 @@ class ScannerView: UIViewController {
     
 }
 
-
-
 // MARK: - Meta Data Output
 
-extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
+extension CaptureView: AVCaptureMetadataOutputObjectsDelegate {
 
     // called by system when we get metadataoutputs
     // load the scanned item into the class variable
@@ -205,7 +203,7 @@ extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
 // MARK: - Image Picker Delegate
 
 // Delegates and controllers
-extension ScannerView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScanDelegate {
+extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScanDelegate {
     
     func enableScanning() {
         scanningEnabled = true

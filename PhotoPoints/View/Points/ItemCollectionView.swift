@@ -9,17 +9,20 @@
 import Foundation
 import UIKit
 
-private let cellIdentifier = "ItemCollectionCell"
-
 class ItemCollectionView: UICollectionViewController {
     
     // MARK: - Properties
     
     let repository = Repository.instance
     
+    private let cellIdentifier = "ItemCollectionCell"
+
+    private let headerIdentifier = "ItemHeaderView"
+    
     func configureCollectionView() {
         collectionView.backgroundColor = UIColor(named: "pp-background")
         collectionView.register(ItemCollectionCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(ItemHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
     
@@ -34,7 +37,7 @@ class ItemCollectionView: UICollectionViewController {
         
         // for frosty appearance beneath the larger nav bar when scrolled to the top
         // can't see it in action right now as the image starts below the nav bar
-        navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
+//        navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
     }
     
     // MARK: - lifecycle
@@ -56,6 +59,11 @@ class ItemCollectionView: UICollectionViewController {
 
 // our class by default conforms to the UICollectionViewDelegate protocol
 extension ItemCollectionView {
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ItemHeaderView
+        return header
+    }
     
     // number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,7 +93,7 @@ extension ItemCollectionView: UICollectionViewDelegateFlowLayout {
     
     // header size (account for nav bar)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.safeAreaInsets.top)
+        return CGSize(width: view.frame.width, height: 300)
     }
     
     // footer size (account for tab bar)

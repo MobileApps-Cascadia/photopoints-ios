@@ -48,8 +48,15 @@ class ItemCollectionCell: UICollectionViewCell {
     // indicate if an item has been surveyed
     var statusCircle: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 9
+        view.layer.cornerRadius = 12
         return view
+    }()
+    
+    var countLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -62,8 +69,11 @@ class ItemCollectionCell: UICollectionViewCell {
     }
     
     func setUpSubViews() {
+        statusCircle.addSubview(countLabel)
+        countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
+        
         imageView.addSubview(statusCircle)
-        statusCircle.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 18, height: 18)
+        statusCircle.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 24, height: 24)
         
         cardFooter.addSubview(titleLabel)
         titleLabel.anchor(top: cardFooter.topAnchor, left: cardFooter.leftAnchor, bottom: cardFooter.centerYAnchor, right: cardFooter.rightAnchor, paddingTop: 5)
@@ -76,8 +86,6 @@ class ItemCollectionCell: UICollectionViewCell {
         
         contentView.addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-//        imageView.layer.cornerRadius = 20
-        
     }
     
     func configureFor(item: Item) {
@@ -87,8 +95,10 @@ class ItemCollectionCell: UICollectionViewCell {
         
         if repository.didSubmitToday(for: item) {
             statusCircle.backgroundColor = .systemGreen
+            countLabel.text = String(repository.getTodaysUserPhotos(for: item).count)
         } else {
             statusCircle.backgroundColor = .systemRed
+            countLabel.text = ""
         }
     }
     
