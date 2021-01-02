@@ -19,25 +19,26 @@ class ItemCollectionView: UICollectionViewController {
 
     private let headerIdentifier = "ItemHeaderView"
     
+    private let footerIdentifier = "ItemFooterView"
+    
+    // MARK: - Setup
+    
     func configureCollectionView() {
         collectionView.backgroundColor = UIColor(named: "pp-background")
         collectionView.register(ItemCollectionCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.register(ItemHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        collectionView.register(ItemFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
-    
-    // MARK: - Setup
-    
+
     func configureNavBar() {
-        
-        // modern nav bar appearance
-        navigationController?.navigationBar.prefersLargeTitles = true
-        let emptyBackButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.topItem?.backBarButtonItem = emptyBackButton
-        
-        // for frosty appearance beneath the larger nav bar when scrolled to the top
-        // can't see it in action right now as the image starts below the nav bar
-//        navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
+        if let navBar = navigationController?.navigationBar {
+            // modern nav bar appearance
+            let emptyBackButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+            navBar.prefersLargeTitles = true
+            navBar.topItem?.backBarButtonItem = emptyBackButton
+            navBar.topItem?.title = "North Creek Forest"
+        }
     }
     
     // MARK: - lifecycle
@@ -50,9 +51,9 @@ class ItemCollectionView: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // reload data to update survey indicator circles
+        navigationController?.navigationBar.sizeToFit()
         collectionView.reloadData()
     }
-    
 }
 
 // MARK: - UICollectionViewDelegate/DataSource
@@ -61,8 +62,14 @@ class ItemCollectionView: UICollectionViewController {
 extension ItemCollectionView {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ItemHeaderView
-        return header
+        if kind == UICollectionView.elementKindSectionHeader {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ItemHeaderView
+        }
+        
+        if kind == UICollectionView.elementKindSectionFooter {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerIdentifier, for: indexPath) as! ItemFooterView
+        }
+        fatalError()
     }
     
     // number of cells
@@ -93,7 +100,7 @@ extension ItemCollectionView: UICollectionViewDelegateFlowLayout {
     
     // header size (account for nav bar)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 308)
     }
     
     // footer size (account for tab bar)
@@ -108,15 +115,15 @@ extension ItemCollectionView: UICollectionViewDelegateFlowLayout {
     
     // interim spacing (horizontal)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 0
     }
     
     // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         //account for spacing
-        let width = (view.frame.width - 1) / 2
-        return CGSize(width: width, height: width)
+        let width = view.frame.width
+        return CGSize(width: width, height: 80)
     }
     
 }

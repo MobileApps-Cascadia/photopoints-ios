@@ -9,9 +9,6 @@
 import UIKit
 import MapKit
 
-// globally accessible instance
-//let mapVC = MapView()
-
 class MapView: UIViewController {
 
     //MARK: - Properties

@@ -13,38 +13,38 @@ class ItemCollectionCell: UICollectionViewCell {
     
     let repository = Repository.instance
     
+    // main background of each cell
+    let mainView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         
         // without this, we get a bad lagging effect on the image when returning from detail view
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 22
         return imageView
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "pp-text-color")
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 19)
         return label
     }()
     
     let subTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "pp-text-color")
-        label.textAlignment = .center
         label.font = UIFont.italicSystemFont(ofSize: 12)
         return label
     }()
-    
-    // translucent gray background bar for text
-    let cardFooter: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "pp-trans-gray")
-        return view
-    }()
-    
+
     // indicate if an item has been surveyed
     var statusCircle: UIView = {
         let view = UIView()
@@ -61,6 +61,7 @@ class ItemCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubViews()
         setUpSubViews()
     }
     
@@ -68,24 +69,33 @@ class ItemCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpSubViews() {
+    func addSubViews() {
+        
         statusCircle.addSubview(countLabel)
+        mainView.addSubview(statusCircle)
+        mainView.addSubview(imageView)
+        mainView.addSubview(titleLabel)
+        mainView.addSubview(subTitleLabel)
+        contentView.addSubview(mainView)
+        
+    }
+    
+    func setUpSubViews() {
+        
         countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
         
-        imageView.addSubview(statusCircle)
-        statusCircle.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, width: 24, height: 24)
         
-        cardFooter.addSubview(titleLabel)
-        titleLabel.anchor(top: cardFooter.topAnchor, left: cardFooter.leftAnchor, bottom: cardFooter.centerYAnchor, right: cardFooter.rightAnchor, paddingTop: 5)
+        statusCircle.anchor(right: mainView.rightAnchor, centerY: mainView.centerYAnchor, paddingRight: 16, width: 24, height: 24)
         
-        cardFooter.addSubview(subTitleLabel)
-        subTitleLabel.anchor(top: cardFooter.centerYAnchor, left: cardFooter.leftAnchor, bottom: cardFooter.bottomAnchor, right: cardFooter.rightAnchor, paddingBottom: 5)
+        imageView.anchor(left: mainView.leftAnchor, centerY: mainView.centerYAnchor, paddingLeft: 16, width: 44, height: 44)
         
-        imageView.addSubview(cardFooter)
-        cardFooter.anchor(top: imageView.bottomAnchor, left: imageView.leftAnchor, bottom: imageView.bottomAnchor, right: imageView.rightAnchor, paddingTop: -50)
+        titleLabel.anchor(top: imageView.topAnchor, left: imageView.rightAnchor, paddingLeft: 8)
         
-        contentView.addSubview(imageView)
-        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        
+        subTitleLabel.anchor(left: imageView.rightAnchor, bottom: imageView.bottomAnchor, paddingLeft: 8)
+        
+        mainView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
+        
     }
     
     func configureFor(item: Item) {

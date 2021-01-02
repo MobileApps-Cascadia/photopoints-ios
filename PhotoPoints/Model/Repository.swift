@@ -181,6 +181,20 @@ class Repository {
         
         return [UserPhoto]()
     }
+    
+    func getItemsWithSubmissionsToday() -> [Item] {
+        var itemsWithSubmissionsToday = [Item]()
+        if let items = getItems() {
+            for item in items {
+                if let submissions = item.submissions {
+                    if submissions.count > 0 {
+                        itemsWithSubmissionsToday.append(item)
+                    }
+                }
+            }
+        }
+        return itemsWithSubmissionsToday
+    }
 }
 
 extension Date {

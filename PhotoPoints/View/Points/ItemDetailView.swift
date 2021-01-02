@@ -123,6 +123,11 @@ class ItemDetailView: UIViewController {
         title = thisItem.label
         setUpScrollView()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        // change to small tile on detail view
+        navigationItem.largeTitleDisplayMode = .never
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -131,6 +136,9 @@ class ItemDetailView: UIViewController {
         if let scanDelegate = scanDelegate {
             scanDelegate.enableScanning()
         }
+        
+        // change back to large title on parent view
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     func setUpScrollView() {
