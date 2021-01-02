@@ -27,6 +27,13 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
+    // min and max lat and long for initial camera framne
+    var minLat: CLLocationDegrees!
+    var maxLat: CLLocationDegrees!
+    var minLong: CLLocationDegrees!
+    var maxLong: CLLocationDegrees!
+    
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -46,24 +53,25 @@ class MapView: UIViewController {
     //MARK: - Setup
     
     func setUpMap() {
+        // fill annotations array
+        fillAnnotations()
+        
         mapView = MKMapView(frame: view.frame)
         mapView.mapType = .standard
         
         // sets delegate
         mapView.delegate = self
         
-        // bound map to forest
-        mapView.region = .forest
+        // set map bounds to forest
+        mapView.region = fitToItems()
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
         
-        // fill annotations array
-        fillAnnotations()
         view.addSubview(mapView)
     }
     
     // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
-    func registerAnnotations(){
+    func registerAnnotations() {
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: itemIdentifier)
     }
     
@@ -73,7 +81,46 @@ class MapView: UIViewController {
         for item in items {
             let annotation = ItemAnnotation(item: item)
             annotations.append(annotation)
+            
+            // as we're iterating, update the min and max lat and long for initial camera frame
+            updateMinMax(coordinate: item.location!)
         }
+    }
+    
+    func updateMinMax(coordinate: Coordinate) {
+        let lat = coordinate.latitude
+        let long = coordinate.longitude
+       
+        if minLat == nil || lat < minLat {
+            minLat = lat
+        }
+        
+        if minLong == nil || long < minLong {
+            minLong = long
+        }
+        
+        if maxLat == nil || lat > maxLat {
+            maxLat = lat
+        }
+        
+        if maxLong == nil || long > maxLong {
+            maxLong = long
+        }
+    }
+    
+    func fitToItems() -> MKCoordinateRegion {
+        let midlat = (minLat + maxLat) / 2
+        let midLong = (minLong + maxLong) / 2
+        
+        let buffer = 0.0001
+        
+        let latDelta = maxLat - minLat + buffer
+        let longDelta = maxLong - minLong + buffer
+        
+        let center = CLLocationCoordinate2D(latitude: midlat, longitude: midLong)
+        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
+        
+        return MKCoordinateRegion(center: center, span: span)
     }
     
     //Adds map annotations to aide the user when navigating the forest
