@@ -61,39 +61,31 @@ class ItemCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubViews()
-        setUpSubViews()
+        setupSubViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubViews() {
+    func setupSubViews() {
         
         statusCircle.addSubview(countLabel)
-        mainView.addSubview(statusCircle)
-        mainView.addSubview(imageView)
-        mainView.addSubview(titleLabel)
-        mainView.addSubview(subTitleLabel)
-        contentView.addSubview(mainView)
-        
-    }
-    
-    func setUpSubViews() {
-        
         countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
         
-        
+        mainView.addSubview(statusCircle)
         statusCircle.anchor(right: mainView.rightAnchor, centerY: mainView.centerYAnchor, paddingRight: 16, width: 24, height: 24)
         
+        mainView.addSubview(imageView)
         imageView.anchor(left: mainView.leftAnchor, centerY: mainView.centerYAnchor, paddingLeft: 16, width: 44, height: 44)
         
+        mainView.addSubview(titleLabel)
         titleLabel.anchor(top: imageView.topAnchor, left: imageView.rightAnchor, paddingLeft: 8)
         
-        
+        mainView.addSubview(subTitleLabel)
         subTitleLabel.anchor(left: imageView.rightAnchor, bottom: imageView.bottomAnchor, paddingLeft: 8)
         
+        contentView.addSubview(mainView)
         mainView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
         
     }

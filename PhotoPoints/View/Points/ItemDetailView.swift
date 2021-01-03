@@ -20,6 +20,15 @@ class ItemDetailView: UIViewController {
     
     var surveyState: SurveyState = .notSurveyed
     
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: view.frame)
+        
+        // placeholder height to account for lengthiest plant stories
+        // TODO: make this height adaptive to the amount of content
+        scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
+        return scrollView
+    }()
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
@@ -28,12 +37,19 @@ class ItemDetailView: UIViewController {
         return imageView
     }()
     
-    let statusPill: UILabel = {
+    lazy var statusPill: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 15
         label.clipsToBounds = true
         label.backgroundColor = .systemRed
         label.textColor = .white
+        if repository.didSubmitToday(for: thisItem) {
+            label.backgroundColor = .systemGreen
+            let count = repository.getTodaysUserPhotos(for: thisItem).count
+            label.text = "  \(count) photo\(count == 1 ? "" : "s") sent today  "
+        } else {
+            label.text = "  no photos sent today  "
+        }
         return label
     }()
     
@@ -61,7 +77,7 @@ class ItemDetailView: UIViewController {
         
         // botanical name
         if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
-            let categoryBotanical = itemDetailTitle(string: "Botanical Name")
+            let categoryBotanical = ItemDetailTitle(string: "Botanical Name")
             let dataBotanical = ItemDetailLabel(string: botanicalName)
             let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
             detailsStack.addArrangedSubview(botanicalStack)
@@ -69,7 +85,7 @@ class ItemDetailView: UIViewController {
         
         // category (optional)
         if let category = repository.getDetailValue(item: thisItem, property: "category") {
-            let categoryCategory = itemDetailTitle(string: "Category")
+            let categoryCategory = ItemDetailTitle(string: "Category")
             let dataCategory = ItemDetailLabel(string: category)
             let categoryStack = ItemDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
             detailsStack.addArrangedSubview(categoryStack)
@@ -77,7 +93,7 @@ class ItemDetailView: UIViewController {
         
         // family (optional)
         if let family = repository.getDetailValue(item: thisItem, property: "family") {
-            let categoryFamily = itemDetailTitle(string: "Family")
+            let categoryFamily = ItemDetailTitle(string: "Family")
             let dataFamily = ItemDetailLabel(string: family)
             let familyStack = ItemDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
             detailsStack.addArrangedSubview(familyStack)
@@ -85,7 +101,7 @@ class ItemDetailView: UIViewController {
         
         // site and enthnobotanic info label
         if let site = repository.getDetailValue(item: thisItem, property: "site") {
-            let categorySite = itemDetailTitle(string: "Site")
+            let categorySite = ItemDetailTitle(string: "Site")
             let dataSite = ItemDetailLabel(string: site)
             let siteStack = ItemDetailStack(arrangedSubviews: [categorySite, dataSite])
             detailsStack.addArrangedSubview(siteStack)
@@ -109,7 +125,7 @@ class ItemDetailView: UIViewController {
     }()
     
     // PNW label
-    let pnwLabel = itemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
+    let pnwLabel = ItemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
     
     lazy var storylabel: ItemDetailLabel = {
         // story
@@ -146,7 +162,8 @@ class ItemDetailView: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "pp-background")
         title = thisItem.label
-        setUpScrollView()
+        addSubviews()
+        constrainSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -166,60 +183,46 @@ class ItemDetailView: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
     }
     
-    func setUpScrollView() {
-
-        // make our scrollview as big as our view
-        let frame = view.frame
-        let scrollView = UIScrollView(frame: frame)
+    func addSubviews() {
         view.addSubview(scrollView)
-        
-        // placeholder height to account for lengthiest plant stories
-        // TODO: make this height adaptive to the amount of content
-        scrollView.contentSize = CGSize(width: frame.width, height: 4000)
-        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-        
         scrollView.addSubview(imageView)
-        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16, height: frame.height / 3)
-        
         imageView.addSubview(statusPill)
-        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
-        
-        if repository.didSubmitToday(for: thisItem) {
-            statusPill.backgroundColor = .systemGreen
-            let count = repository.getTodaysUserPhotos(for: thisItem).count
-            statusPill.text = "  \(count) photo\(count == 1 ? "" : "s") sent today  "
-        } else {
-            statusPill.text = "  no photos sent today  "
-        }
-        
         scrollView.addSubview(detailsLabel)
-        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
-        
         detailsView.addSubview(detailsStack)
-        detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
-        
         scrollView.addSubview(detailsView)
-        detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
-        
         scrollView.addSubview(aboutLabel)
-        aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
-        
         aboutView.addSubview(pnwLabel)
-        pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
-        
         aboutView.addSubview(storylabel)
-        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: 16, paddingRight: 16)
-        
         scrollView.addSubview(aboutView)
+    }
+    
+    func constrainSubviews() {
+        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+
+        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16, height: view.frame.height / 3)
+
+        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
+
+        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+
+        detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+
+        detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
+
+        aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+ 
+        pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+
+        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: 16, paddingRight: 16)
+
         aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingBottom: -16, paddingRight: 16)
-        
     }
 }
 
 // saves us some repitition above by allowing us to set the properties
 // seen in our custom init below
 
-class itemDetailTitle: UILabel {
+class ItemDetailTitle: UILabel {
     
     init(string: String) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))

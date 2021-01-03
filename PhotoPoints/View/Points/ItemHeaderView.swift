@@ -12,52 +12,67 @@ class ItemHeaderView: UICollectionReusableView {
     
     let repository = Repository.instance
     
-    let dateLabel = UILabel()
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = Date().headerStyle()
+        label.textColor = .systemGray
+        label.font = UIFont.systemFont(ofSize: 13)
+        return label
+    }()
     
-    let progressLabel = UILabel()
+    let progressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Today's Progress"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
     
-    let progressContainer = UIView()
+    let progressContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.layer.cornerRadius = 10
+        return view
+    }()
     
-    let numSurveyedLabel = UILabel()
+    let numSurveyedLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGreen
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
     
-    let photoPointsCapsLabel = UILabel()
+    let photoPointsCapsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "POINTS"
+        label.textColor = .systemGreen
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        return label
+    }()
     
-    let progressView = UIProgressView()
+    let progressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.tintColor = .systemGreen
+        return progressView
+    }()
     
-    let photoPointsLabel = UILabel()
+    let photoPointsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "PhotoPoints"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureViews()
-        addSubViews()
-        setupConstraints()
+        addSubviews()
+        constrainSubviews()
     }
     
-    func configureViews() {
-        dateLabel.text = Date().headerStyle()
-        dateLabel.textColor = .systemGray
-        dateLabel.font = UIFont.systemFont(ofSize: 13)
-        
-        progressLabel.text = "Today's Progress"
-        progressLabel.font = UIFont.boldSystemFont(ofSize: 22)
-
-        progressContainer.backgroundColor = UIColor(named: "pp-trans-gray")
-        progressContainer.layer.cornerRadius = 10
-        
-        numSurveyedLabel.textColor = .systemGreen
-        numSurveyedLabel.font = UIFont.systemFont(ofSize: 20)
-        
-        photoPointsCapsLabel.text = "POINTS"
-        photoPointsCapsLabel.textColor = .systemGreen
-        photoPointsCapsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        
-        progressView.tintColor = .systemGreen
-
-        photoPointsLabel.text = "PhotoPoints"
-        photoPointsLabel.font = UIFont.boldSystemFont(ofSize: 22)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubViews() {
+    func addSubviews() {
         addSubview(dateLabel)
         addSubview(progressLabel)
         addSubview(progressContainer)
@@ -67,7 +82,7 @@ class ItemHeaderView: UICollectionReusableView {
         addSubview(photoPointsLabel)
     }
     
-    func setupConstraints() {
+    func constrainSubviews() {
         dateLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 82, paddingLeft: 16)
         
         progressLabel.anchor(top: dateLabel.bottomAnchor, left: leftAnchor, paddingTop: 58, paddingLeft: 16)
@@ -79,10 +94,11 @@ class ItemHeaderView: UICollectionReusableView {
         photoPointsCapsLabel.anchor(left: numSurveyedLabel.rightAnchor, bottom: numSurveyedLabel.bottomAnchor, paddingBottom: 1)
         
         progressView.anchor(top: numSurveyedLabel.bottomAnchor, left: progressContainer.leftAnchor, right: progressContainer.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingRight: 16)
-        
+
         photoPointsLabel.anchor(top: progressContainer.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
     }
     
+    // called when header is dequeued
     func reloadProgress() {
         let numPoints = repository.getItems()?.count ?? 0
         let numSubmittedItems = repository.getItemsWithSubmissionsToday().count
@@ -90,10 +106,6 @@ class ItemHeaderView: UICollectionReusableView {
         
         progressView.progress = progress
         numSurveyedLabel.text = "\(numSubmittedItems)/\(numPoints)"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }
