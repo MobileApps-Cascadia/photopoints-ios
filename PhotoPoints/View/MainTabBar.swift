@@ -10,38 +10,35 @@ import UIKit
 
 class MainTabBar: UITabBarController {
     
+    let repository = Repository.instance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabBarChildren()
     }
     
     func setUpTabBarChildren() {
-
-        // set up scanner
-        let scannerView = ScannerView()
-        let scannerNavigation = UINavigationController(rootViewController: scannerView)
-        scannerNavigation.navigationBar.topItem?.title = "Scanner"
-        scannerNavigation.tabBarItem = UITabBarItem(title: "Scanner", image: UIImage(systemName: "camera"), tag: 0)
         
-        // set up plant library
+        // set up point collection view
         let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
-        itemNavigation.navigationBar.topItem?.title = "Plant Library"
-        itemNavigation.tabBarItem = UITabBarItem(title: "Plants", image: UIImage(systemName: "leaf"), tag: 1)
+        itemNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
         
         // set up map:
         let mapView = MapView()
         let mapNavigation = UINavigationController(rootViewController: mapView)
-        mapNavigation.navigationBar.topItem?.title = "Map"
-        mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 2)
+        mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 1)
+        
+        // set up scanner
+        let captureView = CaptureView()
+        let captureNavigation = UINavigationController(rootViewController: captureView)
+        captureNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 2)
         
         // add these to our main tab bar
-        self.addChild(scannerNavigation)
         self.addChild(itemNavigation)
         self.addChild(mapNavigation)
-        
-        // set library as default tab bar selection
-        self.selectedIndex = 1
+        self.addChild(captureNavigation)
+
     }
     
 }

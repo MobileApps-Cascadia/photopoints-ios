@@ -2,7 +2,7 @@
 //  Submission+CoreDataProperties.swift
 //  PhotoPoints
 //
-//  Created by Clay Suttner on 12/27/20.
+//  Created by Clay Suttner on 12/31/20.
 //  Copyright © 2020 Cascadia College. All rights reserved.
 //
 //
@@ -20,29 +20,28 @@ extension Submission {
     @NSManaged public var answers: String?
     @NSManaged public var count: Int16
     @NSManaged public var date: Date?
-    @NSManaged public var itemIId: String?
     @NSManaged public var notes: String?
     @NSManaged public var status: String?
     @NSManaged public var uuid: UUID?
     @NSManaged public var item: Item?
-    @NSManaged public var userPhoto: NSSet?
+    @NSManaged public var userPhotos: NSSet?
 
 }
 
-// MARK: Generated accessors for userPhoto
+// MARK: Generated accessors for userPhotos
 extension Submission {
 
-    @objc(addUserPhotoObject:)
-    @NSManaged public func addToUserPhoto(_ value: UserPhoto)
+    @objc(addUserPhotosObject:)
+    @NSManaged public func addToUserPhotos(_ value: UserPhoto)
 
-    @objc(removeUserPhotoObject:)
-    @NSManaged public func removeFromUserPhoto(_ value: UserPhoto)
+    @objc(removeUserPhotosObject:)
+    @NSManaged public func removeFromUserPhotos(_ value: UserPhoto)
 
-    @objc(addUserPhoto:)
-    @NSManaged public func addToUserPhoto(_ values: NSSet)
+    @objc(addUserPhotos:)
+    @NSManaged public func addToUserPhotos(_ values: NSSet)
 
-    @objc(removeUserPhoto:)
-    @NSManaged public func removeFromUserPhoto(_ values: NSSet)
+    @objc(removeUserPhotos:)
+    @NSManaged public func removeFromUserPhotos(_ values: NSSet)
 
 }
 

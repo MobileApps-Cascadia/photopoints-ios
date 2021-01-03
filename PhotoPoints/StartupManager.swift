@@ -17,7 +17,7 @@ class StartupManager {
     
     static let defaults = UserDefaults.standard
     
-    static func run(){
+    static func run() {
         if defaults.object(forKey: "FirstRun") == nil {
             print("performing first run")
             firstRun()
@@ -27,16 +27,16 @@ class StartupManager {
         startup()
     }
     
-    static func firstRun(){
+    static func firstRun() {
         createImageAndPhotoDirectories()
         loadInitData()
     }
     
-    static func startup(){
+    static func startup() {
         storeAppConfigData()
     }
     
-    static func storeAppConfigData(){
+    static func storeAppConfigData() {
         
         defaults.set(Date(), forKey: "LastUpdated")
         
@@ -50,7 +50,7 @@ class StartupManager {
     }
     
     // add image and photo subdirectories to .documents
-    static func createImageAndPhotoDirectories(){
+    static func createImageAndPhotoDirectories() {
         let fm = FileManager.default
         if let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first {
             let imagesURL = documentURL.appendingPathComponent(SubDirectory.images.rawValue)
@@ -64,7 +64,7 @@ class StartupManager {
         }
     }
     
-    static func loadInitData(){
+    static func loadInitData() {
         
         print("loading initial data")
         
@@ -75,11 +75,7 @@ class StartupManager {
         MockDatabase.build()
         
         // write to core data
-        do {
-            try repository.context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        repository.saveContext()
         
         // load images to filesystem
         loadInitImages()

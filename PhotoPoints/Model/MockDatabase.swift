@@ -24,7 +24,7 @@ class MockDatabase {
         mockdb.append(Item(id: "28092", label: "Douglas-Fir", coordinate: Coordinate(latitude: 47.774827, longitude: -122.191787), details: ["common_names" : "Douglas-Fir", "botanical_name" : "Pseudotsuga Menziesii", "site" : "1", "category" : "Conifer, Evergreen, Perennial, Tree", "family" : "Pinaceae"],
             image: Image(filename: "cecc9ccdea496978e3f7694aacebd355")))
         
-        mockdb.append(Item(id: "28061", label: "Mock-Orange", coordinate: Coordinate(latitude: 47.774964, longitude: -122.191792), details: ["common_names" : "Mock-Orange", "botanical_name" : "Philadelphus Lewisii", "site" : "1", "category" : "Deciduous, Perennial, Shrub, Woody Ornamental","family" : ""], image: Image(filename: "a2918c4529b510e0026f4fd915dbd636")))
+        mockdb.append(Item(id: "28061", label: "Mock-Orange", coordinate: Coordinate(latitude: 47.774964, longitude: -122.191792), details: ["common_names" : "Mock-Orange", "botanical_name" : "Philadelphus Lewisii", "site" : "1", "category" : "Deciduous, Perennial, Shrub, Woody Ornamental"], image: Image(filename: "a2918c4529b510e0026f4fd915dbd636")))
         
         mockdb.append(Item(id: "28074", label: "Western Red Cedar", coordinate: Coordinate(latitude: 47.775134, longitude: -122.191787), details: ["common_names" : "Western Red Cedar", "botanical_name" : "Thuja Plicata", "site" : "3", "category" : "Conifer, Evergreen, Perennial, Tree", "family" : "Cupressaceae"],
             image: Image(filename: "4cec57010423a872c7318d37bc0e410e")))
@@ -35,7 +35,7 @@ class MockDatabase {
         
         mockdb.append(Item(id: "28094", label: "Low Oregon Grape", coordinate: Coordinate(latitude: 47.774797, longitude: -122.191787), details: ["common_names" : "Low Oregon Grape", "botanical_name" : "Mahonia Nervosa", "site" : "1"], image: Image(filename: "62bd59d3612158ed21d78be9477fa4fa")))
         
-        mockdb.append(Item(id: "28063", label: "Pacific Ninebark", coordinate: Coordinate(latitude: 47.774865, longitude: -122.191717), details: ["common_names" : "Pacific Ninebark","botanical_name" : "Physocarpus capitatus", "site" : "1", "category" : "Deciduous, Perennial, Shrub, Woody Ornamental", "family" : ""], image: Image(filename: "505dc2d1951a9e93e0d3c93378e82e67")))
+        mockdb.append(Item(id: "28063", label: "Pacific Ninebark", coordinate: Coordinate(latitude: 47.774865, longitude: -122.191717), details: ["common_names" : "Pacific Ninebark","botanical_name" : "Physocarpus capitatus", "site" : "1", "category" : "Deciduous, Perennial, Shrub, Woody Ornamental"], image: Image(filename: "505dc2d1951a9e93e0d3c93378e82e67")))
         
         mockdb.append(Item(id: "28075", label: "Cascara", coordinate: Coordinate(latitude: 47.774897, longitude: -122.19191), details: ["common_names" : "Cascara", "botanical_name" : "Frangula purshiana", "site" : "3", "category" : "Berry, Deciduous, Tree"], image: Image(filename: "70837bb2822ab2518965b970b4ea46aa")))
         
