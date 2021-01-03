@@ -40,8 +40,8 @@ class ItemCollectionCell: UICollectionViewCell {
     
     let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "pp-text-color")
-        label.font = UIFont.italicSystemFont(ofSize: 12)
+        label.textColor = UIColor(named: "pp-secondary-text-color")
+        label.font = UIFont.italicSystemFont(ofSize: 13)
         return label
     }()
 

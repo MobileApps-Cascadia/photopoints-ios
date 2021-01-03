@@ -24,6 +24,7 @@ class ItemDetailView: UIViewController {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -36,72 +37,96 @@ class ItemDetailView: UIViewController {
         return label
     }()
     
+    let detailsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Details"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
+    
+    let detailsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
     // all of the text underneath the image
-    lazy var infoStack: UIStackView = {
+    lazy var detailsStack: UIStackView = {
 
         // main stack
-        let infoStack = UIStackView()
-        infoStack.axis = .vertical
-        infoStack.spacing = 25
+        let detailsStack = UIStackView()
+        detailsStack.axis = .vertical
+        detailsStack.spacing = 16
         
-        // my plant's story label
-        let mps = ItemDetailLabel(string: "My Plant's Story")
-        mps.font = UIFont.preferredFont(forTextStyle: .title1)
-        infoStack.addArrangedSubview(mps)
-        
-        // site and enthnobotanic info label
-        if let site = repository.getDetailValue(item: thisItem, property: "site") {
-            let siteLabel = ItemDetailLabel(string: "Site \(site)\nEthnobotanic Information")
-            siteLabel.font = UIFont.preferredFont(forTextStyle: .title2)
-            infoStack.addArrangedSubview(siteLabel)
-        }
-        
-        
-        // PNW label
-        let pnwLabel = ItemDetailLabel(string: "From Plants of the Pacific Northwest Coast:")
-        pnwLabel.font = UIFont.italicSystemFont(ofSize: 20)
-        infoStack.addArrangedSubview(pnwLabel)
-        
-        // story
-        let path = Bundle.main.path(forResource: "\(thisItem.id ?? "")_story", ofType: "txt")
-        
-        do {
-            let story = try String(contentsOfFile: path!, encoding: .utf8)
-            let storyLabel = UILabel()
-            storyLabel.text = story
-            storyLabel.textColor = UIColor(named: "pp-text-color")
-            
-            // wrap text
-            storyLabel.numberOfLines = 0
-            infoStack.addArrangedSubview(storyLabel)
-        } catch { print("file not found") }
-
         // botanical name
         if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
-            let categoryBotanical = ItemDetailLabel(string: "Botanical Name")
+            let categoryBotanical = itemDetailTitle(string: "Botanical Name")
             let dataBotanical = ItemDetailLabel(string: botanicalName)
             let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
-            infoStack.addArrangedSubview(botanicalStack)
+            detailsStack.addArrangedSubview(botanicalStack)
         }
-        
         
         // category (optional)
         if let category = repository.getDetailValue(item: thisItem, property: "category") {
-            let categoryCategory = ItemDetailLabel(string: "Category")
+            let categoryCategory = itemDetailTitle(string: "Category")
             let dataCategory = ItemDetailLabel(string: category)
             let categoryStack = ItemDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
-            infoStack.addArrangedSubview(categoryStack)
+            detailsStack.addArrangedSubview(categoryStack)
         }
         
         // family (optional)
         if let family = repository.getDetailValue(item: thisItem, property: "family") {
-            let categoryFamily = ItemDetailLabel(string: "Family")
+            let categoryFamily = itemDetailTitle(string: "Family")
             let dataFamily = ItemDetailLabel(string: family)
             let familyStack = ItemDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
-            infoStack.addArrangedSubview(familyStack)
+            detailsStack.addArrangedSubview(familyStack)
         }
         
-        return infoStack
+        // site and enthnobotanic info label
+        if let site = repository.getDetailValue(item: thisItem, property: "site") {
+            let categorySite = itemDetailTitle(string: "Site")
+            let dataSite = ItemDetailLabel(string: site)
+            let siteStack = ItemDetailStack(arrangedSubviews: [categorySite, dataSite])
+            detailsStack.addArrangedSubview(siteStack)
+        }
+        
+        return detailsStack
+    }()
+    
+    let aboutLabel: UILabel = {
+        let label = UILabel()
+        label.text = "About"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
+    
+    let aboutView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    // PNW label
+    let pnwLabel = itemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
+    
+    lazy var storylabel: ItemDetailLabel = {
+        // story
+        var story = String()
+        
+        let path = Bundle.main.path(forResource: "\(thisItem.id ?? "")_story", ofType: "txt")
+
+        do {
+            story = try String(contentsOfFile: path!, encoding: .utf8)
+        } catch {
+            print("file not found")
+        }
+        let label = ItemDetailLabel(string: story)
+        // wrap text
+        label.numberOfLines = 0
+        
+        return label
     }()
     
     // MARK: - Init
@@ -150,41 +175,76 @@ class ItemDetailView: UIViewController {
         
         // placeholder height to account for lengthiest plant stories
         // TODO: make this height adaptive to the amount of content
-        scrollView.contentSize = CGSize(width: frame.width, height: 2600)
+        scrollView.contentSize = CGSize(width: frame.width, height: 4000)
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         
         scrollView.addSubview(imageView)
-        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: frame.height * 2 / 3)
+        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16, height: frame.height / 3)
+        
         imageView.addSubview(statusPill)
-        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 10, paddingRight: 10, height: 30)
+        statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
         
         if repository.didSubmitToday(for: thisItem) {
             statusPill.backgroundColor = .systemGreen
             let count = repository.getTodaysUserPhotos(for: thisItem).count
-            statusPill.text = "  \(count) photos sent today  "
+            statusPill.text = "  \(count) photo\(count == 1 ? "" : "s") sent today  "
         } else {
             statusPill.text = "  no photos sent today  "
         }
         
-        scrollView.addSubview(infoStack)
-        infoStack.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        scrollView.addSubview(detailsLabel)
+        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        
+        detailsView.addSubview(detailsStack)
+        detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        
+        scrollView.addSubview(detailsView)
+        detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
+        
+        scrollView.addSubview(aboutLabel)
+        aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        
+        aboutView.addSubview(pnwLabel)
+        pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        
+        aboutView.addSubview(storylabel)
+        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        
+        scrollView.addSubview(aboutView)
+        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingBottom: -16, paddingRight: 16)
+        
     }
-    
 }
 
 // saves us some repitition above by allowing us to set the properties
 // seen in our custom init below
+
+class itemDetailTitle: UILabel {
+    
+    init(string: String) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        text = string
+        textColor = UIColor(named: "pp-text-color")
+        font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        self.sizeToFit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class ItemDetailLabel: UILabel {
     
-    init(string: String){
+    init(string: String) {
         
         // this frame size will be overriden below
         // have to pass in this superclass init for our override
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         text = string
-        textColor = UIColor(named: "pp-text-color")
-        font = UIFont.preferredFont(forTextStyle: .title3)
+        textColor = UIColor(named: "pp-secondary-text-color")
+        font = UIFont.systemFont(ofSize: 19, weight: .regular)
         numberOfLines = 0
         
         // override frame above, size the label to fit text
@@ -203,9 +263,8 @@ class ItemDetailStack: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        axis = .horizontal
+        axis = .vertical
         alignment = .top
-        distribution = .fillEqually
     }
     
     required init(coder: NSCoder) {

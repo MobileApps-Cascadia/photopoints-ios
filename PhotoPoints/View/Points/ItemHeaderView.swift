@@ -39,14 +39,14 @@ class ItemHeaderView: UICollectionReusableView {
         dateLabel.textColor = .systemGray
         dateLabel.font = UIFont.systemFont(ofSize: 13)
         
-        progressLabel.text = "Progress"
+        progressLabel.text = "Today's Progress"
         progressLabel.font = UIFont.boldSystemFont(ofSize: 22)
 
         progressContainer.backgroundColor = UIColor(named: "pp-trans-gray")
         progressContainer.layer.cornerRadius = 10
         
         numSurveyedLabel.textColor = .systemGreen
-        numSurveyedLabel.font = UIFont.systemFont(ofSize: 19)
+        numSurveyedLabel.font = UIFont.systemFont(ofSize: 20)
         
         photoPointsCapsLabel.text = "POINTS"
         photoPointsCapsLabel.textColor = .systemGreen
@@ -75,13 +75,13 @@ class ItemHeaderView: UICollectionReusableView {
         
         progressContainer.anchor(top: progressLabel.bottomAnchor, left: leftAnchor, bottom: photoPointsLabel.topAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
         
-        numSurveyedLabel.anchor(top: progressContainer.topAnchor, left: progressContainer.leftAnchor, bottom: progressView.topAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 4)
+        numSurveyedLabel.anchor(top: progressContainer.topAnchor, left: progressContainer.leftAnchor, paddingTop: 16, paddingLeft: 16)
         
         photoPointsCapsLabel.anchor(left: numSurveyedLabel.rightAnchor, bottom: numSurveyedLabel.bottomAnchor, paddingBottom: 1)
         
-        progressView.anchor(left: progressContainer.leftAnchor, right: progressContainer.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        progressView.anchor(top: numSurveyedLabel.bottomAnchor, left: progressContainer.leftAnchor, right: progressContainer.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingRight: 16)
         
-        photoPointsLabel.anchor(top: progressContainer.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 4, paddingRight: 16)
+        photoPointsLabel.anchor(top: progressContainer.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
     }
     
     func reloadProgress() {

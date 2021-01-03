@@ -44,6 +44,7 @@ class CaptureView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScanner()
+        
     }
     
     // terminate the session if we navigate off this view

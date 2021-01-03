@@ -53,7 +53,10 @@ class Repository {
     // MARK: - Data Retrieval
     // Various get methods for different locations/objects
     func getItems() -> [Item]? {
-        if let items = try? context.fetch(Item.fetchRequest()) as [Item] {
+        let request = Item.fetchRequest() as NSFetchRequest<Item>
+        let sortDescriptor = NSSortDescriptor(key: "label", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        if let items = try? context.fetch(request) as [Item] {
             return items
         } else {
             return nil

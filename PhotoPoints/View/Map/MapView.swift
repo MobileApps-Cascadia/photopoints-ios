@@ -30,7 +30,6 @@ class MapView: UIViewController {
     var minLong: CLLocationDegrees!
     var maxLong: CLLocationDegrees!
     
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -38,6 +37,7 @@ class MapView: UIViewController {
         setUpMap()
         registerAnnotations()
         addOverlays()
+        view.backgroundColor = UIColor(named: "pp-map-background")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ class MapView: UIViewController {
     func setUpMap() {
         // fill annotations array
         fillAnnotations()
-        
+
         mapView = MKMapView(frame: view.frame)
         mapView.mapType = .standard
         
@@ -63,8 +63,8 @@ class MapView: UIViewController {
         mapView.region = fitToItems()
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
-        
         view.addSubview(mapView)
+        
     }
     
     // Registers custom annotation views for use on the map, currently only contains one custom annotation type.

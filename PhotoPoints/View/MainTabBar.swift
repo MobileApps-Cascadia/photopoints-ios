@@ -27,19 +27,17 @@ class MainTabBar: UITabBarController {
         // set up map:
         let mapView = MapView()
         let mapNavigation = UINavigationController(rootViewController: mapView)
-//        mapNavigation.navigationBar.isHidden = true
         mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 1)
         
         // set up scanner
-        let scannerView = CaptureView()
-        let scannerNavigation = UINavigationController(rootViewController: scannerView)
-//        scannerNavigation.navigationBar.isHidden = true
-        scannerNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 2)
+        let captureView = CaptureView()
+        let captureNavigation = UINavigationController(rootViewController: captureView)
+        captureNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 2)
         
         // add these to our main tab bar
         self.addChild(itemNavigation)
         self.addChild(mapNavigation)
-        self.addChild(scannerNavigation)
+        self.addChild(captureNavigation)
 
     }
     
