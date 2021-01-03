@@ -189,10 +189,8 @@ class Repository {
         var itemsWithSubmissionsToday = [Item]()
         if let items = getItems() {
             for item in items {
-                if let submissions = item.submissions {
-                    if submissions.count > 0 {
-                        itemsWithSubmissionsToday.append(item)
-                    }
+                if didSubmitToday(for: item) {
+                    itemsWithSubmissionsToday.append(item)
                 }
             }
         }

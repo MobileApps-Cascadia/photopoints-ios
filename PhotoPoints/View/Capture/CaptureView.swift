@@ -25,8 +25,9 @@ class CaptureView: UIViewController {
     
     let scannerSquare: UIView = {
         let square = UIView()
-        square.layer.borderWidth = 3
+        square.layer.borderWidth = 2
         square.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+        square.layer.cornerRadius = 10
         return square
     }()
     
@@ -105,7 +106,7 @@ class CaptureView: UIViewController {
     
     func addScannerSquare() {
         view.addSubview(scannerSquare)
-        let width = view.frame.width - 64
+        let width = view.frame.width - 32
         scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
     }
     

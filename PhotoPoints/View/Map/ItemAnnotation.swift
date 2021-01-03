@@ -33,14 +33,16 @@ class ItemAnnotation: NSObject, MKAnnotation {
         let location = item.location!
         self.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         self.title = item.label
-        
+        super.init()
+        updatePhotoCount()
+    }
+    
+    func updatePhotoCount() {
         if repository.didSubmitToday(for: item) {
             let count = repository.getTodaysUserPhotos(for: item).count
-            self.subtitle = "\(count) photos sent today"
+            self.subtitle = "\(count) photo\(count == 1 ? "" : "s") sent today"
         } else {
             self.subtitle = "no photos sent today"
         }
-        
-        super.init()
     }
 }

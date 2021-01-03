@@ -31,7 +31,6 @@ class ItemHeaderView: UICollectionReusableView {
         configureViews()
         addSubViews()
         setupConstraints()
-        reloadProgress()
     }
     
     func configureViews() {

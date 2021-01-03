@@ -202,6 +202,8 @@ extension MapView : MKMapViewDelegate {
             if repository.didSubmitToday(for: item) {
                 surveyState = .surveyed
             }
+
+            (annotation as! ItemAnnotation).updatePhotoCount()
         }
         
         switch surveyState {
