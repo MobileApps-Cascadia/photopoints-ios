@@ -1,7 +1,7 @@
 ## PhotoPoints
 
 ### App Purpose
-Encourage users of all ages to help track phenology and health of key biotic or abiotic components of a client-overseen biome.
+Encouraging users of all ages to help track phenology and health of key biotic and abiotic components of a client-overseen biome.
 
 ### Stakeholders
 David Bain - Friends of North Creek Forest
