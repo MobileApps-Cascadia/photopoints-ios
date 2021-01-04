@@ -25,7 +25,7 @@ class ItemDetailView: UIViewController {
         
         // placeholder height to account for lengthiest plant stories
         // TODO: make this height adaptive to the amount of content
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: 1421)
         return scrollView
     }()
     
