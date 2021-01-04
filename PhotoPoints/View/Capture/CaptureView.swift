@@ -106,7 +106,7 @@ class CaptureView: UIViewController {
     
     func addScannerSquare() {
         view.addSubview(scannerSquare)
-        let width = view.frame.width - 32
+        let width = view.frame.width - globalPadding! * 2
         scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
     }
     
