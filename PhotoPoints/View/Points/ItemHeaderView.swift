@@ -62,6 +62,16 @@ class ItemHeaderView: UICollectionReusableView {
         return label
     }()
     
+    var paddingTop: CGFloat = 0
+    
+//    init(paddingTop: CGFloat) {
+//        self.paddingTop = paddingTop
+//        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        addSubviews()
+//        constrainSubviews()
+//
+//    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
@@ -82,20 +92,23 @@ class ItemHeaderView: UICollectionReusableView {
         addSubview(photoPointsLabel)
     }
     
+    // called when header is dequeued
+    func setHeaderPadding(headerPadding: CGFloat) {
+        dateLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: headerPadding, paddingLeft: globalPadding)
+    }
+    
     func constrainSubviews() {
-        dateLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 82, paddingLeft: 16)
+        progressLabel.anchor(top: dateLabel.bottomAnchor, left: leftAnchor, paddingTop: 58, paddingLeft: globalPadding)
         
-        progressLabel.anchor(top: dateLabel.bottomAnchor, left: leftAnchor, paddingTop: 58, paddingLeft: 16)
+        progressContainer.anchor(top: progressLabel.bottomAnchor, left: leftAnchor, bottom: photoPointsLabel.topAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
         
-        progressContainer.anchor(top: progressLabel.bottomAnchor, left: leftAnchor, bottom: photoPointsLabel.topAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
-        
-        numSurveyedLabel.anchor(top: progressContainer.topAnchor, left: progressContainer.leftAnchor, paddingTop: 16, paddingLeft: 16)
+        numSurveyedLabel.anchor(top: progressContainer.topAnchor, left: progressContainer.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
         
         photoPointsCapsLabel.anchor(left: numSurveyedLabel.rightAnchor, bottom: numSurveyedLabel.bottomAnchor, paddingBottom: 1)
         
-        progressView.anchor(top: numSurveyedLabel.bottomAnchor, left: progressContainer.leftAnchor, right: progressContainer.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingRight: 16)
+        progressView.anchor(top: numSurveyedLabel.bottomAnchor, left: progressContainer.leftAnchor, right: progressContainer.rightAnchor, paddingTop: 8, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        photoPointsLabel.anchor(top: progressContainer.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
+        photoPointsLabel.anchor(top: progressContainer.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
     }
     
     // called when header is dequeued

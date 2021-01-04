@@ -61,17 +61,17 @@ class ItemFooterView: UICollectionReusableView {
     }
     
     func constrainSubviews() {
-        aboutLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 16, paddingLeft: 16)
+        aboutLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
 
-        purposeTitle.anchor(top: aboutContainer.topAnchor, left: aboutContainer.leftAnchor, paddingTop: 16, paddingLeft: 16)
+        purposeTitle.anchor(top: aboutContainer.topAnchor, left: aboutContainer.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
 
-        purposeLabel.anchor(top: purposeTitle.bottomAnchor, left: aboutContainer.leftAnchor, right: aboutContainer.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
+        purposeLabel.anchor(top: purposeTitle.bottomAnchor, left: aboutContainer.leftAnchor, right: aboutContainer.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        logoImageView.anchor(top: purposeLabel.bottomAnchor, left: aboutContainer.leftAnchor, right: aboutContainer.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16, height: 100)
+        logoImageView.anchor(top: purposeLabel.bottomAnchor, left: aboutContainer.leftAnchor, right: aboutContainer.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: 100)
 
-        versionLabel.anchor(top: logoImageView.bottomAnchor, left: aboutContainer.leftAnchor, bottom: aboutContainer.bottomAnchor, right: aboutContainer.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        versionLabel.anchor(top: logoImageView.bottomAnchor, left: aboutContainer.leftAnchor, bottom: aboutContainer.bottomAnchor, right: aboutContainer.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
 
-        aboutContainer.anchor(top: aboutLabel.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
+        aboutContainer.anchor(top: aboutLabel.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingRight: globalPadding)
     }
     
 }

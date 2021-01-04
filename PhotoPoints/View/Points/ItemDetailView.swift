@@ -199,23 +199,23 @@ class ItemDetailView: UIViewController {
     func constrainSubviews() {
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
 
-        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16, height: view.frame.height / 3)
+        imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: view.frame.height / 3)
 
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
 
-        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
 
-        detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 16)
+        detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
  
-        pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: 16, paddingRight: 16)
+        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 16, paddingBottom: -16, paddingRight: 16)
+        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: -globalPadding!, paddingRight: globalPadding)
     }
 }
 

@@ -21,6 +21,14 @@ class ItemCollectionView: UICollectionViewController {
     
     private let footerIdentifier = "ItemFooterView"
     
+    lazy var topInset = view.safeAreaInsets.top
+    
+    // account for notched vs non notched phones
+    lazy var headerPadding: CGFloat = {
+        let padding = topInset - (self.navigationController?.navigationBar.frame.height)! + 34
+        return padding
+    }()
+    
     // MARK: - Setup
     
     func configureCollectionView() {
@@ -64,6 +72,7 @@ extension ItemCollectionView {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ItemHeaderView
+            header.setHeaderPadding(headerPadding: headerPadding)
             header.reloadProgress()
             return header
         }
@@ -71,6 +80,7 @@ extension ItemCollectionView {
         if kind == UICollectionView.elementKindSectionFooter {
             return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerIdentifier, for: indexPath) as! ItemFooterView
         }
+        
         fatalError()
     }
     
@@ -102,12 +112,13 @@ extension ItemCollectionView: UICollectionViewDelegateFlowLayout {
     
     // header size (account for nav bar)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 308)
+        return CGSize(width: view.frame.width, height: topInset + 162)
     }
     
     // footer size (account for tab bar)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 442)
+        return CGSize(width: view.frame.width, height: tabBarController!.tabBar.frame.height + 359)
+        
     }
     
     // line spacing (vertical)

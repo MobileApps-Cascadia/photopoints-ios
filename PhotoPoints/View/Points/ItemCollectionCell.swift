@@ -74,10 +74,10 @@ class ItemCollectionCell: UICollectionViewCell {
         countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
         
         mainView.addSubview(statusCircle)
-        statusCircle.anchor(right: mainView.rightAnchor, centerY: mainView.centerYAnchor, paddingRight: 16, width: 24, height: 24)
+        statusCircle.anchor(right: mainView.rightAnchor, centerY: mainView.centerYAnchor, paddingRight: globalPadding, width: 24, height: 24)
         
         mainView.addSubview(imageView)
-        imageView.anchor(left: mainView.leftAnchor, centerY: mainView.centerYAnchor, paddingLeft: 16, width: 44, height: 44)
+        imageView.anchor(left: mainView.leftAnchor, centerY: mainView.centerYAnchor, paddingLeft: globalPadding, width: 44, height: 44)
         
         mainView.addSubview(titleLabel)
         titleLabel.anchor(top: imageView.topAnchor, left: imageView.rightAnchor, paddingLeft: 8)
@@ -86,7 +86,7 @@ class ItemCollectionCell: UICollectionViewCell {
         subTitleLabel.anchor(left: imageView.rightAnchor, bottom: imageView.bottomAnchor, paddingLeft: 8)
         
         contentView.addSubview(mainView)
-        mainView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: 16, paddingBottom: 2, paddingRight: 16)
+        mainView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
         
     }
     

@@ -34,6 +34,7 @@ class StartupManager {
     
     static func startup() {
         storeAppConfigData()
+        setGlobalPadding()
     }
     
     static func storeAppConfigData() {
@@ -47,6 +48,14 @@ class StartupManager {
         // only upload on wifi
         // API database version
         
+    }
+    
+    static func setGlobalPadding() {
+        if UIScreen.main.bounds.width > 400 {
+            globalPadding = 21
+        } else {
+            globalPadding = 16
+        }
     }
     
     // add image and photo subdirectories to .documents
