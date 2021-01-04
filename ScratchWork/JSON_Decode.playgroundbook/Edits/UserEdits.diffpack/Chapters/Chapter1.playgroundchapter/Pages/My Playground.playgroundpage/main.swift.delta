@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+
+
+
+let jsonString = """
+{
+"item":
+{
+"id": "28097",
+"label": "Pacific Willow",
+"enabled": true,
+"qrCode": "abcdedg",
+"type": "unknown",
+"location": {
+"latitude": 47.75036,
+"longitude": -122.191449,
+"altitude": 0
+},
+"details": {
+"md5": "0de693ef54a38b1224975fad7cac4e39",
+"species_name": "Salix lucida ssp. Lasiandra",
+"common_names": "Pacific Willow, Yellow Willow, Waxy Willow",
+"short_description": "Pacific Willow",
+"full_description": "Pacific Willow",
+"category": "Deciduous, Tree",
+"family": "",
+"site": "3",
+"story": "Pacific Willow Story removed for clarity"
+},
+"images": [
+{
+"basename": "0de693ef54a38b1224975fad7cac4e39",
+"filename": "0de693ef54a38b1224975fad7cac4e39",
+"title": "Pacific Willow",
+"imageType": "full",
+"fileFormat": "png",
+"imageHeight": 800,
+"imageWidth": 600
+}
+]
+}
+}
+"""
+
+
+struct JSONCodingKeys: CodingKey {
+    var stringValue: String
+    var intValue: Int?
+    
+    init(stringValue: String) {
+        self.stringValue = stringValue
+        self.intValue = Int(stringValue)
+    }
+    
+    init?(intValue: Int) {
+        self.init(stringValue: "\(intValue)")
+        self.intValue = intValue
+    }
+}
+
+extension KeyedDecodingContainer {
+    func decode(_ type: [String: Any].Type, forKey key: K) throws -&gt; [String: Any] {
+        let container = try nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        return try container.decode(type)
+    }
+    
+    func decodeIfPresent(_ type: [String: Any].Type, forKey key: K) throws -&gt; [String: Any]? {
+        guard contains(key) else { return nil }
+        return try decode(type, forKey: key)
+    }
+    
+    func decode(_ type: [Any].Type, forKey key: K) throws -&gt; [Any] {
+        var container = try nestedUnkeyedContainer(forKey: key)
+        return try container.decode(type)
+    }
+    
+    func decodeIfPresent(_ type: [Any].Type, forKey key: K) throws -&gt; [Any]? {
+        guard contains(key) else { return nil }
+        return try decode(type, forKey: key)
+    }
+    
+    func decode(_ type: [String: Any].Type) throws -&gt; [String: Any] {
+        var dictionary = [String: Any]()
+        
+        for key in allKeys {
+            if let boolValue = try? decode(Bool.self, forKey: key) {
+                dictionary[key.stringValue] = boolValue
+            } else if let stringValue = try? decode(String.self, forKey: key) {
+                dictionary[key.stringValue] = stringValue
+            } else if let intValue = try? decode(Int.self, forKey: key) {
+                dictionary[key.stringValue] = intValue
+            } else if let doubleValue = try? decode(Double.self, forKey: key) {
+                dictionary[key.stringValue] = doubleValue
+            } else if let nestedDictionary = try? decode([String: Any].self, forKey: key) {
+                dictionary[key.stringValue] = nestedDictionary
+            } else if let nestedArray = try? decode([Any].self, forKey: key) {
+                dictionary[key.stringValue] = nestedArray
+            }
+        }
+        return dictionary
+    }
+}
+
+extension UnkeyedDecodingContainer {
+    mutating func decode(_ type: [Any].Type) throws -&gt; [Any] {
+        var array: [Any] = []
+        
+        while !isAtEnd {
+            let value: String? = try decode(String?.self)
+            guard value != nil else { continue }
+            
+            if let value = try? decode(Bool.self) {
+                array.append(value)
+            } else if let value = try? decode(Int.self) {
+                array.append(value)
+            } else if let value = try? decode(Double.self) {
+                array.append(value)
+            } else if let value = try? decode(String.self) {
+                array.append(value)
+            } else if let nestedDictionary = try? decode([String: Any].self) {
+                array.append(nestedDictionary)
+            } else if let nestedArray = try? decode([Any].self) {
+                array.append(nestedArray)
+            }
+        }
+        return array
+    }
+    
+    mutating func decode(_ type: [String: Any].Type) throws -&gt; [String: Any] {
+        let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
+        return try nestedContainer.decode(type)
+    }
+}
+
+// The Item struct and its components
+
+struct Coordinates : Decodable {
+    let latitude : Double
+    let longitude : Double
+    let altitude : Double? 
+}
+
+struct Image : Decodable {
+    let basename : String
+    let filename : String
+    let title : String
+    let imageType : String
+    let fileFormat : String
+    let imageHeight : Int
+    let imageWidth : Int
+}
+
+struct Item : Decodable {
+    let id : String
+    let type : String
+    let label : String
+    let enabled : Bool
+    let qrCode : String
+    let location : Coordinates
+    let details : [String : Any?]
+    let images : [Image]
+
+// Coding Keys -- TODO    
+    enum CodingKeys : String, CodingKey {
+        case item = "item"
+        case latitude = "latitude"        
+        case longitude = "longitude"
+        case altitude = "altitude"
+        case id = "id"
+        case type = "type"
+        case label = "label"
+        case enabled = "enabled"
+        case qrCode = "qrCode"
+        case location = "location"
+        case details = "details"
+        case images = "images"
+    }
+
+// Decoding   
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self) 
+        let item = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .item)  
+        id = try item.decode(String.self, forKey: .id)
+        type = try item.decode(String.self, forKey: .type)
+        label = try item.decode(String.self, forKey: .label)
+        enabled = try item.decode(Bool.self, forKey: .enabled)
+        qrCode = try item.decode(String.self, forKey: .qrCode)
+        location = try item.decode(Coordinates.self, forKey: .location)
+        details = try item.decode(Dictionary&lt;String, String&gt;.self, forKey: .details)
+        images = try item.decode(Array&lt;Image&gt;.self, forKey: .images)
+    }
+}
+
+// Decode an item using the above
+
+let data = jsonString.data(using: .utf8)!
+let item = try! JSONDecoder().decode(Item.self, from: data)
+
+
+// Show a few fields of the decoded object
+let itemId = item.id
+let itemLabel = item.label
+let md5 = item.details["md5"]!
+print("id: \(itemId)\nlabel: \(itemLabel)")
+print("details(md5): \(md5!)")
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 6327}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
