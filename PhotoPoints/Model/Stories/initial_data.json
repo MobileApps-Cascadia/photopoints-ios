@@ -1,0 +1,436 @@
+[
+    {
+        "id": "28097",
+        "label": "Pacific Willow",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28097",
+        "type": "plant",
+        "location": {
+            "latitude": 47.75036,
+            "longitude": -122.191449,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Salix lucida ssp. Lasiandra",
+            "common_names": "Pacific Willow, Yellow Willow, Waxy Willow",
+            "short_description": "Pacific Willow",
+            "full_description": "Pacific Willow",
+            "category": "Deciduous, Tree",
+            "family": "",
+            "site": "2",
+            "story": "\"The StraitsHAHA Salish and the Halq'emeylem peeled the bark of [native willow species] in May or June, removed the outer part, split the inner tissue into thin strands, and twisted these into long ropes. This rope was used to make fishing lines and various types of nets, including gill-nets, reef-nets, purse-nets, bag-nets, and duck-nets.\n\n(Pojar and MacKinnon 2004; reproduced with permission).\n\n\u201cInner bark was dried, ground into a powder, and then added to flour for making bread. The stems and bark were used in basket making (Moerman 1998). The native Americans used the stems for bow making and the bark for fabric making and tea.\u201d (USDA Plant guide).\n\nMedicinal: Willows produce salicin, which is closely related to acetylsalicyclic acid, commonly known as aspirin. Various preparations from willows are used to treat stomachache, sore throats, colds, diarrhea, and dandruff. The inner bark is haemostatic and has been applied externally to bleeding cuts (Moerman 1998)\n\n\nRestoration application: Willows grow rapidly and quickly provide part-shade. This creates poorer conditions for weeds by over-shading, and better conditions for fish by cooling streams. Willow's roots also grow swiftly which controls soil erosion. This tree is easily grown from cuttings, making a cost effective plant source. (Fryer).\n\nWildlife value: Pacific willow contributes to wildlife cover for species such as deer, mice, voles, beavers, and birds. Beavers use this willow in the construction of their dams (Fryer)\n\n\nAssociations: \"Despite having preference for damp soils, succeeds in most soils and is often found in riverbanks, floodplains, lakeshores, and wet meadows often standing in quiet river backwaters\" (Pojar). "
+        },
+        "images": [
+            {
+                "baseFilename": "0de693ef54a38b1224975fad7cac4e39",
+                "filename": "0de693ef54a38b1224975fad7cac4e39.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/0de693ef54a38b1224975fad7cac4e39.png"
+            }
+        ]
+    },
+    {
+        "id": "28069",
+        "label": "Black Twinberry",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28069",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774845,
+            "longitude": -122.191508,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Lonicera involucrata",
+            "common_names": "Black Twinberry, Bearberry Honeysuckle, Twinberry, Bush Honeysuckle",
+            "short_description": "Black Twinberry",
+            "full_description": "Black Twinberry",
+            "category": "Berry, Deciduous, Perennial, Shrub, Woody Ornamental",
+            "family": "Caprifoliaceae",
+            "site": "2",
+            "story": "\"The shiny, black, bitter, twinned berries are not considered edible by most people. They were given names like 'raven's food,' 'crow berry,' and 'monster's food' by northwest coast peoples. There were some taboos against eating them. For example, the Kwakwaka'wakw: believed that eating the berries would cause one to become unable to speak. The bark and twigs were used in a variety of medicinal preparations, ranging from treatments for digestive tract problems to contraceptives. The Quileute and Kwakwaka'wakw peoples used the berries as a black pigment. The Haida rubbed the berries on the scalp to prevent hair from turning grey.\" (Pojar and MacKinnon 2004). \n\nFrom USDA Plant Guide:\nThe Haida rubbed the berries on the scalp to prevent hair from turning gray (Ibid.). A decoction of the bark has been applied to a woman\u2019s breasts to encourage milk flow (Moerman 1998).  An infusion was used to treat chest and stomach complaints and to cleanse the body (Ibid.).\u201d\n\nRestoration Applications: This hardy shrub is regularly used in restoration especially in areas that are wet for at least part of the year (WNPS). This plant's rapid growth is useful in control erosion in riparian and other wetland areas. Twinberry can be live staked and used in bio-engineering such as fascines or stabilizing shorelines. This plant is a component used in hedgerows and wind shelters (Darris).\nWildlife value: This member of the honeysuckle family attracts pollinators like butterflies, bumble bees, and hummingbirds with its flower. The shiny black berries are eaten by bears, small mammals, and birds such as quail, grouse, songbirds and thrushes. It is valued for its general wildlife cover (Darris).\n\nAssociations:\nTwinberry grows in moist, seasonally wet and flooded areas, typically appearing near streams and coastal areas. Soils vary from silty clay to coarse sand. It can withstand full sun but it is typically found in shady conditions (Darris)."
+        },
+        "images": [
+            {
+                "baseFilename": "2d68e05603faeb2f249b62358f9c9495",
+                "filename": "2d68e05603faeb2f249b62358f9c9495.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/2d68e05603faeb2f249b62358f9c9495.png"
+            }
+        ]
+    },
+    {
+        "id": "28092",
+        "label": "Douglas Fir",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28092",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774827,
+            "longitude": -122.191787,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Pseudotsuga menziesii",
+            "common_names": "Douglas Fir",
+            "short_description": "Douglas Fir",
+            "full_description": "Douglas Fir",
+            "category": "Conifer, Evergreen, Perennial, Tree",
+            "family": "Pinaceae",
+            "site": "1",
+            "story": "\"Douglas-fir wood and bark was thought by most of the coastal groups to be an excellent fuel, but it had the reputation of throwing sparks and giving splinters to those handling it. The wood was also used to make items such as spear handles, harpoon shafts, spoons, dip-net poles, harpoon barbs, fire tongs, salmon weirs, caskets and halibut and cod hooks. Its pitch was used for sealing joints of implements such as harpoon heads, gaffs and fishhooks, and for caulking canoes and water vessels. The pitch, like that of many coniferous trees, was used to make a medicinal salve for wounds and skin irritations. The Nuxalk, Quinault and others made torches from the pitchy heartwood.\n\nThe Comox prepared dogfish by stuffing it with rotten, powdered Douglas-fir and burying the fish in a pit lined with the same material\" (Pojar and MacKinnon 2004).\n\nFrom USDA:\n\nDouglas-fir needles were made into tea and drank by Isleta Puebloans in New Mexico to cure rheumatism.The Sinkyone of California made Douglas-fir bark tea which eased colds and stomach ailments. Douglas-fir roots were used in California Indian basketry.(USDA)\n\n\nWildlife Value:\n\nFrom USDA: \n\nSmall mammals: Western squirrels, red tree mouse, dusky-foot woodrat eat winged seeds\n\nBig mammals: Antelope, mule, and white-tailed deer, elk, and mountain sheep eat foliage and twigs. \n\nThe staminate cones and needles of Douglas-fir provide a significant winter food of the blue grouse. \n\n\nRestoration application\n\n\u201cBirds that eat the seeds include grouse, crossbills, siskins, and many others. Chickadees,nuthatches, brown creepers, and woodpeckers find insects in the trunk,branches, and twigs. Foliage is eaten by pine white butterfly larvae,silver-spotted tiger moth larvae, and numerous other moths. Squirrels and chipmunks eat the seeds.\u201d (WNPS)\n\n\nAssociations\n\nThese are usually found in rocky slopes and gullies, forests and woods, open forests, coniferous forests, old growth forests, mixed forests and burned areas. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "cecc9ccdea496978e3f7694aacebd355",
+                "filename": "cecc9ccdea496978e3f7694aacebd355.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/cecc9ccdea496978e3f7694aacebd355.png"
+            }
+        ]
+    },
+    {
+        "id": "28061",
+        "label": "Mock Orange",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28061",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774964,
+            "longitude": -122.191792,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Philadelphus lewisii",
+            "common_names": "Mock Orange",
+            "short_description": "Mock Orange",
+            "full_description": "Mock Orange",
+            "category": "Deciduous, Perennial, Shrub, Woody Ornamental",
+            "family": "",
+            "site": "1",
+            "story": "\"The wood is strong and hard; it never cracks or warps when properly prepared. It is most widely used for making implements among the Interior Salish. On the coast, the Saanich used the wood for bows and arrows, and the Lummi of Washington made combs, netting shuttles and, recently, knitting needles. The Cowlitz also used the wood for combs, and the Skagit made arrow shafts. \n\nThe leaves and flowers foam into a lather when bruised and rubbed with the hands. This lather was used for cleansing the skin by the Snohomish and Cowlitz, as well by various interior groups. \n\nThis shrub has showy and aromatic flowers, and it has horticultural potential in native plant gardens. The commonly grown garden plant in the Pacific Northwest is the European P. coronarius.\n\nAristotle gave the name Philadelphus to a tree, now unknown, to commemorate Pharoah Ptolemy II Philadelphus (308-246 B.C.). Somehow the name, which means 'brotherly love,' was applied to this shrub. It has nothing to do with the city of Philadelphia, where a whole block once burned after the police bombed a house to keep the peace\" (Pojar and MacKinnon 2004; reproduced with permission).\n\n\nRestoration Application\n\n\"Lewis Mockorange is readily propagated by seed, stem cuttings, layering, root suckers, or division. Containers, beds for bareroot plant production, and weed free, well drained revegetation sites may be sown in the fall (untrated seed) or spring (treated seed) and the seed lightly covered. The species may be propagated from softwood cuttings taken in spring and treated with 1000 ppm of IBA (Indolebutyric acid). Hardwood cuttings can be similarly treated but often root readily without enhancement, allowing for direct sticking or live staking on revegetation sites. Mulch or irrigation and weed suppression the first summer can greatly improve establishment of unrooted cuttings.\" (Dale Darris and Pete Gonzalves, 2009)\n\n\n\nWildlife Value\n\nBirds: Birds including catbirds, grosbeaks, juncos, thrushes, bluebirds, chickadees, flickers, finches, quail, and grouse are known to eat the seeds.\n\nInsects: Swallowtail, common wood nymph, and other butterflies harvest the nectar.\n\nMammals: Deer and elk browse the shrub. (WNPS)\n\n\nAssociations\n\nThey are also known as syringa, Indian arrowwood, and wild mockorange. Lewis' mock orange and mock-orange are alternative spellings. (USDA) They are commonly found in Coastal bluffs, cliffs, rocky slopes, open forests, forest edges, openings, or clearings, and disturbed sites. (WNPS) "
+        },
+        "images": [
+            {
+                "baseFilename": "a2918c4529b510e0026f4fd915dbd636",
+                "filename": "a2918c4529b510e0026f4fd915dbd636.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/a2918c4529b510e0026f4fd915dbd636.png"
+            }
+        ]
+    },
+    {
+        "id": "28074",
+        "label": "Western Red Cedar",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28074",
+        "type": "plant",
+        "location": {
+            "latitude": 47.775134,
+            "longitude": -122.191787,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Thuja plicata",
+            "common_names": "Western Red Cedar",
+            "short_description": "Western Red Cedar",
+            "full_description": "Western Red Cedar",
+            "category": "Conifer, Evergreen, Perennial, Tree",
+            "family": "Cupressaceae",
+            "site": "3",
+            "story": "\"Redcedar has been called 'the cornerstone of northwest coast Indian culture' and the large-scale use of its wood and bark delineates the cultural boundary of the northwest coast people within its range. The easily split, rot-resistant wood was used to make important cultural items such as dugout canoes, house planks and posts, totem and mortuary poles, bentwood boxes, baskets, clothing and hats, and a variety of tools and implements such as dishes, arrow shafts, harpoon shafts, spear poles, barbecue sticks, fish spreaders and hangers, dip=net hooks, fish clubs, masks, rattles, benches, cradles, coffins, herring rakes, canoe bailers, ceremonial drum logs, cobs, fishing floats, berry-drying racks, fish weirs, spirit whistles, and paddles. It was used by the Kwakwaka'wakw and other groups to make a drill and hearth for starting friction firest. Redcedar was considered an excellent fuel, especially for drying fish, because it burns with little smoke. Few cedar trees were actually felled before European contact. Instead, fallen logs or boards split from standing trees were used. To split off cedar boards for house planks or half-logs for canoes, a series of graduated yew-wood or antler wedges were pounded into living trees along the grain.\n\nThe power of the redcedar tree was said to be so strong a person could receive strength by standing with his or her back to the tree. Redcedar was used for a variety of ailments. It is called the 'tree of life' by the Kwakwaka'wakw and is still held wit highest respect by all northwest coast peoples for its healing and spiritual powers. A Coast Salish myth says the Great Spirit created redcedar in honour of a man who was always helping others: 'When he dies and where he is buried, a cedar tree will grow and be useful to the people-the roots for baskets, the bark for clothing, the wood for shelter' (Stewart 1984)\"  (Pojar and MacKinnon 2004,reproduced with permission).\n\nFrom USDA:\n\n\u201cWood served for house planks, house posts, roof boards, various kinds of boxes, and canoes. Bark was made into skirts, capes, and complete dresses for women, and roots and limbs were used for baskets and rope. The inner bark was used for slow matches to carry the fire from camp to camp, and also as mats, and baskets. Various medicines were derived from the tree.\u201d (Nesom 2003).\n\nRestoration application\n\nDeer and elk browse on the twigs and foliage, whereas trees squirrels and porcupines use the fibrous bark strips for nesting material. Grosbeaks, sparrows, waxwings,nuthatches, and siskins are birds that eat the winged seeds. Birds such asjuncos, jays, and warblers find important shelter and nest sites in the dense foliage. (WNPS)\n\nAssociations\n\nAlternative names include giant arborvitae, western arborvitae, giant red-cedar, Pacific red-cedar,shinglewood, and canoe cedar. (Nesom 2003) Western red cedars are commonly found in swales or wet ditches, marshes or swamps, bogs, fens, seeps, springs, bog margins, stream or river banks, riparian corridors, alluvial areas, and coniferous forests. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "4cec57010423a872c7318d37bc0e410e",
+                "filename": "4cec57010423a872c7318d37bc0e410e.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/4cec57010423a872c7318d37bc0e410e.png"
+            }
+        ]
+    },
+    {
+        "id": "28070",
+        "label": "Clustered Wild Rose",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28070",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774845,
+            "longitude": -122.19154,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Rosa pisocarpa",
+            "common_names": "Clustered Wild Rose",
+            "short_description": "Clustered Wild Rose",
+            "full_description": "Clustered Wild Rose",
+            "category": "Deciduous, Fruit, Perennial, Shrub, Woody Ornamental",
+            "family": "Rosaceae",
+            "site": "2",
+            "story": "\"Branches of all species of wild rose - along with skunk cabbage leaves, fern fronds, pine needles, or salal - were sometimes put in steaming pits, cooking baskets and root-storage pits. Cedar-root cooking baskets used for boiling foods often had rose leaves placed under and over food to flavour it and protect it from burning. \n\nIn the spring, the tender young shoots were sometimes eaten. The branches or strips of bark were boiled to make a tea used as an eyewash for cataracts or to enhance eyesight. The Makah mashed the leaves as a poultice for sore eyes and any type of abscess. The chewed leaves were applied to bee stings, and the ripe hips were steeped, mashed and fed to babies with diarrhea. (Pojar and MacKinnon, 2004). \n\n\nAssociations\n\nThe clustered wild rose is also commonly known as the swamp rose. The clustered wild rose is commonly found in swales or wet ditches, lake shores, stream or river banks, bottom lands, and alluvial areas. (WNPS)\n\n\n"
+        },
+        "images": [
+            {
+                "baseFilename": "d8e413f9d69de4587698261c71fca7e4",
+                "filename": "d8e413f9d69de4587698261c71fca7e4.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/d8e413f9d69de4587698261c71fca7e4.png"
+            }
+        ]
+    },
+    {
+        "id": "28068",
+        "label": "Snowberry",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28068",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774787,
+            "longitude": -122.191583,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Symphoricarpos albus",
+            "common_names": "Snowberry",
+            "short_description": "Snowberry",
+            "full_description": "Snowberry",
+            "category": "Berry, Deciduous, Perennial, Shrub, Woody Ornamental",
+            "family": "Caprifoliaceae",
+            "site": "2",
+            "story": "The white, waxy-looking berries are considered poisonous by aboriginal peoples. They are given names like 'corpse berry' or 'snake's berry' in several languages. One Stl'atl'imx story identifies the berries as the 'saskatoon berries of the people in the Land of the Dead.' However, one or two berries were eaten by the Stl'atl'imx to settle the stomach after too much fatty food\" (Pojar and MacKinnon 2004,reproduced with permission).\n\n\nFrom USDA:\n\n\u201cSome southern groups made brooms out of the branches and the Gitksan hollowed out the twigs to make pipe-stems. An infusion of the fruit was used as eyewash for sore eyes and the berries were rubbed on the skin as treatment for burns,rashes, and sores. A decoction of the roots and stems was used in the treatment of the inability to urinate, venereal diseases, tuberculosis and the fevers associated with teething sickness.\u201d (Favorite 2003)\n\nRestoration application\n\nGrosbeaks, waxwings, robins,thrushes, towhees, grouse, pheasants, and quails eat the berries when other food sources are scarce. Snowberry is often used as a nesting habitat for gadwall ducks. Snowberry provides nectar that bumblebees and hummingbirds feed on. It also provides low shelter and nesting cover for small animals. (WNPS)\n\nAssociations\n\nOther common names include the white coralberry and common snowberry. (Favorite 2003) The snowberry is often found in streams or river banks, riparian corridors, seashores, coastal dunes or beaches, rocky slopes, outcrops, crevices, gullies, open forests, forest edges, openings, or clearings, and thickets. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "f9dc72761288eca63d189b8d06410777",
+                "filename": "f9dc72761288eca63d189b8d06410777.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/f9dc72761288eca63d189b8d06410777.png"
+            }
+        ]
+    },
+    {
+        "id": "28094",
+        "label": "Low Oregon Grape",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28094",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774797,
+            "longitude": -122.191787,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Mahonia nervosa",
+            "common_names": "Low Oregon Grape",
+            "short_description": "Low Oregon Grape",
+            "full_description": "Low Oregon Grape",
+            "category": "",
+            "family": "",
+            "site": "1",
+            "story": "\"The tart, purple berries of both Oregon-grapes were eaten, but generally not in quantity. Often they were mixed with salal or some other sweeter fruit. Today they are used for jelly, and some people make wine from them. An excellent jelly can be made using two cups Oregon-grape juice, two cups salal juice, five cups sugar and one box pectin crystals.\n\nThe bark is bright yellow inside, due to an alkaloid, berberine. The shredded bark of the stems and roots was used to make and bright-yellow dye for basket materials. The bark and berries were also used medicinally for liver, gall-bladder and eye problems. One Saanich woman noted that eating the berries in quantity was the only antidote known for shellfish poisoning. Great caution was used, because this drug is very potent\"  \n\n(Pojar and MacKinnon 2004; reproduced with permission).\n\n\nRestoration Application\n\n\nWildlife Value\n\nBirds and Mammals eat the berries. (WNPS)\n\n\nAssociations\n\nThey are commonly found in forests and woods, coniferous forests, deciduous forests, and mixed forests."
+        },
+        "images": [
+            {
+                "baseFilename": "62bd59d3612158ed21d78be9477fa4fa",
+                "filename": "62bd59d3612158ed21d78be9477fa4fa.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/62bd59d3612158ed21d78be9477fa4fa.png"
+            }
+        ]
+    },
+    {
+        "id": "28063",
+        "label": "Pacific Ninebark",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28063",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774865,
+            "longitude": -122.191717,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Physocarpus capitatus",
+            "common_names": "Pacific Ninebark",
+            "short_description": "Pacific Ninebark",
+            "full_description": "Pacific Ninebark",
+            "category": "Deciduous, Perennial, Shrub, Woody Ornamental",
+            "family": "",
+            "site": "1",
+            "story": "\"The Nuu-chah-nulth made children's bows and other small items from the wood, and the Cowichan recently have made knitting needles from it. The Nuxalk considered this shrub highly poisonous and, along with the Coast Salish and Kwakwaka'wakw, used a tea made from a stick with the outer bark peeled off as an emetic or purgative. These three groups also used a medicine from ninebark as a laxative. The Nuxalk used medicinal preparations from ninebark for gonorrhea and scrofulous sores on the neck.\n\nThis species is called ninebark because it was believed there are nine layers of shreddy bark on the stems. Greek physa ('bellows' or 'bladder') and carpos ('fruit') form the genus name, because of the inflated follicles. \n\n(Pojar and MacKinnon 2004; reproduced with permission).\n\n\nRestoration Application:\n\nFrom USDA:\n\n\"Implementing supplemental irrigation during establishment year or years with low rainfall.\" (Pete Gonzalves, 2007)\n\n\nWildlife value:\n\nBirds: Fruits are eaten by birds.\n\nMammals: Twigs, buds, and foliage are browsed by herbivores. (WNPS)\n\n\nAssociations:\n\nPacific Ninebark are commonly found in swales or wet ditches, marshes or swamps, stream or river banks, riparian corridors, open forests, forest edges, openings, or clearings, thickets. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "505dc2d1951a9e93e0d3c93378e82e67",
+                "filename": "505dc2d1951a9e93e0d3c93378e82e67.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/505dc2d1951a9e93e0d3c93378e82e67.png"
+            }
+        ]
+    },
+    {
+        "id": "28075",
+        "label": "Cascara",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28075",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774897,
+            "longitude": -122.19191,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Frangula purshiana",
+            "common_names": "Cascara",
+            "short_description": "Cascara",
+            "full_description": "Cascara",
+            "category": "Berry, Deciduous, Tree",
+            "family": "",
+            "site": "3",
+            "story": "The bark was boiled and the tea (or syrup) was drunk as a strong laxative by the Nuxalk, Coast Salish, Quileute, Nuu-chah-nulth, Kwakwaka'wakw and other groups. Cascara has been scientifically substantiated as an effective laxative. The hydroxymethylanthraquinones it contains cause peristalsis of the large intestine, with little or no effect on the small intestine at low dosages. The bark was often allowed to age before use because the fresh bark is said to be nauseating. The Coast Salish collected and dried the bark in strips in spring or summer. The following summer it was pounded and steeped in cold water, then boiled. Usually a handful of bark per quart of water was used. This plant was also used as a medicine for washing sores and swellings, and treating heart strain, internal strains and biliousness\" (Pojar and MacKinnon 2004). \n\n\nWildlife Value: \n\n\nBirds: Grosbeaks, woodpeckers, grouse, band-tailed pigeons, mourning doves, jays, robins, and tanagers eat berries. It also attracts many insectivorous birds, including bushtits, kinglets, chickadees, flycatchers, and nuthatches.\nInsects: Swallowtail, gray hairstreak, and other butterfly larvae eat leaves and other plants.\nMammals: Black bears, foxes, coyotes, and raccoons eat the fruit. (WNPS)\n\n\nRestoration Application: \n\n\n\n\n\n\nAssociations:\n\n\nThey're found in marshes or swamps, near stream or river banks, bottomlands, coniferous forests, mixed forests, forest edges, thickets, and logged sites. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "70837bb2822ab2518965b970b4ea46aa",
+                "filename": "70837bb2822ab2518965b970b4ea46aa.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/70837bb2822ab2518965b970b4ea46aa.png"
+            }
+        ]
+    },
+    {
+        "id": "28066",
+        "label": "Red Alder",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28066",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774947,
+            "longitude": -122.191776,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Alnus rubra",
+            "common_names": "Red Alder",
+            "short_description": "Red Alder",
+            "full_description": "Red Alder",
+            "category": "Deciduous, Perennial, Tree",
+            "family": "Betulaceae",
+            "site": "3",
+            "story": "\"Red alder wood is considered to be the best possible fuel for smoking salmon and other types of fish. It is soft and even-grained, and is still used for making feast bowls, masks, rattles, and a variety of other items.\n\nIts bark is used to make a red or orange dye, especially valued for colouring inner redcedar bark. The name 'red alder' may derive from this use. Variations in dye colour are obtained from different ages and quantities of the bark, and from the use of other substances such as urine to fix the colouring. Fishing nets were sometimes coloured with alder-bark dye to make them invisible to fish. \n\nThe inner bark of red alder was eaten in spring by the Straits Salish and other northwest coast people. Alder bark was highly valued for its medicinal qualities. A solution of the bark was used against tuberculosis and other respiratory ailments and as a tonic, and was been credited with saving many lives. It was also used as a wash for skin infections and wounds, and is known to have strong antibiotic properties.\n\n'Alder' appears to be from Old English alor or Old High German elo or elawer meaning 'red-dish-yellow,' in reference to the colour that develops when the wood is freshly exposed\" (Pojar and MacKinnon 2004,reproduced with permission).\n\n\nFrom USDA:\n\nThe inner bark was oftendried, grounded into a powder and then used as a thickener in soups or mixedwith cereals when making bread. Various layers of the red alder bark yield red,red-brown, brown, orange, and yellow dyes. The various colors from the barkwere used to color baskets, hides, moccasins, quills, and hair. The NativeAmericans of the Pacific Northwest extracted a red dye from the inner bark,which was used to dye fishnets. (Favorite & Immel 2006)\n\nRestoration application\n\nThe leavesare eaten by swallowtail butterfly larvae and tent caterpillars. Mammals thateat the twigs, leaves, or wood include snowshoe hares, beavers, porcupines,deer, and elk. Alders create organic debris for soil organisms. (WNPS)\n\nAssociations\n\nAlternative names include PacificCoast alder, Oregon alder, and western alder. (USDA) Red aldertrees grow in seasonally inundated areas, scrub-shrub wetlands, and forestedwetlands, as well as by stream or river banks, riparian corridors, floodplains,bottomlands, slide areas, forests and woods, logged sites and disturbed sites.(WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "2d811c6d6634fc6eeafedde95435ef78",
+                "filename": "2d811c6d6634fc6eeafedde95435ef78.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/2d811c6d6634fc6eeafedde95435ef78.png"
+            }
+        ]
+    },
+    {
+        "id": "28072",
+        "label": "Paper Birch",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28072",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774947,
+            "longitude": -122.191508,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Betula papyrifera",
+            "common_names": "Paper Birch, White Birch, Canoe Birch",
+            "short_description": "Paper Birch",
+            "full_description": "Paper Birch",
+            "category": "Deciduous, Tree",
+            "family": "",
+            "site": "2",
+            "story": "Paper birch was used much more commonly by interior groups. The bark, which can be peeled off the tree in large, flexible, waterproof sheets, was as important to the native peoples inland from the Northwest Coast as the western redcedar was to the coastal peoples. Baskets and canoes were the most common items constructed from paper birch. The wood was also used as duel, and the sap and inner bark as emergency food. \n\nPaper birch thrives on burned-over and cut-over areas where it often forms pure stands, though it is later restricted to openings as the forest matures. It readily sprouts from cut stumps. \n\nA Swedish archaeologist found what could the world's oldest second-hand chewing gum: 9,000-year-old wads of chewed birch resin on the floor of a hut used by Stone-Age hunter-gatherers.  The gum could have been medicinal: birch resin contains zylitol, a disinfectant now sold by the Finns as a natural tooth cleaner. But birch resin also contains terpenes, which could have provided a buzz; Athabaskan Indians were reported to chew birch gum much as Andean people chew coca leaves.In the Ukraine, sap from birches is used to produce a variety of beverages including wine, soft drinks and health tonics. In Alaska, parts of Canada and the northern conterminous U.S., birch is tapped and the sap is used to produce syrup, and homemade wine and beer. \n\nThe name 'birch' is derived from words in many languages, all of which mean either 'a tree whose bark is used fr writing upon' or simply 'bark.' Hence, birch is the 'bark-tree.' The word 'bark' can mean either 'tree-rind' or 'vessel,' the latter reflecting its long-standing use for making canoes or water containers. Betula means 'pitch' because bitumen was distilled from bark (broken clay pots were glued together with birch-bark tar in Roman Britain); papyrifera means 'paper-bearing' \n\n(Pojar and MacKinnon 2004; reproduced with permission)."
+        },
+        "images": [
+            {
+                "baseFilename": "25b54587a8265a3c05ecab9f93a80782",
+                "filename": "25b54587a8265a3c05ecab9f93a80782.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/25b54587a8265a3c05ecab9f93a80782.png"
+            }
+        ]
+    },
+    {
+        "id": "28098",
+        "label": "Red Elderberry",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28098",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774851,
+            "longitude": -122.191779,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Sambucus racemosa ssp. pubens",
+            "common_names": "Red Elderberry",
+            "short_description": "Red Elderberry",
+            "full_description": "Red Elderberry",
+            "category": "Deciduous, Fruit, Shrub, Woody Ornamental",
+            "family": "",
+            "site": "1",
+            "story": "\"Red elderberries, though small and seedy, were a highly important food for the peoples of the central and northern coast, although few people sill use them today. They should always be cooked, since the raw berries may cause nausea. They were sometimes boiled to make a sauce or cooked with the stems intact. The stems and seeds were discarded later. The berries make an excellent, tangy jelly and some people make wine from them, but they should always be cooked for this purpose. Caches of red elderberries have been found in archaeological sites dating back hundreds of years. \nThe stems, bark, leaves and roots especially in fresh plants, are toxic due to the presence of cyanide-producing glycosides\" (Pojar and MacKinnon 2004; reproduced with permission).\n\n\nRestoration Application:\nFrom USDA:\n\n\n \"Consider using supplemental irrigation in the low rainfall during establishment year or years of establishment. It resprouts from both roots and the seed bank following fire. Severe pruning will prevent a spindly growth habitat in ornamental application.\" (Pete Gonzalves and Dale Darris).\n\n\n\n\nWildlife Value:\n\nBirds: Birds including  sparrows, thrushes, warbler, bluebirds, jays, tanagers, grosbeaks, sapsuckers, woodpeckers, and band-tailed pigeons eat berries.\nInsects: Nectar eaten by bumblebees and butterflies. Cavity-nesting bees use broken branches as nest sites.\nMammals: Small mammals also eat fruits. Deer and elk consume foliage and twigs. (WNPS) \n\n\nAssociations:\nAlternative names includes scarlet elder, stinking elderberry, stinking elder, red-berried elder, bunchberry elder, and red elder. (USDA) Normally found in marshes or swamps, forested wetlands, stream or river banks, riparian corriders, floodplains, bottomlands, open forests, forest edges, openings or clearings, pastures or fields and disturbed sites. (WNPS)"
+        },
+        "images": [
+            {
+                "baseFilename": "5e58b6ebfd27a0ab7b8d9253c5a57e76",
+                "filename": "5e58b6ebfd27a0ab7b8d9253c5a57e76.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/5e58b6ebfd27a0ab7b8d9253c5a57e76.png"
+            }
+        ]
+    },
+    {
+        "id": "28086",
+        "label": "Black Cottonwood",
+        "enabled": true,
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28086",
+        "type": "plant",
+        "location": {
+            "latitude": 47.774872,
+            "longitude": -122.191876,
+            "altitude": 0
+        },
+        "details": {
+            "species_name": "Populus trichocarpa",
+            "common_names": "Black Cottonwood",
+            "short_description": "Black Cottonwood",
+            "full_description": "Black Cottonwood",
+            "category": "Deciduous, Native to North America, Tree",
+            "family": "Salicaceae",
+            "site": "1",
+            "story": "Nuxalk\/Kwakwaka'wakw\/Halq'emeylem\/Stl'atl'imx: The sweet inner bark and cambium tissues were eaten in late spring and early summer immediately after they were harvested so they would not ferment. \n\nHesquiat\/Nuu-chah-nulth\/Ditidaht: The buds were picked in the spring and boiled in deer fat to make a fragrant salve, which was molded in the bulbous float of bull kelp. \n\nNuxalk: the gum from the buds was used in preparations for baldness, sore throats, whooping cough and tuberculosis...the old, rotten leaves were boiled and used in a bath for body pains, rheumatism and stomach trouble. \n\nStl'atl'imx\/Tahltan: Cottonwood was used as a fuel for smoking fish. Coast Salish: Cottonwood was thought by the Squaxin to be an antiseptic plant; they placed the bruised leaves on cuts and made an infusion from the bark for sore throats. \n\nQuinault: This group placed the gum that exudes from the burls of cottonwood directly on cuts and wounds, and took a bark infusion for tuberculosis.\n\nDitidaht: The inner bark was used to reinforce other plant fibres in spinning. Vancouver Island Salish: This group occasionally made small dugout canoes from black cottonwood, a practice more common among interior tribes. The aromatic gum from the spring buds of cottonwood was used to waterproof baskets and boxes. \n\nOkanagan\/Upper Halq'emeylem\/Cowlitz: Friction-fire sets were made using dried cottonwood roots for the hearth and dried branches for the drill. \n\nOkanagan: Soap and a hair wash were made using ashes from cottonwood. \n\nCoast Salish\/Okanagan\/Stl'atl'imx: The bark was stripped off and used to make buckets for carrying and storing food. Young shoots were used to make sweatlodge frames. \n\nNisga'a\/Quinault: Temporary cabins were occasionally constructed using cottonwood bark, and the roots were twisted into rope for tying house planks and making fish traps. \n\nOkanagan\/Stl'atl'imx: The aromatic gum from the spring buds was used as a glue for securing arrowheads and feathers to shafts. Cottonwood is thought to have a life of its own by the Chehalis because it shakes when there is no wind, and for this reason it was never used for firewood. \n\nOkanagan\/Ditidaht: the rich, yellow, aromatic gum from the buds was boiled in grease and mixed with other pigments (alder bark, larch, wolf lichen, charcoal) to make paint (Pojar and MacKinnon 2004).From USDA:\n\n\u201cDisinfectant properties of resin from buds were discovered by Native Americans, who used the resin to treat sore throats, coughs, lung pain, and rheumatism.  It is still used in some modern natural health ointments.  Soap was produced from the inner bark.  The wood was used to make friction fire sets.\u201d (USDA)\n\nRestoration Applications:\nThe rapid growth of this tree, which is typical of pioneer species, makes it a great choice for over-shading and crowding out invasive species in wet areas. Black cottonwood is easily live staked and its extensive lateral root system helps to filter and stabilize soil especially on steep slopes  (USDA).\n\nWildlife value: High nesting and perching value for birds, including species like bald eagles, herons, owls, woodpeckers, hummingbirds, and flickers. Large mature trees provide cover for streams reducing the water temperature which benefits aquatic life such as fish. (US Forest Service). \n\nWildlife Value: From USDA:\"They provide food source and cover for a variety of wildlife species, including deer, elk, and beaver. Large birds use the crowns for nesting sites and various animals rely on the trunk cavities, which commonly result from heart rot in most stands nearing maturity. The rotten trunks of black cottonwood provide an important wildlife habitat otherwise scarce, especially of the Cascades.\" (Guy Nesom, 2002).\n\nAssociations: Black cottonwood is often found growing in wetlands, stream banks, floodplains and near other wet areas in communities made up of western hemlock, skunk cabbage, Douglas fir, western red cedar and salmonberry. References in \"Plant Details\" Section."
+        },
+        "images": [
+            {
+                "baseFilename": "2ea9fcb1daf6f46b1357875c986ce4d4",
+                "filename": "2ea9fcb1daf6f46b1357875c986ce4d4.png",
+                "imageType": "full",
+                "fileformat": "png",
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/2ea9fcb1daf6f46b1357875c986ce4d4.png"
+            }
+        ]
+    }
+]
