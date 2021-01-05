@@ -80,8 +80,11 @@ class StartupManager {
         // necessary to access context in some way before creating objects
         repository.context.reset()
         
-        // build mock database
-        MockDatabase.build()
+        // load repository
+        let path = Bundle.main.path(forResource: "items", ofType: "json")
+        let json = try! String(contentsOfFile: path!, encoding: .utf8)
+        ItemDatabase.build(from: json)
+        
         
         // write to core data
         repository.saveContext()
