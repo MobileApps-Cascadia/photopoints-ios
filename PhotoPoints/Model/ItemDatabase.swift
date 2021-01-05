@@ -75,7 +75,17 @@ class ItemDatabase {
             
             let imageHash = jsonImages.first?["baseFilename"] as! String
             
-            items.append(Item(id: id, label: label, coordinate: Coordinate(latitude: latitude, longitude: longitude), details: details, image: Image(filename: imageHash)))
+            items.append(Item(
+                            id: id,
+                            label: label,
+                            coordinate: Coordinate(
+                                latitude: latitude,
+                                longitude: longitude,
+                                altitude: altitude),
+                            details: details,
+                            image: Image(filename: imageHash
+                            )
+            ))
         
         }
     }

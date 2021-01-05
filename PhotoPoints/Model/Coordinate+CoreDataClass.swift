@@ -14,7 +14,7 @@ import MapKit
 @objc(Coordinate)
 public class Coordinate: NSManagedObject {
 
-    convenience init(latitude: Double, longitude: Double) {
+    convenience init(latitude: Double, longitude: Double, altitude: Double = 0) {
         
         self.init(entity: Coordinate.entity(), insertInto: Repository.instance.context)
         
@@ -26,5 +26,4 @@ public class Coordinate: NSManagedObject {
     func twoDimensional() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
-    
 }
