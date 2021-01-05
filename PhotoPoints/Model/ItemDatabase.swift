@@ -77,15 +77,18 @@ class ItemDatabase {
             
             items.append(Item(
                             id: id,
+                            type: itemType,
                             label: label,
-                            coordinate: Coordinate(
+                            code: qrCode,
+                            location: Coordinate(
                                 latitude: latitude,
                                 longitude: longitude,
                                 altitude: altitude),
                             details: details,
-                            image: Image(filename: imageHash
+                            image: Image(filename: imageHash),
+                            enabled: enabled
                             )
-            ))
+            )
         
         }
     }

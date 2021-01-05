@@ -14,15 +14,16 @@ import UIKit
 
 public class Item: NSManagedObject {
 
-    convenience init(id: String, label: String, coordinate: Coordinate, details: [String: String], image: Image) {
+    convenience init(id: String, type: String, label: String, code: String, location: Coordinate, details: [String: String], image: Image, enabled: Bool = true) {
 
         self.init(entity: Item.entity(), insertInto: Repository.instance.context)
         
         self.id = id
         self.label = label
-        self.location = coordinate
-        self.url = "https://www.plantsmap.com/plants/\(id)"
-        self.enabled = true
+        self.location = location
+        //TODO: refactor "url" to "code" or similar. Format changing in future per client
+        self.url = code
+        self.enabled = enabled
         addToImages(image)
         addDetails(details: details)
         
