@@ -128,20 +128,11 @@ class ItemDetailView: UIViewController {
     let pnwLabel = ItemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
     
     lazy var storylabel: ItemDetailLabel = {
-        // story
-        var story = String()
-        
-        let path = Bundle.main.path(forResource: "\(thisItem.id ?? "")_story", ofType: "txt")
-
-        do {
-            story = try String(contentsOfFile: path!, encoding: .utf8)
-        } catch {
-            print("file not found")
-        }
+        let story = repository.getDetailValue(item: thisItem, property: "story") ?? ""
+        print("story: \(story)")
         let label = ItemDetailLabel(string: story)
         // wrap text
         label.numberOfLines = 0
-        
         return label
     }()
     
