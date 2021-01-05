@@ -12,7 +12,7 @@
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="details" inverseEntity="Item"/>
     </entity>
     <entity name="Image" representedClassName=".Image" syncable="YES">
-        <attribute name="baseFilename" optional="YES" attributeType="String"/>
+        <attribute name="basefile" optional="YES" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="filename" attributeType="String"/>
         <attribute name="license" optional="YES" attributeType="String"/>
@@ -53,7 +53,7 @@
     <elements>
         <element name="Coordinate" positionX="139.6640625" positionY="244.890625" width="128" height="89"/>
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="74"/>
-        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
+        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="148"/>
         <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="178"/>
         <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="149"/>
         <element name="UserPhoto" positionX="480.17578125" positionY="-41.6953125" width="128" height="134"/>

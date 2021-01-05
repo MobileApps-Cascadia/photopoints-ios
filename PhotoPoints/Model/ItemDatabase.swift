@@ -73,7 +73,7 @@ class ItemDatabase {
             
             // TODO: Implement multi-image handling -- Currently first is set an only
             
-            let imageHash = jsonImages.first?["baseFilename"] as! String
+            let imageHash = jsonImages.first?["basefile"] as! String
             
             items.append(Item(
                             id: id,
