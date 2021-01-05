@@ -151,12 +151,7 @@ class Repository {
     }
     
     func didSubmitToday(for item: Item) -> Bool {
-        
-        if getTodaysSubmissions(for: item).count > 0 {
-            return true
-        }
-        
-        return false
+        return (getTodaysSubmissions(for: item).count > 0)
     }
     
     func getAllUserPhotos(for item: Item) -> [UserPhoto] {

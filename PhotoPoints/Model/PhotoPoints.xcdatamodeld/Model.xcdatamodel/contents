@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -12,7 +12,7 @@
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="details" inverseEntity="Item"/>
     </entity>
     <entity name="Image" representedClassName=".Image" syncable="YES">
-        <attribute name="baseFilename" optional="YES" attributeType="String"/>
+        <attribute name="basefile" optional="YES" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="filename" attributeType="String"/>
         <attribute name="license" optional="YES" attributeType="String"/>
@@ -24,6 +24,7 @@
         <attribute name="enabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Detail" inverseName="item" inverseEntity="Detail"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="item" inverseEntity="Image"/>
@@ -52,8 +53,8 @@
     <elements>
         <element name="Coordinate" positionX="139.6640625" positionY="244.890625" width="128" height="89"/>
         <element name="Detail" positionX="133.171875" positionY="-58.0625" width="128" height="74"/>
-        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="134"/>
-        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="149"/>
+        <element name="Image" positionX="115.4296875" positionY="79.76953125" width="128" height="148"/>
+        <element name="Item" positionX="312.50390625" positionY="-27.83203125" width="128" height="178"/>
         <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="149"/>
         <element name="UserPhoto" positionX="480.17578125" positionY="-41.6953125" width="128" height="134"/>
     </elements>
