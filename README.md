@@ -70,7 +70,7 @@ Help protect North Creek Forest, North Creek, and local salmon populations using
 
 With this MVP we are trying to enable the organization to control the application’s contents as they see fit, and by extension, the data that will be collected by the users. This includes adding and removing photopoints, changing the images that are displayed on the information pages, and updating trail and creek map contents as they evolve over time.
 
-We also aim to learn the best ways to provide incremental improvement of the user experience as new functionality is added to make the app more engaging. We hope this will encouraging users to visit the North Creek Forest frequently, fulfilling its promise of providing a rich dataset to the organization.
+We also aim to learn the best ways to provide incremental improvement of the user experience as new functionality is added to make the app more engaging. We hope this will encourage users to visit the North Creek Forest frequently, fulfilling its promise of providing a rich dataset to the organization.
  
 **What data we are collecting:**
 
