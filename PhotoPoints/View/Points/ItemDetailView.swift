@@ -76,8 +76,8 @@ class ItemDetailView: UIViewController {
         detailsStack.spacing = 16
         
         // botanical name
-        if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
-            let categoryBotanical = ItemDetailTitle(string: "Botanical Name")
+        if let botanicalName = repository.getDetailValue(item: thisItem, property: "species_name") {
+            let categoryBotanical = ItemDetailTitle(string: "Species Name")
             let dataBotanical = ItemDetailLabel(string: botanicalName)
             let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
             detailsStack.addArrangedSubview(botanicalStack)
@@ -129,7 +129,6 @@ class ItemDetailView: UIViewController {
     
     lazy var storylabel: ItemDetailLabel = {
         let story = repository.getDetailValue(item: thisItem, property: "story") ?? ""
-        print("story: \(story)")
         let label = ItemDetailLabel(string: story)
         // wrap text
         label.numberOfLines = 0

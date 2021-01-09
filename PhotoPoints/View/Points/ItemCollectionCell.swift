@@ -93,7 +93,7 @@ class ItemCollectionCell: UICollectionViewCell {
     func configureFor(item: Item) {
         imageView.image = repository.getImageFromFilesystem(item: item)
         titleLabel.text = item.label 
-        subTitleLabel.text = repository.getDetailValue(item: item, property: "botanical_name")
+        subTitleLabel.text = repository.getDetailValue(item: item, property: "species_name")
         
         if repository.didSubmitToday(for: item) {
             statusCircle.backgroundColor = .systemGreen

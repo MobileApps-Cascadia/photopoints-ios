@@ -179,7 +179,9 @@ class CaptureView: UIViewController {
     func sendSubmission() {
         repository.saveContext()
         print("sending submission for \(scannedItem.label!) with \(workingSubmission.userPhotos?.count ?? 0) photos")
+        
         // begin UrlSession to send submission to API
+        
     }
     
 }
