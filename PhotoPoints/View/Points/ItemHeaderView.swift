@@ -64,14 +64,6 @@ class ItemHeaderView: UICollectionReusableView {
     
     var paddingTop: CGFloat = 0
     
-//    init(paddingTop: CGFloat) {
-//        self.paddingTop = paddingTop
-//        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-//        addSubviews()
-//        constrainSubviews()
-//
-//    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
