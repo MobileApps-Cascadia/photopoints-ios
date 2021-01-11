@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableHeader: UIView {
+class DateView: UIView {
     
     let dateLabel: UILabel = {
         let label = UILabel()

@@ -12,7 +12,7 @@ class SectionHeader: UIView {
     
     let title: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
     
@@ -22,7 +22,7 @@ class SectionHeader: UIView {
     
     func setupSubviews() {
         addSubview(title)
-        title.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
+        title.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
     }
     
 }

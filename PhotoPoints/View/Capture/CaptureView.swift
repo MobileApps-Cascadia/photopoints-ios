@@ -128,7 +128,7 @@ class CaptureView: UIViewController {
     // MARK: - Alerts
     
     func showScannedAlert() {
-        let detailView = ItemDetailView(item: scannedItem)
+        let detailView = PointsDetail(item: scannedItem)
         detailView.scanDelegate = self
         
         let botanicalName = repository.getDetailValue(item: scannedItem, property: "botanical_name")

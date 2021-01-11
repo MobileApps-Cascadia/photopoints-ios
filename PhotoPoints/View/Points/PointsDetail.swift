@@ -1,5 +1,5 @@
 //
-//  PlantDetailView.swift
+//  PointsDetail.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 4/24/20.
@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-class PointsDetailView: UIViewController {
+protocol DateViewDelegate {
+    func fadeInDate()
+}
+
+class PointsDetail: UIViewController {
     
     // MARK: - Properties
     let repository = Repository.instance
@@ -17,6 +21,8 @@ class PointsDetailView: UIViewController {
     var thisItem: Item
     
     var scanDelegate: ScanDelegate!
+    
+    var dateViewDelegate: DateViewDelegate!
     
     var surveyState: SurveyState = .notSurveyed
     
@@ -164,13 +170,19 @@ class PointsDetailView: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // change back to large title on parent view
+        navigationItem.largeTitleDisplayMode = .always
+        
         // using alertDelegate for scanner preview of this view but not in the library
         if let scanDelegate = scanDelegate {
             scanDelegate.enableScanning()
         }
+
+        dateViewDelegate.fadeInDate()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
         
-        // change back to large title on parent view
-        navigationItem.largeTitleDisplayMode = .always
     }
     
     func addSubviews() {

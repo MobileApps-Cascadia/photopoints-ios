@@ -22,7 +22,8 @@ class MainTabBar: UITabBarController {
         // set up point collection view
 //        let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
 //        let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
-        let pointsNavigation = UINavigationController(rootViewController: PointsTable())
+        let pointsTable = PointsTable(style: .grouped)
+        let pointsNavigation = UINavigationController(rootViewController: pointsTable)
         pointsNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
         
         // set up map:

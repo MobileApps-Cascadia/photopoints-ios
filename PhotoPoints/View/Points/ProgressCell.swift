@@ -47,7 +47,6 @@ class ProgressCell: BaseCell {
 
     }
     
-    // called when cell is dequeued
     func updateProgress() {
         let numPoints = repository.getItems()?.count ?? 0
         let numSubmittedItems = repository.getItemsWithSubmissionsToday().count

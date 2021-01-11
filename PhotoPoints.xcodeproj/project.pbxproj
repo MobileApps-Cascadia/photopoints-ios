@@ -17,13 +17,10 @@
 		F30CA2122460A2FC00CEA2A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F30CA2102460A2FC00CEA2A6 /* LaunchScreen.storyboard */; };
 		F30CA26C2460A3D800CEA2A6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2362460A3D700CEA2A6 /* CaptureView.swift */; };
 		F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */; };
-		F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */; };
-		F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24C2460A3D700CEA2A6 /* ItemCollectionView.swift */; };
-		F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* ItemDetailView.swift */; };
+		F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */; };
 		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* Anchor.swift */; };
-		F3115C8925A119CD006E6D35 /* ItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3115C8825A119CD006E6D35 /* ItemFooterView.swift */; };
 		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
 		F31986A02593C09F006E94AE /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869F2593C09F006E94AE /* Trails.swift */; };
 		F31986A32593C0A7006E94AE /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31986A22593C0A7006E94AE /* WetLands.swift */; };
@@ -36,7 +33,6 @@
 		F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
 		F3605557258AB8DF00817995 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3605556258AB8DF00817995 /* LoadView.swift */; };
-		F360F84E259FFBEC004021FA /* ItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360F84D259FFBEC004021FA /* ItemHeaderView.swift */; };
 		F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */; };
 		F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */; };
 		F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F504124EC81B700016F8C /* Coordinate+CoreDataClass.swift */; };
@@ -47,9 +43,8 @@
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
 		F3C1623425AA6EE10076E673 /* PointsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623325AA6EE10076E673 /* PointsTable.swift */; };
 		F3C1623725AA70880076E673 /* PointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623625AA70880076E673 /* PointsCell.swift */; };
-		F3C1623A25AA70C90076E673 /* PointsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623925AA70C90076E673 /* PointsHeader.swift */; };
-		F3C1623D25AA70D10076E673 /* PointsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623C25AA70D10076E673 /* PointsFooter.swift */; };
-		F3C1624025AA70DA0076E673 /* PointsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623F25AA70DA0076E673 /* PointsDetail.swift */; };
+		F3C1623A25AA70C90076E673 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623925AA70C90076E673 /* DateView.swift */; };
+		F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623C25AA70D10076E673 /* FooterCell.swift */; };
 		F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624225AA7C560076E673 /* BaseCell.swift */; };
 		F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624525AA7F880076E673 /* ProgressCell.swift */; };
 		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
@@ -70,13 +65,10 @@
 		F30CA2132460A2FC00CEA2A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30CA2362460A3D700CEA2A6 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
-		F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
-		F30CA24C2460A3D700CEA2A6 /* ItemCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionView.swift; sourceTree = "<group>"; };
-		F30CA24E2460A3D700CEA2A6 /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDetail.swift; sourceTree = "<group>"; };
 		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
-		F3115C8825A119CD006E6D35 /* ItemFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFooterView.swift; sourceTree = "<group>"; };
 		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
 		F319869F2593C09F006E94AE /* Trails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trails.swift; sourceTree = "<group>"; };
 		F31986A22593C0A7006E94AE /* WetLands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetLands.swift; sourceTree = "<group>"; };
@@ -89,7 +81,6 @@
 		F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F3605556258AB8DF00817995 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
-		F360F84D259FFBEC004021FA /* ItemHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemHeaderView.swift; sourceTree = "<group>"; };
 		F38F503F24EC81B700016F8C /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38F504024EC81B700016F8C /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38F504124EC81B700016F8C /* Coordinate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -100,9 +91,8 @@
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		F3C1623325AA6EE10076E673 /* PointsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTable.swift; sourceTree = "<group>"; };
 		F3C1623625AA70880076E673 /* PointsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCell.swift; sourceTree = "<group>"; };
-		F3C1623925AA70C90076E673 /* PointsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsHeader.swift; sourceTree = "<group>"; };
-		F3C1623C25AA70D10076E673 /* PointsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsFooter.swift; sourceTree = "<group>"; };
-		F3C1623F25AA70DA0076E673 /* PointsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsDetail.swift; sourceTree = "<group>"; };
+		F3C1623925AA70C90076E673 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		F3C1623C25AA70D10076E673 /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		F3C1624225AA7C560076E673 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		F3C1624525AA7F880076E673 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
@@ -196,19 +186,14 @@
 		F30CA24A2460A3D700CEA2A6 /* Points */ = {
 			isa = PBXGroup;
 			children = (
-				F360F84D259FFBEC004021FA /* ItemHeaderView.swift */,
-				F3115C8825A119CD006E6D35 /* ItemFooterView.swift */,
-				F30CA24B2460A3D700CEA2A6 /* ItemCollectionCell.swift */,
-				F30CA24C2460A3D700CEA2A6 /* ItemCollectionView.swift */,
-				F30CA24E2460A3D700CEA2A6 /* ItemDetailView.swift */,
 				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
 				F3C1624225AA7C560076E673 /* BaseCell.swift */,
-				F3C1623625AA70880076E673 /* PointsCell.swift */,
 				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
+				F3C1623625AA70880076E673 /* PointsCell.swift */,
+				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
 				F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */,
-				F3C1623925AA70C90076E673 /* PointsHeader.swift */,
-				F3C1623C25AA70D10076E673 /* PointsFooter.swift */,
-				F3C1623F25AA70DA0076E673 /* PointsDetail.swift */,
+				F3C1623925AA70C90076E673 /* DateView.swift */,
+				F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */,
 			);
 			path = Points;
 			sourceTree = "<group>";
@@ -342,19 +327,15 @@
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
 				F31986A02593C09F006E94AE /* Trails.swift in Sources */,
 				F33EDDDE25992FD700563422 /* UserPhoto+CoreDataProperties.swift in Sources */,
-				F30CA2802460A3D800CEA2A6 /* ItemCollectionView.swift in Sources */,
 				F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */,
 				F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */,
 				F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */,
 				F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */,
-				F360F84E259FFBEC004021FA /* ItemHeaderView.swift in Sources */,
 				F38F504D24EC81B700016F8C /* Coordinate+CoreDataClass.swift in Sources */,
-				F3115C8925A119CD006E6D35 /* ItemFooterView.swift in Sources */,
 				F31B0C20259E3E5D00144E96 /* ImagePickerWithScanDelegate.swift in Sources */,
-				F3C1624025AA70DA0076E673 /* PointsDetail.swift in Sources */,
-				F30CA2822460A3D800CEA2A6 /* ItemDetailView.swift in Sources */,
+				F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */,
 				F38F504F24EC81B700016F8C /* Detail+CoreDataClass.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F38F504B24EC81B700016F8C /* Image+CoreDataClass.swift in Sources */,
@@ -366,11 +347,10 @@
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */,
-				F3C1623A25AA70C90076E673 /* PointsHeader.swift in Sources */,
+				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
 				F319869D2593C09A006E94AE /* Streams.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
-				F30CA27F2460A3D800CEA2A6 /* ItemCollectionCell.swift in Sources */,
 				F31B0C25259E42F000144E96 /* Submission+CoreDataClass.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				F3C1623725AA70880076E673 /* PointsCell.swift in Sources */,
@@ -381,7 +361,7 @@
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F3F68CB525A2981400A7B552 /* Constants.swift in Sources */,
-				F3C1623D25AA70D10076E673 /* PointsFooter.swift in Sources */,
+				F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
