@@ -49,6 +49,9 @@
 		F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624525AA7F880076E673 /* ProgressCell.swift */; };
 		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
 		F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */; };
+		F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433B25ABF677009AD8BA /* DetailTitle.swift */; };
+		F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */; };
+		F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5434125ABF6C3009AD8BA /* DetailStack.swift */; };
 		F3F68CB525A2981400A7B552 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F68CB425A2981400A7B552 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +100,9 @@
 		F3C1624525AA7F880076E673 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
 		F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		F3F5433B25ABF677009AD8BA /* DetailTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitle.swift; sourceTree = "<group>"; };
+		F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
+		F3F5434125ABF6C3009AD8BA /* DetailStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStack.swift; sourceTree = "<group>"; };
 		F3F68CB425A2981400A7B552 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,14 +192,8 @@
 		F30CA24A2460A3D700CEA2A6 /* Points */ = {
 			isa = PBXGroup;
 			children = (
-				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
-				F3C1624225AA7C560076E673 /* BaseCell.swift */,
-				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
-				F3C1623625AA70880076E673 /* PointsCell.swift */,
-				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
-				F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */,
-				F3C1623925AA70C90076E673 /* DateView.swift */,
-				F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */,
+				F3F5433925ABF606009AD8BA /* Table */,
+				F3F5433A25ABF619009AD8BA /* Detail */,
 			);
 			path = Points;
 			sourceTree = "<group>";
@@ -249,6 +249,31 @@
 				F3CEA17A2592F26B001A22CA /* Boundary.swift */,
 			);
 			path = "Map Feature Data";
+			sourceTree = "<group>";
+		};
+		F3F5433925ABF606009AD8BA /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
+				F3C1624225AA7C560076E673 /* BaseCell.swift */,
+				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
+				F3C1623625AA70880076E673 /* PointsCell.swift */,
+				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
+				F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */,
+				F3C1623925AA70C90076E673 /* DateView.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		F3F5433A25ABF619009AD8BA /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */,
+				F3F5433B25ABF677009AD8BA /* DetailTitle.swift */,
+				F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */,
+				F3F5434125ABF6C3009AD8BA /* DetailStack.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +367,8 @@
 				F31986A32593C0A7006E94AE /* WetLands.swift in Sources */,
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
+				F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */,
+				F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F3C1623425AA6EE10076E673 /* PointsTable.swift in Sources */,
 				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
@@ -352,6 +379,7 @@
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
 				F31B0C25259E42F000144E96 /* Submission+CoreDataClass.swift in Sources */,
+				F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
 				F3C1623725AA70880076E673 /* PointsCell.swift in Sources */,
 				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,

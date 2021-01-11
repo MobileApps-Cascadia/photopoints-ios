@@ -10,9 +10,9 @@ import UIKit
 
 class FooterCell: BaseCell {
 
-    let purposeTitle = ItemDetailTitle(string: "Purpose")
+    let purposeTitle = DetailTitle(string: "Purpose")
 
-    let purposeLabel = ItemDetailLabel(string: "Help protect the North Creek Forest ecosystem by adding your own photos of key environmental components to the scientific record")
+    let purposeLabel = DetailLabel(string: "Help protect the North Creek Forest ecosystem by adding your own photos of key environmental components to the scientific record")
 
     let logoImageView: UIImageView = {
         let image = UIImage(named: "app-logo")
@@ -21,8 +21,8 @@ class FooterCell: BaseCell {
         return imageView
     }()
 
-    let versionLabel: ItemDetailTitle = {
-        let label = ItemDetailTitle(string: "version 1.1 build xx")
+    let versionLabel: DetailTitle = {
+        let label = DetailTitle(string: "version 1.1 build xx")
         label.textAlignment = .center
         return label
     }()

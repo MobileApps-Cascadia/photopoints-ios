@@ -75,42 +75,22 @@ class PointsDetail: UIViewController {
     
     // all of the text underneath the image
     lazy var detailsStack: UIStackView = {
-
+        
         // main stack
         let detailsStack = UIStackView()
         detailsStack.axis = .vertical
         detailsStack.spacing = 16
         
-        // botanical name
-        if let botanicalName = repository.getDetailValue(item: thisItem, property: "species_name") {
-            let categoryBotanical = ItemDetailTitle(string: "Species Name")
-            let dataBotanical = ItemDetailLabel(string: botanicalName)
-            let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
-            detailsStack.addArrangedSubview(botanicalStack)
-        }
+        let excludedDetails = ["common_names", "story", "short_description", "full_description"]
+        let details = repository.getDetails(for: thisItem)
         
-        // category (optional)
-        if let category = repository.getDetailValue(item: thisItem, property: "category") {
-            let categoryCategory = ItemDetailTitle(string: "Category")
-            let dataCategory = ItemDetailLabel(string: category)
-            let categoryStack = ItemDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
-            detailsStack.addArrangedSubview(categoryStack)
-        }
-        
-        // family (optional)
-        if let family = repository.getDetailValue(item: thisItem, property: "family") {
-            let categoryFamily = ItemDetailTitle(string: "Family")
-            let dataFamily = ItemDetailLabel(string: family)
-            let familyStack = ItemDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
-            detailsStack.addArrangedSubview(familyStack)
-        }
-        
-        // site and enthnobotanic info label
-        if let site = repository.getDetailValue(item: thisItem, property: "site") {
-            let categorySite = ItemDetailTitle(string: "Site")
-            let dataSite = ItemDetailLabel(string: site)
-            let siteStack = ItemDetailStack(arrangedSubviews: [categorySite, dataSite])
-            detailsStack.addArrangedSubview(siteStack)
+        for detail in details {
+            if !excludedDetails.contains(detail.property) {
+                let detailTitle = DetailTitle(string: detail.property.humanized())
+                let detailLabel = DetailLabel(string: detail.value ?? "no value")
+                let detailStack = DetailStack(arrangedSubviews: [detailTitle, detailLabel])
+                detailsStack.addArrangedSubview(detailStack)
+            }
         }
         
         return detailsStack
@@ -131,11 +111,11 @@ class PointsDetail: UIViewController {
     }()
     
     // PNW label
-    let pnwLabel = ItemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
+    let pnwLabel = DetailTitle(string: "From Plants of the Pacific Northwest Coast")
     
-    lazy var storylabel: ItemDetailLabel = {
+    lazy var storylabel: DetailLabel = {
         let story = repository.getDetailValue(item: thisItem, property: "story") ?? ""
-        let label = ItemDetailLabel(string: story)
+        let label = DetailLabel(string: story)
         // wrap text
         label.numberOfLines = 0
         return label
@@ -181,10 +161,6 @@ class PointsDetail: UIViewController {
         dateViewDelegate.fadeInDate()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        
-    }
-    
     func addSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
@@ -197,6 +173,8 @@ class PointsDetail: UIViewController {
         aboutView.addSubview(storylabel)
         scrollView.addSubview(aboutView)
     }
+    
+    // MARK: - Setup
     
     func constrainSubviews() {
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
@@ -221,59 +199,8 @@ class PointsDetail: UIViewController {
     }
 }
 
-// saves us some repitition above by allowing us to set the properties
-// seen in our custom init below
-
-class ItemDetailTitle: UILabel {
-    
-    init(string: String) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        text = string
-        textColor = UIColor(named: "pp-text-color")
-        font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        self.sizeToFit()
+extension String {
+    func humanized() -> String {
+        return self.replacingOccurrences(of: "_", with: " ").capitalized
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ItemDetailLabel: UILabel {
-    
-    init(string: String) {
-        
-        // this frame size will be overriden below
-        // have to pass in this superclass init for our override
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
-        text = string
-        textColor = UIColor(named: "pp-secondary-text-color")
-        font = UIFont.systemFont(ofSize: 19, weight: .regular)
-        numberOfLines = 0
-        
-        // override frame above, size the label to fit text
-        self.sizeToFit()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-// saves us some repitition above by allowing us to set the properties
-// seen in the overriden init below
-class ItemDetailStack: UIStackView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        axis = .vertical
-        alignment = .top
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

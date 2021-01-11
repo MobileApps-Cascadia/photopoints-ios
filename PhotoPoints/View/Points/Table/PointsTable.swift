@@ -63,6 +63,8 @@ class PointsTable: UITableViewController {
 // MARK: - ScrollViewDelegate
 extension PointsTable {
     
+    // on it's own the date doesn't fade fast enough
+    // this makes the date fade proportionally to a defined scroll distance
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         difference = topInset + scrollView.contentOffset.y
         if difference < dateFadeDistance {
@@ -154,6 +156,7 @@ extension PointsTable {
         return header
     }
     
+    // these two methods are necessary to get rid of unwanted white space below section headers
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }

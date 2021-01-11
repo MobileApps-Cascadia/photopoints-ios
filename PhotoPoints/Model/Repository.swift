@@ -56,11 +56,12 @@ class Repository {
         let request = Item.fetchRequest() as NSFetchRequest<Item>
         let sortDescriptor = NSSortDescriptor(key: "label", ascending: true)
         request.sortDescriptors = [sortDescriptor]
+        
         if let items = try? context.fetch(request) as [Item] {
             return items
-        } else {
-            return nil
         }
+        
+        return nil
     }
     
     func getImageFromXcAssets(item: Item) -> UIImage? {
@@ -88,15 +89,27 @@ class Repository {
     }
     
     func getImageFromFilesystem(item: Item) -> UIImage? {
-        
         if let firstImage = item.images?.allObjects.first as? Image {
             let fileName = firstImage.filename
             return ImageManager.getImage(from: fileName, in: .images)
-        } else {
-            print("no path found for \(item.label ?? "unknown item")")
         }
         
+        print("no path found for \(item.label ?? "unknown item")")
         return nil
+    }
+    
+    func getDetails(for item: Item) -> [Detail] {
+        let request = Detail.fetchRequest() as NSFetchRequest<Detail>
+        let predicate = NSPredicate(format: "item == %@", item)
+        let sortDescriptor = NSSortDescriptor(key: "property", ascending: false)
+        request.predicate = predicate
+        request.sortDescriptors = [sortDescriptor]
+        
+        if let details = try? context.fetch(request) as [Detail] {
+            return details
+        }
+        
+        return [Detail]()
     }
     
     func getDetailValue(item: Item, property: String) -> String? {
