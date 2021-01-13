@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DateViewDelegate {
+    func fadeInDate()
+}
+
 class PointsTable: UITableViewController {
     
     let repository = Repository.instance
@@ -34,7 +38,7 @@ class PointsTable: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // reload data to update survey indicator circles
-        navigationController?.navigationBar.sizeToFit()
+        navigationController!.navigationBar.sizeToFit()
         tableView.reloadData()
     }
     
@@ -48,13 +52,11 @@ class PointsTable: UITableViewController {
     }
     
     func configureNavBar() {
-        if let navBar = navigationController?.navigationBar {
-            // modern nav bar appearance
-            let emptyBackButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-            navBar.prefersLargeTitles = true
-            navBar.topItem?.backBarButtonItem = emptyBackButton
-            navBar.topItem?.title = "North Creek Forest"
-        }
+        let navBar = navigationController!.navigationBar
+        let emptyBackButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        navBar.prefersLargeTitles = true
+        navBar.topItem?.backBarButtonItem = emptyBackButton
+        navBar.topItem?.title = "North Creek Forest"
     }
 }
 

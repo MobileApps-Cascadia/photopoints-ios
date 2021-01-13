@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-protocol DateViewDelegate {
-    func fadeInDate()
-}
-
 class PointsDetail: UIViewController {
     
     // MARK: - Properties
@@ -26,14 +22,7 @@ class PointsDetail: UIViewController {
     
     var surveyState: SurveyState = .notSurveyed
     
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: view.frame)
-        
-        // placeholder height to account for lengthiest plant stories
-        // TODO: make this height adaptive to the amount of content
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 1421)
-        return scrollView
-    }()
+    lazy var scrollView = UIScrollView(frame: view.frame)
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
@@ -177,8 +166,6 @@ class PointsDetail: UIViewController {
     // MARK: - Setup
     
     func constrainSubviews() {
-        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-
         imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: view.frame.height / 3)
 
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
@@ -193,9 +180,9 @@ class PointsDetail: UIViewController {
  
         pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
+        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, bottom: aboutView.bottomAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: -globalPadding!, paddingRight: globalPadding)
+        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: scrollView.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
     }
 }
 
