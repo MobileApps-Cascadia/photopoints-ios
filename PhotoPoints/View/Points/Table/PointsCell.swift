@@ -50,6 +50,11 @@ class PointsCell: BaseCell {
         return label
     }()
     
+    convenience init() {
+        self.init()
+        setupSubviews()
+    }
+    
     override func setupSubviews() {
         super.setupSubviews()
         

@@ -18,8 +18,19 @@ class BaseCell: UITableViewCell {
         return view
     }()
     
-    func setSelectionStyle() {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureCell()
+        setupSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell() {
         selectionStyle = .none
+        contentView.backgroundColor = UIColor(named: "pp-background")
     }
     
     func setupSubviews() {

@@ -16,14 +16,18 @@ class PointsTable: UITableViewController {
     let pointsIdentifier = "Points Identifier"
     let footerIdentifier = "Footer Identifier"
     
-    let dateView = DateView()
     lazy var topInset = view.safeAreaInsets.top
     let dateFadeDistance: CGFloat = 10
     var difference: CGFloat = 0
     
+    lazy var dateView: DateView = {
+        let navBarHeight = self.navigationController!.navigationBar.frame.height
+        let paddingTop = -(navBarHeight + globalPadding)
+        return DateView(paddingTop: paddingTop)
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDateView()
         configureTableView()
         configureNavBar()
     }
@@ -33,15 +37,9 @@ class PointsTable: UITableViewController {
         navigationController?.navigationBar.sizeToFit()
         tableView.reloadData()
     }
-
-    func setupDateView() {
-        let navBarHeight = self.navigationController!.navigationBar.frame.height
-        let paddingTop = -(navBarHeight + globalPadding)
-        dateView.setupWithPadding(paddingTop: paddingTop)
-        tableView.tableHeaderView = dateView
-    }
     
     func configureTableView() {
+        tableView.tableHeaderView = dateView
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(named: "pp-background")
         tableView.register(ProgressCell.self, forCellReuseIdentifier: progressIdentifier)
@@ -63,7 +61,7 @@ class PointsTable: UITableViewController {
 // MARK: - ScrollViewDelegate
 extension PointsTable {
     
-    // on it's own the date doesn't fade fast enough
+    // on it's own the date doesn't fade fast enough when scrolling
     // this makes the date fade proportionally to a defined scroll distance
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         difference = topInset + scrollView.contentOffset.y
@@ -83,22 +81,15 @@ extension PointsTable {
         switch indexPath.section {
         case 0:
             let progressCell = tableView.dequeueReusableCell(withIdentifier: progressIdentifier) as! ProgressCell
-            progressCell.setupSubviews()
-            progressCell.setSelectionStyle()
             progressCell.updateProgress()
             return progressCell
         case 1:
             let thisItem = repository.getItems()![indexPath.row]
             let pointsCell = tableView.dequeueReusableCell(withIdentifier: pointsIdentifier) as! PointsCell
-            pointsCell.setupSubviews()
-            pointsCell.setSelectionStyle()
             pointsCell.configure(for: thisItem)
             return pointsCell
         default:
-            let footerCell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier) as! FooterCell
-            footerCell.setupSubviews()
-            footerCell.setSelectionStyle()
-            return footerCell
+            return tableView.dequeueReusableCell(withIdentifier: footerIdentifier) as! FooterCell
         }
     }
 
@@ -140,20 +131,14 @@ extension PointsTable {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title: String
         switch section {
         case 0:
-            title = "Today's Progress"
+            return SectionHeader(title: "Today's Progress")
         case 1:
-            title = "PhotoPoints"
+            return SectionHeader(title: "PhotoPoints")
         default:
-            title = "About"
+            return SectionHeader(title: "About")
         }
-        
-        let header = SectionHeader()
-        header.setupSubviews()
-        header.setTitle(title: title)
-        return header
     }
     
     // these two methods are necessary to get rid of unwanted white space below section headers

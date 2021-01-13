@@ -33,6 +33,11 @@ class ProgressCell: BaseCell {
         return progressView
     }()
     
+    convenience init() {
+        self.init()
+        setupSubviews()
+    }
+    
     override func setupSubviews() {
         super.setupSubviews()
 

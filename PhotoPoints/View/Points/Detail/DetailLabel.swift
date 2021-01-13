@@ -10,23 +10,12 @@ import UIKit
 
 class DetailLabel: UILabel {
     
-    init(string: String) {
-        
-        // this frame size will be overriden below
-        // have to pass in this superclass init for our override
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
+    convenience init(string: String) {
+        self.init()
         text = string
         textColor = UIColor(named: "pp-secondary-text-color")
         font = UIFont.systemFont(ofSize: 19, weight: .regular)
         numberOfLines = 0
-        
-        // override frame above, size the label to fit text
-        self.sizeToFit()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

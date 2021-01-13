@@ -18,7 +18,8 @@ class DateView: UIView {
         return label
     }()
     
-    func setupWithPadding(paddingTop: CGFloat) {
+    convenience init(paddingTop: CGFloat) {
+        self.init()
         addSubview(dateLabel)
         dateLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: paddingTop, paddingLeft: globalPadding)
     }

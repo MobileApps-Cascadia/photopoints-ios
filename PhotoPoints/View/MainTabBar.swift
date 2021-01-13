@@ -14,14 +14,12 @@ class MainTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTabBarChildren()
+        setupTabBarChildren()
     }
     
-    func setUpTabBarChildren() {
+    func setupTabBarChildren() {
         
-        // set up point collection view
-//        let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
-//        let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
+        // set up point table view
         let pointsTable = PointsTable(style: .grouped)
         let pointsNavigation = UINavigationController(rootViewController: pointsTable)
         pointsNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)

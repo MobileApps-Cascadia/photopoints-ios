@@ -16,8 +16,10 @@ class SectionHeader: UIView {
         return label
     }()
     
-    func setTitle(title: String) {
+    convenience init(title: String) {
+        self.init()
         self.title.text = title
+        setupSubviews()
     }
     
     func setupSubviews() {
