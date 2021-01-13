@@ -115,13 +115,6 @@ extension PointsTable {
 // MARK: - UITableViewDelegate
 extension PointsTable {
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 2 {
-            return 300
-        }
-        return 80
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let thisItem = repository.getItems()![indexPath.row]

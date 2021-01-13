@@ -58,6 +58,8 @@ class PointsCell: BaseCell {
     override func setupSubviews() {
         super.setupSubviews()
         
+        contentView.anchor(width: screenWidth, height: 80)
+        
         statusCircle.addSubview(countLabel)
         countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
         

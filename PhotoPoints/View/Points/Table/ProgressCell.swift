@@ -40,7 +40,9 @@ class ProgressCell: BaseCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-
+        
+        contentView.anchor(width: screenWidth, height: 80)
+        
         mainView.addSubview(numSurveyedLabel)
         numSurveyedLabel.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
 
