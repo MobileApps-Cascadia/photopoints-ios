@@ -67,7 +67,7 @@ extension PointsTable {
     // this makes the date fade proportionally to a defined scroll distance
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         difference = topInset + scrollView.contentOffset.y
-        if difference < dateFadeDistance {
+        if dateView.alpha != 0 && difference < dateFadeDistance {
             dateView.dateLabel.alpha = 1 - difference / dateFadeDistance
         } else {
             dateView.dateLabel.alpha = 0
