@@ -128,7 +128,7 @@ class CaptureView: UIViewController {
     // MARK: - Alerts
     
     func showScannedAlert() {
-        let detailView = ItemDetailView(item: scannedItem)
+        let detailView = PointsDetail(item: scannedItem)
         detailView.scanDelegate = self
         
         let botanicalName = repository.getDetailValue(item: scannedItem, property: "botanical_name")
@@ -179,7 +179,9 @@ class CaptureView: UIViewController {
     func sendSubmission() {
         repository.saveContext()
         print("sending submission for \(scannedItem.label!) with \(workingSubmission.userPhotos?.count ?? 0) photos")
+        
         // begin UrlSession to send submission to API
+        
     }
     
 }

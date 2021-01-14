@@ -8,4 +8,6 @@
 
 import UIKit
 
-var globalPadding: CGFloat?
+var globalPadding: CGFloat!
+
+var screenWidth: CGFloat!

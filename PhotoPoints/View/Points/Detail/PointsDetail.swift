@@ -1,5 +1,5 @@
 //
-//  PlantDetailView.swift
+//  PointsDetail.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 4/24/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ItemDetailView: UIViewController {
+class PointsDetail: UIViewController {
     
     // MARK: - Properties
     let repository = Repository.instance
@@ -18,16 +18,11 @@ class ItemDetailView: UIViewController {
     
     var scanDelegate: ScanDelegate!
     
+    var dateViewDelegate: DateViewDelegate!
+    
     var surveyState: SurveyState = .notSurveyed
     
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: view.frame)
-        
-        // placeholder height to account for lengthiest plant stories
-        // TODO: make this height adaptive to the amount of content
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 1421)
-        return scrollView
-    }()
+    lazy var scrollView = UIScrollView(frame: view.frame)
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
@@ -69,42 +64,22 @@ class ItemDetailView: UIViewController {
     
     // all of the text underneath the image
     lazy var detailsStack: UIStackView = {
-
+        
         // main stack
         let detailsStack = UIStackView()
         detailsStack.axis = .vertical
         detailsStack.spacing = 16
         
-        // botanical name
-        if let botanicalName = repository.getDetailValue(item: thisItem, property: "botanical_name") {
-            let categoryBotanical = ItemDetailTitle(string: "Botanical Name")
-            let dataBotanical = ItemDetailLabel(string: botanicalName)
-            let botanicalStack = ItemDetailStack(arrangedSubviews: [categoryBotanical, dataBotanical])
-            detailsStack.addArrangedSubview(botanicalStack)
-        }
+        let excludedDetails = ["common_names", "story", "short_description", "full_description"]
+        let details = repository.getDetails(for: thisItem)
         
-        // category (optional)
-        if let category = repository.getDetailValue(item: thisItem, property: "category") {
-            let categoryCategory = ItemDetailTitle(string: "Category")
-            let dataCategory = ItemDetailLabel(string: category)
-            let categoryStack = ItemDetailStack(arrangedSubviews: [categoryCategory, dataCategory])
-            detailsStack.addArrangedSubview(categoryStack)
-        }
-        
-        // family (optional)
-        if let family = repository.getDetailValue(item: thisItem, property: "family") {
-            let categoryFamily = ItemDetailTitle(string: "Family")
-            let dataFamily = ItemDetailLabel(string: family)
-            let familyStack = ItemDetailStack(arrangedSubviews: [categoryFamily, dataFamily])
-            detailsStack.addArrangedSubview(familyStack)
-        }
-        
-        // site and enthnobotanic info label
-        if let site = repository.getDetailValue(item: thisItem, property: "site") {
-            let categorySite = ItemDetailTitle(string: "Site")
-            let dataSite = ItemDetailLabel(string: site)
-            let siteStack = ItemDetailStack(arrangedSubviews: [categorySite, dataSite])
-            detailsStack.addArrangedSubview(siteStack)
+        for detail in details {
+            if !excludedDetails.contains(detail.property) {
+                let detailTitle = DetailTitle(string: detail.property.humanized())
+                let detailLabel = DetailLabel(string: detail.value ?? "no value")
+                let detailStack = DetailStack(arrangedSubviews: [detailTitle, detailLabel])
+                detailsStack.addArrangedSubview(detailStack)
+            }
         }
         
         return detailsStack
@@ -125,12 +100,11 @@ class ItemDetailView: UIViewController {
     }()
     
     // PNW label
-    let pnwLabel = ItemDetailTitle(string: "From Plants of the Pacific Northwest Coast")
+    let pnwLabel = DetailTitle(string: "From Plants of the Pacific Northwest Coast")
     
-    lazy var storylabel: ItemDetailLabel = {
+    lazy var storylabel: DetailLabel = {
         let story = repository.getDetailValue(item: thisItem, property: "story") ?? ""
-        print("story: \(story)")
-        let label = ItemDetailLabel(string: story)
+        let label = DetailLabel(string: story)
         // wrap text
         label.numberOfLines = 0
         return label
@@ -165,13 +139,15 @@ class ItemDetailView: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // change back to large title on parent view
+        navigationItem.largeTitleDisplayMode = .always
+        
         // using alertDelegate for scanner preview of this view but not in the library
         if let scanDelegate = scanDelegate {
             scanDelegate.enableScanning()
         }
-        
-        // change back to large title on parent view
-        navigationItem.largeTitleDisplayMode = .always
+
+        dateViewDelegate.fadeInDate()
     }
     
     func addSubviews() {
@@ -187,9 +163,9 @@ class ItemDetailView: UIViewController {
         scrollView.addSubview(aboutView)
     }
     
+    // MARK: - Setup
+    
     func constrainSubviews() {
-        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-
         imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: view.frame.height / 3)
 
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
@@ -204,65 +180,14 @@ class ItemDetailView: UIViewController {
  
         pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
+        storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, bottom: aboutView.bottomAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
 
-        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: storylabel.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: -globalPadding!, paddingRight: globalPadding)
+        aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: scrollView.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
     }
 }
 
-// saves us some repitition above by allowing us to set the properties
-// seen in our custom init below
-
-class ItemDetailTitle: UILabel {
-    
-    init(string: String) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        text = string
-        textColor = UIColor(named: "pp-text-color")
-        font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        self.sizeToFit()
+extension String {
+    func humanized() -> String {
+        return self.replacingOccurrences(of: "_", with: " ").capitalized
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ItemDetailLabel: UILabel {
-    
-    init(string: String) {
-        
-        // this frame size will be overriden below
-        // have to pass in this superclass init for our override
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
-        text = string
-        textColor = UIColor(named: "pp-secondary-text-color")
-        font = UIFont.systemFont(ofSize: 19, weight: .regular)
-        numberOfLines = 0
-        
-        // override frame above, size the label to fit text
-        self.sizeToFit()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-// saves us some repitition above by allowing us to set the properties
-// seen in the overriden init below
-class ItemDetailStack: UIStackView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        axis = .vertical
-        alignment = .top
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

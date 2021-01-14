@@ -14,15 +14,15 @@ class MainTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTabBarChildren()
+        setupTabBarChildren()
     }
     
-    func setUpTabBarChildren() {
+    func setupTabBarChildren() {
         
-        // set up point collection view
-        let itemCollectionView = ItemCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
-        let itemNavigation = UINavigationController(rootViewController: itemCollectionView)
-        itemNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
+        // set up point table view
+        let pointsTable = PointsTable(style: .grouped)
+        let pointsNavigation = UINavigationController(rootViewController: pointsTable)
+        pointsNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
         
         // set up map:
         let mapView = MapView()
@@ -35,7 +35,7 @@ class MainTabBar: UITabBarController {
         captureNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 2)
         
         // add these to our main tab bar
-        self.addChild(itemNavigation)
+        self.addChild(pointsNavigation)
         self.addChild(mapNavigation)
         self.addChild(captureNavigation)
 

@@ -34,7 +34,7 @@ class StartupManager {
     
     static func startup() {
         storeAppConfigData()
-        setGlobalPadding()
+        setConstants()
     }
     
     static func storeAppConfigData() {
@@ -50,12 +50,19 @@ class StartupManager {
         
     }
     
-    static func setGlobalPadding() {
-        if UIScreen.main.bounds.width > 400 {
+    static func setConstants() {
+        // screen width
+        screenWidth = UIScreen.main.bounds.width
+        
+        // global padding
+        if screenWidth > 400 {
             globalPadding = 21
         } else {
             globalPadding = 16
         }
+        
+        
+        
     }
     
     // add image and photo subdirectories to .documents
