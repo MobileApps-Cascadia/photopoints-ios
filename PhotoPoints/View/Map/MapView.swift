@@ -114,6 +114,9 @@ class MapView: UIViewController {
         let latDelta = maxLat - minLat + buffer
         let longDelta = maxLong - minLong + buffer
         
+        print(latDelta, longDelta)
+        print(midlat, midLong)
+        
         let center = CLLocationCoordinate2D(latitude: midlat, longitude: midLong)
         let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
         
