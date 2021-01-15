@@ -241,6 +241,11 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
         savePhoto(using: info)
     }
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true) {}
+        enableScanning()
+    }
+    
     func savePhoto(using info: [UIImagePickerController.InfoKey : Any]) {
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
