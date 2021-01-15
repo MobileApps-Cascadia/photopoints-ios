@@ -24,7 +24,7 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
-    // min and max lat and long for initial camera framne
+    // min and max lat and long for initial camera frame
     var minLat: CLLocationDegrees!
     var maxLat: CLLocationDegrees!
     var minLong: CLLocationDegrees!
@@ -113,6 +113,9 @@ class MapView: UIViewController {
         
         let latDelta = maxLat - minLat + buffer
         let longDelta = maxLong - minLong + buffer
+        
+        print(latDelta, longDelta)
+        print(midlat, midLong)
         
         let center = CLLocationCoordinate2D(latitude: midlat, longitude: midLong)
         let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
