@@ -24,7 +24,7 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
-    // min and max lat and long for initial camera framne
+    // min and max lat and long for initial camera frame
     var minLat: CLLocationDegrees!
     var maxLat: CLLocationDegrees!
     var minLong: CLLocationDegrees!
