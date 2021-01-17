@@ -131,8 +131,8 @@ class CaptureView: UIViewController {
         let detailView = PointsDetail(item: scannedItem)
         detailView.scanDelegate = self
         
-        let botanicalName = repository.getDetailValue(item: scannedItem, property: "botanical_name")
-        let scannedAlert = UIAlertController(title: scannedItem.label, message: botanicalName, preferredStyle: .alert)
+        let speciesName = repository.getDetailValue(item: scannedItem, property: "species_name")
+        let scannedAlert = UIAlertController(title: scannedItem.label, message: speciesName, preferredStyle: .alert)
         
         scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
             self.present(detailView, animated: true) {}
