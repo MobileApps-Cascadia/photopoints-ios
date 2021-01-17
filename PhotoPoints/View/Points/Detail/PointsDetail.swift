@@ -24,6 +24,10 @@ class PointsDetail: UIViewController {
     
     lazy var scrollView = UIScrollView(frame: view.frame)
     
+    lazy var userPhotos = repository.getTodaysUserPhotos(for: thisItem)
+    
+    let photoIdentifier = "Photo Identifier"
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
         imageView.contentMode = .scaleAspectFill
@@ -48,7 +52,22 @@ class PointsDetail: UIViewController {
         return label
     }()
     
-    lazy var photoCollection = PhotoCollection(item: thisItem)
+    let photosLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Today's Photos"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
+    
+    let photoCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        let collection = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collection.showsHorizontalScrollIndicator = false
+        collection.backgroundColor = UIColor(named: "pp-background")
+        return collection
+    }()
     
     let detailsLabel: UILabel = {
         let label = UILabel()
@@ -130,11 +149,14 @@ class PointsDetail: UIViewController {
         view.backgroundColor = UIColor(named: "pp-background")
         title = thisItem.label
         setupSubviews()
+        setupCollection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         // change to small tile on detail view
         navigationItem.largeTitleDisplayMode = .never
+        userPhotos = repository.getTodaysUserPhotos(for: thisItem)
+        photoCollection.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -153,6 +175,12 @@ class PointsDetail: UIViewController {
     
     // MARK: - Setup
     
+    func setupCollection() {
+        photoCollection.delegate = self
+        photoCollection.dataSource = self
+        photoCollection.register(PhotoCell.self, forCellWithReuseIdentifier: photoIdentifier)
+    }
+    
     func setupSubviews() {
         view.addSubview(scrollView)
         
@@ -162,11 +190,14 @@ class PointsDetail: UIViewController {
         imageView.addSubview(statusPill)
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
 
-        scrollView.addSubview(photoCollection.collectionView)
-        photoCollection.collectionView.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, height: 80)
+        scrollView.addSubview(photosLabel)
+        photosLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
+        
+        scrollView.addSubview(photoCollection)
+        photoCollection.anchor(top: photosLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, height: view.frame.height / 7)
         
         scrollView.addSubview(detailsLabel)
-        detailsLabel.anchor(top: photoCollection.collectionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
+        detailsLabel.anchor(top: photoCollection.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
         detailsView.addSubview(detailsStack)
         detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
@@ -186,6 +217,43 @@ class PointsDetail: UIViewController {
         scrollView.addSubview(aboutView)
         aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: scrollView.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
     }
+}
+
+
+
+extension PointsDetail: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userPhotos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: photoIdentifier, for: indexPath) as! PhotoCell
+        photoCell.setPhoto(photo: userPhotos[indexPath.row])
+        return photoCell
+    }
+    
+}
+
+extension PointsDetail: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collectionView.frame.height
+        return CGSize(width: height, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return globalPadding
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: globalPadding, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: globalPadding, height: collectionView.frame.height)
+    }
+    
 }
 
 extension String {

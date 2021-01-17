@@ -14,16 +14,21 @@ class PhotoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.layer.cornerRadius = 10
-        contentView.addSubview(photoView)
-        photoView.frame = contentView.frame
-        backgroundColor = .systemRed
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupSubviews() {
+        contentView.addSubview(photoView)
+        photoView.clipsToBounds = true
+        photoView.contentMode = .scaleAspectFill
+        photoView.frame = contentView.frame
+        photoView.layer.cornerRadius = 10
+    }
+
     func setPhoto(photo: UserPhoto) {
         guard let hash = photo.photoHash else { return }
         guard let image = ImageManager.getImage(from: hash, in: .photos) else { return }
