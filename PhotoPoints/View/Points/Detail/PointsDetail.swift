@@ -48,6 +48,8 @@ class PointsDetail: UIViewController {
         return label
     }()
     
+    lazy var photoCollection = PhotoCollection(item: thisItem)
+    
     let detailsLabel: UILabel = {
         let label = UILabel()
         label.text = "Details"
@@ -127,8 +129,7 @@ class PointsDetail: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "pp-background")
         title = thisItem.label
-        addSubviews()
-        constrainSubviews()
+        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -150,38 +151,39 @@ class PointsDetail: UIViewController {
         dateViewDelegate.fadeInDate()
     }
     
-    func addSubviews() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
-        imageView.addSubview(statusPill)
-        scrollView.addSubview(detailsLabel)
-        detailsView.addSubview(detailsStack)
-        scrollView.addSubview(detailsView)
-        scrollView.addSubview(aboutLabel)
-        aboutView.addSubview(pnwLabel)
-        aboutView.addSubview(storylabel)
-        scrollView.addSubview(aboutView)
-    }
-    
     // MARK: - Setup
     
-    func constrainSubviews() {
+    func setupSubviews() {
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(imageView)
         imageView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: view.frame.height / 3)
 
+        imageView.addSubview(statusPill)
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
 
-        detailsLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
+        scrollView.addSubview(photoCollection.collectionView)
+        photoCollection.collectionView.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, height: 80)
+        
+        scrollView.addSubview(detailsLabel)
+        detailsLabel.anchor(top: photoCollection.collectionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
 
+        detailsView.addSubview(detailsStack)
         detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
 
+        scrollView.addSubview(detailsView)
         detailsView.anchor(top: detailsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingRight: globalPadding)
 
+        scrollView.addSubview(aboutLabel)
         aboutLabel.anchor(top: detailsView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
  
+        aboutView.addSubview(pnwLabel)
         pnwLabel.anchor(top: aboutView.topAnchor, left: aboutView.leftAnchor, right: aboutView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
-
+        
+        aboutView.addSubview(storylabel)
         storylabel.anchor(top: pnwLabel.bottomAnchor, left: aboutView.leftAnchor, bottom: aboutView.bottomAnchor, right: aboutView.rightAnchor, paddingLeft: globalPadding, paddingRight: globalPadding)
 
+        scrollView.addSubview(aboutView)
         aboutView.anchor(top: aboutLabel.bottomAnchor, left: view.leftAnchor, bottom: scrollView.bottomAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
     }
 }
