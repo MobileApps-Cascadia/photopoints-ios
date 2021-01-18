@@ -233,6 +233,10 @@ extension PointsDetail: UICollectionViewDelegate, UICollectionViewDataSource {
         return photoCell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(PhotoPages(userPhotos: userPhotos, index: indexPath.row), animated: true)
+    }
+    
 }
 
 extension PointsDetail: UICollectionViewDelegateFlowLayout {
