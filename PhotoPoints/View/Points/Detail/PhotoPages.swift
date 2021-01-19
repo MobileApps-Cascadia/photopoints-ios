@@ -10,33 +10,46 @@ import UIKit
 
 class PhotoPage: UIViewController {
     
-    convenience init(image: UIImage) {
-        self.init()
+    let image: UIImage
+    
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.frame = view.frame
+        return imageView
+    }()
+    
+    init(image: UIImage) {
+        self.image = image
+        super.init(nibName: nil, bundle: nil)
         view.addSubview(imageView)
-        view.backgroundColor = UIColor(named: "pp-background")
+        view.backgroundColor = .black
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }
 
 class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
     
-    var userPhotos: [UserPhoto]
-    var index: Int
+    var images = [UIImage]()
+    var barsAreHidden = false
     
     init(userPhotos: [UserPhoto], index: Int) {
-        self.userPhotos = userPhotos
-        self.index = index
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        
         dataSource = self
-        
-        // photo hashes should not be optional
-        let hash = userPhotos[index].photoHash!
-        let image = ImageManager.getImage(from: hash, in: .photos)!
-        let photoPage = [PhotoPage(image: image)]
+        addGestureRecognizers()
+
+        for userPhoto in userPhotos {
+            // note - I don't think photo hashes should be optional
+            let hash = userPhoto.photoHash!
+            let image = ImageManager.getImage(from: hash, in: .photos)!
+            images.append(image)
+        }
+
+        let photoPage = [PhotoPage(image: images[index])]
         
         setViewControllers(photoPage, direction: .forward, animated: true, completion: nil)
     }
@@ -45,26 +58,48 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func addGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleHideBars))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func toggleHideBars() {
+        UIView.animate(withDuration: 0.2) {
+            if self.barsAreHidden {
+                self.tabBarController?.tabBar.alpha = 1
+                self.navigationController?.navigationBar.alpha = 1
+            } else {
+                self.tabBarController?.tabBar.alpha = 0
+                self.navigationController?.navigationBar.alpha = 0
+            }
+        }
+        barsAreHidden = !barsAreHidden
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if index == 0 {
-            return nil
+        
+        // incrementing class scope index will not work, as both vcBefore and vcAfter called
+        // getting index from the current image works, though
+        let currentImage = (viewController as! PhotoPage).image
+        let currentIndex = images.firstIndex(of: currentImage)!
+        
+        if currentIndex > 0 {
+            return PhotoPage(image: images[currentIndex - 1])
         }
         
-        let hash = userPhotos[index - 1].photoHash!
-        let image = ImageManager.getImage(from: hash, in: .photos)!
-        index -= 1
-        return PhotoPage(image: image)
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if index == userPhotos.count - 1 {
-            return nil
+        
+        let currentImage = (viewController as! PhotoPage).image
+        let currentIndex = images.firstIndex(of: currentImage)!
+        
+        if currentIndex < images.count - 1 {
+            return PhotoPage(image: images[currentIndex + 1])
         }
         
-        let hash = userPhotos[index + 1].photoHash!
-        let image = ImageManager.getImage(from: hash, in: .photos)!
-        index += 1
-        return PhotoPage(image: image)
+        return nil
     }
     
 }
