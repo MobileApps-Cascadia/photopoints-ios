@@ -166,9 +166,7 @@ class PointsDetail: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         
         // using alertDelegate for scanner preview of this view but not in the library
-        if let scanDelegate = scanDelegate {
-            scanDelegate.enableScanning()
-        }
+        scanDelegate?.enableScanning()
 
         dateViewDelegate?.fadeInDate()
     }
