@@ -13,14 +13,7 @@ class AdjustableBarStyleNavigation: UINavigationController {
     var light = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if light {
-            light.toggle()
-            return .default
-        } else {
-            light.toggle()
-            return .lightContent
-        }
+        return light ? .lightContent : .default
     }
-    
-    
+
 }

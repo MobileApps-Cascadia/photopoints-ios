@@ -68,10 +68,12 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
             if self.barsAreHidden {
                 self.tabBarController?.tabBar.alpha = 1
                 self.navigationController?.navigationBar.alpha = 1
+                (self.navigationController as! AdjustableBarStyleNavigation).light = false
                 self.navigationController?.setNeedsStatusBarAppearanceUpdate()
             } else {
                 self.tabBarController?.tabBar.alpha = 0
                 self.navigationController?.navigationBar.alpha = 0
+                (self.navigationController as! AdjustableBarStyleNavigation).light = true
                 self.navigationController?.setNeedsStatusBarAppearanceUpdate()
             }
         }
