@@ -170,7 +170,7 @@ class PointsDetail: UIViewController {
             scanDelegate.enableScanning()
         }
 
-        dateViewDelegate.fadeInDate()
+        dateViewDelegate?.fadeInDate()
     }
     
     // MARK: - Setup
