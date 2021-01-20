@@ -37,6 +37,16 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
     var images = [UIImage]()
     var barsAreHidden = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if barsAreHidden {
+            print("toggling light")
+            return .lightContent
+        } else {
+            print("toggling default")
+            return .default
+        }
+    }
+    
     init(userPhotos: [UserPhoto], index: Int) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         dataSource = self
@@ -73,7 +83,8 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
                 self.navigationController?.navigationBar.alpha = 0
             }
         }
-        barsAreHidden = !barsAreHidden
+        barsAreHidden.toggle()
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
