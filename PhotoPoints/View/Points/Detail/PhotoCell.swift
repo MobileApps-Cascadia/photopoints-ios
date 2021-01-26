@@ -31,7 +31,7 @@ class PhotoCell: UICollectionViewCell {
 
     func setPhoto(photo: UserPhoto) {
         guard let hash = photo.photoHash else { return }
-        guard let image = ImageManager.getImage(from: hash, in: .photos) else { return }
+        guard let image = ImageManager.getImage(from: hash, in: .photos, orientation: .right) else { return }
         photoView.image = image
     }
     

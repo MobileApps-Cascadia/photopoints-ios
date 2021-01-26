@@ -45,7 +45,7 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
         for userPhoto in userPhotos {
             // note - I don't think photo hashes should be optional
             let hash = userPhoto.photoHash!
-            let image = ImageManager.getImage(from: hash, in: .photos)!
+            let image = ImageManager.getImage(from: hash, in: .photos, orientation: .right)!
             images.append(image)
         }
 
@@ -66,12 +66,12 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
     @objc func toggleHideBars() {
         UIView.animate(withDuration: 0.2) {
             if self.barsAreHidden {
-                (self.navigationController as! AdjustableBarStyleNavigation).barHidden = false
+                (self.navigationController as! HideableStatusBarNavigation).barHidden = false
                 self.navigationController?.setNeedsStatusBarAppearanceUpdate()
                 self.tabBarController?.tabBar.alpha = 1
                 self.navigationController?.navigationBar.alpha = 1
             } else {
-                (self.navigationController as! AdjustableBarStyleNavigation).barHidden = true
+                (self.navigationController as! HideableStatusBarNavigation).barHidden = true
                 self.navigationController?.setNeedsStatusBarAppearanceUpdate()
                 self.tabBarController?.tabBar.alpha = 0
                 self.navigationController?.navigationBar.alpha = 0

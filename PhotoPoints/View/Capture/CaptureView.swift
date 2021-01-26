@@ -249,11 +249,8 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func savePhoto(using info: [UIImagePickerController.InfoKey : Any]) {
         // handle the user photo in the background (this really helps speed up the UI here!)
         DispatchQueue.global(qos: .userInitiated).async {
-            
-            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let data = image.pngData() else {
-                print("error getting png data for user photo")
-                return
-            }
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            let data = image.pngData()!
 
             let hashString = Insecure.MD5.hash(data: data).map {
                 String(format: "%02hhx", $0)

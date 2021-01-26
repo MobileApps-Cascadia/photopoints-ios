@@ -45,6 +45,19 @@ class ImageManager {
         return nil
     }
     
+    // orientation parameter to handle automatic rotation from camera sourced images
+    static func getImage(from fileName: String, in subDirectory: SubDirectory, orientation: UIImage.Orientation) -> UIImage? {
+        
+        // file name > path > contents at path > UIImage with those contents returned
+        let imagePath = getPath(for: fileName, in: subDirectory)
+        if let fileData = fm.contents(atPath: imagePath.path), let image = UIImage(data: fileData) {
+            return UIImage(cgImage: image.cgImage!, scale: 1, orientation: orientation)
+        }
+        
+        return nil
+    }
+    
+    
     static func storeImage(image: UIImage, with fileName: String, to subDirectory: SubDirectory) {
         
         // UIImage has pngData method
