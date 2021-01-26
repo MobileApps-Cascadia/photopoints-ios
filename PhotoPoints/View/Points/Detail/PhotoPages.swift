@@ -66,15 +66,15 @@ class PhotoPages: UIPageViewController, UIPageViewControllerDataSource {
     @objc func toggleHideBars() {
         UIView.animate(withDuration: 0.2) {
             if self.barsAreHidden {
+                (self.navigationController as! AdjustableBarStyleNavigation).barHidden = false
+                self.navigationController?.setNeedsStatusBarAppearanceUpdate()
                 self.tabBarController?.tabBar.alpha = 1
                 self.navigationController?.navigationBar.alpha = 1
-                (self.navigationController as! AdjustableBarStyleNavigation).light = false
-                self.navigationController?.setNeedsStatusBarAppearanceUpdate()
             } else {
+                (self.navigationController as! AdjustableBarStyleNavigation).barHidden = true
+                self.navigationController?.setNeedsStatusBarAppearanceUpdate()
                 self.tabBarController?.tabBar.alpha = 0
                 self.navigationController?.navigationBar.alpha = 0
-                (self.navigationController as! AdjustableBarStyleNavigation).light = true
-                self.navigationController?.setNeedsStatusBarAppearanceUpdate()
             }
         }
         barsAreHidden.toggle()
