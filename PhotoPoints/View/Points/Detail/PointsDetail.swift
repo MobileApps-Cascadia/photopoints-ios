@@ -188,15 +188,23 @@ class PointsDetail: UIViewController {
         imageView.addSubview(statusPill)
         statusPill.anchor(top: imageView.topAnchor, right: imageView.rightAnchor, paddingTop: 8, paddingRight: 8, height: 30)
 
-        scrollView.addSubview(photosLabel)
-        photosLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
+        let detailsLabelTop: NSLayoutYAxisAnchor
         
-        scrollView.addSubview(photoCollection)
-        photoCollection.anchor(top: photosLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, height: view.frame.height / 7)
+        if repository.didSubmitToday(for: thisItem) {
+            scrollView.addSubview(photosLabel)
+            photosLabel.anchor(top: imageView.bottomAnchor, left: view.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
+            
+            scrollView.addSubview(photoCollection)
+            photoCollection.anchor(top: photosLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, height: view.frame.height / 7)
+            
+            detailsLabelTop = photoCollection.bottomAnchor
+        } else {
+            detailsLabelTop = imageView.bottomAnchor
+        }
         
         scrollView.addSubview(detailsLabel)
-        detailsLabel.anchor(top: photoCollection.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
-
+        detailsLabel.anchor(top: detailsLabelTop, left: view.leftAnchor, right: view.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding)
+        
         detailsView.addSubview(detailsStack)
         detailsStack.anchor(top: detailsView.topAnchor, left: detailsView.leftAnchor, bottom: detailsView.bottomAnchor, right: detailsView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
 
