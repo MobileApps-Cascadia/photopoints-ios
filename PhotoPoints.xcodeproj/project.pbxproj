@@ -45,7 +45,7 @@
 		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
 		F3C1623425AA6EE10076E673 /* PointsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623325AA6EE10076E673 /* PointsTable.swift */; };
-		F3C1623725AA70880076E673 /* PointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623625AA70880076E673 /* PointsCell.swift */; };
+		F3C1623725AA70880076E673 /* PointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623625AA70880076E673 /* PointCell.swift */; };
 		F3C1623A25AA70C90076E673 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623925AA70C90076E673 /* DateView.swift */; };
 		F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623C25AA70D10076E673 /* FooterCell.swift */; };
 		F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624225AA7C560076E673 /* BaseCell.swift */; };
@@ -99,7 +99,7 @@
 		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		F3C1623325AA6EE10076E673 /* PointsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTable.swift; sourceTree = "<group>"; };
-		F3C1623625AA70880076E673 /* PointsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCell.swift; sourceTree = "<group>"; };
+		F3C1623625AA70880076E673 /* PointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCell.swift; sourceTree = "<group>"; };
 		F3C1623925AA70C90076E673 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		F3C1623C25AA70D10076E673 /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		F3C1624225AA7C560076E673 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
 				F3C1624225AA7C560076E673 /* BaseCell.swift */,
 				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
-				F3C1623625AA70880076E673 /* PointsCell.swift */,
+				F3C1623625AA70880076E673 /* PointCell.swift */,
 				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
 				F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */,
 				F3C1623925AA70C90076E673 /* DateView.swift */,
@@ -393,7 +393,7 @@
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */,
 				F38F505024EC81B700016F8C /* Detail+CoreDataProperties.swift in Sources */,
-				F3C1623725AA70880076E673 /* PointsCell.swift in Sources */,
+				F3C1623725AA70880076E673 /* PointCell.swift in Sources */,
 				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,
 				DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */,
 				F31B0C26259E42F000144E96 /* Submission+CoreDataProperties.swift in Sources */,

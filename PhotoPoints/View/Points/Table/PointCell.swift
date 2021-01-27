@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PointsCell: BaseCell {
+class PointCell: BaseCell {
     
     let repository = Repository.instance
 
