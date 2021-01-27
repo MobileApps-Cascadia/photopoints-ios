@@ -44,19 +44,8 @@ Help protect North Creek Forest, North Creek, and local salmon populations using
   - Earn badges for specific goals
 - Allow users to see how an item changes over time
 
-<hr/>
-
-<h3>User Stories</h3>
-
-- Graciela takes a picture and uploads it to Friends of North Creek Forest’s database so they can keep a record of phenology.
-- Beau uses the Photo Points glossary to learn more about a certain type of flora.
-- Jesse takes a picture of a nearby creek to help monitor the water levels and bank erosion.
-- Matt takes a picture of a nearby plant to help catalogue it for the database.
-- Darius uploads a previously taken picture of a plant he found interesting.
-- Ling uploads a photo to a citizen science project and sees a photo history made of select images of the same plant taken by her.
 
 <hr/>
-
 
 <H3>MVP</h3>
 
