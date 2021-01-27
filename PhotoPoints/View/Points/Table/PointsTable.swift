@@ -17,7 +17,7 @@ class PointsTable: UITableViewController {
     let repository = Repository.instance
     
     let progressIdentifier = "Progress Identifier"
-    let pointsIdentifier = "Points Identifier"
+    let pointIdentifier = "Point Identifier"
     let footerIdentifier = "Footer Identifier"
     
     lazy var topInset = view.safeAreaInsets.top
@@ -47,7 +47,7 @@ class PointsTable: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(named: "pp-background")
         tableView.register(ProgressCell.self, forCellReuseIdentifier: progressIdentifier)
-        tableView.register(PointsCell.self, forCellReuseIdentifier: pointsIdentifier)
+        tableView.register(PointCell.self, forCellReuseIdentifier: pointIdentifier)
         tableView.register(FooterCell.self, forCellReuseIdentifier: footerIdentifier)
     }
     
@@ -87,9 +87,9 @@ extension PointsTable {
             return progressCell
         case 1:
             let thisItem = repository.getItems()![indexPath.row]
-            let pointsCell = tableView.dequeueReusableCell(withIdentifier: pointsIdentifier) as! PointsCell
-            pointsCell.configure(for: thisItem)
-            return pointsCell
+            let pointCell = tableView.dequeueReusableCell(withIdentifier: pointIdentifier) as! PointCell
+            pointCell.configure(for: thisItem)
+            return pointCell
         default:
             return tableView.dequeueReusableCell(withIdentifier: footerIdentifier) as! FooterCell
         }

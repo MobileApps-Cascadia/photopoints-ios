@@ -166,9 +166,7 @@ class PointsDetail: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         
         // using alertDelegate for scanner preview of this view but not in the library
-        if let scanDelegate = scanDelegate {
-            scanDelegate.enableScanning()
-        }
+        scanDelegate?.enableScanning()
 
         dateViewDelegate?.fadeInDate()
     }
@@ -231,6 +229,10 @@ extension PointsDetail: UICollectionViewDelegate, UICollectionViewDataSource {
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: photoIdentifier, for: indexPath) as! PhotoCell
         photoCell.setPhoto(photo: userPhotos[indexPath.row])
         return photoCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(PhotoPages(userPhotos: userPhotos, index: indexPath.row), animated: true)
     }
     
 }
