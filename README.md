@@ -1,5 +1,5 @@
 
-<h2>Project Definition: Photopoints (iOS)</h2>
+<h2>Photopoints (iOS)</h2>
 
 **Stakeholders:** David Bain, Friends of North Creek Forest<br/>
 **Organization:** Cascadia College<br/>
