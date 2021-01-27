@@ -72,48 +72,6 @@ We will use what we learn to build an app that is intuitive in its operation, in
 
 <hr/>
 
-**JSON Record Structure from API for Items**
-```
-{
-    "id": "28097",
-    "label": "Pacific Willow",
-    "enabled": true,
-    "qr_code": "https:\/\/www.plantsmap.com\/plants\/28097",
-    "type": "plant",
-    "location": {
-        "latitude": 47.75036,
-        "longitude": -122.191449,
-        "altitude": 0
-    },
-    "attributes": {
-        "icon": "0de693ef54a38b1224975fad7cac4e39.png",
-        "species_name": "Salix lucida ssp. Lasiandra",
-        "common_names": "Pacific Willow, Yellow Willow, Waxy Willow",
-        "short_description": "Pacific Willow",
-        "full_description": "Pacific Willow",
-        "category": "Deciduous, Tree",
-        "family": "",
-        "site": "2",
-        "story": "\"The Straits Salish and the Halq'emeylem peeled the bark of [native willow species] in May or June, removed the outer part, split the inner tissue into thin strands, and …”
-    },
-    "images": [
-        {
-            "baseFilename": "0de693ef54a38b1224975fad7cac4e39",
-            "desc": "",
-            "filename": "0de693ef54a38b1224975fad7cac4e39.png",
-            "license": "",
-            "title": "",
-            "type": "full",
-            "format": "png",
-            "imageType": "full",
-            "fileformat": "png",
-            "url": "https:\/\/photopoints.gomezfox.net\/images\/0de693ef54a38b1224975fad7cac4e39.png"
-        }
-    ]
-}
-```
-<hr/>
-
 **Style Guide:** 	
 
 [https://github.com/raywenderlich/swift-style-guide](url)
