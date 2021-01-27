@@ -69,10 +69,3 @@ Our data collection revolves around the submission functionality included in the
 
 We will use what we learn to build an app that is intuitive in its operation, interesting to use, and satisfying in the breadth of features provided that users expect. 
 
-
-<hr/>
-
-**Style Guide:** 	
-
-[https://github.com/raywenderlich/swift-style-guide](url)
-
