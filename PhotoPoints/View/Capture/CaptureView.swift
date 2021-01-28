@@ -44,6 +44,7 @@ class CaptureView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         setupScanner()
         
     }
@@ -103,6 +104,10 @@ class CaptureView: UIViewController {
     }
     
     // MARK: - View Setup
+    
+    func configureNavBar() {
+        navigationController?.navigationBar.topItem?.title = "Center QR Code in Square"
+    }
     
     func addScannerSquare() {
         view.addSubview(scannerSquare)
