@@ -13,5 +13,8 @@ Help protect North Creek Forest, North Creek, and local salmon populations using
 
 <h3>Setup</h3>
 
-- Download the latest version of XCode from the App Store
-- Clone the repository
+1. Download the latest version of XCode from the App Store
+2. Clone the repository
+```
+git clone https://github.com/mobileapps-cascadia/photopoints-ios.git
+```
