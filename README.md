@@ -8,7 +8,7 @@
 **Project Manager:** Mike Panitz</br>
 **Developers:** Grant Buchannan, Stephen Gomez-Fox, and Clay Suttner</br>
 
-<h3>App Purpose</h3>
+<h3>About</h3>
 Help protect North Creek Forest, North Creek, and local salmon populations using a citizen science approach, allowing users to add their own photos of key environmental features to the scientific record.
 
 <h3>Setup</h3>
