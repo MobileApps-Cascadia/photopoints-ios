@@ -304,10 +304,10 @@
         ]
     },
     {
-        "id": "28066",
+        "id": "28072",
         "label": "Red Alder",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28066",
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28072",
         "type": "plant",
         "location": {
             "latitude": 47.774947,
@@ -322,23 +322,23 @@
             "category": "Deciduous, Perennial, Tree",
             "family": "Betulaceae",
             "site": "3",
-            "story": "Paper birch thrives on burned-over and cut-over areas where it often forms pure stands, though it is later restricted to openings as the forest matures. It readily sprouts from cut stumps.\n"
+            "story": "The leaves are eaten by swallowtail butterfly larvae and tent caterpillars. Mammals that eat the twigs, leaves, or wood include snowshoe hares, beavers, porcupines,deer, and elk.\n\nAlders create organic debris for soil organisms.\n"
         },
         "images": [
             {
-                "basefile": "2d811c6d6634fc6eeafedde95435ef78",
-                "filename": "2d811c6d6634fc6eeafedde95435ef78",
+                "basefile": "25b54587a8265a3c05ecab9f93a80782",
+                "filename": "25b54587a8265a3c05ecab9f93a80782",
                 "imageType": "full",
                 "fileformat": "png",
-                "url": "https:\/\/photopoints.gomezfox.net\/images\/2d811c6d6634fc6eeafedde95435ef78.png"
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/25b54587a8265a3c05ecab9f93a80782.png"
             }
         ]
     },
     {
-        "id": "28072",
+        "id": "28066",
         "label": "Paper Birch",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28072",
+        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28066",
         "type": "plant",
         "location": {
             "latitude": 47.774947,
@@ -352,15 +352,15 @@
             "full_description": "Paper Birch",
             "category": "Deciduous, Tree",
             "site": "2",
-            "story": "The leaves are eaten by swallowtail butterfly larvae and tent caterpillars. Mammals that eat the twigs, leaves, or wood include snowshoe hares, beavers, porcupines,deer, and elk.\n\nAlders create organic debris for soil organisms.\n"
+            "story": "Paper birch thrives on burned-over and cut-over areas where it often forms pure stands, though it is later restricted to openings as the forest matures. It readily sprouts from cut stumps.\n"
         },
         "images": [
             {
-                "basefile": "25b54587a8265a3c05ecab9f93a80782",
-                "filename": "25b54587a8265a3c05ecab9f93a80782",
+                "basefile": "2d811c6d6634fc6eeafedde95435ef78",
+                "filename": "2d811c6d6634fc6eeafedde95435ef78",
                 "imageType": "full",
                 "fileformat": "png",
-                "url": "https:\/\/photopoints.gomezfox.net\/images\/25b54587a8265a3c05ecab9f93a80782.png"
+                "url": "https:\/\/photopoints.gomezfox.net\/images\/2d811c6d6634fc6eeafedde95435ef78.png"
             }
         ]
     },
