@@ -34,6 +34,7 @@ class MapView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         setUpMap()
         registerAnnotations()
         addOverlays()
@@ -48,6 +49,10 @@ class MapView: UIViewController {
     }
     
     //MARK: - Setup
+    
+    func configureNavBar() {
+        navigationController?.navigationBar.topItem?.title = "North Creek Forest"
+    }
     
     func setUpMap() {
         // fill annotations array
