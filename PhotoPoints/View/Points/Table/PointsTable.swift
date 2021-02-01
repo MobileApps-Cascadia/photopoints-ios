@@ -38,7 +38,6 @@ class PointsTable: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // reload data to update survey indicator circles
-        navigationController!.navigationBar.sizeToFit()
         tableView.reloadData()
     }
     
@@ -57,6 +56,7 @@ class PointsTable: UITableViewController {
         navBar.prefersLargeTitles = true
         navBar.topItem?.backBarButtonItem = emptyBackButton
         navBar.topItem?.title = "North Creek Forest"
+        navBar.sizeToFit()
     }
 }
 

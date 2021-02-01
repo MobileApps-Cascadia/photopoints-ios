@@ -18,7 +18,6 @@
 		F30CA26C2460A3D800CEA2A6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2362460A3D700CEA2A6 /* CaptureView.swift */; };
 		F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */; };
 		F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */; };
-		F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* Anchor.swift */; };
 		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
@@ -72,7 +71,6 @@
 		F30CA2362460A3D700CEA2A6 /* CaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDetail.swift; sourceTree = "<group>"; };
-		F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			children = (
 				DCBBE34325A4AE5500C49422 /* InitialData */,
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
-				F30CA2632460A3D700CEA2A6 /* SceneDelegate.swift */,
 				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
 				F30CA24F2460A3D700CEA2A6 /* Model */,
 				F3095932246BA5900088FB19 /* View */,
@@ -382,7 +379,6 @@
 				F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F3C1623425AA6EE10076E673 /* PointsTable.swift in Sources */,
-				F30CA2952460A3D800CEA2A6 /* SceneDelegate.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* Anchor.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
