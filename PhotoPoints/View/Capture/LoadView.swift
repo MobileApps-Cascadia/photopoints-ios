@@ -12,6 +12,16 @@ class LoadView: UIView {
 
     let indicator = UIActivityIndicatorView(style: .large)
     
+    func show(in view: UIView) {
+        frame = view.frame
+        setUpIndicator()
+        view.addSubview(self)
+    }
+    
+    func remove() {
+        removeFromSuperview()
+    }
+    
     func setUpIndicator() {
         indicator.color = UIColor(named: "pp-text-color")
         addSubview(indicator)

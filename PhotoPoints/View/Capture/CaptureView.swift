@@ -11,18 +11,26 @@ import AVFoundation
 import CryptoKit
 
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
-class CaptureView: UIViewController {
+class CaptureView: UIViewController, ScannedItemDelegate {
     
     // MARK: - Properties
     
     let repository = Repository.instance
-    
-    // keeps track of whether or not an alert should be allowed to present when scanning
-    var scanningEnabled = true
-    
+
     // video session: optional because we won't have it in our emulator
-    var captureSession: AVCaptureSession! = nil
+    var scanSession: QrScanningSession!
     
+    // photo capture view
+    let imagePicker = ImagePickerWithScanDelegate()
+    
+    // these variables won't be referenced until they are assigned values
+    var workingSubmission: Submission!
+    var scannedItem: Item! {
+        didSet {
+            showScannedAlert()
+        }
+    }
+
     let scannerSquare: UIView = {
         let square = UIView()
         square.layer.borderWidth = 2
@@ -31,76 +39,37 @@ class CaptureView: UIViewController {
         return square
     }()
     
-    let loadingScreen = LoadView()
-    
-    // photo capture view
-    let imagePicker = ImagePickerWithScanDelegate()
-    
-    // these variables won't be referenced until they are assigned values
-    var scannedItem: Item!
-    var workingSubmission: Submission!
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
         setupScanner()
-        
+        setupImagePicker()
     }
     
     // terminate the session if we navigate off this view
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        captureSession?.stopRunning()
+        scanSession?.stopRunning()
     }
     
     // bring the session up again if we switch back to this view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        captureSession?.startRunning()
+        scanSession?.startRunning()
     }
     
     // MARK: - Scanner
     
     func setupScanner() {
-         // if a default capture device exists, hook up input, config output, and display
-        if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
-            captureSession = AVCaptureSession()
-            addAVInput(from: captureDevice)
-            configureAVOutput(for: .qr)
-            addVideoLayer()
-            captureSession.startRunning()
+        if let session = QrScanningSession(in: view) {
+            scanSession = session
+            scanSession.itemDelegate = self
             addScannerSquare()
-            setupImagePicker()
         } else {
             addNoAVDLabel()
         }
-    }
-    
-    // take input from our camera device and put it in our session
-    func addAVInput(from device: AVCaptureDevice) {
-        do {
-            let input = try AVCaptureDeviceInput(device: device)
-            captureSession.addInput(input)
-        } catch {
-           print("ERROR")
-        }
-    }
-    
-    func configureAVOutput(for objectType: AVMetadataObject.ObjectType) {
-        let output = AVCaptureMetadataOutput()
-        captureSession.addOutput(output)
-        
-        // process output on main thread: best performance results
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [objectType]
-    }
-    
-    func addVideoLayer() {
-        let video = AVCaptureVideoPreviewLayer(session: captureSession)
-        video.frame = view.layer.bounds
-        view.layer.addSublayer(video)
     }
     
     // MARK: - View Setup
@@ -115,15 +84,9 @@ class CaptureView: UIViewController {
         scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
     }
     
-    func showLoadScreen() {
-        loadingScreen.frame = view.frame
-        loadingScreen.setUpIndicator()
-        view.addSubview(loadingScreen)
-    }
-    
     func addNoAVDLabel() {
         let noAVDLabel = UILabel()
-        noAVDLabel.text = "No AV Device"
+        noAVDLabel.text = "No AV device enabled"
         noAVDLabel.textColor = .white
         noAVDLabel.frame = view.frame
         noAVDLabel.textAlignment = .center
@@ -134,7 +97,7 @@ class CaptureView: UIViewController {
     
     func showScannedAlert() {
         let detailView = PointsDetail(item: scannedItem)
-        detailView.scanDelegate = self
+        detailView.scanDelegate = scanSession
         
         let speciesName = repository.getDetailValue(item: scannedItem, property: "species_name")
         let scannedAlert = UIAlertController(title: scannedItem.label, message: speciesName, preferredStyle: .alert)
@@ -160,7 +123,7 @@ class CaptureView: UIViewController {
         
         thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
-            self.enableScanning()
+            self.scanSession.enableScanning()
             self.sendSubmission()
         })
         
@@ -191,42 +154,14 @@ class CaptureView: UIViewController {
     
 }
 
-// MARK: - Meta Data Output
-
-extension CaptureView: AVCaptureMetadataOutputObjectsDelegate {
-
-    // called by system when we get metadataoutputs
-    // load the scanned item into the class variable
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if  metadataObjects.count != 0 && scanningEnabled {
-            let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            guard let objectString = object?.stringValue else { return }
-            scannedItem = repository.getItemFrom(url: objectString)
-            showScannedAlert()
-            disableScanning()
-        }
-    }
-    
-}
-
 // MARK: - Image Picker Delegate
 
 // Delegates and controllers
-extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScanDelegate {
-    
-    func enableScanning() {
-        scanningEnabled = true
-        print("scanning enabled")
-    }
-    
-    func disableScanning() {
-        scanningEnabled = false
-        print("scanning disabled")
-    }
-    
+extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     func setupImagePicker() {
         imagePicker.delegate = self
-        imagePicker.scanDelegate = self
+        imagePicker.scanDelegate = scanSession
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
@@ -234,9 +169,10 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func openCamera() {
-        showLoadScreen()
+        let loadingScreen = LoadView()
+        loadingScreen.show(in: view)
         present(imagePicker, animated: true) {
-            self.loadingScreen.removeFromSuperview()
+            loadingScreen.remove()
         }
     }
     
@@ -248,26 +184,26 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true) {}
-        enableScanning()
+        scanSession.enableScanning()
     }
     
     func savePhoto(using info: [UIImagePickerController.InfoKey : Any]) {
-        // handle the user photo in the background (this really helps speed up the UI here!)
+        // handle the user photo in the background (snappy UI)
         DispatchQueue.global(qos: .userInitiated).async {
             let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            let data = image.pngData()!
-
-            let hashString = Insecure.MD5.hash(data: data).map {
-                String(format: "%02hhx", $0)
-            }.joined()
-
+            let hashString = image.pngData()!.md5()
+            
             ImageManager.storeImage(image: image, with: hashString, to: .photos)
             print("photo saved to documents with filename \(hashString)")
 
-            let url = ImageManager.getPath(for: hashString, in: .photos)
-            let userPhoto = UserPhoto(photoHash: hashString, photoUrl: url)
-            self.workingSubmission.addToUserPhotos(userPhoto)
-            print("photo added to \(self.scannedItem.label!) submission with \(self.workingSubmission.userPhotos?.count ?? 0) photos")
+            self.addPhotoToSubmission(from: hashString)
         }
+    }
+    
+    func addPhotoToSubmission(from hash: String) {
+        let url = ImageManager.getPath(for: hash, in: .photos)
+        let userPhoto = UserPhoto(photoHash: hash, photoUrl: url)
+        self.workingSubmission.addToUserPhotos(userPhoto)
+        print("photo added to \(self.scannedItem.label!) submission with \(self.workingSubmission.userPhotos?.count ?? 0) photos")
     }
 }

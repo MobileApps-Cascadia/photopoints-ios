@@ -31,6 +31,7 @@
 		F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */; };
 		F33EDDE525993CFA00563422 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
+		F34C7B2825C7BC9B00CBA7E4 /* VideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C7B2725C7BC9B00CBA7E4 /* VideoSession.swift */; };
 		F3605557258AB8DF00817995 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3605556258AB8DF00817995 /* LoadView.swift */; };
 		F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378CE3225B4032300E76C88 /* PhotoCell.swift */; };
 		F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */; };
@@ -50,6 +51,7 @@
 		F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624225AA7C560076E673 /* BaseCell.swift */; };
 		F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624525AA7F880076E673 /* ProgressCell.swift */; };
 		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
+		F3D3063B25C8DD36002268AF /* DataMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3063A25C8DD36002268AF /* DataMd5.swift */; };
 		F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */; };
 		F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433B25ABF677009AD8BA /* DetailTitle.swift */; };
 		F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */; };
@@ -84,6 +86,7 @@
 		F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F33EDDE325993CFA00563422 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F34C7B2725C7BC9B00CBA7E4 /* VideoSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSession.swift; sourceTree = "<group>"; };
 		F3605556258AB8DF00817995 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
 		F378CE3225B4032300E76C88 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableStatusBarNavigation.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		F3C1624225AA7C560076E673 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		F3C1624525AA7F880076E673 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
+		F3D3063A25C8DD36002268AF /* DataMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMd5.swift; sourceTree = "<group>"; };
 		F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		F3F5433B25ABF677009AD8BA /* DetailTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitle.swift; sourceTree = "<group>"; };
 		F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		F309592F246BA1690088FB19 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F34C7B2725C7BC9B00CBA7E4 /* VideoSession.swift */,
 				F3095930246BA1A40088FB19 /* ImageManager.swift */,
 			);
 			path = Controller;
@@ -239,6 +244,7 @@
 			children = (
 				F30CA2682460A3D700CEA2A6 /* Anchor.swift */,
 				F3F68CB425A2981400A7B552 /* Constants.swift */,
+				F3D3063A25C8DD36002268AF /* DataMd5.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* CaptureView.swift in Sources */,
 				F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */,
+				F3D3063B25C8DD36002268AF /* DataMd5.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
 				F31986A02593C09F006E94AE /* Trails.swift in Sources */,
@@ -375,6 +382,7 @@
 				F38F504C24EC81B700016F8C /* Image+CoreDataProperties.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */,
+				F34C7B2825C7BC9B00CBA7E4 /* VideoSession.swift in Sources */,
 				F38D8ED625B5D6CD00616C8E /* PhotoPages.swift in Sources */,
 				F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
