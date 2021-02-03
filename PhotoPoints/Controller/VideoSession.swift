@@ -36,7 +36,7 @@ class QrScanningSession: AVCaptureSession {
     func addInput(from device: AVCaptureDevice) {
         do {
             let input = try AVCaptureDeviceInput(device: device)
-            self.addInput(input)
+            addInput(input)
         } catch {
             print("Error adding device input")
         }
@@ -44,7 +44,7 @@ class QrScanningSession: AVCaptureSession {
     
     func lookForQrCodes() {
         let output = AVCaptureMetadataOutput()
-        self.addOutput(output)
+        addOutput(output)
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         output.metadataObjectTypes = [.qr]
     }

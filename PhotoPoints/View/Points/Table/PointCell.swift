@@ -58,22 +58,50 @@ class PointCell: BaseCell {
     override func setupSubviews() {
         super.setupSubviews()
         
-        contentView.anchor(width: screenWidth, height: 80)
+        contentView.anchor(
+            width: .screenWidth,
+            height: 80
+        )
         
         statusCircle.addSubview(countLabel)
-        countLabel.anchor(top: statusCircle.topAnchor, left: statusCircle.leftAnchor, bottom: statusCircle.bottomAnchor, right: statusCircle.rightAnchor)
+        countLabel.anchor(
+            top: statusCircle.topAnchor,
+            left: statusCircle.leftAnchor,
+            bottom: statusCircle.bottomAnchor,
+            right: statusCircle.rightAnchor
+        )
         
         mainView.addSubview(statusCircle)
-        statusCircle.anchor(right: mainView.rightAnchor, centerY: mainView.centerYAnchor, paddingRight: globalPadding, width: 24, height: 24)
+        statusCircle.anchor(
+            right: mainView.rightAnchor,
+            centerY: mainView.centerYAnchor,
+            paddingRight: .globalPadding,
+            width: 24,
+            height: 24
+        )
         
         mainView.addSubview(cellImageView)
-        cellImageView.anchor(left: mainView.leftAnchor, centerY: mainView.centerYAnchor, paddingLeft: globalPadding, width: 44, height: 44)
+        cellImageView.anchor(
+            left: mainView.leftAnchor,
+            centerY: mainView.centerYAnchor,
+            paddingLeft: .globalPadding,
+            width: 44,
+            height: 44
+        )
         
         mainView.addSubview(titleLabel)
-        titleLabel.anchor(top: cellImageView.topAnchor, left: cellImageView.rightAnchor, paddingLeft: 8)
+        titleLabel.anchor(
+            top: cellImageView.topAnchor,
+            left: cellImageView.rightAnchor,
+            paddingLeft: 8
+        )
         
         mainView.addSubview(subTitleLabel)
-        subTitleLabel.anchor(left: cellImageView.rightAnchor, bottom: cellImageView.bottomAnchor, paddingLeft: 8)
+        subTitleLabel.anchor(
+            left: cellImageView.rightAnchor,
+            bottom: cellImageView.bottomAnchor,
+            paddingLeft: 8
+        )
         
     }
     

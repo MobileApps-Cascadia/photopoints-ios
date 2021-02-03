@@ -36,16 +36,45 @@ class FooterCell: BaseCell {
         super.setupSubviews()
         
         mainView.addSubview(purposeTitle)
-        purposeTitle.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
+        purposeTitle.anchor(
+            top: mainView.topAnchor,
+            left: mainView.leftAnchor,
+            paddingTop: .globalPadding,
+            paddingLeft: .globalPadding
+        )
 
         mainView.addSubview(purposeLabel)
-        purposeLabel.anchor(top: purposeTitle.bottomAnchor, left: mainView.leftAnchor, right: mainView.rightAnchor, paddingTop: 4, paddingLeft: globalPadding, paddingRight: globalPadding)
+        purposeLabel.anchor(
+            top: purposeTitle.bottomAnchor,
+            left: mainView.leftAnchor,
+            right: mainView.rightAnchor,
+            paddingTop: 4,
+            paddingLeft: .globalPadding,
+            paddingRight: .globalPadding
+        )
 
         mainView.addSubview(logoImageView)
-        logoImageView.anchor(top: purposeLabel.bottomAnchor, left: mainView.leftAnchor, right: mainView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingRight: globalPadding, height: 100)
+        logoImageView.anchor(
+            top: purposeLabel.bottomAnchor,
+            left: mainView.leftAnchor,
+            right: mainView.rightAnchor,
+            paddingTop: .globalPadding,
+            paddingLeft: .globalPadding,
+            paddingRight: .globalPadding,
+            height: 100
+        )
 
         mainView.addSubview(versionLabel)
-        versionLabel.anchor(top: logoImageView.bottomAnchor, left: mainView.leftAnchor, bottom: mainView.bottomAnchor, right: mainView.rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: globalPadding, paddingRight: globalPadding)
+        versionLabel.anchor(
+            top: logoImageView.bottomAnchor,
+            left: mainView.leftAnchor,
+            bottom: mainView.bottomAnchor,
+            right: mainView.rightAnchor,
+            paddingTop: .globalPadding,
+            paddingLeft: .globalPadding,
+            paddingBottom: .globalPadding,
+            paddingRight: .globalPadding
+        )
 
     }
 

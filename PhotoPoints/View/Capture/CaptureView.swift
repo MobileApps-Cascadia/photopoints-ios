@@ -44,8 +44,7 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
-        setupScanner()
-        setupImagePicker()
+        setup()
     }
     
     // terminate the session if we navigate off this view
@@ -62,11 +61,12 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     
     // MARK: - Scanner
     
-    func setupScanner() {
+    func setup() {
         if let session = QrScanningSession(in: view) {
             scanSession = session
             scanSession.itemDelegate = self
             addScannerSquare()
+            setupImagePicker()
         } else {
             addNoAVDLabel()
         }
@@ -81,7 +81,12 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     func addScannerSquare() {
         view.addSubview(scannerSquare)
         let width = view.frame.width - globalPadding! * 2
-        scannerSquare.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor, width: width, height: width)
+        scannerSquare.anchor(
+            centerX: view.centerXAnchor,
+            centerY: view.centerYAnchor,
+            width: width,
+            height: width
+        )
     }
     
     func addNoAVDLabel() {
