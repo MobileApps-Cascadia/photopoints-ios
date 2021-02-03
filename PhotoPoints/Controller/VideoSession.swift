@@ -18,7 +18,7 @@ class QrScanningSession: AVCaptureSession {
     let repository = Repository.instance
     
     // keeps track of whether or not an alert should be allowed to present when scanning
-    var scanningEnabled = false
+    var scanningEnabled = true
     
     var itemDelegate: ScannedItemDelegate!
     
