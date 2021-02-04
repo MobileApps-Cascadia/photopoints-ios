@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import CryptoKit
 
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
 class CaptureView: UIViewController, ScannedItemDelegate {
@@ -18,7 +17,7 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     let repository = Repository.instance
 
     // video session: optional because we won't have it in our emulator
-    var scanSession: QrScanningSession!
+    var scanSession: QrScanSession!
     
     // photo capture view
     let imagePicker = ImagePickerWithScanDelegate()
@@ -62,7 +61,7 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     // MARK: - Scanner
     
     func setup() {
-        if let session = QrScanningSession(in: view) {
+        if let session = QrScanSession(in: view) {
             scanSession = session
             scanSession.itemDelegate = self
             addScannerSquare()
@@ -80,7 +79,7 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     
     func addScannerSquare() {
         view.addSubview(scannerSquare)
-        let width = view.frame.width - globalPadding! * 2
+        let width = view.frame.width - .globalPadding * 2
         scannerSquare.anchor(
             centerX: view.centerXAnchor,
             centerY: view.centerYAnchor,
@@ -101,36 +100,43 @@ class CaptureView: UIViewController, ScannedItemDelegate {
     // MARK: - Alerts
     
     func showScannedAlert() {
-        let detailView = PointsDetail(item: scannedItem)
-        detailView.scanDelegate = scanSession
+        let title = "PhotoPoint Identified!"
+        let scannedAlert = UIAlertController(title: title, message: scannedItem.label, preferredStyle: .alert)
         
-        let speciesName = repository.getDetailValue(item: scannedItem, property: "species_name")
-        let scannedAlert = UIAlertController(title: scannedItem.label, message: speciesName, preferredStyle: .alert)
-        
-        scannedAlert.addAction(UIAlertAction(title: "Learn More", style: .default, handler: { (nil) in
+        let learnAction = UIAlertAction(title: "Learn More", style: .default) { (nil) in
+            let detailView = PointsDetail(item: self.scannedItem)
+            detailView.scanDelegate = self.scanSession
             self.present(detailView, animated: true) {}
-        }))
+        }
         
-        scannedAlert.addAction(UIAlertAction(title: "Submit Photo", style: .default, handler: { (nil) in
+        let submitAction = UIAlertAction(title: "Submit Photo", style: .default) { (nil) in
             self.startSubmission()
-        }))
+        }
+        
+        scannedAlert.addAction(learnAction)
+        scannedAlert.addAction(submitAction)
 
         present(scannedAlert, animated: true) {}
     }
     
     func showThanksAlert() {
-        let thanksAlert = UIAlertController(title: "Thanks!", message: "Would you like to add another photo to this submission?", preferredStyle: .alert)
+        let title = "Thanks!"
+        let message = "Would you like to add another photo of this item?"
+        let thanksAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        thanksAlert.addAction(UIAlertAction(title: "Yes", style: .default) { (nil) in
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
             self.dismiss(animated: true) {}
             self.continueSubmission()
-        })
+        }
         
-        thanksAlert.addAction(UIAlertAction(title: "No", style: .default) { (nil) in
+        let noAction = UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
             self.scanSession.enableScanning()
             self.sendSubmission()
-        })
+        }
+        
+        thanksAlert.addAction(yesAction)
+        thanksAlert.addAction(noAction)
         
         present(thanksAlert, animated: true) {}
     }
@@ -184,7 +190,7 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {}
         showThanksAlert()
-        savePhoto(using: info)
+        savePhoto(image: getImage(from: info))
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -192,17 +198,17 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
         scanSession.enableScanning()
     }
     
-    func savePhoto(using info: [UIImagePickerController.InfoKey : Any]) {
-        // handle the user photo in the background (snappy UI)
-        DispatchQueue.global(qos: .userInitiated).async {
-            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            let hashString = image.pngData()!.md5()
-            
-            ImageManager.storeImage(image: image, with: hashString, to: .photos)
-            print("photo saved to documents with filename \(hashString)")
+    func getImage(from info: [UIImagePickerController.InfoKey : Any]) -> UIImage {
+        return info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+    }
+    
+    func savePhoto(image: UIImage) {
+        let hashString = image.pngData()!.md5()
+        
+        ImageManager.storeImage(image: image, with: hashString, to: .photos)
+        print("photo saved to documents with filename \(hashString)")
 
-            self.addPhotoToSubmission(from: hashString)
-        }
+        self.addPhotoToSubmission(from: hashString)
     }
     
     func addPhotoToSubmission(from hash: String) {

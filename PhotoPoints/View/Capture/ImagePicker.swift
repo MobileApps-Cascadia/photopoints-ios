@@ -1,5 +1,5 @@
 //
-//  ImagePickerWithAlert.swift
+//  ImagePicker.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 12/31/20.

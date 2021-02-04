@@ -1,5 +1,5 @@
 //
-//  VideoSession.swift
+//  QrScanSession.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 1/31/21.
@@ -13,7 +13,7 @@ protocol ScannedItemDelegate {
     var scannedItem: Item! { set get }
 }
 
-class QrScanningSession: AVCaptureSession {
+class QrScanSession: AVCaptureSession {
     
     let repository = Repository.instance
     
@@ -57,7 +57,7 @@ class QrScanningSession: AVCaptureSession {
 
 }
 
-extension QrScanningSession: AVCaptureMetadataOutputObjectsDelegate {
+extension QrScanSession: AVCaptureMetadataOutputObjectsDelegate {
     
     // called by system when we get metadataoutputs
     // load the scanned item into the class variable
@@ -72,7 +72,7 @@ extension QrScanningSession: AVCaptureMetadataOutputObjectsDelegate {
     
 }
 
-extension QrScanningSession: ScanDelegate {
+extension QrScanSession: ScanDelegate {
     
     func enableScanning() {
         scanningEnabled = true
