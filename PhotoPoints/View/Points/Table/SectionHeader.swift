@@ -24,7 +24,16 @@ class SectionHeader: UIView {
     
     func setupSubviews() {
         addSubview(title)
-        title.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: globalPadding, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
+        title.anchor(
+            top: topAnchor,
+            left: leftAnchor,
+            bottom: bottomAnchor,
+            right: rightAnchor,
+            paddingTop: .globalPadding,
+            paddingLeft: .globalPadding,
+            paddingBottom: 2,
+            paddingRight: .globalPadding
+        )
     }
     
 }

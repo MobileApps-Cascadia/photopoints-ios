@@ -21,7 +21,12 @@ class DateView: UIView {
     convenience init(paddingTop: CGFloat) {
         self.init()
         addSubview(dateLabel)
-        dateLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: paddingTop, paddingLeft: globalPadding)
+        dateLabel.anchor(
+            top: topAnchor,
+            left: leftAnchor,
+            paddingTop: paddingTop,
+            paddingLeft: .globalPadding
+        )
     }
     
     func fadeOutDate() {

@@ -6,8 +6,11 @@
 //  Copyright © 2021 Cascadia College. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
-var globalPadding: CGFloat!
-
-var screenWidth: CGFloat!
+extension CGFloat {
+    
+    static var globalPadding: CGFloat!
+    static var screenWidth: CGFloat!
+    
+}

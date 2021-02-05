@@ -72,7 +72,6 @@ class ImageManager {
             } catch {
                 print("Saving file resulted in error: ", error)
             }
-            
         }
     }
     

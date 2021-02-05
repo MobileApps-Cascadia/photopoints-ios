@@ -41,16 +41,31 @@ class ProgressCell: BaseCell {
     override func setupSubviews() {
         super.setupSubviews()
         
-        contentView.anchor(width: screenWidth, height: 80)
+        contentView.anchor(
+            width: .screenWidth,
+            height: 80
+        )
         
         mainView.addSubview(numSurveyedLabel)
-        numSurveyedLabel.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, paddingTop: globalPadding, paddingLeft: globalPadding)
+        numSurveyedLabel.anchor(
+            top: mainView.topAnchor,
+            left: mainView.leftAnchor,
+            paddingTop: .globalPadding,
+            paddingLeft: .globalPadding
+        )
 
         mainView.addSubview(photoPointsCapsLabel)
         photoPointsCapsLabel.anchor(left: numSurveyedLabel.rightAnchor, bottom: numSurveyedLabel.bottomAnchor, paddingBottom: 1)
 
         mainView.addSubview(progressView)
-        progressView.anchor(top: numSurveyedLabel.bottomAnchor, left: mainView.leftAnchor, right: mainView.rightAnchor, paddingTop: 8, paddingLeft: globalPadding, paddingRight: globalPadding)
+        progressView.anchor(
+            top: numSurveyedLabel.bottomAnchor,
+            left: mainView.leftAnchor,
+            right: mainView.rightAnchor,
+            paddingTop: 8,
+            paddingLeft: .globalPadding,
+            paddingRight: .globalPadding
+        )
 
     }
     

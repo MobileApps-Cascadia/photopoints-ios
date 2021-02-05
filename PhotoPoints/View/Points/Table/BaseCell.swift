@@ -35,7 +35,16 @@ class BaseCell: UITableViewCell {
     
     func setupSubviews() {
         contentView.addSubview(mainView)
-        mainView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: 2, paddingLeft: globalPadding, paddingBottom: 2, paddingRight: globalPadding)
+        mainView.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            paddingTop: 2,
+            paddingLeft: .globalPadding,
+            paddingBottom: 2,
+            paddingRight: .globalPadding
+        )
     }
     
 }

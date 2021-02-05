@@ -26,7 +26,7 @@ class PointsTable: UITableViewController {
     
     lazy var dateView: DateView = {
         let navBarHeight = self.navigationController!.navigationBar.frame.height
-        let paddingTop = -(navBarHeight + globalPadding)
+        let paddingTop = -(navBarHeight + .globalPadding)
         return DateView(paddingTop: paddingTop)
     }()
 
