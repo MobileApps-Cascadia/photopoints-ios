@@ -27,6 +27,7 @@
 		F31B0C25259E42F000144E96 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B0C23259E42F000144E96 /* Submission+CoreDataClass.swift */; };
 		F31B0C26259E42F000144E96 /* Submission+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B0C24259E42F000144E96 /* Submission+CoreDataProperties.swift */; };
 		F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F332441625CB559D00930F8C /* SubmissionManager.swift */; };
+		F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3384F5125CCD042000E83C4 /* StringHumanized.swift */; };
 		F33EDDDD25992FD700563422 /* UserPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */; };
 		F33EDDDE25992FD700563422 /* UserPhoto+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */; };
 		F33EDDE425993CFA00563422 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */; };
@@ -83,6 +84,7 @@
 		F31B0C23259E42F000144E96 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F31B0C24259E42F000144E96 /* Submission+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F332441625CB559D00930F8C /* SubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
+		F3384F5125CCD042000E83C4 /* StringHumanized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHumanized.swift; sourceTree = "<group>"; };
 		F33EDDD925992FD700563422 /* UserPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F33EDDDA25992FD700563422 /* UserPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F33EDDE225993CFA00563422 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */,
 				F3F68CB425A2981400A7B552 /* CGConstants.swift */,
 				F3D3063A25C8DD36002268AF /* DataMd5.swift */,
+				F3384F5125CCD042000E83C4 /* StringHumanized.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */,
 				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F3C1623425AA6EE10076E673 /* PointsTable.swift in Sources */,
+				F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */,
 				F38F504E24EC81B700016F8C /* Coordinate+CoreDataProperties.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,

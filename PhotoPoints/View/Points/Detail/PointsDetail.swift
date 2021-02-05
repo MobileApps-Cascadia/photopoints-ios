@@ -343,9 +343,3 @@ extension PointsDetail: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
-extension String {
-    func humanized() -> String {
-        return self.replacingOccurrences(of: "_", with: " ").capitalized
-    }
-}

@@ -8,21 +8,35 @@
 
 import UIKit
 
+// singleton class to manage submissions
+
 class SubmissionManager {
     
-    var scannedItem: Item!
+    static let instance = SubmissionManager()
+    
+    let repository = Repository.instance
+    
+    var alertDelegate: AlertDelegate!
+    
+    var scannedItem: Item! {
+        didSet {
+            alertDelegate.showScannedAlert()
+        }
+    }
     
     var workingSubmission: Submission!
     
+    private init() {}
+    
     func startSubmission() {
-        
+        workingSubmission = Submission(date: Date())
+        scannedItem.addToSubmissions(workingSubmission)
     }
     
-    func continueSubmission() {
+    func sendSubmission() {
+        repository.saveContext()
         
-    }
-    
-    func endSubmission() {
+        // TODO: begin URL session to send to API
         
     }
     

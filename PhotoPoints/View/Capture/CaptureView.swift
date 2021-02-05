@@ -9,26 +9,25 @@
 import UIKit
 import AVFoundation
 
+protocol AlertDelegate {
+    func showScannedAlert()
+    func showThanksAlert()
+}
+
 // code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
-class CaptureView: UIViewController, ScannedItemDelegate {
+class CaptureView: UIViewController {
     
     // MARK: - Properties
     
     let repository = Repository.instance
 
+    let submissionManager = SubmissionManager.instance
+    
     // video session: optional because we won't have it in our emulator
     var scanSession: QrScanSession!
     
     // photo capture view
-    let imagePicker = ImagePickerWithScanDelegate()
-    
-    // these variables won't be referenced until they are assigned values
-    var workingSubmission: Submission!
-    var scannedItem: Item! {
-        didSet {
-            showScannedAlert()
-        }
-    }
+    let imagePicker = UIImagePickerController()
 
     let scannerSquare: UIView = {
         let square = UIView()
@@ -58,13 +57,13 @@ class CaptureView: UIViewController, ScannedItemDelegate {
         scanSession?.startRunning()
     }
     
-    // MARK: - Scanner
+    // MARK: - Setup
     
     func setup() {
         if let session = QrScanSession(in: view) {
             scanSession = session
-            scanSession.itemDelegate = self
             addScannerSquare()
+            submissionManager.alertDelegate = self
             setupImagePicker()
         } else {
             addNoAVDLabel()
@@ -96,21 +95,27 @@ class CaptureView: UIViewController, ScannedItemDelegate {
         noAVDLabel.textAlignment = .center
         view.addSubview(noAVDLabel)
     }
-    
-    // MARK: - Alerts
+
+}
+
+// MARK: - Alerts
+
+extension CaptureView: AlertDelegate {
     
     func showScannedAlert() {
         let title = "PhotoPoint Identified!"
-        let scannedAlert = UIAlertController(title: title, message: scannedItem.label, preferredStyle: .alert)
+        let item = submissionManager.scannedItem!
+        let scannedAlert = UIAlertController(title: title, message: item.label, preferredStyle: .alert)
         
         let learnAction = UIAlertAction(title: "Learn More", style: .default) { (nil) in
-            let detailView = PointsDetail(item: self.scannedItem)
+            let detailView = PointsDetail(item: item)
             detailView.scanDelegate = self.scanSession
             self.present(detailView, animated: true) {}
         }
         
         let submitAction = UIAlertAction(title: "Submit Photo", style: .default) { (nil) in
-            self.startSubmission()
+            self.submissionManager.startSubmission()
+            self.openCamera()
         }
         
         scannedAlert.addAction(learnAction)
@@ -126,13 +131,13 @@ class CaptureView: UIViewController, ScannedItemDelegate {
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
             self.dismiss(animated: true) {}
-            self.continueSubmission()
+            self.openCamera()
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
             self.scanSession.enableScanning()
-            self.sendSubmission()
+            self.submissionManager.sendSubmission()
         }
         
         thanksAlert.addAction(yesAction)
@@ -140,29 +145,6 @@ class CaptureView: UIViewController, ScannedItemDelegate {
         
         present(thanksAlert, animated: true) {}
     }
-    
-    // MARK: - Submissions
-    
-    func startSubmission() {
-        print("creating new submission for \(scannedItem.label!)")
-        workingSubmission = Submission(date: Date())
-        scannedItem.addToSubmissions(workingSubmission)
-        openCamera()
-    }
-    
-    func continueSubmission() {
-        print("adding to existing submission for \(scannedItem.label!)")
-        openCamera()
-    }
-    
-    func sendSubmission() {
-        repository.saveContext()
-        print("sending submission for \(scannedItem.label!) with \(workingSubmission.userPhotos?.count ?? 0) photos")
-        
-        // begin UrlSession to send submission to API
-        
-    }
-    
 }
 
 // MARK: - Image Picker Delegate
@@ -172,7 +154,6 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
 
     func setupImagePicker() {
         imagePicker.delegate = self
-        imagePicker.scanDelegate = scanSession
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         imagePicker.allowsEditing = false
@@ -190,7 +171,7 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {}
         showThanksAlert()
-        savePhoto(image: getImage(from: info))
+        submissionManager.savePhoto(image: getImage(from: info))
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -202,19 +183,4 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
         return info[UIImagePickerController.InfoKey.originalImage] as! UIImage
     }
     
-    func savePhoto(image: UIImage) {
-        let hashString = image.pngData()!.md5()
-        
-        ImageManager.storeImage(image: image, with: hashString, to: .photos)
-        print("photo saved to documents with filename \(hashString)")
-
-        self.addPhotoToSubmission(from: hashString)
-    }
-    
-    func addPhotoToSubmission(from hash: String) {
-        let url = ImageManager.getPath(for: hash, in: .photos)
-        let userPhoto = UserPhoto(photoHash: hash, photoUrl: url)
-        self.workingSubmission.addToUserPhotos(userPhoto)
-        print("photo added to \(self.scannedItem.label!) submission with \(self.workingSubmission.userPhotos?.count ?? 0) photos")
-    }
 }

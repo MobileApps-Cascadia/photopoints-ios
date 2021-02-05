@@ -8,20 +8,6 @@
 
 import UIKit
 
-protocol ScanDelegate {
-    var scanningEnabled: Bool { get }
-    func disableScanning()
-    func enableScanning()
-}
-
-class ImagePickerWithScanDelegate: UIImagePickerController {
-    
-    // initialized to nil so we don't have to write a custom init
-    var scanDelegate: ScanDelegate! = nil
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        scanDelegate.disableScanning()
-    }
+class ImagePicker: UIImagePickerController {
     
 }

@@ -9,6 +9,8 @@
 import CoreGraphics
 
 extension CGFloat {
+    
     static var globalPadding: CGFloat!
     static var screenWidth: CGFloat!
+    
 }

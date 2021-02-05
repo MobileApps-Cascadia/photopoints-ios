@@ -9,18 +9,19 @@
 import UIKit
 import AVFoundation
 
-protocol ScannedItemDelegate {
-    var scannedItem: Item! { set get }
+protocol ScanDelegate {
+    var scanningEnabled: Bool { get }
+    func disableScanning()
+    func enableScanning()
 }
 
 class QrScanSession: AVCaptureSession {
     
     let repository = Repository.instance
+    let submissionManager = SubmissionManager.instance
     
     // keeps track of whether or not an alert should be allowed to present when scanning
     var scanningEnabled = true
-    
-    var itemDelegate: ScannedItemDelegate!
     
     init?(in view: UIView) {
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
@@ -60,12 +61,12 @@ class QrScanSession: AVCaptureSession {
 extension QrScanSession: AVCaptureMetadataOutputObjectsDelegate {
     
     // called by system when we get metadataoutputs
-    // load the scanned item into the class variable
+    // load the scanned item into submission manager
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if  metadataObjects.count != 0 && scanningEnabled {
             let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
             guard let objectString = object?.stringValue else { return }
-            itemDelegate.scannedItem = repository.getItemFrom(url: objectString)
+            submissionManager.scannedItem = repository.getItemFrom(url: objectString)
             disableScanning()
         }
     }
