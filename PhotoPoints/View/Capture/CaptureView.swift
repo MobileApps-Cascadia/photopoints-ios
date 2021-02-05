@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+// delegate for triggering alert presentation outside of this class
 protocol AlertDelegate {
     func showScannedAlert()
     func showThanksAlert()
@@ -19,11 +20,10 @@ class CaptureView: UIViewController {
     // MARK: - Properties
     
     let repository = Repository.instance
-
     let submissionManager = SubmissionManager.instance
     
     // video session: optional because we won't have it in our emulator
-    var scanSession: QrScanSession!
+    var scanSession: QrScanSession?
     
     // photo capture view
     let imagePicker = UIImagePickerController()
@@ -40,6 +40,8 @@ class CaptureView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if camera is available, set up scanner and image picker that use them
         if let session = QrScanSession(in: view) {
             scanSession = session
             addScannerSquare()
@@ -47,6 +49,8 @@ class CaptureView: UIViewController {
             setupImagePicker()
             navigationController?.navigationBar.topItem?.title = "Center QR Code in Square"
         } else {
+            
+            // notify user camera is not available
             navigationController?.navigationBar.topItem?.title = "No AV Device Available"
         }
     }
@@ -82,6 +86,8 @@ class CaptureView: UIViewController {
 
 extension CaptureView: AlertDelegate {
     
+    // create and present alert after item is scanned
+    // called in SubmissionManager.scannedItem didSet
     func showScannedAlert() {
         let title = "PhotoPoint Identified!"
         let item = submissionManager.scannedItem!
@@ -104,6 +110,7 @@ extension CaptureView: AlertDelegate {
         present(scannedAlert, animated: true) {}
     }
     
+    // create and present alert after photo taken
     func showThanksAlert() {
         let title = "Thanks!"
         let message = "Would you like to add another photo of this item?"
@@ -116,7 +123,7 @@ extension CaptureView: AlertDelegate {
         
         let noAction = UIAlertAction(title: "No", style: .default) { (nil) in
             self.dismiss(animated: true) {}
-            self.scanSession.enableScanning()
+            self.scanSession?.enableScanning()
             self.submissionManager.sendSubmission()
         }
         
@@ -148,6 +155,7 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
     }
     
+    // called when user picks a photo they've taken
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {}
         showThanksAlert()
@@ -157,9 +165,10 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
         }
     }
     
+    // called when user cancels camera routine
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true) {}
-        scanSession.enableScanning()
+        scanSession?.enableScanning()
     }
     
 }

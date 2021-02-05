@@ -8,36 +8,34 @@
 
 import UIKit
 
-// singleton class to manage submissions
+// singleton class to manage current submission
 
 class SubmissionManager {
     
-    static let instance = SubmissionManager()
-    
     let repository = Repository.instance
-    
     var alertDelegate: AlertDelegate!
+    var submission: Submission!
     
     var scannedItem: Item! {
         didSet {
             alertDelegate.showScannedAlert()
         }
     }
-    
-    var workingSubmission: Submission!
+
+    // singleton setup
+    static let instance = SubmissionManager()
     
     private init() {}
     
     func startSubmission() {
-        workingSubmission = Submission(date: Date())
-        scannedItem.addToSubmissions(workingSubmission)
+        submission = Submission(date: Date())
+        scannedItem.addToSubmissions(submission)
     }
     
     func sendSubmission() {
         repository.saveContext()
         
         // TODO: begin URL session to send to API
-        
     }
     
     func savePhoto(image: UIImage) {
@@ -52,8 +50,8 @@ class SubmissionManager {
     func addPhotoToSubmission(from hash: String) {
         let url = ImageManager.getPath(for: hash, in: .photos)
         let userPhoto = UserPhoto(photoHash: hash, photoUrl: url)
-        workingSubmission.addToUserPhotos(userPhoto)
-        print("photo added to \(scannedItem.label!) submission with \(workingSubmission.userPhotos?.count ?? 0) photos")
+        submission.addToUserPhotos(userPhoto)
+        print("photo added to \(scannedItem.label!) submission with \(submission.userPhotos?.count ?? 0) photos")
     }
     
 }

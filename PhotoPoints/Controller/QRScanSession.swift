@@ -19,10 +19,9 @@ class QrScanSession: AVCaptureSession {
     
     let repository = Repository.instance
     let submissionManager = SubmissionManager.instance
-    
-    // keeps track of whether or not an alert should be allowed to present when scanning
     var scanningEnabled = true
     
+    // falliable init - the default capture device may not be available
     init?(in view: UIView) {
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             super.init()
