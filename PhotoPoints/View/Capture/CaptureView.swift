@@ -14,7 +14,6 @@ protocol AlertDelegate {
     func showThanksAlert()
 }
 
-// code modified from https://www.youtube.com/watch?v=4Zf9dHDJ2yU
 class CaptureView: UIViewController {
     
     // MARK: - Properties
@@ -41,8 +40,15 @@ class CaptureView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
-        setup()
+        if let session = QrScanSession(in: view) {
+            scanSession = session
+            addScannerSquare()
+            submissionManager.alertDelegate = self
+            setupImagePicker()
+            navigationController?.navigationBar.topItem?.title = "Center QR Code in Square"
+        } else {
+            navigationController?.navigationBar.topItem?.title = "No AV Device Available"
+        }
     }
     
     // terminate the session if we navigate off this view
@@ -57,24 +63,7 @@ class CaptureView: UIViewController {
         scanSession?.startRunning()
     }
     
-    // MARK: - Setup
-    
-    func setup() {
-        if let session = QrScanSession(in: view) {
-            scanSession = session
-            addScannerSquare()
-            submissionManager.alertDelegate = self
-            setupImagePicker()
-        } else {
-            addNoAVDLabel()
-        }
-    }
-    
     // MARK: - View Setup
-    
-    func configureNavBar() {
-        navigationController?.navigationBar.topItem?.title = "Center QR Code in Square"
-    }
     
     func addScannerSquare() {
         view.addSubview(scannerSquare)
@@ -85,15 +74,6 @@ class CaptureView: UIViewController {
             width: width,
             height: width
         )
-    }
-    
-    func addNoAVDLabel() {
-        let noAVDLabel = UILabel()
-        noAVDLabel.text = "No AV device enabled"
-        noAVDLabel.textColor = .white
-        noAVDLabel.frame = view.frame
-        noAVDLabel.textAlignment = .center
-        view.addSubview(noAVDLabel)
     }
 
 }
@@ -171,16 +151,15 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {}
         showThanksAlert()
-        submissionManager.savePhoto(image: getImage(from: info))
+        DispatchQueue.global(qos: .userInitiated).async {
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            self.submissionManager.savePhoto(image: image)
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true) {}
         scanSession.enableScanning()
-    }
-    
-    func getImage(from info: [UIImagePickerController.InfoKey : Any]) -> UIImage {
-        return info[UIImagePickerController.InfoKey.originalImage] as! UIImage
     }
     
 }
