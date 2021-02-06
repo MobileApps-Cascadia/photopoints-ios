@@ -24,21 +24,17 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
-    // min and max lat and long for initial camera frame
-    var minLat: CLLocationDegrees!
-    var maxLat: CLLocationDegrees!
-    var minLong: CLLocationDegrees!
-    var maxLong: CLLocationDegrees!
+    let overlayManager = OverlayManager()
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         setUpMap()
         registerAnnotations()
-        addOverlays()
+        overlayManager.addOverlays(to: mapView)
         view.backgroundColor = UIColor(named: "pp-map-background")
+        navigationController?.navigationBar.topItem?.title = "North Creek Forest"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,10 +45,6 @@ class MapView: UIViewController {
     }
     
     //MARK: - Setup
-    
-    func configureNavBar() {
-        navigationController?.navigationBar.topItem?.title = "North Creek Forest"
-    }
     
     func setUpMap() {
         // fill annotations array
@@ -65,7 +57,7 @@ class MapView: UIViewController {
         mapView.delegate = self
         
         // set map bounds to forest
-        mapView.region = fitToItems()
+        mapView.region = .fitted
         mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
         mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
         view.addSubview(mapView)
@@ -79,80 +71,10 @@ class MapView: UIViewController {
     
     func fillAnnotations() {
         let items = repository.getItems()!
-        
         for item in items {
             let annotation = ItemAnnotation(item: item)
             annotations.append(annotation)
-            
-            // as we're iterating, update the min and max lat and long for initial camera frame
-            updateMinMax(coordinate: item.location!)
         }
-    }
-    
-    func updateMinMax(coordinate: Coordinate) {
-        let lat = coordinate.latitude
-        let long = coordinate.longitude
-       
-        if minLat == nil || lat < minLat {
-            minLat = lat
-        }
-        
-        if minLong == nil || long < minLong {
-            minLong = long
-        }
-        
-        if maxLat == nil || lat > maxLat {
-            maxLat = lat
-        }
-        
-        if maxLong == nil || long > maxLong {
-            maxLong = long
-        }
-    }
-    
-    func fitToItems() -> MKCoordinateRegion {
-        let midlat = (minLat + maxLat) / 2
-        let midLong = (minLong + maxLong) / 2
-        
-        let buffer = 0.0001
-        
-        let latDelta = maxLat - minLat + buffer
-        let longDelta = maxLong - minLong + buffer
-        
-        print(latDelta, longDelta)
-        print(midlat, midLong)
-        
-        let center = CLLocationCoordinate2D(latitude: midlat, longitude: midLong)
-        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
-        
-        return MKCoordinateRegion(center: center, span: span)
-    }
-    
-    //Adds map annotations to aide the user when navigating the forest
-    func addOverlays() {
-        
-        // forest boundary
-        let boundaryGon = BoundaryGon(coordinates: boundary, count: boundary.count)
-        mapView.addOverlay(boundaryGon)
-        
-        // streams
-        for stream in streams {
-            let streamLine = StreamLine(coordinates: stream, count: stream.count)
-            mapView.addOverlay(streamLine)
-        }
-        
-        // wetlands
-        for wetLand in wetLands {
-            let wetLandGon = WetLandGon(coordinates: wetLand, count: wetLand.count)
-            mapView.addOverlay(wetLandGon)
-        }
-        
-        // trails
-        for trail in trails {
-            let trailLine = TrailLine(coordinates: trail, count: trail.count)
-            mapView.addOverlay(trailLine)
-        }
-        
     }
     
 }
@@ -231,43 +153,16 @@ extension MapView : MKMapViewDelegate {
     
     //extension for drawing annotations on map based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        if overlay is BoundaryGon {
-            let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.strokeColor = .gray
-            polygonView.lineWidth = 3
-            return polygonView
+        let typeString = NSStringFromClass(type(of: overlay).self)
+        if let renderer = overlayManager.renderers[typeString] {
+            return renderer
         }
-        
-        if overlay is WetLandGon {
-            let wetLandView = MKPolygonRenderer(overlay: overlay)
-            wetLandView.strokeColor = .systemBlue
-            wetLandView.fillColor = .blue
-            wetLandView.lineWidth = 3
-            return wetLandView
-        }
-        
-        if overlay is TrailLine {
-            let trailLineView = MKPolylineRenderer(overlay: overlay)
-            trailLineView.strokeColor = .brown
-            trailLineView.lineWidth = 5
-            trailLineView.lineDashPattern = [6]
-            return trailLineView
-        }
-        
-        if overlay is StreamLine {
-            let streamLineView = MKPolylineRenderer(overlay: overlay)
-            streamLineView.strokeColor = .systemBlue
-            streamLineView.lineWidth = 3
-            return streamLineView
-        }
-        
         return MKOverlayRenderer()
     }
 
 }
 
-//map maker font size
+//map marker font size
 func fontSize(for count: Int) -> UIFont {
     let size = CGFloat(pow(Double(count), 1 / 3) * 25)
     return UIFont.systemFont(ofSize: size)
