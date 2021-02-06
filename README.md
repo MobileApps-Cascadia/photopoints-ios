@@ -19,7 +19,7 @@ Help protect North Creek Forest, North Creek, and local salmon populations using
 git clone https://github.com/mobileapps-cascadia/photopoints-ios.git
 ```
 3. Run application on device or emulator running iOS 13.0 or above
-4. If using physical device, test scanning functionality on QR code images
+4. If using physical device, test scanning functionality on <a href="https://github.com/MobileApps-Cascadia/photopoints-ios/wiki/QR-Code-Images">QR code images</a>
 
 <h3>Main UI<h3>
 
