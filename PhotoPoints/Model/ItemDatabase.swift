@@ -6,13 +6,14 @@
 //  Copyright © 2021 Cascadia College. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import MapKit
 import CoreData
 
 class ItemDatabase {
     static var items : [Item] = []
+    
+    private static let repository = Repository.instance
     
     static func build(from: String) {
         let data : Data = from.data(using:.utf8)!
@@ -30,23 +31,35 @@ class ItemDatabase {
         // iterate jsonItems to build each Item
         for jsonItem in jsonItems {
             
+            let item = Item(context: repository.context)
+            
             // Get the id (cannot be nil)
             guard let id = jsonItem["id"] as? String else {
                 print("jsonItem has no id")
                 return
             }
             
+            item.id = id
+            
             // Get the type (ex: "plant") -- "unknown" if nil
-            let itemType = jsonItem["type"] as? String ?? "unknown"
+            item.type = jsonItem["type"] as? String ?? "unknown"
             
             // Get the label -- empty string if nil
-            let label = jsonItem["label"] as? String ?? ""
+            item.label = jsonItem["label"] as? String ?? ""
             
             // Get the barcode (currently stored as a url string)
-            let qrCode = jsonItem["qr_code"] as? String ?? ""
+            item.url = jsonItem["qr_code"] as? String ?? ""
             
             // Get the enabled flag -- disabled items are persistent but not shown
-            let enabled = jsonItem["enabled"] as? Bool ?? false
+            item.enabled = jsonItem["enabled"] as? Bool ?? false
+            
+            let jsonImages = jsonItem["images"] as? [Dictionary<String, Any>] ?? [[:]]
+            
+            // TODO: Implement multi-image handling -- Currently first is set an only
+            let image = Image(context: repository.context)
+            image.basefile = (jsonImages.first?["basefile"] as! String)
+            image.filename = image.basefile
+            item.addToImages(image)
             
             // Get the location as a dictionary containing coordinates
             guard let jsonLocation = jsonItem["location"] as? [String: Double] else {
@@ -54,41 +67,25 @@ class ItemDatabase {
                 return
             }
             
-            // Get location coordinates
-            let latitude = jsonLocation["latitude"]!
-            let longitude = jsonLocation["longitude"]!
-            let altitude = jsonLocation["altitude"]!
+            // Get location coordinates and input into Coordinate object
+            let location = Coordinate(context: repository.context)
+            location.latitude = jsonLocation["latitude"]!
+            location.longitude = jsonLocation["longitude"]!
+            location.altitude = jsonLocation["altitude"]!
+            item.location = location
             
             // get the details
             let jsonDetails = jsonItem["details"] as? [String: Any] ?? [:]
             
-            // extract the details and convert all to string
-            var details : [String : String] = [:]
-            
+            // extract the details, convert values to string, and add to item's details
             for key : String in jsonDetails.keys {
-                details[key] = (jsonDetails[key] as! String)
+                let detail = Detail(context: repository.context)
+                detail.property = key
+                detail.value = (jsonDetails[key] as! String)
+                item.addToDetails(detail)
             }
             
-            let jsonImages = jsonItem["images"] as? [Dictionary<String, Any>] ?? [[:]]
-            
-            // TODO: Implement multi-image handling -- Currently first is set an only
-            
-            let imageHash = jsonImages.first?["basefile"] as! String
-            
-            items.append(Item(
-                            id: id,
-                            type: itemType,
-                            label: label,
-                            code: qrCode,
-                            location: Coordinate(
-                                latitude: latitude,
-                                longitude: longitude,
-                                altitude: altitude),
-                            details: details,
-                            image: Image(filename: imageHash),
-                            enabled: enabled
-                            )
-            )
+            items.append(item)
         
         }
     }

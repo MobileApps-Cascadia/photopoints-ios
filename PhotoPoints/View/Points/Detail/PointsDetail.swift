@@ -95,8 +95,8 @@ class PointsDetail: UIViewController {
         let details = repository.getDetails(for: thisItem)
         
         for detail in details {
-            if !excludedDetails.contains(detail.property) {
-                let detailTitle = DetailTitle(string: detail.property.humanized())
+            if !excludedDetails.contains(detail.property!) {
+                let detailTitle = DetailTitle(string: detail.property!.humanized())
                 let detailLabel = DetailLabel(string: detail.value ?? "no value")
                 let detailStack = DetailStack(arrangedSubviews: [detailTitle, detailLabel])
                 detailsStack.addArrangedSubview(detailStack)

@@ -70,7 +70,7 @@ class Repository {
         request.predicate = predicate
         
         if let image = try? context.fetch(request).first {
-            return UIImage(named: "\(image.filename).png")
+            return UIImage(named: "\(image.filename!).png")
         }
         
         return nil
@@ -90,7 +90,7 @@ class Repository {
     
     func getImageFromFilesystem(item: Item) -> UIImage? {
         if let firstImage = item.images?.allObjects.first as? Image {
-            let fileName = firstImage.filename
+            let fileName = firstImage.filename!
             return ImageManager.getImage(from: fileName, in: .images)
         }
         
