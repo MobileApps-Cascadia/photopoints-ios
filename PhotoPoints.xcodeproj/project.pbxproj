@@ -48,6 +48,7 @@
 		F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623C25AA70D10076E673 /* FooterCell.swift */; };
 		F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624225AA7C560076E673 /* BaseCell.swift */; };
 		F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624525AA7F880076E673 /* ProgressCell.swift */; };
+		F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */; };
 		F3D3063B25C8DD36002268AF /* DataMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3063A25C8DD36002268AF /* DataMd5.swift */; };
 		F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */; };
 		F3D9AF9A25CE29EA004C488F /* RegionFitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9AF9925CE29EA004C488F /* RegionFitted.swift */; };
@@ -103,6 +104,7 @@
 		F3C1623C25AA70D10076E673 /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		F3C1624225AA7C560076E673 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		F3C1624525AA7F880076E673 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
+		F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotationView.swift; sourceTree = "<group>"; };
 		F3D3063A25C8DD36002268AF /* DataMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMd5.swift; sourceTree = "<group>"; };
 		F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		F3D9AF9925CE29EA004C488F /* RegionFitted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionFitted.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
 				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
+				F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */,
 				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
 				F3FEC72C25CF08C600E8E4E6 /* Overlays.swift */,
 			);
@@ -391,6 +394,7 @@
 				F3C1623725AA70880076E673 /* PointCell.swift in Sources */,
 				DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */,
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
+				F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */,
 				F31B0C26259E42F000144E96 /* Submission+CoreDataProperties.swift in Sources */,
 				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,

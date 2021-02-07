@@ -9,13 +9,6 @@
 import UIKit
 import MapKit
 
-//Enum for changing map marker states
-enum SurveyState {
-    case notSurveyed
-    case surveyed
-    case mix
-}
-
 class MapView: UIViewController {
 
     //MARK: - Properties
@@ -28,12 +21,6 @@ class MapView: UIViewController {
     let overlayManager = OverlayManager()
     
     lazy var mapView = MKMapView(frame: view.frame)
-    
-    let stateColor: [SurveyState : UIColor] = [
-        .notSurveyed : .systemRed,
-        .surveyed : .systemGreen,
-        .mix : .systemYellow
-    ]
     
     //MARK: - Lifecycle
     
@@ -78,54 +65,7 @@ extension MapView : MKMapViewDelegate {
 
     // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "item")
-        
-        annotationView.clusteringIdentifier = "cluster"
-        annotationView.collisionMode = .circle
-        annotationView.canShowCallout = true
-
-        var borderImage: UIImage
-        var numberImage: UIImage
-        var fillImage: UIImage
-        var didSubmit = [Bool]()
-        var annotations: [MKAnnotation]
-        var configuration: UIImage.SymbolConfiguration
-        
-        if annotation is MKClusterAnnotation {
-            annotations = (annotation as! MKClusterAnnotation).memberAnnotations
-        } else {
-            annotations = [annotation]
-        }
-        
-        let count = annotations.count
-        
-        configuration = UIImage.SymbolConfiguration(font: fontSize(for: count))
-        borderImage = UIImage(systemName: "circle.fill", withConfiguration: configuration)!
-        numberImage = UIImage(systemName: "\(count).circle.fill", withConfiguration: configuration)!
-        fillImage = count == 1 ? borderImage : numberImage
-        
-        for annotation in annotations {
-            let item = (annotation as! ItemAnnotation).item
-            didSubmit.append(repository.didSubmitToday(for: item))
-            (annotation as! ItemAnnotation).updatePhotoCount()
-        }
-        
-        var surveyState: SurveyState = .notSurveyed
-        
-        if didSubmit.contains(false) && didSubmit.contains(true) {
-            surveyState = .mix
-        }
-        
-        if !didSubmit.contains(false) {
-            surveyState = .surveyed
-        }
-        
-        annotationView.tintColor = stateColor[surveyState]
-        annotationView.image = borderImage
-        annotationView.addSubview(UIImageView(image: fillImage))
-
-        return annotationView
+        return ItemAnnotationView(annotation: annotation)
     }
     
     // extensibly draw overlays on map based on type
