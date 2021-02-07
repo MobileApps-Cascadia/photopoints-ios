@@ -9,6 +9,13 @@
 import UIKit
 import MapKit
 
+//Enum for changing map marker states
+enum SurveyState {
+    case notSurveyed
+    case surveyed
+    case mix
+}
+
 class MapView: UIViewController {
 
     //MARK: - Properties
@@ -21,6 +28,12 @@ class MapView: UIViewController {
     let overlayManager = OverlayManager()
     
     lazy var mapView = MKMapView(frame: view.frame)
+    
+    let stateColor: [SurveyState : UIColor] = [
+        .notSurveyed : .systemRed,
+        .surveyed : .systemGreen,
+        .mix : .systemYellow
+    ]
     
     //MARK: - Lifecycle
     
@@ -116,16 +129,8 @@ extension MapView : MKMapViewDelegate {
             (annotation as! ItemAnnotation).updatePhotoCount()
         }
         
-        switch surveyState {
-        case .notSurveyed:
-            annotationView.tintColor = .systemRed
-        case .surveyed:
-            annotationView.tintColor = .systemGreen
-        case .mix:
-            annotationView.tintColor = .systemYellow
-        }
-        
-        annotationView.image = borderImage.withTintColor(.white)
+        annotationView.tintColor = stateColor[surveyState]
+        annotationView.image = borderImage
         annotationView.addSubview(UIImageView(image: fillImage))
 
         return annotationView
