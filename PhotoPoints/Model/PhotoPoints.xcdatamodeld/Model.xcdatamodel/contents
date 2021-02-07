@@ -34,7 +34,7 @@
     <entity name="Submission" representedClassName=".Submission" syncable="YES" codeGenerationType="class">
         <attribute name="answers" optional="YES" attributeType="String"/>
         <attribute name="count" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="date" attributeType="Date" defaultDateTimeInterval="634402860" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String" defaultValueString=""/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>

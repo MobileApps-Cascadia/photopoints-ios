@@ -28,7 +28,7 @@ class SubmissionManager {
     private init() {}
     
     func startSubmission() {
-        submission = Submission()
+        submission = Submission(context: repository.context)
         submission.date = Date()
         submission.uuid = UUID()
         scannedItem.addToSubmissions(submission)
@@ -51,7 +51,7 @@ class SubmissionManager {
     
     func addPhotoToSubmission(from hash: String) {
         let url = ImageManager.getPath(for: hash, in: .photos)
-        let userPhoto = UserPhoto()
+        let userPhoto = UserPhoto(context: repository.context)
         userPhoto.photoHash = hash
         userPhoto.photoUrl = url
         submission.addToUserPhotos(userPhoto)
