@@ -31,9 +31,9 @@ git clone https://github.com/mobileapps-cascadia/photopoints-ios.git
     <th>Scanner</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/PointsTable-small.PNG" width="300"></td>
-    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/Detail-small.PNG" width="300"></td>
-    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/Map-small.PNG" width="300"></td>
-    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/Scanner-small.PNG" width="300"></td>
+    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/ui-table.PNG" width="300"></td>
+    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/ui-detail.PNG" width="300"></td>
+    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/ui-map.PNG" width="300"></td>
+    <td><img src="https://github.com/MobileApps-Cascadia/photopoints-ios/blob/develop/Documentation/ui-scanner.PNG" width="300"></td>
   </tr>
 </table>
