@@ -41,26 +41,18 @@ class ItemDatabase {
             
             item.id = id
             
-            // Get the type (ex: "plant") -- "unknown" if nil
-            item.type = jsonItem["type"] as? String ?? "unknown"
-            
             // Get the label -- empty string if nil
             item.label = jsonItem["label"] as? String ?? ""
-            
-            // Get the barcode (currently stored as a url string)
-            item.url = jsonItem["qr_code"] as? String ?? ""
             
             // Get the enabled flag -- disabled items are persistent but not shown
             item.enabled = jsonItem["enabled"] as? Bool ?? false
             
-            let jsonImages = jsonItem["images"] as? [Dictionary<String, Any>] ?? [[:]]
+            // Get the barcode (currently stored as a url string)
+            item.url = jsonItem["qr_code"] as? String ?? ""
             
-            // TODO: Implement multi-image handling -- Currently first is set an only
-            let image = Image(context: repository.context)
-            image.basefile = (jsonImages.first?["basefile"] as! String)
-            image.filename = image.basefile
-            item.addToImages(image)
-            
+            // Get the type (ex: "plant") -- "unknown" if nil
+            item.type = jsonItem["type"] as? String ?? "unknown"
+
             // Get the location as a dictionary containing coordinates
             guard let jsonLocation = jsonItem["location"] as? [String: Double] else {
                 print("jsonItem does not contain a valid location" )
@@ -78,12 +70,20 @@ class ItemDatabase {
             let jsonDetails = jsonItem["details"] as? [String: Any] ?? [:]
             
             // extract the details, convert values to string, and add to item's details
-            for key : String in jsonDetails.keys {
+            for key: String in jsonDetails.keys {
                 let detail = Detail(context: repository.context)
                 detail.property = key
                 detail.value = (jsonDetails[key] as! String)
                 item.addToDetails(detail)
             }
+            
+            let jsonImages = jsonItem["images"] as? [Dictionary<String, Any>] ?? [[:]]
+            
+            // TODO: Implement multi-image handling -- Currently first is set an only
+            let image = Image(context: repository.context)
+            image.basefile = (jsonImages.first?["basefile"] as! String)
+            image.filename = image.basefile
+            item.addToImages(image)
             
             items.append(item)
         
