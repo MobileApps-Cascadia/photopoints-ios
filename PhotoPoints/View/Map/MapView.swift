@@ -20,15 +20,22 @@ class MapView: UIViewController {
     
     let overlayManager = OverlayManager()
     
-    lazy var mapView = MKMapView(frame: view.frame)
+    lazy var mapView: MKMapView = {
+        let mapView = MKMapView(frame: view.frame)
+        mapView.delegate = self
+        mapView.region = .fitted
+        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
+        return mapView
+    }()
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fillAnnotations()
-        setUpMap()
         overlayManager.addOverlays(to: mapView)
+        view.addSubview(mapView)
         navigationController?.navigationBar.topItem?.title = "North Creek Forest"
     }
     
@@ -48,14 +55,6 @@ class MapView: UIViewController {
             annotations.append(annotation)
         }
     }
-    
-    func setUpMap() {
-        mapView.delegate = self
-        mapView.region = .fitted
-        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
-        view.addSubview(mapView)
-    }
 
 }
 
@@ -63,12 +62,11 @@ class MapView: UIViewController {
 
 extension MapView : MKMapViewDelegate {
 
-    // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         return ItemAnnotationView(annotation: annotation)
     }
     
-    // extensibly draw overlays on map based on type
+    // extensibly render overlays based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let typeString = NSStringFromClass(type(of: overlay))
         if let renderer = overlayManager.renderers[typeString] {
@@ -77,12 +75,6 @@ extension MapView : MKMapViewDelegate {
         return MKOverlayRenderer()
     }
 
-}
-
-//map marker font size
-func fontSize(for count: Int) -> UIFont {
-    let size = CGFloat(pow(Double(count), 1 / 3) * 25)
-    return UIFont.systemFont(ofSize: size)
 }
 
 //MARK:- Static Constants

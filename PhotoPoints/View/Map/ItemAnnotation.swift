@@ -12,13 +12,9 @@ import MapKit
 class ItemAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
-    
     var title: String?
-    
     var subtitle: String?
-    
     let item: Item
-    
     let repository = Repository.instance
     
     init(item: Item) {

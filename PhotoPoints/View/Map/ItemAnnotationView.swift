@@ -19,6 +19,8 @@ class ItemAnnotationView: MKAnnotationView {
     
     let repository = Repository.instance
     
+    var annotations = [MKAnnotation?]()
+
     let stateColor: [SurveyState : UIColor] = [
         .notSurveyed : .systemRed,
         .surveyed : .systemGreen,
@@ -27,38 +29,54 @@ class ItemAnnotationView: MKAnnotationView {
     
     init(annotation: MKAnnotation) {
         super.init(annotation: annotation, reuseIdentifier: "item")
-        
+        configure()
+        setAnnotations()
+        setImages()
+        setColor()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure() {
         clusteringIdentifier = "cluster"
         collisionMode = .circle
         canShowCallout = true
-
-        var didSubmit = [Bool]()
-        var annotations: [MKAnnotation]
-        var configuration: UIImage.SymbolConfiguration
-        
+    }
+    
+    func setAnnotations() {
         if annotation is MKClusterAnnotation {
             annotations = (annotation as! MKClusterAnnotation).memberAnnotations
         } else {
             annotations = [annotation]
         }
-        
-        let count = annotations.count
+    }
+    
+    func setImages() {
         var borderImage: UIImage
         var numberImage: UIImage
         var fillImage: UIImage
+        let count = annotations.count
+        let configuration = UIImage.SymbolConfiguration(font: .systemFont(for: count))
         
-        configuration = UIImage.SymbolConfiguration(font: fontSize(for: count))
         borderImage = UIImage(systemName: "circle.fill", withConfiguration: configuration)!
         numberImage = UIImage(systemName: "\(count).circle.fill", withConfiguration: configuration)!
         fillImage = count == 1 ? borderImage : numberImage
+        
+        image = borderImage
+        addSubview(UIImageView(image: fillImage))
+    }
+    
+    func setColor() {
+        var didSubmit = [Bool]()
+        var surveyState: SurveyState = .notSurveyed
         
         for annotation in annotations {
             let item = (annotation as! ItemAnnotation).item
             didSubmit.append(repository.didSubmitToday(for: item))
             (annotation as! ItemAnnotation).updatePhotoCount()
         }
-        
-        var surveyState: SurveyState = .notSurveyed
         
         if didSubmit.contains(false) && didSubmit.contains(true) {
             surveyState = .mix
@@ -69,13 +87,16 @@ class ItemAnnotationView: MKAnnotationView {
         }
         
         tintColor = stateColor[surveyState]
-        image = borderImage
-        addSubview(UIImageView(image: fillImage))
-        
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+}
+
+extension UIFont {
+    
+    //map marker font size
+    static func systemFont(for count: Int) -> UIFont {
+        let size = CGFloat(pow(Double(count), 1 / 3) * 25)
+        return UIFont.systemFont(ofSize: size)
     }
     
 }
