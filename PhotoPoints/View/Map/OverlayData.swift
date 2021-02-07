@@ -1,5 +1,5 @@
 //
-//  Overlays.swift
+//  OverlayData.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 2/6/21.
@@ -8,7 +8,7 @@
 
 import MapKit
 
-struct Overlays {
+struct OverlayData {
     
     // MARK: - Boundary
     

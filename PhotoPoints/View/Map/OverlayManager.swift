@@ -14,7 +14,7 @@ class WetlandGon: MKPolygon {}
 class StreamLine: MKPolyline {}
 class TrailLine: MKPolyline {}
 
-// renderer extensions applying distinct formatting
+// renderer subclasses applying distinct formatting
 class BoundaryRenderer: MKPolygonRenderer {
     override init(overlay: MKOverlay) {
         super.init(overlay: overlay)
@@ -52,7 +52,7 @@ class StreamRenderer: MKPolylineRenderer {
 class OverlayManager {
 
     // dictionary to look up appropriate renderer for given overlay type
-    var renderers = [
+    static var renderers = [
         NSStringFromClass(BoundaryGon.self) : BoundaryRenderer.self,
         NSStringFromClass(WetlandGon.self) : WetlandRenderer.self,
         NSStringFromClass(StreamLine.self) : StreamRenderer.self,
@@ -60,24 +60,24 @@ class OverlayManager {
     ]
     
     // adds different types of overlays to map
-    func addOverlays(to mapView: MKMapView) {
+    static func addOverlays(to mapView: MKMapView) {
         
-        for boundary in Overlays.boundary {
+        for boundary in OverlayData.boundary {
             let boundaryGon = BoundaryGon(coordinates: boundary, count: boundary.count)
             mapView.addOverlay(boundaryGon)
         }
         
-        for stream in Overlays.streams {
+        for stream in OverlayData.streams {
             let streamLine = StreamLine(coordinates: stream, count: stream.count)
             mapView.addOverlay(streamLine)
         }
         
-        for wetland in Overlays.wetlands {
+        for wetland in OverlayData.wetlands {
             let wetLandGon = WetlandGon(coordinates: wetland, count: wetland.count)
             mapView.addOverlay(wetLandGon)
         }
         
-        for trail in Overlays.trails {
+        for trail in OverlayData.trails {
             let trailLine = TrailLine(coordinates: trail, count: trail.count)
             mapView.addOverlay(trailLine)
         }

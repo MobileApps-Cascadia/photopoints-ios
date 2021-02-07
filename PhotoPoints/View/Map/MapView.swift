@@ -18,8 +18,6 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
-    let overlayManager = OverlayManager()
-    
     lazy var mapView: MKMapView = {
         let mapView = MKMapView(frame: view.frame)
         mapView.delegate = self
@@ -34,7 +32,7 @@ class MapView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillAnnotations()
-        overlayManager.addOverlays(to: mapView)
+        OverlayManager.addOverlays(to: mapView)
         view.addSubview(mapView)
         navigationController?.navigationBar.topItem?.title = "North Creek Forest"
     }
@@ -69,7 +67,7 @@ extension MapView : MKMapViewDelegate {
     // extensibly render overlays based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let typeString = NSStringFromClass(type(of: overlay))
-        if let renderer = overlayManager.renderers[typeString] {
+        if let renderer = OverlayManager.renderers[typeString] {
             return renderer.init(overlay: overlay)
         }
         return MKOverlayRenderer()

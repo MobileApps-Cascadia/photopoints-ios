@@ -57,7 +57,7 @@
 		F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5434125ABF6C3009AD8BA /* DetailStack.swift */; };
 		F3F68CB525A2981400A7B552 /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F68CB425A2981400A7B552 /* CGConstants.swift */; };
 		F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */; };
-		F3FEC72D25CF08C600E8E4E6 /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC72C25CF08C600E8E4E6 /* Overlays.swift */; };
+		F3FEC72D25CF08C600E8E4E6 /* OverlayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,7 +113,7 @@
 		F3F5434125ABF6C3009AD8BA /* DetailStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStack.swift; sourceTree = "<group>"; };
 		F3F68CB425A2981400A7B552 /* CGConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
 		F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayManager.swift; sourceTree = "<group>"; };
-		F3FEC72C25CF08C600E8E4E6 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
+		F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,7 +238,7 @@
 				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
 				F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */,
 				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
-				F3FEC72C25CF08C600E8E4E6 /* Overlays.swift */,
+				F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F3F68CB525A2981400A7B552 /* CGConstants.swift in Sources */,
 				F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */,
-				F3FEC72D25CF08C600E8E4E6 /* Overlays.swift in Sources */,
+				F3FEC72D25CF08C600E8E4E6 /* OverlayData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
