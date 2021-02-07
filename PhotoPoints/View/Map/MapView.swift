@@ -15,25 +15,20 @@ class MapView: UIViewController {
     
     let repository = Repository.instance
     
-    // Creates new MKMapView for reference later
-    var mapView: MKMapView!
-    
-    // Reuse ids for annotations
-    let itemIdentifier = NSStringFromClass(ItemAnnotation.self)
-    
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
     let overlayManager = OverlayManager()
     
+    lazy var mapView = MKMapView(frame: view.frame)
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fillAnnotations()
         setUpMap()
-        registerAnnotations()
         overlayManager.addOverlays(to: mapView)
-        view.backgroundColor = UIColor(named: "pp-map-background")
         navigationController?.navigationBar.topItem?.title = "North Creek Forest"
     }
     
@@ -46,29 +41,6 @@ class MapView: UIViewController {
     
     //MARK: - Setup
     
-    func setUpMap() {
-        // fill annotations array
-        fillAnnotations()
-
-        mapView = MKMapView(frame: view.frame)
-        mapView.mapType = .standard
-        
-        // sets delegate
-        mapView.delegate = self
-        
-        // set map bounds to forest
-        mapView.region = .fitted
-        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
-        view.addSubview(mapView)
-        
-    }
-    
-    // Registers custom annotation views for use on the map, currently only contains one custom annotation type.
-    func registerAnnotations() {
-        mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: itemIdentifier)
-    }
-    
     func fillAnnotations() {
         let items = repository.getItems()!
         for item in items {
@@ -77,6 +49,14 @@ class MapView: UIViewController {
         }
     }
     
+    func setUpMap() {
+        mapView.delegate = self
+        mapView.region = .fitted
+        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
+        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
+        view.addSubview(mapView)
+    }
+
 }
 
 //MARK: - MKMapViewDelegate
@@ -86,7 +66,7 @@ extension MapView : MKMapViewDelegate {
     // Registers each annotationview added to the map depending on type
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: itemIdentifier)
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "item")
         
         annotationView.clusteringIdentifier = "cluster"
         annotationView.collisionMode = .circle
@@ -151,11 +131,11 @@ extension MapView : MKMapViewDelegate {
         return annotationView
     }
     
-    //extension for drawing annotations on map based on type
+    // extensibly draw overlays on map based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let typeString = NSStringFromClass(type(of: overlay).self)
+        let typeString = NSStringFromClass(type(of: overlay))
         if let renderer = overlayManager.renderers[typeString] {
-            return renderer
+            return renderer.init(overlay: overlay)
         }
         return MKOverlayRenderer()
     }
