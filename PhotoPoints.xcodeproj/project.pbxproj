@@ -20,9 +20,6 @@
 		F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */; };
-		F319869D2593C09A006E94AE /* Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869C2593C09A006E94AE /* Streams.swift */; };
-		F31986A02593C09F006E94AE /* Trails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319869F2593C09F006E94AE /* Trails.swift */; };
-		F31986A32593C0A7006E94AE /* WetLands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31986A22593C0A7006E94AE /* WetLands.swift */; };
 		F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F332441625CB559D00930F8C /* SubmissionManager.swift */; };
 		F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3384F5125CCD042000E83C4 /* StringHumanized.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
@@ -39,13 +36,16 @@
 		F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623C25AA70D10076E673 /* FooterCell.swift */; };
 		F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624225AA7C560076E673 /* BaseCell.swift */; };
 		F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1624525AA7F880076E673 /* ProgressCell.swift */; };
-		F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CEA17A2592F26B001A22CA /* Boundary.swift */; };
+		F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */; };
 		F3D3063B25C8DD36002268AF /* DataMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3063A25C8DD36002268AF /* DataMd5.swift */; };
 		F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */; };
+		F3D9AF9A25CE29EA004C488F /* RegionFitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9AF9925CE29EA004C488F /* RegionFitted.swift */; };
 		F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433B25ABF677009AD8BA /* DetailTitle.swift */; };
 		F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */; };
 		F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5434125ABF6C3009AD8BA /* DetailStack.swift */; };
 		F3F68CB525A2981400A7B552 /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F68CB425A2981400A7B552 /* CGConstants.swift */; };
+		F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */; };
+		F3FEC72D25CF08C600E8E4E6 /* OverlayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,9 +64,6 @@
 		F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDetail.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnchor.swift; sourceTree = "<group>"; };
-		F319869C2593C09A006E94AE /* Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streams.swift; sourceTree = "<group>"; };
-		F319869F2593C09F006E94AE /* Trails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trails.swift; sourceTree = "<group>"; };
-		F31986A22593C0A7006E94AE /* WetLands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetLands.swift; sourceTree = "<group>"; };
 		F332441625CB559D00930F8C /* SubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		F3384F5125CCD042000E83C4 /* StringHumanized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHumanized.swift; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -83,13 +80,16 @@
 		F3C1623C25AA70D10076E673 /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		F3C1624225AA7C560076E673 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		F3C1624525AA7F880076E673 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
-		F3CEA17A2592F26B001A22CA /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
+		F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotationView.swift; sourceTree = "<group>"; };
 		F3D3063A25C8DD36002268AF /* DataMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMd5.swift; sourceTree = "<group>"; };
 		F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		F3D9AF9925CE29EA004C488F /* RegionFitted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionFitted.swift; sourceTree = "<group>"; };
 		F3F5433B25ABF677009AD8BA /* DetailTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitle.swift; sourceTree = "<group>"; };
 		F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
 		F3F5434125ABF6C3009AD8BA /* DetailStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStack.swift; sourceTree = "<group>"; };
 		F3F68CB425A2981400A7B552 /* CGConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
+		F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayManager.swift; sourceTree = "<group>"; };
+		F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +200,9 @@
 			children = (
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
 				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
-				F3CEA1722592E539001A22CA /* Map Feature Data */,
+				F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */,
+				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
+				F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -208,23 +210,13 @@
 		F30CA2672460A3D700CEA2A6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F3D9AF9925CE29EA004C488F /* RegionFitted.swift */,
 				F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */,
 				F3F68CB425A2981400A7B552 /* CGConstants.swift */,
 				F3D3063A25C8DD36002268AF /* DataMd5.swift */,
 				F3384F5125CCD042000E83C4 /* StringHumanized.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		F3CEA1722592E539001A22CA /* Map Feature Data */ = {
-			isa = PBXGroup;
-			children = (
-				F319869C2593C09A006E94AE /* Streams.swift */,
-				F319869F2593C09F006E94AE /* Trails.swift */,
-				F31986A22593C0A7006E94AE /* WetLands.swift */,
-				F3CEA17A2592F26B001A22CA /* Boundary.swift */,
-			);
-			path = "Map Feature Data";
 			sourceTree = "<group>";
 		};
 		F3F5433925ABF606009AD8BA /* Table */ = {
@@ -331,13 +323,12 @@
 				F3D3063B25C8DD36002268AF /* DataMd5.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
-				F31986A02593C09F006E94AE /* Trails.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				F3C1624325AA7C560076E673 /* BaseCell.swift in Sources */,
 				F3C1624625AA7F880076E673 /* ProgressCell.swift in Sources */,
 				F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
-				F31986A32593C0A7006E94AE /* WetLands.swift in Sources */,
+				F3D9AF9A25CE29EA004C488F /* RegionFitted.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
 				F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */,
 				F34C7B2825C7BC9B00CBA7E4 /* QRScanSession.swift in Sources */,
@@ -348,20 +339,21 @@
 				F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
-				F319869D2593C09A006E94AE /* Streams.swift in Sources */,
+				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */,
 				F3C1623725AA70880076E673 /* PointCell.swift in Sources */,
-				F3CEA17B2592F26B001A22CA /* Boundary.swift in Sources */,
 				DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */,
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
+				F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */,
 				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F3F68CB525A2981400A7B552 /* CGConstants.swift in Sources */,
 				F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */,
+				F3FEC72D25CF08C600E8E4E6 /* OverlayData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

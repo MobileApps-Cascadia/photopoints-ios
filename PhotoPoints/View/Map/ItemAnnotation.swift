@@ -9,23 +9,12 @@
 import UIKit
 import MapKit
 
-//Enum for changing map marker states
-enum SurveyState {
-    case notSurveyed
-    case surveyed
-    case mix
-}
-
 class ItemAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
-    
     var title: String?
-    
     var subtitle: String?
-    
     let item: Item
-    
     let repository = Repository.instance
     
     init(item: Item) {
