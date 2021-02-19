@@ -25,8 +25,6 @@ class CaptureView: UIViewController {
     // video session: optional because we won't have it in our emulator
     var scanSession: QrScanSession?
     
-    var currentAlert: UIAlertController?
-    
     // photo capture view
     let imagePicker = UIImagePickerController()
 
