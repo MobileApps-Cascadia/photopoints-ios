@@ -96,7 +96,7 @@ extension CaptureView: AlertDelegate {
         let learnAction = UIAlertAction(title: "Learn More", style: .default) { (nil) in
             let detailView = PointsDetail(item: item)
             detailView.scanDelegate = self.scanSession
-            self.present(detailView, animated: true) {}
+            self.present(detailView, animated: true)
         }
         
         let submitAction = UIAlertAction(title: "Submit Photo", style: .default) { (nil) in
@@ -107,7 +107,9 @@ extension CaptureView: AlertDelegate {
         scannedAlert.addAction(learnAction)
         scannedAlert.addAction(submitAction)
 
-        present(scannedAlert, animated: true) {}
+        self.present(scannedAlert, animated: true) {
+            self.addTapRecognizer(to: scannedAlert)
+        }
     }
     
     // create and present alert after photo taken
@@ -117,12 +119,12 @@ extension CaptureView: AlertDelegate {
         let thanksAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
-            self.dismiss(animated: true) {}
+            self.dismiss(animated: true)
             self.openCamera()
         }
         
         let noAction = UIAlertAction(title: "No", style: .default) { (nil) in
-            self.dismiss(animated: true) {}
+            self.dismiss(animated: true)
             self.scanSession?.enableScanning()
             self.submissionManager.sendSubmission()
         }
@@ -130,8 +132,24 @@ extension CaptureView: AlertDelegate {
         thanksAlert.addAction(yesAction)
         thanksAlert.addAction(noAction)
         
-        present(thanksAlert, animated: true) {}
+        present(thanksAlert, animated: true) {
+            self.addTapRecognizer(to: thanksAlert)
+        }
     }
+    
+    func addTapRecognizer(to alert: UIAlertController) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlert))
+        
+        // alert creates a view behind it that we can add the recognizer to
+        // this allows us to dismiss when tapping outside of the alert
+        alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissAlert() {
+        self.dismiss(animated: true)
+        scanSession?.enableScanning()
+    }
+    
 }
 
 // MARK: - Image Picker Delegate
@@ -167,7 +185,7 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     
     // called when user cancels camera routine
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true) {}
+        dismiss(animated: true)
         scanSession?.enableScanning()
     }
     
