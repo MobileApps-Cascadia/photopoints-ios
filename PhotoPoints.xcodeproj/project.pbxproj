@@ -11,6 +11,8 @@
 		3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */; };
 		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
 		DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBE33B25A4460900C49422 /* ItemDatabase.swift */; };
+		F3009C5825FB31CD003F1A75 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3009C5725FB31CD003F1A75 /* Renderable.swift */; };
+		F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3009C5A25FB365D003F1A75 /* Overlays.swift */; };
 		F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3095930246BA1A40088FB19 /* ImageManager.swift */; };
 		F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */; };
 		F30CA20F2460A2FC00CEA2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30CA20E2460A2FC00CEA2A6 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotation.swift; sourceTree = "<group>"; };
 		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		DCBBE33B25A4460900C49422 /* ItemDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatabase.swift; sourceTree = "<group>"; };
+		F3009C5725FB31CD003F1A75 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		F3009C5A25FB365D003F1A75 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
 		F3095930246BA1A40088FB19 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				F34C7B2725C7BC9B00CBA7E4 /* QRScanSession.swift */,
 				F332441625CB559D00930F8C /* SubmissionManager.swift */,
 				F3095930246BA1A40088FB19 /* ImageManager.swift */,
+				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,7 +156,6 @@
 		F30CA2012460A2F800CEA2A6 /* PhotoPoints */ = {
 			isa = PBXGroup;
 			children = (
-				DCBBE34325A4AE5500C49422 /* InitialData */,
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
 				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
 				F30CA24F2460A3D700CEA2A6 /* Model */,
@@ -191,6 +195,8 @@
 				F38F505724EC82F100016F8C /* ImageType.swift */,
 				DC3FDF982467A2D100DD613A /* Repository.swift */,
 				DCBBE33B25A4460900C49422 /* ItemDatabase.swift */,
+				F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */,
+				DCBBE34325A4AE5500C49422 /* InitialData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,8 +207,8 @@
 				F30CA2652460A3D700CEA2A6 /* MapView.swift */,
 				3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */,
 				F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */,
-				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
-				F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */,
+				F3009C5A25FB365D003F1A75 /* Overlays.swift */,
+				F3009C5725FB31CD003F1A75 /* Renderable.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F3D9AF9A25CE29EA004C488F /* RegionFitted.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
+				F3009C5825FB31CD003F1A75 /* Renderable.swift in Sources */,
 				F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */,
 				F34C7B2825C7BC9B00CBA7E4 /* QRScanSession.swift in Sources */,
 				F38D8ED625B5D6CD00616C8E /* PhotoPages.swift in Sources */,
@@ -339,6 +346,7 @@
 				F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
+				F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,

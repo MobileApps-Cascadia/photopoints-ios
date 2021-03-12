@@ -64,13 +64,12 @@ extension MapView : MKMapViewDelegate {
         return ItemAnnotationView(annotation: annotation)
     }
     
-    // extensibly render overlays based on type
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let typeString = NSStringFromClass(type(of: overlay))
-        if let renderer = OverlayManager.renderers[typeString] {
-            return renderer.init(overlay: overlay)
+        if let overlay = overlay as? Renderable {
+            return overlay.render()
         }
-        return MKOverlayRenderer()
+        
+        fatalError("overlay \(type(of: overlay)) does not conform to Renderable")
     }
 
 }
