@@ -31,7 +31,7 @@ class CaptureView: UIViewController {
     let scannerSquare: UIView = {
         let square = UIView()
         square.layer.borderWidth = 2
-        square.layer.borderColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+        square.layer.borderColor = UIColor.white.cgColor
         square.layer.cornerRadius = 10
         return square
     }()

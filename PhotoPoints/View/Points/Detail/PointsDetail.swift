@@ -238,16 +238,7 @@ class PointsDetail: UIViewController {
         )
         
         detailsView.addSubview(detailsStack)
-        detailsStack.anchor(
-            top: detailsView.topAnchor,
-            left: detailsView.leftAnchor,
-            bottom: detailsView.bottomAnchor,
-            right: detailsView.rightAnchor,
-            paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingBottom: .globalPadding,
-            paddingRight: .globalPadding
-        )
+        detailsStack.pin(to: detailsView, padding: .globalPadding)
 
         scrollView.addSubview(detailsView)
         detailsView.anchor(
