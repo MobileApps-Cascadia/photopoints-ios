@@ -22,6 +22,7 @@
 		F30CA2822460A3D800CEA2A6 /* PointsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */; };
 		F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2652460A3D700CEA2A6 /* MapView.swift */; };
 		F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */; };
+		F32DFC6325FBD57F00F639E6 /* DateHeaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DFC6225FBD57F00F639E6 /* DateHeaderStyle.swift */; };
 		F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F332441625CB559D00930F8C /* SubmissionManager.swift */; };
 		F3384F5225CCD042000E83C4 /* StringHumanized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3384F5125CCD042000E83C4 /* StringHumanized.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		F30CA24E2460A3D700CEA2A6 /* PointsDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDetail.swift; sourceTree = "<group>"; };
 		F30CA2652460A3D700CEA2A6 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F30CA2682460A3D700CEA2A6 /* ViewAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnchor.swift; sourceTree = "<group>"; };
+		F32DFC6225FBD57F00F639E6 /* DateHeaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeaderStyle.swift; sourceTree = "<group>"; };
 		F332441625CB559D00930F8C /* SubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		F3384F5125CCD042000E83C4 /* StringHumanized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHumanized.swift; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -118,10 +120,11 @@
 		F309592F246BA1690088FB19 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F34C7B2725C7BC9B00CBA7E4 /* QRScanSession.swift */,
-				F332441625CB559D00930F8C /* SubmissionManager.swift */,
+				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
 				F3095930246BA1A40088FB19 /* ImageManager.swift */,
 				F3FD0DAB25CE354A00AC4019 /* OverlayManager.swift */,
+				F332441625CB559D00930F8C /* SubmissionManager.swift */,
+				F34C7B2725C7BC9B00CBA7E4 /* QRScanSession.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -157,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				F30CA2022460A2F800CEA2A6 /* AppDelegate.swift */,
-				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
 				F30CA24F2460A3D700CEA2A6 /* Model */,
 				F3095932246BA5900088FB19 /* View */,
 				F309592F246BA1690088FB19 /* Controller */,
@@ -221,6 +223,7 @@
 				F3F68CB425A2981400A7B552 /* CGConstants.swift */,
 				F3D3063A25C8DD36002268AF /* DataMd5.swift */,
 				F3384F5125CCD042000E83C4 /* StringHumanized.swift */,
+				F32DFC6225FBD57F00F639E6 /* DateHeaderStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				F30CA2982460A3D800CEA2A6 /* ViewAnchor.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
 				F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */,
+				F32DFC6325FBD57F00F639E6 /* DateHeaderStyle.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,

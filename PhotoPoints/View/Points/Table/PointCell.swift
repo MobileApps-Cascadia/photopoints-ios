@@ -64,12 +64,7 @@ class PointCell: BaseCell {
         )
         
         statusCircle.addSubview(countLabel)
-        countLabel.anchor(
-            top: statusCircle.topAnchor,
-            left: statusCircle.leftAnchor,
-            bottom: statusCircle.bottomAnchor,
-            right: statusCircle.rightAnchor
-        )
+        countLabel.pin(to: statusCircle)
         
         mainView.addSubview(statusCircle)
         statusCircle.anchor(
