@@ -66,7 +66,7 @@ extension MapView : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlay = overlay as? Renderable {
-            return overlay.render()
+            return overlay.getRenderer()
         }
         
         fatalError("overlay \(type(of: overlay)) does not conform to Renderable")

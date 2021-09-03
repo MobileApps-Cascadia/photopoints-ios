@@ -44,7 +44,7 @@ class PointsTable: UITableViewController {
     func configureTableView() {
         tableView.tableHeaderView = dateView
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor(named: "pp-background")
+        tableView.backgroundColor = .systemBackground
         tableView.register(ProgressCell.self, forCellReuseIdentifier: progressIdentifier)
         tableView.register(PointCell.self, forCellReuseIdentifier: pointIdentifier)
         tableView.register(FooterCell.self, forCellReuseIdentifier: footerIdentifier)
