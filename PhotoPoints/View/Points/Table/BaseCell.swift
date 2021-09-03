@@ -13,7 +13,7 @@ class BaseCell: UITableViewCell {
     // main background of each cell
     let mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 10
         return view
     }()
@@ -35,16 +35,7 @@ class BaseCell: UITableViewCell {
     
     func setupSubviews() {
         contentView.addSubview(mainView)
-        mainView.anchor(
-            top: contentView.topAnchor,
-            left: contentView.leftAnchor,
-            bottom: contentView.bottomAnchor,
-            right: contentView.rightAnchor,
-            paddingTop: 2,
-            paddingLeft: .globalPadding,
-            paddingBottom: 2,
-            paddingRight: .globalPadding
-        )
+        mainView.pin(to: contentView, horizPadding: 2, vertPadding: .globalPadding)
     }
     
 }

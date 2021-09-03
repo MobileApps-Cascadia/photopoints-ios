@@ -10,7 +10,7 @@ import MapKit
 
 // overlay extensions to apply distinct formatting for each feature type
 class BoundaryGon: MKPolygon, Renderable {
-    func render() -> MKOverlayRenderer {
+    func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolygonRenderer(overlay: self)
         renderer.strokeColor = .gray
         renderer.lineWidth = 3
@@ -19,7 +19,7 @@ class BoundaryGon: MKPolygon, Renderable {
 }
 
 class WetlandGon: MKPolygon, Renderable {
-    func render() -> MKOverlayRenderer {
+    func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolygonRenderer(overlay: self)
         renderer.strokeColor = .systemBlue
         renderer.fillColor = .blue
@@ -29,7 +29,7 @@ class WetlandGon: MKPolygon, Renderable {
 }
 
 class StreamLine: MKPolyline, Renderable {
-    func render() -> MKOverlayRenderer {
+    func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: self)
         renderer.strokeColor = .brown
         renderer.lineWidth = 5
@@ -39,7 +39,7 @@ class StreamLine: MKPolyline, Renderable {
 }
 
 class TrailLine: MKPolyline, Renderable {
-    func render() -> MKOverlayRenderer {
+    func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: self)
         renderer.strokeColor = .systemBlue
         renderer.lineWidth = 3

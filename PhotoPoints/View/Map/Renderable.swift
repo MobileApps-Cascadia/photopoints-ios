@@ -9,5 +9,5 @@
 import MapKit
 
 protocol Renderable {
-    func render() -> MKOverlayRenderer
+    func getRenderer() -> MKOverlayRenderer
 }

@@ -65,7 +65,7 @@ class PointsDetail: UIViewController {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         let collection = UICollectionView(frame: frame, collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
-        collection.backgroundColor = UIColor(named: "pp-background")
+        collection.backgroundColor = .systemBackground
         return collection
     }()
     
@@ -78,7 +78,7 @@ class PointsDetail: UIViewController {
     
     let detailsView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 10
         return view
     }()
@@ -115,7 +115,7 @@ class PointsDetail: UIViewController {
     
     let aboutView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "pp-trans-gray")
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 10
         return view
     }()
@@ -146,7 +146,7 @@ class PointsDetail: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "pp-background")
+        view.backgroundColor = .systemBackground
         title = thisItem.label
         setupSubviews()
         setupCollection()
