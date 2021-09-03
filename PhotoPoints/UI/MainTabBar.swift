@@ -20,7 +20,7 @@ class MainTabBar: UITabBarController {
     func setupTabBarChildren() {
         
         // set up point table view
-        let pointsTable = PointsTable(style: .grouped)
+        let pointsTable = PointsTableViewController()
         let pointsNavigation = HideableStatusBarNavigation(rootViewController: pointsTable)
         pointsNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
         

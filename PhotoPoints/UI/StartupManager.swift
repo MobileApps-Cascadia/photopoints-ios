@@ -66,6 +66,7 @@ class StartupManager {
     // add image and photo subdirectories to .documents
     static func createImageAndPhotoDirectories() {
         let fm = FileManager.default
+        
         if let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first {
             let imagesURL = documentURL.appendingPathComponent(SubDirectory.images.rawValue)
             let photosURL = documentURL.appendingPathComponent(SubDirectory.photos.rawValue)

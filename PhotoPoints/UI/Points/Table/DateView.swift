@@ -34,9 +34,9 @@ class DateView: UIView {
     }
     
     func fadeInDate() {
-        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: .curveEaseInOut) {
             self.dateLabel.alpha = 1
-        }, completion: nil)
+        }
     }
     
 }

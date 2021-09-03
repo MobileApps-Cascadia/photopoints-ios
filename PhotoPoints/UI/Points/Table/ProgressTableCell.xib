@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="ProgressTableCell" customModule="PhotoPoints" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="407" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0g-KV-NtY" customClass="ContainerView" customModule="PhotoPoints" customModuleProvider="target">
+                        <rect key="frame" x="16" y="2" width="375" height="76"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="##/##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oos-5g-juE">
+                                <rect key="frame" x="16" y="16" width="54" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="K7S-F1-g7N">
+                                <rect key="frame" x="16" y="56" width="343" height="4"/>
+                                <color key="progressTintColor" systemColor="systemGreenColor"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POINTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bd-9R-T2P">
+                                <rect key="frame" x="70" y="20.5" width="57.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="K7S-F1-g7N" secondAttribute="trailing" constant="16" id="0Q1-yC-Kae"/>
+                            <constraint firstItem="7bd-9R-T2P" firstAttribute="bottom" secondItem="Oos-5g-juE" secondAttribute="bottom" id="2lZ-cb-nKT"/>
+                            <constraint firstItem="K7S-F1-g7N" firstAttribute="leading" secondItem="I0g-KV-NtY" secondAttribute="leading" constant="16" id="CLC-rX-P3Q"/>
+                            <constraint firstItem="K7S-F1-g7N" firstAttribute="top" secondItem="Oos-5g-juE" secondAttribute="bottom" constant="16" id="OMs-WP-DdG"/>
+                            <constraint firstAttribute="bottom" secondItem="K7S-F1-g7N" secondAttribute="bottom" constant="16" id="V2A-cG-Xyi"/>
+                            <constraint firstItem="7bd-9R-T2P" firstAttribute="leading" secondItem="Oos-5g-juE" secondAttribute="trailing" id="uaY-l1-nJU"/>
+                            <constraint firstItem="Oos-5g-juE" firstAttribute="top" secondItem="I0g-KV-NtY" secondAttribute="top" constant="16" id="wcg-A1-b0m"/>
+                            <constraint firstItem="Oos-5g-juE" firstAttribute="leading" secondItem="I0g-KV-NtY" secondAttribute="leading" constant="16" id="yWK-Xy-FfY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="I0g-KV-NtY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="67B-d1-aMO"/>
+                    <constraint firstItem="I0g-KV-NtY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="maN-7b-zki"/>
+                    <constraint firstAttribute="bottom" secondItem="I0g-KV-NtY" secondAttribute="bottom" constant="2" id="rbK-N4-XlE"/>
+                    <constraint firstAttribute="trailing" secondItem="I0g-KV-NtY" secondAttribute="trailing" constant="16" id="z8T-FC-izI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="numSurveyedLabel" destination="Oos-5g-juE" id="0mB-1X-sCs"/>
+                <outlet property="progressView" destination="K7S-F1-g7N" id="Wv5-GB-9t7"/>
+            </connections>
+            <point key="canvasLocation" x="132.60869565217394" y="170.75892857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

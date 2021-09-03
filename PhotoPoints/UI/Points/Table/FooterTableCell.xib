@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="321" id="KGk-i7-Jjw" customClass="FooterTableCell" customModule="PhotoPoints" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="438" height="321"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="438" height="321"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihV-HE-SJW" customClass="ContainerView" customModule="PhotoPoints" customModuleProvider="target">
+                        <rect key="frame" x="16" y="2" width="406" height="317"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-logo" translatesAutoresizingMaskIntoConstraints="NO" id="gmQ-QK-h7r">
+                                <rect key="frame" x="16" y="149" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="CYT-25-onf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJH-d5-oFW">
+                                <rect key="frame" x="16" y="42" width="374" height="91"/>
+                                <string key="text">Help protect the North Creek Forest ecosystem by adding your own photos of key environmental components to the scientific record</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqS-cv-Flj">
+                                <rect key="frame" x="16" y="16" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="version 1.1 build 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4u-33-kKh">
+                                <rect key="frame" x="16" y="265" width="374" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="b4u-33-kKh" secondAttribute="trailing" constant="16" id="2b0-j9-6PH"/>
+                            <constraint firstAttribute="trailing" secondItem="gqS-cv-Flj" secondAttribute="trailing" constant="16" id="6E4-jX-nto"/>
+                            <constraint firstItem="b4u-33-kKh" firstAttribute="top" secondItem="gmQ-QK-h7r" secondAttribute="bottom" constant="16" id="Eif-n6-xH9"/>
+                            <constraint firstItem="NJH-d5-oFW" firstAttribute="leading" secondItem="ihV-HE-SJW" secondAttribute="leading" constant="16" id="Kqx-0j-6HZ"/>
+                            <constraint firstAttribute="trailing" secondItem="NJH-d5-oFW" secondAttribute="trailing" constant="16" id="L93-Bu-yRO"/>
+                            <constraint firstAttribute="trailing" secondItem="gmQ-QK-h7r" secondAttribute="trailing" constant="16" id="LKI-C5-XsF"/>
+                            <constraint firstItem="gqS-cv-Flj" firstAttribute="top" secondItem="ihV-HE-SJW" secondAttribute="top" constant="16" id="Lhc-v0-6LW"/>
+                            <constraint firstAttribute="bottom" secondItem="b4u-33-kKh" secondAttribute="bottom" constant="16" id="O34-gr-4fI"/>
+                            <constraint firstItem="gmQ-QK-h7r" firstAttribute="leading" secondItem="ihV-HE-SJW" secondAttribute="leading" constant="16" id="SYi-bD-Qyh"/>
+                            <constraint firstItem="gqS-cv-Flj" firstAttribute="leading" secondItem="ihV-HE-SJW" secondAttribute="leading" constant="16" id="iZS-OJ-diF"/>
+                            <constraint firstItem="NJH-d5-oFW" firstAttribute="top" secondItem="gqS-cv-Flj" secondAttribute="bottom" constant="8" id="meT-G3-lw7"/>
+                            <constraint firstItem="b4u-33-kKh" firstAttribute="leading" secondItem="ihV-HE-SJW" secondAttribute="leading" constant="16" id="sVj-IX-QdQ"/>
+                            <constraint firstItem="gmQ-QK-h7r" firstAttribute="top" secondItem="NJH-d5-oFW" secondAttribute="bottom" constant="16" id="tKM-Je-q60"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ihV-HE-SJW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="VWr-ST-D6w"/>
+                    <constraint firstItem="ihV-HE-SJW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="chI-dC-Re7"/>
+                    <constraint firstAttribute="trailing" secondItem="ihV-HE-SJW" secondAttribute="trailing" constant="16" id="fHS-iw-vNf"/>
+                    <constraint firstAttribute="bottom" secondItem="ihV-HE-SJW" secondAttribute="bottom" constant="2" id="hnj-2x-Oiz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="155.07246376811597" y="207.25446428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="app-logo" width="550" height="530"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

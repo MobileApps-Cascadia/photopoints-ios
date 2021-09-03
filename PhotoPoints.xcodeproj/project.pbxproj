@@ -43,6 +43,15 @@
 		F3D3063B25C8DD36002268AF /* Data+Md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3063A25C8DD36002268AF /* Data+Md5.swift */; };
 		F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */; };
 		F3D9AF9A25CE29EA004C488F /* MKCoordinateRegion+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9AF9925CE29EA004C488F /* MKCoordinateRegion+Util.swift */; };
+		F3F5340B26E29EA7007E91C6 /* PointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5340926E29EA7007E91C6 /* PointsTableViewController.swift */; };
+		F3F5340C26E29EA7007E91C6 /* PointsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F5340A26E29EA7007E91C6 /* PointsTableViewController.xib */; };
+		F3F5340F26E2A152007E91C6 /* ProgressTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5340D26E2A152007E91C6 /* ProgressTableCell.swift */; };
+		F3F5341026E2A152007E91C6 /* ProgressTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F5340E26E2A152007E91C6 /* ProgressTableCell.xib */; };
+		F3F5341226E2A1EC007E91C6 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5341126E2A1EC007E91C6 /* ContainerView.swift */; };
+		F3F5341626E2A7C0007E91C6 /* PointTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5341426E2A7C0007E91C6 /* PointTableCell.swift */; };
+		F3F5341726E2A7C0007E91C6 /* PointTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F5341526E2A7C0007E91C6 /* PointTableCell.xib */; };
+		F3F5341A26E2B297007E91C6 /* FooterTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5341826E2B297007E91C6 /* FooterTableCell.swift */; };
+		F3F5341B26E2B297007E91C6 /* FooterTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F5341926E2B297007E91C6 /* FooterTableCell.xib */; };
 		F3F5433C25ABF677009AD8BA /* DetailTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433B25ABF677009AD8BA /* DetailTitle.swift */; };
 		F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */; };
 		F3F5434225ABF6C3009AD8BA /* DetailStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5434125ABF6C3009AD8BA /* DetailStack.swift */; };
@@ -90,6 +99,15 @@
 		F3D3063A25C8DD36002268AF /* Data+Md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Md5.swift"; sourceTree = "<group>"; };
 		F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		F3D9AF9925CE29EA004C488F /* MKCoordinateRegion+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Util.swift"; sourceTree = "<group>"; };
+		F3F5340926E29EA7007E91C6 /* PointsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewController.swift; sourceTree = "<group>"; };
+		F3F5340A26E29EA7007E91C6 /* PointsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointsTableViewController.xib; sourceTree = "<group>"; };
+		F3F5340D26E2A152007E91C6 /* ProgressTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableCell.swift; sourceTree = "<group>"; };
+		F3F5340E26E2A152007E91C6 /* ProgressTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressTableCell.xib; sourceTree = "<group>"; };
+		F3F5341126E2A1EC007E91C6 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		F3F5341426E2A7C0007E91C6 /* PointTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointTableCell.swift; sourceTree = "<group>"; };
+		F3F5341526E2A7C0007E91C6 /* PointTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointTableCell.xib; sourceTree = "<group>"; };
+		F3F5341826E2B297007E91C6 /* FooterTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableCell.swift; sourceTree = "<group>"; };
+		F3F5341926E2B297007E91C6 /* FooterTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableCell.xib; sourceTree = "<group>"; };
 		F3F5433B25ABF677009AD8BA /* DetailTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitle.swift; sourceTree = "<group>"; };
 		F3F5433E25ABF67F009AD8BA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
 		F3F5434125ABF6C3009AD8BA /* DetailStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStack.swift; sourceTree = "<group>"; };
@@ -123,6 +141,7 @@
 				F30CA2102460A2FC00CEA2A6 /* LaunchScreen.storyboard */,
 				F30CA2382460A3D700CEA2A6 /* MainTabBar.swift */,
 				F3B67CC42585273F0095E6F5 /* StartupManager.swift */,
+				F3F5341126E2A1EC007E91C6 /* ContainerView.swift */,
 				F30CA24A2460A3D700CEA2A6 /* Points */,
 				F30CA2642460A3D700CEA2A6 /* Map */,
 				F30CA2352460A3D700CEA2A6 /* Capture */,
@@ -260,15 +279,31 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F3F5341326E2A722007E91C6 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
+				F3C1623625AA70880076E673 /* PointCell.swift */,
+				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
+				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
+				F3C1624225AA7C560076E673 /* BaseCell.swift */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
 		F3F5433925ABF606009AD8BA /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				F3F5341326E2A722007E91C6 /* Old */,
 				F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */,
-				F3C1623325AA6EE10076E673 /* PointsTable.swift */,
-				F3C1624225AA7C560076E673 /* BaseCell.swift */,
-				F3C1624525AA7F880076E673 /* ProgressCell.swift */,
-				F3C1623625AA70880076E673 /* PointCell.swift */,
-				F3C1623C25AA70D10076E673 /* FooterCell.swift */,
+				F3F5340926E29EA7007E91C6 /* PointsTableViewController.swift */,
+				F3F5340A26E29EA7007E91C6 /* PointsTableViewController.xib */,
+				F3F5340D26E2A152007E91C6 /* ProgressTableCell.swift */,
+				F3F5340E26E2A152007E91C6 /* ProgressTableCell.xib */,
+				F3F5341426E2A7C0007E91C6 /* PointTableCell.swift */,
+				F3F5341526E2A7C0007E91C6 /* PointTableCell.xib */,
+				F3F5341826E2B297007E91C6 /* FooterTableCell.swift */,
+				F3F5341926E2B297007E91C6 /* FooterTableCell.xib */,
 				F3D54CE625AAC5B600FCEBC9 /* SectionHeader.swift */,
 				F3C1623925AA70C90076E673 /* DateView.swift */,
 			);
@@ -346,9 +381,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F5341B26E2B297007E91C6 /* FooterTableCell.xib in Resources */,
 				3F6A4CCA25852D0E006F38D0 /* items.json in Resources */,
 				F30CA2122460A2FC00CEA2A6 /* LaunchScreen.storyboard in Resources */,
+				F3F5340C26E29EA7007E91C6 /* PointsTableViewController.xib in Resources */,
+				F3F5341026E2A152007E91C6 /* ProgressTableCell.xib in Resources */,
 				F30CA20F2460A2FC00CEA2A6 /* Assets.xcassets in Resources */,
+				F3F5341726E2A7C0007E91C6 /* PointTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +400,7 @@
 			files = (
 				F30CA26C2460A3D800CEA2A6 /* CaptureView.swift in Sources */,
 				F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */,
+				F3F5341626E2A7C0007E91C6 /* PointTableCell.swift in Sources */,
 				F3D3063B25C8DD36002268AF /* Data+Md5.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F3605557258AB8DF00817995 /* LoadView.swift in Sources */,
@@ -383,11 +423,13 @@
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
 				F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */,
 				F32DFC6325FBD57F00F639E6 /* Date+HeaderStyle.swift in Sources */,
+				F3F5341226E2A1EC007E91C6 /* ContainerView.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapView.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5433F25ABF67F009AD8BA /* DetailLabel.swift in Sources */,
+				F3F5340F26E2A152007E91C6 /* ProgressTableCell.swift in Sources */,
 				F3C1623725AA70880076E673 /* PointCell.swift in Sources */,
 				DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */,
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
@@ -397,7 +439,9 @@
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
 				F3F68CB525A2981400A7B552 /* CGFloat+Constants.swift in Sources */,
 				F3C1623D25AA70D10076E673 /* FooterCell.swift in Sources */,
+				F3F5340B26E29EA7007E91C6 /* PointsTableViewController.swift in Sources */,
 				F3FEC72D25CF08C600E8E4E6 /* OverlayData.swift in Sources */,
+				F3F5341A26E2B297007E91C6 /* FooterTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
