@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  MapViewController.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 4/7/20.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapView: UIViewController {
+class MapViewController: UIViewController {
 
     //MARK: - Properties
     
@@ -18,19 +18,19 @@ class MapView: UIViewController {
     // Empty annotations array
     var annotations = [ItemAnnotation]()
     
-    lazy var mapView: MKMapView = {
-        let mapView = MKMapView(frame: view.frame)
-        mapView.delegate = self
-        mapView.region = .fitted
-        mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
-        mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
-        return mapView
-    }()
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.region = .fitted
+            mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: .forest)
+            mapView.cameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 30, maxCenterCoordinateDistance: 2500)
+        }
+    }
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fillAnnotations()
         OverlayManager.addOverlays(to: mapView)
         view.addSubview(mapView)
@@ -48,6 +48,7 @@ class MapView: UIViewController {
     
     func fillAnnotations() {
         let items = repository.getItems()!
+        
         for item in items {
             let annotation = ItemAnnotation(item: item)
             annotations.append(annotation)
@@ -58,7 +59,7 @@ class MapView: UIViewController {
 
 //MARK: - MKMapViewDelegate
 
-extension MapView : MKMapViewDelegate {
+extension MapViewController : MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         return ItemAnnotationView(annotation: annotation)
@@ -89,9 +90,3 @@ extension MKCoordinateRegion {
     static let forest = MKCoordinateRegion(center: .forestCenter, latitudinalMeters: 900, longitudinalMeters: 500)
     
 }
-
-
-
-    
-
-

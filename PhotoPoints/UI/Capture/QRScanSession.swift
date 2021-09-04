@@ -21,7 +21,7 @@ class QrScanSession: AVCaptureSession {
     let submissionManager = SubmissionManager.instance
     var scanningEnabled = true
     
-    // falliable init - the default capture device may not be available
+    // falliable init - the default capture device will not be available if running on emulator or if camera permissions denied
     init?(in view: UIView) {
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             super.init()
@@ -62,9 +62,9 @@ extension QrScanSession: AVCaptureMetadataOutputObjectsDelegate {
     // called by system when we get metadataoutputs
     // load the scanned item into submission manager
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if  metadataObjects.count != 0 && scanningEnabled {
-            let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            guard let objectString = object?.stringValue else { return }
+        if scanningEnabled,
+           let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
+           let objectString = object.stringValue {
             submissionManager.scannedItem = repository.getItemFrom(url: objectString)
             disableScanning()
         }

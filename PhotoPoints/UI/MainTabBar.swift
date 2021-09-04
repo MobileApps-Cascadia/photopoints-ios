@@ -25,12 +25,12 @@ class MainTabBar: UITabBarController {
         pointsNavigation.tabBarItem = UITabBarItem(title: "Points", image: UIImage(systemName: "smallcircle.circle"), tag: 0)
         
         // set up map:
-        let mapView = MapView()
+        let mapView = MapViewController()
         let mapNavigation = UINavigationController(rootViewController: mapView)
         mapNavigation.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 1)
         
         // set up scanner
-        let captureView = CaptureView()
+        let captureView = CaptureViewController()
         let captureNavigation = UINavigationController(rootViewController: captureView)
         captureNavigation.tabBarItem = UITabBarItem(title: "Capture", image: UIImage(systemName: "camera"), tag: 2)
         

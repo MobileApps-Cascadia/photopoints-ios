@@ -52,8 +52,10 @@ class SubmissionManager {
     func addPhotoToSubmission(from hash: String) {
         let url = ImageManager.getPath(for: hash, in: .photos)
         let userPhoto = UserPhoto(context: repository.context)
+        
         userPhoto.photoHash = hash
         userPhoto.photoUrl = url
+        
         submission.addToUserPhotos(userPhoto)
         print("photo added to \(scannedItem.label!) submission with \(submission.userPhotos?.count ?? 0) photos")
     }

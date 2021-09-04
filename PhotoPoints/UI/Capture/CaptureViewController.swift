@@ -1,9 +1,9 @@
 //
-//  ScannerView.swift
+//  CaptureViewController.swift
 //  PhotoPoints
 //
-//  Created by Clay Suttner on 4/7/20.
-//  Copyright © 2020 Cascadia College. All rights reserved.
+//  Created by Clay Suttner on 9/4/21.
+//  Copyright © 2021 Cascadia College. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ protocol AlertDelegate {
     func showThanksAlert()
 }
 
-class CaptureView: UIViewController {
+class CaptureViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -28,13 +28,9 @@ class CaptureView: UIViewController {
     // photo capture view
     let imagePicker = UIImagePickerController()
 
-    let scannerSquare: UIView = {
-        let square = UIView()
-        square.layer.borderWidth = 2
-        square.layer.borderColor = UIColor.white.cgColor
-        square.layer.cornerRadius = 10
-        return square
-    }()
+    @IBOutlet weak var videoContainer: UIView!
+    @IBOutlet weak var scannerSquare: ScannerSquare!
+    @IBOutlet var tapRecognizer: UITapGestureRecognizer!
     
     // MARK: - Lifecycle
     
@@ -42,14 +38,12 @@ class CaptureView: UIViewController {
         super.viewDidLoad()
         
         // if camera is available, set up scanner and image picker that use them
-        if let session = QrScanSession(in: view) {
+        if let session = QrScanSession(in: videoContainer) {
             scanSession = session
-            addScannerSquare()
             submissionManager.alertDelegate = self
             setupImagePicker()
             navigationController?.navigationBar.topItem?.title = "Center QR Code in Square"
         } else {
-            
             // notify user camera is not available
             navigationController?.navigationBar.topItem?.title = "No AV Device Available"
         }
@@ -67,24 +61,15 @@ class CaptureView: UIViewController {
         scanSession?.startRunning()
     }
     
-    // MARK: - View Setup
-    
-    func addScannerSquare() {
-        view.addSubview(scannerSquare)
-        let width = view.frame.width - .globalPadding * 2
-        scannerSquare.anchor(
-            centerX: view.centerXAnchor,
-            centerY: view.centerYAnchor,
-            width: width,
-            height: width
-        )
+    @IBAction func onTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true)
+        scanSession?.enableScanning()
     }
-
 }
 
 // MARK: - Alerts
 
-extension CaptureView: AlertDelegate {
+extension CaptureViewController: AlertDelegate {
     
     // create and present alert after item is scanned
     // called in SubmissionManager.scannedItem didSet
@@ -93,13 +78,13 @@ extension CaptureView: AlertDelegate {
         let item = submissionManager.scannedItem!
         let scannedAlert = UIAlertController(title: title, message: item.label, preferredStyle: .alert)
         
-        let learnAction = UIAlertAction(title: "Learn More", style: .default) { (nil) in
+        let learnAction = UIAlertAction(title: "Learn More", style: .default) { _ in
             let detailView = PointsDetailViewController(item: item)
             detailView.scanDelegate = self.scanSession
             self.present(detailView, animated: true)
         }
         
-        let submitAction = UIAlertAction(title: "Submit Photo", style: .default) { (nil) in
+        let submitAction = UIAlertAction(title: "Submit Photo", style: .default) { _ in
             self.submissionManager.startSubmission()
             self.openCamera()
         }
@@ -118,12 +103,12 @@ extension CaptureView: AlertDelegate {
         let message = "Would you like to add another photo of this item?"
         let thanksAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (nil) in
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
             self.dismiss(animated: true)
             self.openCamera()
         }
         
-        let noAction = UIAlertAction(title: "No", style: .default) { (nil) in
+        let noAction = UIAlertAction(title: "No", style: .default) { _ in
             self.dismiss(animated: true)
             self.scanSession?.enableScanning()
             self.submissionManager.sendSubmission()
@@ -136,26 +121,21 @@ extension CaptureView: AlertDelegate {
             self.addTapRecognizer(to: thanksAlert)
         }
     }
-    
+
     func addTapRecognizer(to alert: UIAlertController) {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlert))
-        
         // alert creates a view behind it that we can add the recognizer to
         // this allows us to dismiss when tapping outside of the alert
-        alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+        let alertBackgroundView = alert.view.superview?.subviews.first
+        
+        alertBackgroundView?.addGestureRecognizer(tapRecognizer)
     }
-    
-    @objc func dismissAlert() {
-        self.dismiss(animated: true)
-        scanSession?.enableScanning()
-    }
-    
+
 }
 
 // MARK: - Image Picker Delegate
 
 // Delegates and controllers
-extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CaptureViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func setupImagePicker() {
         imagePicker.delegate = self
@@ -166,16 +146,16 @@ extension CaptureView: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     
     func openCamera() {
-        let loadingScreen = LoadView()
-        loadingScreen.show(in: view)
+        showLoadingIndicator()
+        
         present(imagePicker, animated: true) {
-            loadingScreen.remove()
+            self.removeLoadingIndicator()
         }
     }
     
     // called when user picks a photo they've taken
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true) {}
+        dismiss(animated: true)
         showThanksAlert()
         DispatchQueue.global(qos: .userInitiated).async {
             let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage

@@ -38,7 +38,7 @@ class PointTableCell: UITableViewCell {
             countLabel.text = String(repository.getTodaysUserPhotos(for: item).count)
         } else {
             statusCircle.backgroundColor = .systemRed
-            countLabel.text = ""
+            countLabel.text = " "
         }
     }
     
