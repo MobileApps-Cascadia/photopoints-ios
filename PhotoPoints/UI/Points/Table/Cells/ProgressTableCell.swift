@@ -22,7 +22,7 @@ class ProgressTableCell: UITableViewCell {
     }
 
     func updateProgress() {
-        let numPoints = repository.getItems()?.count ?? 0
+        let numPoints = repository.getItems().count
         let numSubmittedItems = repository.getItemsWithSubmissionsToday().count
         let progress = Float(numSubmittedItems) / Float(numPoints)
         

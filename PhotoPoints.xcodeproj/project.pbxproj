@@ -27,6 +27,15 @@
 		F30DC5BB26E38E7000C1E027 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F30DC5BA26E38E7000C1E027 /* MapViewController.xib */; };
 		F30DC5BD26E3991D00C1E027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F30DC5BC26E3991D00C1E027 /* GoogleService-Info.plist */; };
 		F30DC5C026E39ACF00C1E027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F30DC5BF26E39ACF00C1E027 /* FirebaseFirestore */; };
+		F30DC5C226E39D2000C1E027 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C126E39D2000C1E027 /* APIClient.swift */; };
+		F30DC5C426E39E2C00C1E027 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C326E39E2C00C1E027 /* Date+StartEnd.swift */; };
+		F30DC5C626E3A05F00C1E027 /* FirebaseAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C526E3A05F00C1E027 /* FirebaseAPIClient.swift */; };
+		F30DC5F126E3AF3200C1E027 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5E526E3AF3200C1E027 /* Item+CoreDataClass.swift */; };
+		F30DC5F326E3AF3200C1E027 /* Coordinate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5E726E3AF3200C1E027 /* Coordinate+CoreDataClass.swift */; };
+		F30DC5F526E3AF3200C1E027 /* Submission+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5E926E3AF3200C1E027 /* Submission+CoreDataClass.swift */; };
+		F30DC5F726E3AF3200C1E027 /* UserPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5EB26E3AF3200C1E027 /* UserPhoto+CoreDataClass.swift */; };
+		F30DC5F926E3AF3200C1E027 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5ED26E3AF3200C1E027 /* Image+CoreDataClass.swift */; };
+		F30DC5FB26E3AF3200C1E027 /* Detail+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5EF26E3AF3200C1E027 /* Detail+CoreDataClass.swift */; };
 		F32DFC6325FBD57F00F639E6 /* Date+HeaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DFC6225FBD57F00F639E6 /* Date+HeaderStyle.swift */; };
 		F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F332441625CB559D00930F8C /* SubmissionManager.swift */; };
 		F3384F5225CCD042000E83C4 /* String+Humanized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3384F5125CCD042000E83C4 /* String+Humanized.swift */; };
@@ -35,7 +44,6 @@
 		F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378CE3225B4032300E76C88 /* PhotoCell.swift */; };
 		F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */; };
 		F38D8ED625B5D6CD00616C8E /* PhotoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38D8ED525B5D6CD00616C8E /* PhotoPage.swift */; };
-		F38F505824EC82F100016F8C /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F505724EC82F100016F8C /* ImageType.swift */; };
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
 		F3C1623A25AA70C90076E673 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623925AA70C90076E673 /* DateView.swift */; };
 		F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */; };
@@ -91,6 +99,15 @@
 		F30DC5B826E3826F00C1E027 /* ScannerSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerSquare.swift; sourceTree = "<group>"; };
 		F30DC5BA26E38E7000C1E027 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F30DC5BC26E3991D00C1E027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F30DC5C126E39D2000C1E027 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		F30DC5C326E39E2C00C1E027 /* Date+StartEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
+		F30DC5C526E3A05F00C1E027 /* FirebaseAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPIClient.swift; sourceTree = "<group>"; };
+		F30DC5E526E3AF3200C1E027 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F30DC5E726E3AF3200C1E027 /* Coordinate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinate+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F30DC5E926E3AF3200C1E027 /* Submission+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Submission+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F30DC5EB26E3AF3200C1E027 /* UserPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F30DC5ED26E3AF3200C1E027 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F30DC5EF26E3AF3200C1E027 /* Detail+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F32DFC6225FBD57F00F639E6 /* Date+HeaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+HeaderStyle.swift"; sourceTree = "<group>"; };
 		F332441625CB559D00930F8C /* SubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		F3384F5125CCD042000E83C4 /* String+Humanized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Humanized.swift"; sourceTree = "<group>"; };
@@ -99,7 +116,6 @@
 		F378CE3225B4032300E76C88 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableStatusBarNavigation.swift; sourceTree = "<group>"; };
 		F38D8ED525B5D6CD00616C8E /* PhotoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPage.swift; sourceTree = "<group>"; };
-		F38F505724EC82F100016F8C /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		F3C1623925AA70C90076E673 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotationView.swift; sourceTree = "<group>"; };
@@ -224,7 +240,12 @@
 			isa = PBXGroup;
 			children = (
 				F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */,
-				F38F505724EC82F100016F8C /* ImageType.swift */,
+				F30DC5E526E3AF3200C1E027 /* Item+CoreDataClass.swift */,
+				F30DC5E726E3AF3200C1E027 /* Coordinate+CoreDataClass.swift */,
+				F30DC5E926E3AF3200C1E027 /* Submission+CoreDataClass.swift */,
+				F30DC5EB26E3AF3200C1E027 /* UserPhoto+CoreDataClass.swift */,
+				F30DC5ED26E3AF3200C1E027 /* Image+CoreDataClass.swift */,
+				F30DC5EF26E3AF3200C1E027 /* Detail+CoreDataClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +275,7 @@
 				F32DFC6225FBD57F00F639E6 /* Date+HeaderStyle.swift */,
 				F3F5342A26E2EADD007E91C6 /* UITableView+Util.swift */,
 				F30DC5B626E3804500C1E027 /* UIViewController+Loading.swift */,
+				F30DC5C326E39E2C00C1E027 /* Date+StartEnd.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,6 +293,8 @@
 		F3F5340526E27B0E007E91C6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				F30DC5C126E39D2000C1E027 /* APIClient.swift */,
+				F30DC5C526E3A05F00C1E027 /* FirebaseAPIClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -477,25 +501,31 @@
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
 				3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */,
 				F3D9AF9A25CE29EA004C488F /* MKCoordinateRegion+Util.swift in Sources */,
+				F30DC5F126E3AF3200C1E027 /* Item+CoreDataClass.swift in Sources */,
 				F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */,
+				F30DC5C226E39D2000C1E027 /* APIClient.swift in Sources */,
 				F3F5341E26E2BE50007E91C6 /* PointsDetailViewController.swift in Sources */,
 				F3009C5825FB31CD003F1A75 /* Renderable.swift in Sources */,
 				F34C7B2825C7BC9B00CBA7E4 /* QRScanSession.swift in Sources */,
 				F30DC5B426E37FB700C1E027 /* CaptureViewController.swift in Sources */,
 				F3F5342E26E2F3B5007E91C6 /* DetailTableCell.swift in Sources */,
 				F38D8ED625B5D6CD00616C8E /* PhotoPage.swift in Sources */,
-				F38F505824EC82F100016F8C /* ImageType.swift in Sources */,
 				F3384F5225CCD042000E83C4 /* String+Humanized.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* UIView+Anchor.swift in Sources */,
+				F30DC5C626E3A05F00C1E027 /* FirebaseAPIClient.swift in Sources */,
+				F30DC5F326E3AF3200C1E027 /* Coordinate+CoreDataClass.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
+				F30DC5FB26E3AF3200C1E027 /* Detail+CoreDataClass.swift in Sources */,
 				F3F5342B26E2EADD007E91C6 /* UITableView+Util.swift in Sources */,
 				F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */,
 				F3F5343426E30E01007E91C6 /* PhotoCollectionTableCell.swift in Sources */,
 				F32DFC6325FBD57F00F639E6 /* Date+HeaderStyle.swift in Sources */,
 				F3F5341226E2A1EC007E91C6 /* ContainerView.swift in Sources */,
+				F30DC5C426E39E2C00C1E027 /* Date+StartEnd.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapViewController.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
+				F30DC5F526E3AF3200C1E027 /* Submission+CoreDataClass.swift in Sources */,
 				F30DC5B926E3826F00C1E027 /* ScannerSquare.swift in Sources */,
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5340F26E2A152007E91C6 /* ProgressTableCell.swift in Sources */,
@@ -503,9 +533,11 @@
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
 				F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */,
 				F3F5343826E30EC7007E91C6 /* PhotoCollectionPlaceholderCell.swift in Sources */,
+				F30DC5F726E3AF3200C1E027 /* UserPhoto+CoreDataClass.swift in Sources */,
 				F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */,
 				DC3FDF992467A2D100DD613A /* Repository.swift in Sources */,
 				F30CA26E2460A3D800CEA2A6 /* MainTabBar.swift in Sources */,
+				F30DC5F926E3AF3200C1E027 /* Image+CoreDataClass.swift in Sources */,
 				F3F68CB525A2981400A7B552 /* CGFloat+Constants.swift in Sources */,
 				F3F5343126E30879007E91C6 /* PhotoCollectionViewController.swift in Sources */,
 				F3F5340B26E29EA7007E91C6 /* PointsTableViewController.swift in Sources */,

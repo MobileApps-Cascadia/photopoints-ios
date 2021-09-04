@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D64" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES" codeGenerationType="category">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="location" inverseEntity="Item"/>
     </entity>
-    <entity name="Detail" representedClassName=".Detail" syncable="YES" codeGenerationType="class">
+    <entity name="Detail" representedClassName=".Detail" syncable="YES" codeGenerationType="category">
         <attribute name="property" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="String"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="details" inverseEntity="Item"/>
     </entity>
-    <entity name="Image" representedClassName=".Image" syncable="YES" codeGenerationType="class">
+    <entity name="Image" representedClassName=".Image" syncable="YES" codeGenerationType="category">
         <attribute name="basefile" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="filename" attributeType="String"/>
@@ -20,7 +20,7 @@
         <attribute name="type" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="images" inverseEntity="Item"/>
     </entity>
-    <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
+    <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="category">
         <attribute name="enabled" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="label" attributeType="String"/>
@@ -31,7 +31,7 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="item" inverseEntity="Coordinate"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="item" inverseEntity="Submission"/>
     </entity>
-    <entity name="Submission" representedClassName=".Submission" syncable="YES" codeGenerationType="class">
+    <entity name="Submission" representedClassName=".Submission" syncable="YES" codeGenerationType="category">
         <attribute name="answers" optional="YES" attributeType="String"/>
         <attribute name="count" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -41,7 +41,7 @@
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="submissions" inverseEntity="Item"/>
         <relationship name="userPhotos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>
     </entity>
-    <entity name="UserPhoto" representedClassName=".UserPhoto" syncable="YES" codeGenerationType="class">
+    <entity name="UserPhoto" representedClassName=".UserPhoto" syncable="YES" codeGenerationType="category">
         <attribute name="photoHash" attributeType="String"/>
         <attribute name="photoSize" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="URI"/>

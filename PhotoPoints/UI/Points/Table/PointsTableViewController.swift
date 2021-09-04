@@ -84,7 +84,7 @@ extension PointsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return repository.getItems()!.count
+            return repository.getItems().count
         default:
             return 1
         }
@@ -97,7 +97,7 @@ extension PointsTableViewController: UITableViewDataSource {
             progressCell?.updateProgress()
             return progressCell ?? UITableViewCell()
         case 1:
-            let thisItem = repository.getItems()![indexPath.row]
+            let thisItem = repository.getItems()[indexPath.row]
             let pointCell = tableView.dequeue(PointTableCell.self)
             pointCell?.configure(for: thisItem)
             return pointCell ?? UITableViewCell()
@@ -113,7 +113,7 @@ extension PointsTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let thisItem = repository.getItems()![indexPath.row]
+            let thisItem = repository.getItems()[indexPath.row]
             let detail = PointsDetailViewController(item: thisItem)
             detail.dateViewDelegate = self
             dateView.fadeOutDate()

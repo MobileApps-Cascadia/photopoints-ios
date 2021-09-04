@@ -26,10 +26,8 @@ extension MKCoordinateRegion {
     }()
     
     private static func updateMinMax() {
-        if let items = Repository.instance.getItems() {
-            for item in items {
-                updateMinMax(location: item.location!)
-            }
+        Repository.instance.getItems().forEach { item in
+            updateMinMax(location: item.location!)
         }
     }
     

@@ -102,11 +102,9 @@ class StartupManager {
     // load initial images from xcassets to filesystem to allow us to test getting images
     // from filesystem, as this is what we'll do for images retrieved from API.
     static func loadInitImages() {
-        if let items = repository.getItems() {
-            for item in items {
-                if let image = repository.getImageFromXcAssets(item: item), let fileName = repository.getImageNameFromXcAssets(item: item) {
-                    ImageManager.storeImage(image: image, with: fileName, to: .images)
-                }
+        repository.getItems().forEach { item in
+            if let image = repository.getImageFromXcAssets(item: item), let fileName = repository.getImageNameFromXcAssets(item: item) {
+                ImageManager.storeImage(image: image, with: fileName, to: .images)
             }
         }
     }

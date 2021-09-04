@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
     //MARK: - Setup
     
     func fillAnnotations() {
-        let items = repository.getItems()!
+        let items = repository.getItems()
         
         for item in items {
             let annotation = ItemAnnotation(item: item)

@@ -28,6 +28,7 @@ class Repository {
     func printCount(entityName: String) {
         // test to see how many rows are in each entity
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
         do {
             let count = try context.count(for: request)
             print("\(entityName) rows: \(count)")
@@ -39,6 +40,7 @@ class Repository {
     func saveContext() {
         if context.hasChanges {
             print("saving changes to context")
+            
             do {
                 try context.save()
             } catch {
@@ -52,16 +54,16 @@ class Repository {
     
     // MARK: - Data Retrieval
     // Various get methods for different locations/objects
-    func getItems() -> [Item]? {
+    func getItems() -> [Item] {
         let request = Item.fetchRequest() as NSFetchRequest<Item>
         let sortDescriptor = NSSortDescriptor(key: "label", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
         if let items = try? context.fetch(request) as [Item] {
             return items
+        } else {
+            return []
         }
-        
-        return nil
     }
     
     func getImageFromXcAssets(item: Item) -> UIImage? {
@@ -107,9 +109,9 @@ class Repository {
         
         if let details = try? context.fetch(request) as [Detail] {
             return details
+        } else {
+            return []
         }
-        
-        return [Detail]()
     }
     
     func getDetailValue(item: Item, property: String) -> String? {
@@ -143,9 +145,9 @@ class Repository {
         
         if let submissions = try? context.fetch(request) as [Submission] {
             return submissions
+        } else {
+            return []
         }
-        
-        return [Submission]()
     }
     
     func getTodaysSubmissions(for item: Item) -> [Submission] {
@@ -158,9 +160,9 @@ class Repository {
         
         if let submissions = try? context.fetch(request) {
             return submissions
+        } else {
+            return []
         }
-        
-        return [Submission]()
     }
     
     func didSubmitToday(for item: Item) -> Bool {
@@ -174,9 +176,9 @@ class Repository {
         
         if let photos = try? context.fetch(request) {
             return photos
+        } else {
+            return []
         }
-        
-        return [UserPhoto]()
     }
     
     func getTodaysUserPhotos(for item: Item) -> [UserPhoto] {
@@ -188,25 +190,12 @@ class Repository {
         
         if let photos = try? context.fetch(request) {
             return photos
+        } else {
+            return []
         }
-        
-        return [UserPhoto]()
     }
     
     func getItemsWithSubmissionsToday() -> [Item] {
-        var itemsWithSubmissionsToday = [Item]()
-        if let items = getItems() {
-            for item in items {
-                if didSubmitToday(for: item) {
-                    itemsWithSubmissionsToday.append(item)
-                }
-            }
-        }
-        return itemsWithSubmissionsToday
+        return getItems().filter { didSubmitToday(for: $0) }
     }
-}
-
-extension Date {
-    static let start = Calendar.current.startOfDay(for: Date())
-    static let end = Calendar.current.date(byAdding: .day, value: 1, to: start)!
 }
