@@ -16,13 +16,24 @@ class SectionHeader: UIView {
         return label
     }()
     
-    convenience init(title: String) {
+    var paddingLeft: CGFloat = .globalPadding
+    var paddingBottom: CGFloat = 2
+    
+    convenience init(title: String, isInset: Bool = true) {
         self.init()
         self.title.text = title
+        
+        if !isInset {
+            paddingLeft = 0
+            paddingBottom = 4
+        }
+        
         setupSubviews()
     }
     
     func setupSubviews() {
+        
+        
         addSubview(title)
         title.anchor(
             top: topAnchor,
@@ -30,8 +41,8 @@ class SectionHeader: UIView {
             bottom: bottomAnchor,
             right: rightAnchor,
             paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingBottom: 2,
+            paddingLeft: paddingLeft,
+            paddingBottom: paddingBottom,
             paddingRight: .globalPadding
         )
     }

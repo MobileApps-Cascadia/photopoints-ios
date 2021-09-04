@@ -19,5 +19,4 @@ class ContainerView: UIView {
         layer.cornerRadius = cornerRadius
         backgroundColor = .systemGray5
     }
-
 }

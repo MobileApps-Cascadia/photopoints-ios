@@ -94,7 +94,7 @@ extension CaptureView: AlertDelegate {
         let scannedAlert = UIAlertController(title: title, message: item.label, preferredStyle: .alert)
         
         let learnAction = UIAlertAction(title: "Learn More", style: .default) { (nil) in
-            let detailView = PointsDetail(item: item)
+            let detailView = PointsDetailViewController(item: item)
             detailView.scanDelegate = self.scanSession
             self.present(detailView, animated: true)
         }

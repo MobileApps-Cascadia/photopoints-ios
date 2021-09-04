@@ -9,6 +9,8 @@ import UIKit
 
 class PointsDetailViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: - Properties
     let repository = Repository.instance
     
@@ -18,121 +20,19 @@ class PointsDetailViewController: UIViewController {
     
     var dateViewDelegate: DateViewDelegate!
     
-    var surveyState: SurveyState = .notSurveyed
+    lazy var allDetails = repository.getDetails(for: thisItem)
     
-//    lazy var scrollView = UIScrollView(frame: view.frame)
-    
-    lazy var userPhotos = repository.getTodaysUserPhotos(for: thisItem)
-    
-    let photoIdentifier = "Photo Identifier"
-    
-//    lazy var imageView: UIImageView = {
-//        let imageView = UIImageView(image: repository.getImageFromFilesystem(item: thisItem))
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
-//        imageView.layer.cornerRadius = 10
-//        return imageView
-//    }()
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var statusPill: UIView!
-    @IBOutlet weak var countLabel: UILabel!
-    
-    @IBOutlet weak var photoCollectionContainer: UIView!
-    
-//    lazy var statusPill: UILabel = {
-//        let label = UILabel()
-//        label.layer.cornerRadius = 15
-//        label.clipsToBounds = true
-//        label.backgroundColor = .systemRed
-//        label.textColor = .white
-//        if repository.didSubmitToday(for: thisItem) {
-//            label.backgroundColor = .systemGreen
-//            let count = repository.getTodaysUserPhotos(for: thisItem).count
-//            label.text = "  \(count) photo\(count == 1 ? "" : "s") sent today  "
-//        } else {
-//            label.text = "  no photos sent today  "
-//        }
-//        return label
-//    }()
-    
-    let photosLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Today's Photos"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        return label
-    }()
-    
-    let photoCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        let collection = UICollectionView(frame: frame, collectionViewLayout: layout)
-        collection.showsHorizontalScrollIndicator = false
-        collection.backgroundColor = .systemBackground
-        return collection
-    }()
-    
-    let detailsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Details"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        return label
-    }()
-    
-    let detailsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray5
-        view.layer.cornerRadius = 10
-        return view
-    }()
+    lazy var photoCollectionView = PhotoCollectionViewController(item: thisItem)
     
     // all of the text underneath the image
-    lazy var detailsStack: UIStackView = {
+    lazy var shownDetails: [Detail] = {
+        let excludedDetails: [String?] = ["common_names", "story", "short_description", "full_description"]
         
-        // main stack
-        let detailsStack = UIStackView()
-        detailsStack.axis = .vertical
-        detailsStack.spacing = 16
-        
-        let excludedDetails = ["common_names", "story", "short_description", "full_description"]
-        let details = repository.getDetails(for: thisItem)
-        
-        for detail in details {
-            if !excludedDetails.contains(detail.property!) {
-                let detailTitle = DetailTitle(string: detail.property!.humanized())
-                let detailLabel = DetailLabel(string: detail.value ?? "no value")
-                let detailStack = DetailStack(arrangedSubviews: [detailTitle, detailLabel])
-                detailsStack.addArrangedSubview(detailStack)
-            }
-        }
-        
-        return detailsStack
+        return allDetails.filter { !excludedDetails.contains($0.property) }
     }()
     
-    let aboutLabel: UILabel = {
-        let label = UILabel()
-        label.text = "About"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        return label
-    }()
-    
-    let aboutView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray5
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    // PNW label
-    let pnwLabel = DetailTitle(string: "From Plants of the Pacific Northwest Coast")
-    
-    lazy var storylabel: DetailLabel = {
-        let story = repository.getDetailValue(item: thisItem, property: "story") ?? ""
-        let label = DetailLabel(string: story)
-        // wrap text
-        label.numberOfLines = 0
-        return label
+    lazy var story: Detail? = {
+        return allDetails.first { $0.property == "story" }
     }()
     
     // MARK: - Init
@@ -150,17 +50,17 @@ class PointsDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+
         title = thisItem.label
-        setupSubviews()
-        setupCollection()
+        addChild(photoCollectionView)
+        setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         // change to small tile on detail view
         navigationItem.largeTitleDisplayMode = .never
-        userPhotos = repository.getTodaysUserPhotos(for: thisItem)
-        photoCollection.reloadData()
+        
+        photoCollectionView.collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,166 +75,85 @@ class PointsDetailViewController: UIViewController {
         dateViewDelegate?.fadeInDate()
     }
     
-    // MARK: - Setup
+    func setupTableView() {
+        tableView.register(DetailPhotoTableCell.self)
+        tableView.register(DetailTableCell.self)
+        tableView.register(PhotoCollectionTableCell.self)
+        tableView.register(PhotoCollectionPlaceholderCell.self)
+        
+        tableView.sectionFooterHeight = 0
+    }
+}
+
+extension PointsDetailViewController: UITableViewDataSource {
     
-    func setupCollection() {
-        photoCollection.delegate = self
-        photoCollection.dataSource = self
-        photoCollection.register(PhotoCell.self, forCellWithReuseIdentifier: photoIdentifier)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
     }
     
-    func setupSubviews() {
-        view.addSubview(scrollView)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 2:
+            return shownDetails.count
+        default:
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
         
-        scrollView.addSubview(imageView)
-        imageView.anchor(
-            top: scrollView.topAnchor,
-            left: view.leftAnchor,
-            right: view.rightAnchor,
-            paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding,
-            height: view.frame.height / 3
-        )
-
-        imageView.addSubview(statusPill)
-        statusPill.anchor(
-            top: imageView.topAnchor,
-            right: imageView.rightAnchor,
-            paddingTop: 8,
-            paddingRight: 8,
-            height: 30
-        )
-
-        let detailsLabelTop: NSLayoutYAxisAnchor
-        
-        if repository.didSubmitToday(for: thisItem) {
-            scrollView.addSubview(photosLabel)
-            photosLabel.anchor(
-                top: imageView.bottomAnchor,
-                left: view.leftAnchor,
-                paddingTop: .globalPadding,
-                paddingLeft: .globalPadding
-            )
-            
-            scrollView.addSubview(photoCollection)
-            photoCollection.anchor(
-                top: photosLabel.bottomAnchor,
-                left: view.leftAnchor,
-                right: view.rightAnchor,
-                paddingTop: 4,
-                height: view.frame.height / 7
-            )
-            
-            detailsLabelTop = photoCollection.bottomAnchor
-        } else {
-            detailsLabelTop = imageView.bottomAnchor
+        switch indexPath.section {
+        case 0:
+            let mainPhotoCell = tableView.dequeue(DetailPhotoTableCell.self)
+            mainPhotoCell?.configure(for: thisItem)
+            cell = mainPhotoCell
+        case 1:
+            if repository.didSubmitToday(for: thisItem) {
+                let photoCollectionCell = tableView.dequeue(PhotoCollectionTableCell.self)
+                photoCollectionCell?.addCollection(photoCollectionView)
+                cell = photoCollectionCell
+            } else {
+                cell = tableView.dequeue(PhotoCollectionPlaceholderCell.self)
+            }
+        case 2:
+            let detailCell = tableView.dequeue(DetailTableCell.self)
+            detailCell?.configure(for: shownDetails[indexPath.row])
+            cell = detailCell
+        case 3:
+            let detailCell = tableView.dequeue(DetailTableCell.self)
+            detailCell?.configure(for: story)
+            cell = detailCell
+        default:
+            cell = UITableViewCell()
         }
         
-        scrollView.addSubview(detailsLabel)
-        detailsLabel.anchor(
-            top: detailsLabelTop,
-            left: view.leftAnchor,
-            right: view.rightAnchor,
-            paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding
-        )
-        
-        detailsView.addSubview(detailsStack)
-        detailsStack.pin(to: detailsView, padding: .globalPadding)
-
-        scrollView.addSubview(detailsView)
-        detailsView.anchor(
-            top: detailsLabel.bottomAnchor,
-            left: view.leftAnchor,
-            right: view.rightAnchor,
-            paddingTop: 4,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding
-        )
-
-        scrollView.addSubview(aboutLabel)
-        aboutLabel.anchor(
-            top: detailsView.bottomAnchor,
-            left: view.leftAnchor,
-            right: view.rightAnchor,
-            paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding
-        )
- 
-        aboutView.addSubview(pnwLabel)
-        pnwLabel.anchor(
-            top: aboutView.topAnchor,
-            left: aboutView.leftAnchor,
-            right: aboutView.rightAnchor,
-            paddingTop: .globalPadding,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding
-        )
-        
-        aboutView.addSubview(storylabel)
-        storylabel.anchor(
-            top: pnwLabel.bottomAnchor,
-            left: aboutView.leftAnchor,
-            bottom: aboutView.bottomAnchor,
-            right: aboutView.rightAnchor,
-            paddingLeft: .globalPadding,
-            paddingRight: .globalPadding
-        )
-
-        scrollView.addSubview(aboutView)
-        aboutView.anchor(
-            top: aboutLabel.bottomAnchor,
-            left: view.leftAnchor,
-            bottom: scrollView.bottomAnchor,
-            right: view.rightAnchor,
-            paddingTop: 4,
-            paddingLeft: .globalPadding,
-            paddingBottom: .globalPadding,
-            paddingRight: .globalPadding
-        )
+        return cell ?? UITableViewCell()
     }
 }
 
-
-
-extension PointsDetail: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PointsDetailViewController: UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userPhotos.count
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1:
+            return SectionHeader(title: "Your Photos")
+        case 2:
+            return SectionHeader(title: "Details")
+        case 3:
+            return SectionHeader(title: "About")
+        default:
+            return UIView()
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: photoIdentifier, for: indexPath) as! PhotoCell
-        photoCell.setPhoto(photo: userPhotos[indexPath.row])
-        return photoCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(PhotoPages(userPhotos: userPhotos, index: indexPath.row), animated: true)
-    }
-    
-}
-
-extension PointsDetail: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.frame.height
-        return CGSize(width: height, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .globalPadding
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: .globalPadding, height: collectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: .globalPadding, height: collectionView.frame.height)
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1, 2, 3:
+            return UITableView.automaticDimension
+        default:
+            return .globalPadding
+        }
     }
     
 }

@@ -41,9 +41,10 @@ class PointsTableViewController: UIViewController {
     
     func configureTableView() {
         tableView.tableHeaderView = dateView
-        tableView.register(UINib(nibName: String(describing: ProgressTableCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProgressTableCell.self))
-        tableView.register(UINib(nibName: String(describing: PointTableCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PointTableCell.self))
-        tableView.register(UINib(nibName: String(describing: FooterTableCell.self), bundle: nil), forCellReuseIdentifier: String(describing: FooterTableCell.self))
+        
+        tableView.register(ProgressTableCell.self)
+        tableView.register(PointTableCell.self)
+        tableView.register(FooterTableCell.self)
     }
     
     func configureNavBar() {
@@ -76,22 +77,6 @@ extension PointsTableViewController {
 // MARK: - TableViewDataSource
 extension PointsTableViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let progressCell = tableView.dequeueReusableCell(withIdentifier: String(describing: ProgressTableCell.self)) as! ProgressTableCell
-            progressCell.updateProgress()
-            return progressCell
-        case 1:
-            let thisItem = repository.getItems()![indexPath.row]
-            let pointCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PointTableCell.self)) as! PointTableCell
-            pointCell.configure(for: thisItem)
-            return pointCell
-        default:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: FooterTableCell.self)) as! FooterTableCell
-        }
-    }
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -104,6 +89,22 @@ extension PointsTableViewController: UITableViewDataSource {
             return 1
         }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let progressCell = tableView.dequeue(ProgressTableCell.self)
+            progressCell?.updateProgress()
+            return progressCell ?? UITableViewCell()
+        case 1:
+            let thisItem = repository.getItems()![indexPath.row]
+            let pointCell = tableView.dequeue(PointTableCell.self)
+            pointCell?.configure(for: thisItem)
+            return pointCell ?? UITableViewCell()
+        default:
+            return tableView.dequeue(FooterTableCell.self) ?? UITableViewCell()
+        }
+    }
 
 }
 
@@ -113,7 +114,7 @@ extension PointsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let thisItem = repository.getItems()![indexPath.row]
-            let detail = PointsDetail(item: thisItem)
+            let detail = PointsDetailViewController(item: thisItem)
             detail.dateViewDelegate = self
             dateView.fadeOutDate()
             navigationController?.pushViewController(detail, animated: true)

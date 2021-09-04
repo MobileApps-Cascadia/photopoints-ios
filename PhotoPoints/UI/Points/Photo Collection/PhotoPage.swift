@@ -1,5 +1,5 @@
 //
-//  PhotoPages.swift
+//  PhotoPage.swift
 //  PhotoPoints
 //
 //  Created by Clay Suttner on 1/18/21.
