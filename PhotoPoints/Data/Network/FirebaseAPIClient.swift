@@ -11,24 +11,28 @@ import FirebaseFirestore
 
 class FirebaseAPIClient: APIClient {
     
-    let rootCollection = Firestore.firestore().collection("northCreekForest")
+    let itemsCollection = Firestore.firestore().collection("items")
     
     func getItems() -> Future<[Item], Error> {
         Future { promise in
-            self.rootCollection.getDocuments { snapshot, error in
+            self.itemsCollection.getDocuments { snapshot, error in
                 if let error = error {
                     promise(.failure(error))
                 }
                 
-                print(snapshot?.documents)
+                print(snapshot?.documents ?? "no snapshot")
             }
         }
     }
     
     func upload(items: [Item]) {
-//        items.forEach { item in
-//            self.rootCollection.addDocument(data: )
-//        }
+        print(items.count)
+        
+        items.forEach { item in
+            if let dictionary = ItemMapper.dictionary(for: item) {
+                self.itemsCollection.addDocument(data: dictionary)
+            }
+        }
     }
     
     func getAllUserPhotos(for item: Item) {

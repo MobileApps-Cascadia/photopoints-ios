@@ -67,9 +67,10 @@ class StartupManager {
     static func createImageAndPhotoDirectories() {
         let fm = FileManager.default
         
-        if let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first {
+        if  let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first {
             let imagesURL = documentURL.appendingPathComponent(SubDirectory.images.rawValue)
             let photosURL = documentURL.appendingPathComponent(SubDirectory.photos.rawValue)
+            
             do {
                 try fm.createDirectory(at: imagesURL, withIntermediateDirectories: true, attributes: nil)
                 try fm.createDirectory(at: photosURL, withIntermediateDirectories: true, attributes: nil)
@@ -90,7 +91,6 @@ class StartupManager {
         let path = Bundle.main.path(forResource: "items", ofType: "json")
         let json = try! String(contentsOfFile: path!, encoding: .utf8)
         ItemDatabase.build(from: json)
-        
         
         // write to core data
         repository.saveContext()
