@@ -6,6 +6,7 @@
 //  Copyright © 2021 Cascadia College. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 class DetailPhotoTableCell: UITableViewCell {
@@ -15,6 +16,8 @@ class DetailPhotoTableCell: UITableViewCell {
     @IBOutlet weak var numPhotosLabel: UILabel!
     
     let repository = Repository.instance
+    
+    var imageCancellable: AnyCancellable?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +32,11 @@ class DetailPhotoTableCell: UITableViewCell {
     func configure(for item: Item) {
         itemImageView.image = repository.getImageFromFilesystem(item: item)
         
+        setStatusPill(for: item)
+        setImage(for: item)
+    }
+    
+    private func setStatusPill(for item: Item) {
         if repository.didSubmitToday(for: item) {
             statusPill.backgroundColor = .systemGreen
             let count = repository.getTodaysUserPhotos(for: item).count
@@ -36,6 +44,18 @@ class DetailPhotoTableCell: UITableViewCell {
         } else {
             statusPill.backgroundColor = .systemRed
             numPhotosLabel.text = "  no photos sent today  "
+        }
+    }
+    
+    private func setImage(for item: Item) {
+        if let image = repository.getFirstImage(of: item) {
+            imageCancellable = FirebaseAPIClient().getImageData(image)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] data in
+                    if let data = data {
+                        self?.itemImageView?.image = UIImage(data: data)
+                    }
+                }
         }
     }
     

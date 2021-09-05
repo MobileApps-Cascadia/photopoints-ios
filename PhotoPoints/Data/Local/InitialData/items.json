@@ -3,7 +3,7 @@
         "id": "28097",
         "label": "Pacific Willow",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28097",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28097",
         "type": "plant",
         "location": {
             "latitude": 47.775036,
@@ -33,7 +33,7 @@
         "id": "28069",
         "label": "Black Twinberry",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28069",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28069",
         "type": "plant",
         "location": {
             "latitude": 47.774845,
@@ -64,7 +64,7 @@
         "id": "28092",
         "label": "Douglas Fir",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28092",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28092",
         "type": "plant",
         "location": {
             "latitude": 47.774827,
@@ -95,7 +95,7 @@
         "id": "28061",
         "label": "Mock Orange",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28061",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28061",
         "type": "plant",
         "location": {
             "latitude": 47.774964,
@@ -125,7 +125,7 @@
         "id": "28074",
         "label": "Western Red Cedar",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28074",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28074",
         "type": "plant",
         "location": {
             "latitude": 47.775134,
@@ -156,7 +156,7 @@
         "id": "28070",
         "label": "Clustered Wild Rose",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28070",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28070",
         "type": "plant",
         "location": {
             "latitude": 47.774845,
@@ -187,7 +187,7 @@
         "id": "28068",
         "label": "Snowberry",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28068",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28068",
         "type": "plant",
         "location": {
             "latitude": 47.774787,
@@ -218,7 +218,7 @@
         "id": "28094",
         "label": "Low Oregon Grape",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28094",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28094",
         "type": "plant",
         "location": {
             "latitude": 47.774797,
@@ -247,7 +247,7 @@
         "id": "28063",
         "label": "Pacific Ninebark",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28063",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28063",
         "type": "plant",
         "location": {
             "latitude": 47.774865,
@@ -277,7 +277,7 @@
         "id": "28075",
         "label": "Cascara",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28075",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28075",
         "type": "plant",
         "location": {
             "latitude": 47.774897,
@@ -307,7 +307,7 @@
         "id": "28072",
         "label": "Red Alder",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28072",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28072",
         "type": "plant",
         "location": {
             "latitude": 47.774947,
@@ -338,7 +338,7 @@
         "id": "28066",
         "label": "Paper Birch",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28066",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28066",
         "type": "plant",
         "location": {
             "latitude": 47.774947,
@@ -368,7 +368,7 @@
         "id": "28098",
         "label": "Red Elderberry",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28098",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28098",
         "type": "plant",
         "location": {
             "latitude": 47.774851,
@@ -398,7 +398,7 @@
         "id": "28086",
         "label": "Black Cottonwood",
         "enabled": true,
-        "qr_code": "https:\/\/www.plantsmap.com\/plants\/28086",
+        "url": "https:\/\/www.plantsmap.com\/plants\/28086",
         "type": "plant",
         "location": {
             "latitude": 47.774872,

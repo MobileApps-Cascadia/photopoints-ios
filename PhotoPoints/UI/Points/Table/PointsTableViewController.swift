@@ -6,6 +6,7 @@
 //  Copyright © 2021 Cascadia College. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 protocol DateViewDelegate {
@@ -14,13 +15,22 @@ protocol DateViewDelegate {
 
 class PointsTableViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            viewModel.shouldReloadTable
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.tableView.reloadData()
+                }
+                .store(in: &subscribers)
+        }
+    }
     
     let repository = Repository.instance
     
-    lazy var topInset = view.safeAreaInsets.top
-    let dateFadeDistance: CGFloat = 10
-    var difference: CGFloat = 0
+    let viewModel = PointsTableViewModel(apiClient: FirebaseAPIClient())
+    
+    var subscribers = Set<AnyCancellable>()
     
     lazy var dateView: DateView = {
         let navBarHeight = self.navigationController!.navigationBar.frame.height
@@ -36,11 +46,12 @@ class PointsTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // reload data to update survey indicator circles
-        tableView.reloadData()
+        viewModel.fetchItems()
     }
     
     func configureTableView() {
         tableView.tableHeaderView = dateView
+        tableView.sectionFooterHeight = 0
         
         tableView.register(ProgressTableCell.self)
         tableView.register(PointTableCell.self)
@@ -64,7 +75,10 @@ extension PointsTableViewController {
     // on it's own the date doesn't fade fast enough when scrolling
     // this makes the date fade proportionally to a defined scroll distance
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        difference = topInset + scrollView.contentOffset.y
+        let topInset = view.safeAreaInsets.top
+        let dateFadeDistance: CGFloat = 10
+        let difference = topInset + scrollView.contentOffset.y
+        
         if dateView.alpha != 0 && difference < dateFadeDistance {
             dateView.dateLabel.alpha = 1 - difference / dateFadeDistance
         } else {
@@ -84,7 +98,7 @@ extension PointsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return repository.getItems().count
+            return viewModel.items.count
         default:
             return 1
         }
@@ -97,7 +111,7 @@ extension PointsTableViewController: UITableViewDataSource {
             progressCell?.updateProgress()
             return progressCell ?? UITableViewCell()
         case 1:
-            let thisItem = repository.getItems()[indexPath.row]
+            let thisItem = viewModel.items[indexPath.row]
             let pointCell = tableView.dequeue(PointTableCell.self)
             pointCell?.configure(for: thisItem)
             return pointCell ?? UITableViewCell()
@@ -113,7 +127,7 @@ extension PointsTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let thisItem = repository.getItems()[indexPath.row]
+            let thisItem = viewModel.items[indexPath.row]
             let detail = PointsDetailViewController(item: thisItem)
             detail.dateViewDelegate = self
             dateView.fadeOutDate()
@@ -131,16 +145,7 @@ extension PointsTableViewController: UITableViewDelegate {
             return SectionHeader(title: "About")
         }
     }
-    
-    // these two methods are necessary to get rid of unwanted white space below section headers
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
-    
+
 }
 
 extension PointsTableViewController: DateViewDelegate {

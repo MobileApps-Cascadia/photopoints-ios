@@ -24,11 +24,12 @@ struct ItemMapper {
     
     private struct ImageCodable: Codable {
         let basefile: String
-        let desc: String
+        let desc: String?
         let filename: String
-        let license: String
-        let title: String
-        let type: Int64
+        let fileformat: String
+        let license: String?
+        let title: String?
+        let imageType: String
     }
     
     private struct CoordinateCodable: Codable {
@@ -48,11 +49,27 @@ struct ItemMapper {
     
     static let repository = Repository.instance
     
+    @discardableResult
     static func map(data: Data) -> [Item] {
-        if let items = try? JSONDecoder().decode([ItemCodable].self, from: data) {
+        do {
+            let items = try JSONDecoder().decode([ItemCodable].self, from: data)
             return items.map(makeItem)
-        } else {
+        } catch {
+            print(error)
             return []
+        }
+    }
+    
+    @discardableResult
+    static func map(dictionary: [String: Any]) -> Item? {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            let itemCodable = try JSONDecoder().decode(ItemCodable.self, from: data)
+            
+            return makeItem(from: itemCodable)
+        } catch {
+            print(error)
+            return nil
         }
     }
     
@@ -69,6 +86,8 @@ struct ItemMapper {
         
         codable.details.forEach { addDetail(to: item, context: repository.context, property: $0, value: $1) }
         codable.images.forEach { addImage(to: item, context: repository.context, imageCodable: $0) }
+        
+        print(item.label)
         
         return item
     }
@@ -90,7 +109,7 @@ struct ItemMapper {
         image.filename = imageCodable.filename
         image.license = imageCodable.license
         image.title = imageCodable.title
-        image.type = imageCodable.type
+        image.imageType = ImageType(description: imageCodable.imageType).rawValue
     }
     
     static func dictionary(for item: Item) -> [String: Any]? {
@@ -140,18 +159,17 @@ struct ItemMapper {
         
         return images.compactMap { image -> ImageCodable? in
             if  let basefile = image.basefile,
-                let desc = image.desc,
                 let filename = image.filename,
-                let license = image.filename,
-                let title = image.title {
+                let fileformat = image.fileformat {
                 
                 return ImageCodable(
                     basefile: basefile,
-                    desc: desc,
+                    desc: image.desc,
                     filename: filename,
-                    license: license,
-                    title: title,
-                    type: image.type)
+                    fileformat: fileformat,
+                    license: image.license,
+                    title: image.title,
+                    imageType: ImageType(rawValue: image.imageType)?.description ?? "unknown")
             } else {
                 return nil
             }

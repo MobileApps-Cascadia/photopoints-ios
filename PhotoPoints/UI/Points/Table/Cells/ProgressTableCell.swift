@@ -15,11 +15,6 @@ class ProgressTableCell: UITableViewCell {
     @IBOutlet weak var numSurveyedLabel: UILabel!
     
     let repository = Repository.instance
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     func updateProgress() {
         let numPoints = repository.getItems().count

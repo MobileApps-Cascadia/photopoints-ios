@@ -24,6 +24,8 @@ class Repository {
     // get managed context so we can save to core data persistent container
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var imageCache = [String: Data]()
+    
     // utility / debugging function to get the number of records for a given entity
     func printCount(entityName: String) {
         // test to see how many rows are in each entity
@@ -78,7 +80,7 @@ class Repository {
         return nil
     }
     
-    func getImageNameFromXcAssets(item: Item) -> String? {
+    func getImageName(item: Item) -> String? {
         let request = Image.fetchRequest() as NSFetchRequest<Image>
         let predicate = NSPredicate(format: "item == %@", item)
         request.predicate = predicate
@@ -91,13 +93,17 @@ class Repository {
     }
     
     func getImageFromFilesystem(item: Item) -> UIImage? {
-        if let firstImage = item.images?.allObjects.first as? Image {
-            let fileName = firstImage.filename!
+        if  let firstImage = getFirstImage(of: item),
+            let fileName = firstImage.filename {
             return ImageManager.getImage(from: fileName, in: .images)
         }
         
         print("no path found for \(item.label ?? "unknown item")")
         return nil
+    }
+    
+    func getFirstImage(of item: Item) -> Image? {
+        return item.images?.allObjects.first as? Image
     }
     
     func getDetails(for item: Item) -> [Detail] {
@@ -169,18 +175,6 @@ class Repository {
         return (getTodaysSubmissions(for: item).count > 0)
     }
     
-    func getAllUserPhotos(for item: Item) -> [UserPhoto] {
-        let request = UserPhoto.fetchRequest() as NSFetchRequest<UserPhoto>
-        let predicate = NSPredicate(format: "submission.item == %@", item)
-        request.predicate = predicate
-        
-        if let photos = try? context.fetch(request) {
-            return photos
-        } else {
-            return []
-        }
-    }
-    
     func getTodaysUserPhotos(for item: Item) -> [UserPhoto] {
         let start = Date.start as CVarArg
         let end = Date.end as CVarArg
@@ -198,4 +192,5 @@ class Repository {
     func getItemsWithSubmissionsToday() -> [Item] {
         return getItems().filter { didSubmitToday(for: $0) }
     }
+    
 }

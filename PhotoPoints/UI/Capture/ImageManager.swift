@@ -10,12 +10,12 @@
 import Foundation
 import UIKit
 
-enum SubDirectory: String {
-    case images = "images"
-    case photos = "photos"
-}
-
 class ImageManager {
+    
+    enum SubDirectory: String {
+        case images = "images"
+        case photos = "photos"
+    }
     
     static let fm = FileManager.default
     

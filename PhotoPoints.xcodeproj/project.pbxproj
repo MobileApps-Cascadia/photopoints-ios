@@ -10,7 +10,6 @@
 		3F6A4CCA25852D0E006F38D0 /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A4CC925852D0E006F38D0 /* items.json */; };
 		3FB5AA4E247E2CD100DF2966 /* ItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */; };
 		DC3FDF992467A2D100DD613A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3FDF982467A2D100DD613A /* Repository.swift */; };
-		DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBE33B25A4460900C49422 /* ItemDatabase.swift */; };
 		F3009C5825FB31CD003F1A75 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3009C5725FB31CD003F1A75 /* Renderable.swift */; };
 		F3009C5B25FB365D003F1A75 /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3009C5A25FB365D003F1A75 /* Overlays.swift */; };
 		F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3095930246BA1A40088FB19 /* ImageManager.swift */; };
@@ -26,7 +25,6 @@
 		F30DC5B926E3826F00C1E027 /* ScannerSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5B826E3826F00C1E027 /* ScannerSquare.swift */; };
 		F30DC5BB26E38E7000C1E027 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F30DC5BA26E38E7000C1E027 /* MapViewController.xib */; };
 		F30DC5BD26E3991D00C1E027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F30DC5BC26E3991D00C1E027 /* GoogleService-Info.plist */; };
-		F30DC5C026E39ACF00C1E027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F30DC5BF26E39ACF00C1E027 /* FirebaseFirestore */; };
 		F30DC5C226E39D2000C1E027 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C126E39D2000C1E027 /* APIClient.swift */; };
 		F30DC5C426E39E2C00C1E027 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C326E39E2C00C1E027 /* Date+StartEnd.swift */; };
 		F30DC5C626E3A05F00C1E027 /* FirebaseAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DC5C526E3A05F00C1E027 /* FirebaseAPIClient.swift */; };
@@ -41,6 +39,10 @@
 		F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */; };
 		F38D8ED625B5D6CD00616C8E /* PhotoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38D8ED525B5D6CD00616C8E /* PhotoPage.swift */; };
 		F3B67CC52585273F0095E6F5 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B67CC42585273F0095E6F5 /* StartupManager.swift */; };
+		F3B77D6F26E3E7D200C9D84B /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B77D6E26E3E7D200C9D84B /* ImageType.swift */; };
+		F3B77D7226E4221600C9D84B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F3B77D7126E4221600C9D84B /* FirebaseFirestore */; };
+		F3B77D7426E4221600C9D84B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F3B77D7326E4221600C9D84B /* FirebaseStorage */; };
+		F3B77D7626E4335600C9D84B /* PointsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B77D7526E4335600C9D84B /* PointsTableViewModel.swift */; };
 		F3C1623A25AA70C90076E673 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1623925AA70C90076E673 /* DateView.swift */; };
 		F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */; };
 		F3D3063B25C8DD36002268AF /* Data+Md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3063A25C8DD36002268AF /* Data+Md5.swift */; };
@@ -77,7 +79,6 @@
 		3F6A4CC925852D0E006F38D0 /* items.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = items.json; sourceTree = "<group>"; };
 		3FB5AA4D247E2CD100DF2966 /* ItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotation.swift; sourceTree = "<group>"; };
 		DC3FDF982467A2D100DD613A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		DCBBE33B25A4460900C49422 /* ItemDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatabase.swift; sourceTree = "<group>"; };
 		F3009C5725FB31CD003F1A75 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		F3009C5A25FB365D003F1A75 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
 		F3095930246BA1A40088FB19 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -109,6 +110,8 @@
 		F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableStatusBarNavigation.swift; sourceTree = "<group>"; };
 		F38D8ED525B5D6CD00616C8E /* PhotoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPage.swift; sourceTree = "<group>"; };
 		F3B67CC42585273F0095E6F5 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
+		F3B77D6E26E3E7D200C9D84B /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		F3B77D7526E4335600C9D84B /* PointsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewModel.swift; sourceTree = "<group>"; };
 		F3C1623925AA70C90076E673 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		F3C8099A25CF7B5F0080997F /* ItemAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotationView.swift; sourceTree = "<group>"; };
 		F3D3063A25C8DD36002268AF /* Data+Md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Md5.swift"; sourceTree = "<group>"; };
@@ -146,7 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30DC5C026E39ACF00C1E027 /* FirebaseFirestore in Frameworks */,
+				F3B77D7226E4221600C9D84B /* FirebaseFirestore in Frameworks */,
+				F3B77D7426E4221600C9D84B /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +237,7 @@
 			children = (
 				F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */,
 				F30DC5FF26E3B55500C1E027 /* ItemMapper.swift */,
+				F3B77D6E26E3E7D200C9D84B /* ImageType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				DC3FDF982467A2D100DD613A /* Repository.swift */,
-				DCBBE33B25A4460900C49422 /* ItemDatabase.swift */,
 				F3FEC72C25CF08C600E8E4E6 /* OverlayData.swift */,
 				DCBBE34325A4AE5500C49422 /* InitialData */,
 			);
@@ -377,6 +381,7 @@
 			children = (
 				F3F5340926E29EA7007E91C6 /* PointsTableViewController.swift */,
 				F3F5340A26E29EA7007E91C6 /* PointsTableViewController.xib */,
+				F3B77D7526E4335600C9D84B /* PointsTableViewModel.swift */,
 				F3C1623925AA70C90076E673 /* DateView.swift */,
 				F3F5343B26E3219D007E91C6 /* Cells */,
 			);
@@ -410,7 +415,8 @@
 			);
 			name = PhotoPoints;
 			packageProductDependencies = (
-				F30DC5BF26E39ACF00C1E027 /* FirebaseFirestore */,
+				F3B77D7126E4221600C9D84B /* FirebaseFirestore */,
+				F3B77D7326E4221600C9D84B /* FirebaseStorage */,
 			);
 			productName = PhotoPoints;
 			productReference = F30CA1FF2460A2F800CEA2A6 /* PhotoPoints.app */;
@@ -441,7 +447,7 @@
 			);
 			mainGroup = F30CA1F62460A2F800CEA2A6;
 			packageReferences = (
-				F30DC5BE26E39ACF00C1E027 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F3B77D7026E4221600C9D84B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F30CA2002460A2F800CEA2A6 /* Products */;
 			projectDirPath = "";
@@ -507,6 +513,7 @@
 				F3F5343426E30E01007E91C6 /* PhotoCollectionTableCell.swift in Sources */,
 				F32DFC6325FBD57F00F639E6 /* Date+HeaderStyle.swift in Sources */,
 				F3F5341226E2A1EC007E91C6 /* ContainerView.swift in Sources */,
+				F3B77D6F26E3E7D200C9D84B /* ImageType.swift in Sources */,
 				F30DC5C426E39E2C00C1E027 /* Date+StartEnd.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapViewController.swift in Sources */,
@@ -514,7 +521,6 @@
 				F30DC5B926E3826F00C1E027 /* ScannerSquare.swift in Sources */,
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5340F26E2A152007E91C6 /* ProgressTableCell.swift in Sources */,
-				DCBBE33C25A4460900C49422 /* ItemDatabase.swift in Sources */,
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
 				F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */,
 				F3F5343826E30EC7007E91C6 /* PhotoCollectionPlaceholderCell.swift in Sources */,
@@ -530,6 +536,7 @@
 				F30DC5B726E3804500C1E027 /* UIViewController+Loading.swift in Sources */,
 				F30DC60026E3B55500C1E027 /* ItemMapper.swift in Sources */,
 				F3F5341A26E2B297007E91C6 /* FooterTableCell.swift in Sources */,
+				F3B77D7626E4335600C9D84B /* PointsTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +736,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F30DC5BE26E39ACF00C1E027 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		F3B77D7026E4221600C9D84B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -740,10 +747,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F30DC5BF26E39ACF00C1E027 /* FirebaseFirestore */ = {
+		F3B77D7126E4221600C9D84B /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F30DC5BE26E39ACF00C1E027 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = F3B77D7026E4221600C9D84B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		F3B77D7326E4221600C9D84B /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3B77D7026E4221600C9D84B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 

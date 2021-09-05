@@ -11,7 +11,6 @@ import Foundation
 
 protocol APIClient {
     func getItems() -> Future<[Item], Error>
-    func getAllUserPhotos(for item: Item)
     func getTodaysUserPhotos(for item: Item)
     func upload(_ submission: Submission)
 }

@@ -35,6 +35,8 @@ class StartupManager {
     static func startup() {
         storeAppConfigData()
         setConstants()
+        
+//        FirebaseAPIClient().uploadItems()
     }
     
     static func storeAppConfigData() {
@@ -50,6 +52,16 @@ class StartupManager {
         
     }
     
+    static func fillDataFromFile() {
+        let path = Bundle.main.path(forResource: "items", ofType: "json")
+        
+        if  let fileContentsString = try? String(contentsOfFile: path!, encoding: .utf8),
+            let data = fileContentsString.data(using: .utf8) {
+            
+            ItemMapper.map(data: data)
+        }
+    }
+    
     static func setConstants() {
         // screen width
         CGFloat.screenWidth = UIScreen.main.bounds.width
@@ -63,13 +75,13 @@ class StartupManager {
 
     }
     
-    // add image and photo subdirectories to .documents
+    // add image and photo subdirectories to documents
     static func createImageAndPhotoDirectories() {
         let fm = FileManager.default
         
         if  let documentURL = fm.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let imagesURL = documentURL.appendingPathComponent(SubDirectory.images.rawValue)
-            let photosURL = documentURL.appendingPathComponent(SubDirectory.photos.rawValue)
+            let imagesURL = documentURL.appendingPathComponent(ImageManager.SubDirectory.images.rawValue)
+            let photosURL = documentURL.appendingPathComponent(ImageManager.SubDirectory.photos.rawValue)
             
             do {
                 try fm.createDirectory(at: imagesURL, withIntermediateDirectories: true, attributes: nil)
@@ -81,29 +93,27 @@ class StartupManager {
     }
     
     static func loadInitData() {
-        
         print("loading initial data")
         
         // necessary to access context in some way before creating objects
         repository.context.reset()
         
         // load repository
-        let path = Bundle.main.path(forResource: "items", ofType: "json")
-        let json = try! String(contentsOfFile: path!, encoding: .utf8)
-        ItemDatabase.build(from: json)
+//        fillDataFromFile()
         
         // write to core data
         repository.saveContext()
         
         // load images to filesystem
-        loadInitImages()
+//        loadInitImages()
     }
     
     // load initial images from xcassets to filesystem to allow us to test getting images
     // from filesystem, as this is what we'll do for images retrieved from API.
     static func loadInitImages() {
         repository.getItems().forEach { item in
-            if let image = repository.getImageFromXcAssets(item: item), let fileName = repository.getImageNameFromXcAssets(item: item) {
+            if  let image = repository.getImageFromXcAssets(item: item),
+                let fileName = repository.getImageName(item: item) {
                 ImageManager.storeImage(image: image, with: fileName, to: .images)
             }
         }
