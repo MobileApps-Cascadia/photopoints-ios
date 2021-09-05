@@ -21,7 +21,7 @@ class DetailTableCell: UITableViewCell {
     }
     
     func configure(for detail: Detail?) {
-        titleLabel.text = detail?.property?.humanized()
+        titleLabel.text = detail?.property.humanized()
         contentLabel.text = detail?.value
     }
     

@@ -25,7 +25,10 @@ class FirebaseAPIClient: APIClient {
                 }
                 
                 if let documents = snapshot?.documents {
-                    let items = documents.compactMap { ItemMapper.map(dictionary: $0.data()) }
+                    let items = documents.compactMap { object in
+                        try? JSONDecoder().decode(Item.self, from: object.data())
+                    }
+                    
                     promise(.success(items))
                 }
             }
@@ -41,25 +44,20 @@ class FirebaseAPIClient: APIClient {
     }
     
     func uploadItems() {
-        let items = Repository.instance.getItems()
+        let items = Repository.instance.items
         
         items.forEach { item in
-            if let data = ItemMapper.dictionary(for: item) {
-                itemsCollection.addDocument(data: data)
-            }
+            itemsCollection.addDocument(data: item.dictionary)
         }
     }
     
     func getImageData(_ image: Image) -> Future<Data?, Never> {
-        let filename = image.filename ?? ""
-        let fileFormat = image.fileformat ?? ""
-        let fullFilename = "\(filename).\(fileFormat)"
-        let reference = storageRef.child(fullFilename)
-        let maxSize: Int64 = 2048 * 1024
-        
-        if let cachedImage = repository.imageCache[fullFilename] {
+        if let cachedImage = repository.imageCache[image.fullFilename] {
             return Future { $0(.success(cachedImage)) }
         }
+        
+        let reference = storageRef.child(image.fullFilename)
+        let maxSize: Int64 = 2048 * 1024
         
         return Future { promise in
             reference.getData(maxSize: maxSize) { data, error in
@@ -68,7 +66,7 @@ class FirebaseAPIClient: APIClient {
                 }
                 
                 if let data = data {
-                    self.repository.imageCache[fullFilename] = data
+                    self.repository.imageCache[image.fullFilename] = data
                     
                     promise(.success(data))
                 }

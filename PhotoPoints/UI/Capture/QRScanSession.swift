@@ -65,7 +65,7 @@ extension QrScanSession: AVCaptureMetadataOutputObjectsDelegate {
         if scanningEnabled,
            let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
            let objectString = object.stringValue {
-            submissionManager.scannedItem = repository.getItemFrom(url: objectString)
+            submissionManager.scannedItem = repository.getItem(from: objectString)
             disableScanning()
         }
     }

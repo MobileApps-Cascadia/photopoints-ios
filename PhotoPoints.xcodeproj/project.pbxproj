@@ -34,6 +34,11 @@
 		F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F332441625CB559D00930F8C /* SubmissionManager.swift */; };
 		F3384F5225CCD042000E83C4 /* String+Humanized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3384F5125CCD042000E83C4 /* String+Humanized.swift */; };
 		F347B06424E8D1A700E76E3B /* PhotoPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */; };
+		F34861CE26E52A6A00104C16 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34861CD26E52A6A00104C16 /* Item.swift */; };
+		F34861D026E52A6F00104C16 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34861CF26E52A6F00104C16 /* Image.swift */; };
+		F34861D226E52A7700104C16 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34861D126E52A7700104C16 /* Coordinate.swift */; };
+		F34861D626E5338800104C16 /* JSONDecoder+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34861D526E5338800104C16 /* JSONDecoder+Decode.swift */; };
+		F34861D826E5390500104C16 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34861D726E5390500104C16 /* Detail.swift */; };
 		F34C7B2825C7BC9B00CBA7E4 /* QRScanSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C7B2725C7BC9B00CBA7E4 /* QRScanSession.swift */; };
 		F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378CE3225B4032300E76C88 /* PhotoCell.swift */; };
 		F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */; };
@@ -105,6 +110,11 @@
 		F332441625CB559D00930F8C /* SubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		F3384F5125CCD042000E83C4 /* String+Humanized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Humanized.swift"; sourceTree = "<group>"; };
 		F347B06324E8D1A700E76E3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F34861CD26E52A6A00104C16 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F34861CF26E52A6F00104C16 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		F34861D126E52A7700104C16 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		F34861D526E5338800104C16 /* JSONDecoder+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Decode.swift"; sourceTree = "<group>"; };
+		F34861D726E5390500104C16 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		F34C7B2725C7BC9B00CBA7E4 /* QRScanSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanSession.swift; sourceTree = "<group>"; };
 		F378CE3225B4032300E76C88 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F388C67B25B88C640025F4F2 /* HideableStatusBarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableStatusBarNavigation.swift; sourceTree = "<group>"; };
@@ -237,6 +247,10 @@
 			children = (
 				F347B06224E8D1A700E76E3B /* PhotoPoints.xcdatamodeld */,
 				F30DC5FF26E3B55500C1E027 /* ItemMapper.swift */,
+				F34861CD26E52A6A00104C16 /* Item.swift */,
+				F34861CF26E52A6F00104C16 /* Image.swift */,
+				F34861D726E5390500104C16 /* Detail.swift */,
+				F34861D126E52A7700104C16 /* Coordinate.swift */,
 				F3B77D6E26E3E7D200C9D84B /* ImageType.swift */,
 			);
 			path = Model;
@@ -264,6 +278,7 @@
 				F32DFC6225FBD57F00F639E6 /* Date+HeaderStyle.swift */,
 				F30DC5C326E39E2C00C1E027 /* Date+StartEnd.swift */,
 				F30DC60126E3D00200C1E027 /* Encodable+Dictionary.swift */,
+				F34861D526E5338800104C16 /* JSONDecoder+Decode.swift */,
 				F3D9AF9925CE29EA004C488F /* MKCoordinateRegion+Util.swift */,
 				F3384F5125CCD042000E83C4 /* String+Humanized.swift */,
 				F3F5342A26E2EADD007E91C6 /* UITableView+Util.swift */,
@@ -490,6 +505,7 @@
 			files = (
 				F378CE3325B4032300E76C88 /* PhotoCell.swift in Sources */,
 				F3F5341626E2A7C0007E91C6 /* PointTableCell.swift in Sources */,
+				F34861D826E5390500104C16 /* Detail.swift in Sources */,
 				F3D3063B25C8DD36002268AF /* Data+Md5.swift in Sources */,
 				F3095931246BA1A40088FB19 /* ImageManager.swift in Sources */,
 				F30CA2032460A2F800CEA2A6 /* AppDelegate.swift in Sources */,
@@ -505,6 +521,7 @@
 				F38D8ED625B5D6CD00616C8E /* PhotoPage.swift in Sources */,
 				F3384F5225CCD042000E83C4 /* String+Humanized.swift in Sources */,
 				F30CA2982460A3D800CEA2A6 /* UIView+Anchor.swift in Sources */,
+				F34861D626E5338800104C16 /* JSONDecoder+Decode.swift in Sources */,
 				F30DC5C626E3A05F00C1E027 /* FirebaseAPIClient.swift in Sources */,
 				F3C1623A25AA70C90076E673 /* DateView.swift in Sources */,
 				F30DC60226E3D00200C1E027 /* Encodable+Dictionary.swift in Sources */,
@@ -516,11 +533,14 @@
 				F3B77D6F26E3E7D200C9D84B /* ImageType.swift in Sources */,
 				F30DC5C426E39E2C00C1E027 /* Date+StartEnd.swift in Sources */,
 				F3FD0DAC25CE354A00AC4019 /* OverlayManager.swift in Sources */,
+				F34861D026E52A6F00104C16 /* Image.swift in Sources */,
 				F30CA2962460A3D800CEA2A6 /* MapViewController.swift in Sources */,
 				F3D54CE725AAC5B600FCEBC9 /* SectionHeader.swift in Sources */,
+				F34861CE26E52A6A00104C16 /* Item.swift in Sources */,
 				F30DC5B926E3826F00C1E027 /* ScannerSquare.swift in Sources */,
 				F388C67C25B88C640025F4F2 /* HideableStatusBarNavigation.swift in Sources */,
 				F3F5340F26E2A152007E91C6 /* ProgressTableCell.swift in Sources */,
+				F34861D226E52A7700104C16 /* Coordinate.swift in Sources */,
 				F332441725CB559D00930F8C /* SubmissionManager.swift in Sources */,
 				F3C8099B25CF7B5F0080997F /* ItemAnnotationView.swift in Sources */,
 				F3F5343826E30EC7007E91C6 /* PhotoCollectionPlaceholderCell.swift in Sources */,

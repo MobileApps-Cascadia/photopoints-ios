@@ -35,8 +35,6 @@ class StartupManager {
     static func startup() {
         storeAppConfigData()
         setConstants()
-        
-//        FirebaseAPIClient().uploadItems()
     }
     
     static func storeAppConfigData() {
@@ -58,7 +56,7 @@ class StartupManager {
         if  let fileContentsString = try? String(contentsOfFile: path!, encoding: .utf8),
             let data = fileContentsString.data(using: .utf8) {
             
-            ItemMapper.map(data: data)
+            repository.items = try! JSONDecoder().decode([Item].self, from: data)
         }
     }
     
@@ -99,7 +97,7 @@ class StartupManager {
         repository.context.reset()
         
         // load repository
-//        fillDataFromFile()
+        fillDataFromFile()
         
         // write to core data
         repository.saveContext()
@@ -111,8 +109,8 @@ class StartupManager {
     // load initial images from xcassets to filesystem to allow us to test getting images
     // from filesystem, as this is what we'll do for images retrieved from API.
     static func loadInitImages() {
-        repository.getItems().forEach { item in
-            if  let image = repository.getImageFromXcAssets(item: item),
+        repository.items.forEach { item in
+            if  let image = repository.getUIImageFromXcAssets(item: item),
                 let fileName = repository.getImageName(item: item) {
                 ImageManager.storeImage(image: image, with: fileName, to: .images)
             }

@@ -20,7 +20,7 @@ class PointsDetailViewController: UIViewController {
     
     var dateViewDelegate: DateViewDelegate!
     
-    lazy var allDetails = repository.getDetails(for: thisItem)
+    lazy var allDetails = thisItem.details
     
     lazy var photoCollectionView = PhotoCollectionViewController(item: thisItem)
     
@@ -28,7 +28,7 @@ class PointsDetailViewController: UIViewController {
     lazy var shownDetails: [Detail] = {
         let excludedDetails: [String?] = ["common_names", "story", "short_description", "full_description"]
         
-        return allDetails.filter { !excludedDetails.contains($0.property) }
+        return thisItem.details.filter { !excludedDetails.contains($0.property) }
     }()
     
     lazy var story: Detail? = {

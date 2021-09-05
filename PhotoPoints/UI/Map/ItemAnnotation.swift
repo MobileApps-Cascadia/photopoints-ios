@@ -19,7 +19,7 @@ class ItemAnnotation: NSObject, MKAnnotation {
     
     init(item: Item) {
         self.item = item
-        let location = item.location!
+        let location = item.location
         self.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         self.title = item.label
         super.init()

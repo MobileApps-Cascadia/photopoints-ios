@@ -74,8 +74,11 @@ extension CaptureViewController: AlertDelegate {
     // create and present alert after item is scanned
     // called in SubmissionManager.scannedItem didSet
     func showScannedAlert() {
+        guard let item = submissionManager.scannedItem else {
+            return
+        }
+        
         let title = "PhotoPoint Identified!"
-        let item = submissionManager.scannedItem!
         let scannedAlert = UIAlertController(title: title, message: item.label, preferredStyle: .alert)
         
         let learnAction = UIAlertAction(title: "Learn More", style: .default) { _ in

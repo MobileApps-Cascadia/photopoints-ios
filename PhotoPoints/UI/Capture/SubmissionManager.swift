@@ -13,12 +13,12 @@ import UIKit
 class SubmissionManager {
     
     let repository = Repository.instance
-    var alertDelegate: AlertDelegate!
-    var submission: Submission!
+    var alertDelegate: AlertDelegate?
+    var submission: Submission?
     
-    var scannedItem: Item! {
+    var scannedItem: Item? {
         didSet {
-            alertDelegate.showScannedAlert()
+            alertDelegate?.showScannedAlert()
         }
     }
 
@@ -29,9 +29,9 @@ class SubmissionManager {
     
     func startSubmission() {
         submission = Submission(context: repository.context)
-        submission.date = Date()
-        submission.uuid = UUID()
-        scannedItem.addToSubmissions(submission)
+        submission?.date = Date()
+        submission?.uuid = UUID()
+        submission?.itemID = scannedItem?.id
     }
     
     func sendSubmission() {
@@ -56,8 +56,8 @@ class SubmissionManager {
         userPhoto.photoHash = hash
         userPhoto.photoUrl = url
         
-        submission.addToUserPhotos(userPhoto)
-        print("photo added to \(scannedItem.label!) submission with \(submission.userPhotos?.count ?? 0) photos")
+        submission?.addToUserPhotos(userPhoto)
+        print("photo added to \(scannedItem?.label ?? "no label") submission with \(submission?.userPhotos?.count ?? 0) photos")
     }
     
 }

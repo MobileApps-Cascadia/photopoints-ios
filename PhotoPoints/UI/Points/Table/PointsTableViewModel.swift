@@ -27,6 +27,8 @@ class PointsTableViewModel {
         itemsCancellable = apiClient.getItems()
             .replaceError(with: [])
             .sink { [weak self] items in
+                Repository.instance.items = items
+                
                 self?.items = items
                 self?.shouldReloadTable.send(true)
             }

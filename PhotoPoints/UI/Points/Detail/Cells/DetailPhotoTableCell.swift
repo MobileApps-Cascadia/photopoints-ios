@@ -30,7 +30,7 @@ class DetailPhotoTableCell: UITableViewCell {
     }
     
     func configure(for item: Item) {
-        itemImageView.image = repository.getImageFromFilesystem(item: item)
+        itemImageView.image = repository.getUIImageFromFilesystem(item: item)
         
         setStatusPill(for: item)
         setImage(for: item)

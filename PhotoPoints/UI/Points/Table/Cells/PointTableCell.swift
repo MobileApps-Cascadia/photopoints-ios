@@ -40,7 +40,7 @@ class PointTableCell: UITableViewCell {
     
     func configure(for item: Item) {
         titleLabel.text = item.label
-        subtitleLabel.text = repository.getDetailValue(item: item, property: "species_name")
+        subtitleLabel.text = item.details.first(where: { $0.property == "species_name" })?.value
         
         setupStatusCircle(for: item)
         setImage(for: item)
