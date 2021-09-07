@@ -8,7 +8,7 @@
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String" defaultValueString=""/>
         <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="userPhotos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>
+        <relationship name="userPhotos" toMany="YES" deletionRule="Nullify" destinationEntity="UserPhoto" inverseName="submission" inverseEntity="UserPhoto"/>
     </entity>
     <entity name="UserPhoto" representedClassName=".UserPhoto" syncable="YES" codeGenerationType="class">
         <attribute name="photoHash" attributeType="String"/>
@@ -17,7 +17,7 @@
         <attribute name="result" attributeType="String" defaultValueString="(unset)"/>
         <attribute name="submitToUrl" optional="YES" attributeType="URI"/>
         <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="userPhotos" inverseEntity="Submission"/>
+        <relationship name="submission" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="userPhotos" inverseEntity="Submission"/>
     </entity>
     <elements>
         <element name="Submission" positionX="491.31640625" positionY="180.328125" width="128" height="149"/>

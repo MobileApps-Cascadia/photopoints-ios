@@ -31,9 +31,8 @@ class WetlandGon: MKPolygon, Renderable {
 class StreamLine: MKPolyline, Renderable {
     func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: self)
-        renderer.strokeColor = .brown
-        renderer.lineWidth = 5
-        renderer.lineDashPattern = [6]
+        renderer.strokeColor = .systemBlue
+        renderer.lineWidth = 3
         return renderer
     }
 }
@@ -41,8 +40,9 @@ class StreamLine: MKPolyline, Renderable {
 class TrailLine: MKPolyline, Renderable {
     func getRenderer() -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: self)
-        renderer.strokeColor = .systemBlue
-        renderer.lineWidth = 3
+        renderer.strokeColor = .brown
+        renderer.lineWidth = 5
+        renderer.lineDashPattern = [6]
         return renderer
     }
 }
